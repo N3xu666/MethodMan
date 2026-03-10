@@ -1,3 +1,8 @@
+Initial: Password reset in Apache James → POP3 read SSH credentials
+
+Root: World-writable Python script in cron → SUID on /bin/bash
+
+
 Enumeration
 
 Nmap

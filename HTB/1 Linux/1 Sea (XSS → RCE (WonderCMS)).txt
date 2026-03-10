@@ -1,3 +1,9 @@
+Initial: XSS → RCE (WonderCMS CVE-2023-41425)
+
+Root: Cracked bcrypt hash → amay → SSRF via internal service → root
+
+
+
 Enumeration
 
 Nmap

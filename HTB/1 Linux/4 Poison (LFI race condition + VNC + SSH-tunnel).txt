@@ -1,3 +1,10 @@
+Initial: PHPInfo LFI Race Condition → reverse shell
+
+Root: Multiple base64 decode → SSH → VNC via tunneling → root
+
+
+
+
 ENUMERATION
 
 Nmap
