@@ -1,0 +1,93 @@
+Enumeration
+
+
+
+Nmap
+
+
+
+sudo nmap -sC -sV -Pn -vv 10.129.231.23
+
+
+
+
+
+
+PORT     STATE SERVICE REASON         VERSION
+22/tcp   open  ssh     syn-ack ttl 63 OpenSSH 8.9p1 Ubuntu 3ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 3e:ea:45:4b:c5:d1:6d:6f:e2:d4:d1:3b:0a:3d:a9:4f (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ+m7rYl1vRtnm789pH3IRhxI4CNCANVj+N5kovboNzcw9vHsBwvPX3KYA3cxGbKiA0VqbKRpOHnpsMuHEXEVJc=
+|   256 64:cc:75:de:4a:e6:a5:b4:73:eb:3f:1b:cf:b4:e3:94 (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOtuEdoYxTohG80Bo6YCqSzUY9+qbnAFnhsk4yAZNqhM
+80/tcp   open  http    syn-ack ttl 63 nginx 1.18.0 (Ubuntu)
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://editor.htb/
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+8080/tcp open  http    syn-ack ttl 63 Jetty 10.0.20
+| http-cookie-flags: 
+|   /: 
+|     JSESSIONID: 
+|_      httponly flag not set
+|_http-server-header: Jetty(10.0.20)
+|_http-open-proxy: Proxy might be redirecting requests
+| http-webdav-scan: 
+|   Server Type: Jetty(10.0.20)
+|   WebDAV type: Unknown
+|_  Allowed Methods: OPTIONS, GET, HEAD, PROPFIND, LOCK, UNLOCK
+| http-robots.txt: 50 disallowed entries (40 shown)
+| /xwiki/bin/viewattachrev/ /xwiki/bin/viewrev/ 
+| /xwiki/bin/pdf/ /xwiki/bin/edit/ /xwiki/bin/create/ 
+| /xwiki/bin/inline/ /xwiki/bin/preview/ /xwiki/bin/save/ 
+| /xwiki/bin/saveandcontinue/ /xwiki/bin/rollback/ /xwiki/bin/deleteversions/ 
+| /xwiki/bin/cancel/ /xwiki/bin/delete/ /xwiki/bin/deletespace/ 
+| /xwiki/bin/undelete/ /xwiki/bin/reset/ /xwiki/bin/register/ 
+| /xwiki/bin/propupdate/ /xwiki/bin/propadd/ /xwiki/bin/propdisable/ 
+| /xwiki/bin/propenable/ /xwiki/bin/propdelete/ /xwiki/bin/objectadd/ 
+| /xwiki/bin/commentadd/ /xwiki/bin/commentsave/ /xwiki/bin/objectsync/ 
+| /xwiki/bin/objectremove/ /xwiki/bin/attach/ /xwiki/bin/upload/ 
+| /xwiki/bin/temp/ /xwiki/bin/downloadrev/ /xwiki/bin/dot/ 
+| /xwiki/bin/delattachment/ /xwiki/bin/skin/ /xwiki/bin/jsx/ /xwiki/bin/ssx/ 
+| /xwiki/bin/login/ /xwiki/bin/loginsubmit/ /xwiki/bin/loginerror/ 
+|_/xwiki/bin/logout/
+| http-methods: 
+|   Supported Methods: OPTIONS GET HEAD PROPFIND LOCK UNLOCK
+|_  Potentially risky methods: PROPFIND LOCK UNLOCK
+| http-title: XWiki - Main - Intro
+|_Requested resource was http://10.129.231.23:8080/xwiki/bin/view/Main/
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+
+
+
+
+
+We see the port 80 nginx 1.18.0 (Ubuntu)
+
+And see the http://editor.htb/
+
+
+
+Lets add it too hosts file:
+
+
+sudo nano /etc/hosts
+
+->
+
+10.129.231.23   editor.htb
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
