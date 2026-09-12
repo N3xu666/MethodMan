@@ -286,7 +286,7 @@ we can work from out windows box
 connect to OpenVPN 
 
 
-ping 10.129.4.11    -ok
+ping 10.129.5.64    -ok
 
 
 
