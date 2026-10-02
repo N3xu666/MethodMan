@@ -1,0 +1,3 @@
+nmap -sC -sV -p- -oN nmap_full.txt enigma.htb
+
+
