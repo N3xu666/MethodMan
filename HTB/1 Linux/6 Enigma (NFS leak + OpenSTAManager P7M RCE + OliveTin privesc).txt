@@ -1,6 +1,4 @@
-# Enigma — Hack The Box Walkthrough
-
-## 1. Разведка (Reconnaissance)
+1. Разведка (Reconnaissance)
 
 **Полное сканирование портов:**
 ```bash
