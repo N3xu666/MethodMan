@@ -25,3 +25,4 @@ update-readmes.ps1
 txt/
 audit.ps1
 audit.ps1.bak*
+check.ps1.bak
