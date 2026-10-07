@@ -157,7 +157,7 @@ file cmd.php
 # cmd.php: GIF image data 16188 x 26736
 ```
 
-Загрузка через `/nibbleblog/admin.php?controller=plugins&action=list` → My Image.
+�-агрузка через `/nibbleblog/admin.php?controller=plugins&action=list` → My Image.
 
 После загрузки:
 
@@ -224,7 +224,7 @@ cat /root/root.txt
 
 ## Flags
 
-| Флаг | Значение                       |
+| Флаг | �-начение                       |
 |------|--------------------------------|
 | User | (см. `/home/nibbler/user.txt`) |
 | Root | (см. `/root/root.txt`)         |

