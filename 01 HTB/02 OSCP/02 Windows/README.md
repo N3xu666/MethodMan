@@ -9,6 +9,7 @@ No writeups added yet. This section will be filled in as machines are completed.
 - **`md/ru/`** - final, formatted writeups (Russian).
 - **`md/en/`** - English translations (planned).
 - **`txt/ru/`** - raw drafts and early versions, kept for historical reference.
+- **`txt/en/`** - English drafts (planned).
 
 ## Machines
 

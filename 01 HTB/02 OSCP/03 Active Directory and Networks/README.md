@@ -8,7 +8,7 @@ Final writeups will be placed in `md/ru/`. Raw drafts are currently kept in [`tx
 
 | # | Machine | Difficulty | Key Techniques | Writeup |
 |---|---------|------------|----------------|---------|
-| - | Active | - | (raw draft only) | [txt](./txt/ru/Active.txt) |
+| 01 | Active | - | (raw draft only) | [txt](./txt/ru/01%20Active.txt) |
 
 ## Archive
 

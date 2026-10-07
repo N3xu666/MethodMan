@@ -8,9 +8,9 @@ Final writeups live in `md/ru/`. Raw drafts are kept in `txt/ru/`. English trans
 
 | # | Category | Description | Writeups |
 |---|----------|-------------|----------|
-| 1 | [Linux](./1%20Linux/) | Linux machines | 13 |
-| 2 | [Windows](./2%20Windows/) | Windows machines (in progress) | 0 |
-| 3 | [Active Directory and Networks](./3%20Active%20Directory%20and%20Networks/) | Active Directory and network machines | 1 |
+| 1 | [Linux](./01%20Linux/) | Linux machines | 13 |
+| 2 | [Windows](./02%20Windows/) | Windows machines (in progress) | 0 |
+| 3 | [Active Directory and Networks](./03%20Active%20Directory%20and%20Networks/) | Active Directory and network machines | 1 |
 
 ## Conventions
 
