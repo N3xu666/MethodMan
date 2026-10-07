@@ -16,3 +16,7 @@ masking-check.ps1
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Internal workflow (not for public)
+_WORKFLOW.md
+update-readmes.ps1
