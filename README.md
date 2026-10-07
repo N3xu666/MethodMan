@@ -1,6 +1,8 @@
 ﻿# MethodMan
 
-Personal collection of Hack The Box writeups, organized by program and category.
+Personal collection of penetration testing writeups, methodologies and cheatsheets.
+
+Organized by platform and category.
 
 Main writeups live in `md/ru/` folders. Raw drafts are kept in `txt/ru/` folders for historical reference. English translations will be added to `md/en/` and `txt/en/` in the future.
 
