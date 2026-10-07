@@ -1,0 +1,18 @@
+﻿# Masking dictionary (contains real secrets)
+masking-dict.ps1
+masking-check.ps1
+
+# PowerShell
+*.ps1.bak
+*.ps1.tmp
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
