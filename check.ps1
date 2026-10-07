@@ -67,7 +67,7 @@ Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-    if ($c -match "have been masked for ethical reasons") { $withNote++ }
+    if ($c -match "have been masked for ethical reasons" -or $c -match "etik səbəblərə görə maskalanmışdır") { $withNote++ }
     else { Write-Host "  MISSING NOTE: $($_.Name)" -ForegroundColor Yellow; $withoutNote++ }
   }
 Write-Host "Files with note: $withNote"
