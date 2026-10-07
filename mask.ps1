@@ -1,7 +1,7 @@
 ﻿# mask.ps1
-# Маскировка чувствительных данных в .md и .txt файлах.
-# Требует masking-dict.ps1 в той же директории.
-# Использование: .\mask.ps1
+# Mask sensitive data in .md files.
+# Requires masking-dict.ps1 in the same directory.
+# Usage: .\mask.ps1
 
 $ErrorActionPreference = "Stop"
 $repo = "C:\Users\Irshad\Documents\GitHub\MethodMan"

@@ -1,7 +1,7 @@
 ﻿# check.ps1
-# Проверка репозитория на утечки и артефакты.
-# Требует masking-dict.ps1 в той же директории.
-# Использование: .\check.ps1
+# Repository check: leaks and artifacts.
+# Requires masking-dict.ps1 in the same directory.
+# Usage: .\check.ps1
 
 $ErrorActionPreference = "Stop"
 $repo = "C:\Users\Irshad\Documents\GitHub\MethodMan"
@@ -17,11 +17,11 @@ if (-not (Test-Path $dictPath)) {
 $utf8 = [System.Text.Encoding]::UTF8
 $totalIssues = 0
 
-# Файлы-не-walkthrough, которые не должны содержать Note
+# Non-walkthrough files (should not contain Note)
 $excluded = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md')
 
 # ============================================================
-# 1. Реальные 32-hex флаги
+# 1. Real 32-hex flags
 # ============================================================
 Write-Host "`n=== [1/6] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
@@ -35,7 +35,7 @@ if ($flags -eq 0) { Write-Host "OK: 0 flags" -ForegroundColor Green }
 else { Write-Host "FAIL: $flags flags left" -ForegroundColor Red; $totalIssues += $flags }
 
 # ============================================================
-# 2. Реальные пароли/хеши/ключи из словаря
+# 2. Real passwords/hashes/keys from dictionary
 # ============================================================
 Write-Host "`n=== [2/6] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
 $leaks = 0
@@ -58,7 +58,7 @@ if ($leaks -eq 0) { Write-Host "OK: 0 leaks" -ForegroundColor Green }
 else { Write-Host "FAIL: $leaks leaks" -ForegroundColor Red; $totalIssues += $leaks }
 
 # ============================================================
-# 3. Note после Attack Chain (только walkthrough)
+# 3. Note after Attack Chain (walkthroughs only)
 # ============================================================
 Write-Host "`n=== [3/6] Ethical note in walkthroughs ===" -ForegroundColor Cyan
 $withNote = 0
@@ -75,7 +75,7 @@ Write-Host "Files without note: $withoutNote"
 if ($withoutNote -gt 0) { $totalIssues += $withoutNote }
 
 # ============================================================
-# 4. Длинные тире
+# 4. Long dashes
 # ============================================================
 Write-Host "`n=== [4/6] Long dashes ===" -ForegroundColor Cyan
 $d = 0
@@ -91,7 +91,7 @@ if ($d -eq 0) { Write-Host "OK: 0 dashes" -ForegroundColor Green }
 else { Write-Host "FAIL: $d long dashes" -ForegroundColor Red; $totalIssues += $d }
 
 # ============================================================
-# 5. Битые символы
+# 5. Broken chars
 # ============================================================
 Write-Host "`n=== [5/6] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
@@ -107,7 +107,7 @@ if ($b -eq 0) { Write-Host "OK: 0 broken chars" -ForegroundColor Green }
 else { Write-Host "FAIL: $b broken chars" -ForegroundColor Red; $totalIssues += $b }
 
 # ============================================================
-# 6. Артефакты маскировки
+# 6. Masking artifacts
 # ============================================================
 Write-Host "`n=== [6/6] Masking artifacts ===" -ForegroundColor Cyan
 $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLAG>FLAG')
@@ -129,7 +129,7 @@ if ($a -eq 0) { Write-Host "OK: 0 artifacts" -ForegroundColor Green }
 else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a }
 
 # ============================================================
-# Итог
+# Summary
 # ============================================================
 Write-Host "`n============================================" -ForegroundColor Cyan
 if ($totalIssues -eq 0) {
