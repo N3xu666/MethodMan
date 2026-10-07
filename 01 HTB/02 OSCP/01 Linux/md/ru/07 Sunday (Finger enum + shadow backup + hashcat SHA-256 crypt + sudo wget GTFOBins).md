@@ -17,10 +17,10 @@ Reconnaissance
 Enumeration (Finger)
 ├── msfconsole → scanner/finger/finger_users
 └── ./finger-user-enum.pl -u root -t <target>
-    └── Ответ: root ... sunday (Office Location = пароль-подсказка)
+    └── Ответ: root ... <PASSWORD> (Office Location = пароль-подсказка)
 
 Foothold (SSH)
-├── ssh -p 22022 sunny@sunday.htb → password: sunday
+├── ssh -p 22022 sunny@sunday.htb → password: <PASSWORD>
 └── sudo -l → (root) NOPASSWD: /root/troll - ЛОВУШКА
 
 Lateral Movement (Backup)
@@ -86,10 +86,10 @@ run
 ```
 
 ```
-root@10.129.77.192: root     Super-User     pts/3     <Apr 24 10:37>     sunday
+root@10.129.77.192: root     Super-User     pts/3     <Apr 24 10:37>     <PASSWORD>
 ```
 
-Поле Office Location содержит `sunday` - подсказка администратора.
+Поле Office Location содержит `<PASSWORD>` - подсказка администратора.
 
 ---
 
@@ -97,7 +97,7 @@ root@10.129.77.192: root     Super-User     pts/3     <Apr 24 10:37>     sunday
 
 ```bash
 ssh -p 22022 sunny@sunday.htb
-# Password: sunday
+# Password: <PASSWORD>
 
 sudo -l
 # User sunny may run the following commands on sunday:
