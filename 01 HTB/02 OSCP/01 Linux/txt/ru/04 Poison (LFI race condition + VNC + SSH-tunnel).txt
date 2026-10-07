@@ -20,11 +20,11 @@ Lateral Movement (Credentials)
 ├── /home/charix (permission denied)
 ├── ps -aux → Xvnc :1 (root)
 ├── /usr/local/www/apache24/data/pwdbackup.txt
-│   └── 13x base64 decode → Charix!2#4%6&8(0
+│   └── 13x base64 decode → <PASSWORD>
 └── ssh charix@10.129.1.254 → user.txt (<USER_FLAG>)
 
 Privilege Escalation (VNC)
-├── ~/secret.zip → scp → unzip (pass: Charix!2#4%6&8(0)
+├── ~/secret.zip → scp → unzip (pass: <PASSWORD>)
 ├── netstat -an | grep LIST → 5801, 5901 (VNC localhost)
 ├── ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254
 ├── proxychains4.conf → socks5 127.0.0.1 1080
@@ -859,7 +859,7 @@ so we have the password!
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-connect via ssh  ->      charix:Charix!2#4%6&8(0
+connect via ssh  ->      charix:<PASSWORD>
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -908,7 +908,7 @@ cd Desktop
 scp charix@10.129.1.254:secret.zip .
 
 
-Password: Charix!2#4%6&8(0
+Password: <PASSWORD>
 
 
 we downloaded file to our Desktop
@@ -918,7 +918,7 @@ unzip secret.zip
 
 
 
-[secret.zip] secret password:    Charix!2#4%6&8(0
+[secret.zip] secret password:    <PASSWORD>
 
 
 

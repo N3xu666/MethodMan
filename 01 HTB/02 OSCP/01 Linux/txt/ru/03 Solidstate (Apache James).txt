@@ -10,7 +10,7 @@ Foothold (Apache James)
 ├── setpassword mindy writeup
 ├── telnet 10.129.1.53 110 → USER mindy / PASS writeup
 ├── LIST → RETR 2 → письмо от mailadmin
-│   └── mindy:P@55W0rd1!2@ (SSH creds)
+│   └── mindy:<PASSWORD> (SSH creds)
 └── ssh mindy@10.129.1.53 → user.txt (<USER_FLAG>)
 
 Escaping rbash
@@ -167,7 +167,7 @@ Here are your ssh credentials to access the system. Remember to reset your passw
 Your access is restricted at the moment, feel free to ask your supervisor to add any commands you need to your path. 
 
 username: mindy
-pass: P@55W0rd1!2@
+pass: <PASSWORD>
 
 Respectfully,
 James
@@ -180,7 +180,7 @@ James
 ssh mindy@10.129.1.53
 
 
-password: P@55W0rd1!2@
+password: <PASSWORD>
 
 
 

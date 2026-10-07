@@ -11,7 +11,7 @@ Foothold
 ├── /nibbleblog/update.php → DB updated, ./content/private/
 ├── /nibbleblog/content/private/users.xml → username: admin
 ├── hydra → blacklist (5 fail_count → IP banned)
-├── новый VPN IP → admin:nibbles (ручной подбор)
+├── новый VPN IP → admin:<PASSWORD> (ручной подбор)
 └── /nibbleblog/admin.php?controller=plugins&action=list → My Image plugin
 
 Exploitation (File Upload)
@@ -460,7 +460,7 @@ we downloaded new vpn file so we have another tun0 ip and we can continue trying
 
 
 
-we just tried the credentials admin:nibbles
+we just tried the credentials admin:<PASSWORD>
 
 and we are in :)
 

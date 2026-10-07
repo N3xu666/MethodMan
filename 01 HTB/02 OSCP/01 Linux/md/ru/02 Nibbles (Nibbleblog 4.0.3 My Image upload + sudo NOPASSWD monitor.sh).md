@@ -21,7 +21,7 @@ Foothold
 ├── /nibbleblog/update.php → ./content/private/
 ├── /nibbleblog/content/private/users.xml → username: admin
 ├── hydra → IP попал в blacklist
-├── новый VPN IP → admin:nibbles
+├── новый VPN IP → admin:<PASSWORD>
 └── /nibbleblog/admin.php?controller=plugins&action=list → My Image plugin
 
 Exploitation (File Upload)
@@ -41,6 +41,8 @@ Privilege Escalation
 ├── sudo ./monitor.sh → root
 └── cat /root/root.txt
 ```
+
+> Note: All flags, passwords, and hashes have been masked for ethical reasons.
 
 ---
 
@@ -138,7 +140,7 @@ hydra -l admin -P /usr/share/wordlists/rockyou-50.txt 10.129.96.84 \
 После 5 неудачных попыток IP попал в blacklist (см. `users.xml`). Решение - сменить VPN-профиль, получить новый IP и подобрать вручную:
 
 ```
-admin:nibbles
+admin:<PASSWORD>
 ```
 
 ### Upload вебшелла
