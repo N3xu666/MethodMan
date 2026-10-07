@@ -40,10 +40,10 @@ $note = "> Note: All flags, passwords, and hashes have been masked for ethical r
 Write-Host "`n=== Adding note after Attack Chain ===" -ForegroundColor Cyan
 $filesWithNote = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -ne 'README.md' } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -notin @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', '_WORKFLOW.md') } |
   ForEach-Object {
     $content = [System.IO.File]::ReadAllText($_.FullName, [System.Text.Encoding]::UTF8)
-    if ($content -match "have been masked for ethical reasons") {
+    if ($content -match "have been masked for ethical reasons" -or $content -match "etik səbəblərə görə maskalanmışdır") {
         Write-Host "[SKIP] Note exists: $($_.Name)"
         return
     }

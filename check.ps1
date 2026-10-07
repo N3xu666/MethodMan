@@ -18,7 +18,7 @@ $utf8 = [System.Text.Encoding]::UTF8
 $totalIssues = 0
 
 # Non-walkthrough files (should not contain Note)
-$excluded = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md')
+$excluded = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', '_WORKFLOW.md')
 
 # ============================================================
 # 1. Real 32-hex flags
