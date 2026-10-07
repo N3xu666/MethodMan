@@ -1,4 +1,4 @@
-# Poison (HTB)
+﻿# Poison (HTB)
 
 > Платформа: Hack The Box  
 > ОС: FreeBSD  
@@ -44,7 +44,7 @@ Privilege Escalation (VNC)
 
 ## Machine Briefing
 
-FreeBSD с Apache 2.4.29 + PHP 5.6.32. На главной странице — список тестовых скриптов. VNC-сервер на localhost под root.
+FreeBSD с Apache 2.4.29 + PHP 5.6.32. На главной странице - список тестовых скриптов. VNC-сервер на localhost под root.
 
 ---
 
@@ -73,7 +73,7 @@ OS: FreeBSD 11.x.
 http://10.129.1.254/
 ```
 
-�-аголовок: "Temporary website to test local .php scripts."
+�-аголовок: "Temporary website to test local .php scripts."
 
 | URL           | Назначение                                             |
 |---------------|--------------------------------------------------------|
@@ -107,7 +107,7 @@ Listener:
 nc -lnvp 9001
 ```
 
-�-апуск:
+�-апуск:
 
 ```bash
 python3 phpinfolfi_modifyed.py 10.129.1.254 80 100
@@ -132,7 +132,7 @@ ps -aux
 # Xvnc :1 (root)
 ```
 
-**Ответ на задание "What is the full path to the Apache access logs?"** — `/var/log/httpd-access.log`.
+**Ответ на задание "What is the full path to the Apache access logs?"** - `/var/log/httpd-access.log`.
 
 ### Credentials
 
@@ -173,7 +173,7 @@ unzip secret.zip
 # пароль: Charix!2#4%6&8(0
 ```
 
-Внутри — бинарные данные (пароль VNC).
+Внутри - бинарные данные (пароль VNC).
 
 ### Обнаружение VNC
 
@@ -191,7 +191,7 @@ netstat -an | grep LIST
 socks5  127.0.0.1 1080
 ```
 
-�-апуск:
+�-апуск:
 
 ```bash
 ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254
@@ -209,7 +209,7 @@ vncviewer -passwd secret 127.0.0.1::6901
 
 ## Flags
 
-| Флаг | �-начение                         |
+| Флаг | �-начение                         |
 |------|----------------------------------|
 | User | <USER_FLAG> |
 | Root | (см. `/root/root.txt` через VNC) |
@@ -218,8 +218,8 @@ vncviewer -passwd secret 127.0.0.1::6901
 
 ## Key Takeaways
 
-- **LFI через phpinfo + race condition** — открытый `phpinfo()` раскрывает временный путь загруженного файла; выиграв гонку между записью tmp-файла и его удалением, можно добиться его выполнения через LFI.
-- **Многослойный base64** — проверяйте, не декодируется ли строка повторно; используйте `for`-цикл.
-- **VNC на localhost** — стандартный SSH-туннель (`-D` + `-L`) решает задачу доступа к изолированному сервису.
-- **Пароль VNC в secret.zip** — классический приём хранения credential-файлов рядом с SSH-доступом.
-- **Альтернативный вектор — log poisoning** — Apache access log доступен для чтения и записи User-Agent'ом, но в данном случае запись от `www` недоступна, что отсекает этот путь.
+- **LFI через phpinfo + race condition** - открытый `phpinfo()` раскрывает временный путь загруженного файла; выиграв гонку между записью tmp-файла и его удалением, можно добиться его выполнения через LFI.
+- **Многослойный base64** - проверяйте, не декодируется ли строка повторно; используйте `for`-цикл.
+- **VNC на localhost** - стандартный SSH-туннель (`-D` + `-L`) решает задачу доступа к изолированному сервису.
+- **Пароль VNC в secret.zip** - классический приём хранения credential-файлов рядом с SSH-доступом.
+- **Альтернативный вектор - log poisoning** - Apache access log доступен для чтения и записи User-Agent'ом, но в данном случае запись от `www` недоступна, что отсекает этот путь.

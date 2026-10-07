@@ -1,4 +1,4 @@
-NIBBLES (HTB) — ATTACK CHAIN
+﻿NIBBLES (HTB) - ATTACK CHAIN
 
 Reconnaissance
 ├── nmap -sC -sV -A → 22 (OpenSSH 7.2p2), 80 (Apache 2.4.18 Ubuntu 16.04)

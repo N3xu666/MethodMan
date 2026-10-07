@@ -1,4 +1,4 @@
-# Enigma (HTB)
+﻿# Enigma (HTB)
 
 > Платформа: Hack The Box  
 > ОС: Linux  
@@ -108,9 +108,9 @@ pdftotext /tmp/nfs_enigma/New_Employee_Access.pdf -
 curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:Enigma2024!'
 ```
 
-В INBOX — приветственное письмо от `sarah@enigma.htb`.
+В INBOX - приветственное письмо от `sarah@enigma.htb`.
 
-Roundcube: `http://mail001.enigma.htb`, вход `sarah:Enigma2024!`. В почте — письмо IT с доступами к OpenSTAManager:
+Roundcube: `http://mail001.enigma.htb`, вход `sarah:Enigma2024!`. В почте - письмо IT с доступами к OpenSTAManager:
 
 - URL: `http://support_001.enigma.htb`
 - Username: `admin`
@@ -124,7 +124,7 @@ Roundcube: `http://mail001.enigma.htb`, вход `sarah:Enigma2024!`. В поч�
 http://support_001.enigma.htb/info.php → Version: 2.9.8
 ```
 
-Уязвима к **CVE-2025-69212** — OS Command Injection через P7M-файлы.
+Уязвима к **CVE-2025-69212** - OS Command Injection через P7M-файлы.
 
 Собираем ZIP с вредоносным именем файла, загружаем через Sales → Sales Invoices → Importazione FE.
 
@@ -230,7 +230,7 @@ cat /root/root.txt
 
 ## Flags
 
-| Флаг | �-начение                         |
+| Флаг | �-начение                         |
 |------|----------------------------------|
 | User | (см. `~/user.txt` для haris)     |
 | Root | <ROOT_FLAG> |
@@ -239,8 +239,8 @@ cat /root/root.txt
 
 ## Key Takeaways
 
-- **NFS без ограничений** — всегда проверять `showmount -e`.
-- **Password reuse** — временные пароли часто не меняют.
+- **NFS без ограничений** - всегда проверять `showmount -e`.
+- **Password reuse** - временные пароли часто не меняют.
 - **CVE-хантинг по версии.**
-- **Command injection через шаблонизацию** — `{{ }}` в shell без санитизации.
-- **Привилегированные локальные сервисы** (OliveTin на 127.0.0.1) — классический privesc-вектор.
+- **Command injection через шаблонизацию** - `{{ }}` в shell без санитизации.
+- **Привилегированные локальные сервисы** (OliveTin на 127.0.0.1) - классический privesc-вектор.

