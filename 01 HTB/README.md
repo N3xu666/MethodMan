@@ -1,4 +1,4 @@
-# Hack The Box
+﻿# Hack The Box
 
 Writeups for Hack The Box machines, organized by program and category.
 

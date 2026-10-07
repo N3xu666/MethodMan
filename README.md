@@ -1,4 +1,4 @@
-# MethodMan
+﻿# MethodMan
 
 Personal collection of Hack The Box writeups, organized by program and category.
 

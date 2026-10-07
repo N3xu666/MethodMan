@@ -1,4 +1,4 @@
-# Season 12 Aero
+﻿# Season 12 Aero
 
 Writeups for HTB Season 12: Aero, running from September to November 2026.
 

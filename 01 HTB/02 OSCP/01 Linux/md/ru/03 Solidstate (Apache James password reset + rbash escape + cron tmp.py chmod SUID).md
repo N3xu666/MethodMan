@@ -195,7 +195,7 @@ except:
      sys.exit()
 ```
 
-�-дём cron:
+Ждём cron:
 
 ```bash
 ls -la /bin/bash
@@ -216,7 +216,7 @@ cat /root/root.txt
 
 ## Flags
 
-| Флаг | �-начение                         |
+| Флаг | Значение                         |
 |------|----------------------------------|
 | User | <USER_FLAG> |
 | Root | <ROOT_FLAG> |

