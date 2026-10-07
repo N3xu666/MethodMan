@@ -98,7 +98,7 @@ curl -s http://cozyhosting.htb/actuator/sessions
 ```
 
 ```json
-{"<TOKEN>":"kanderson"}
+{"<SESSION_ID>":"kanderson"}
 ```
 
 Подменяем `JSESSIONID` → `/admin`.

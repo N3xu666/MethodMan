@@ -29,7 +29,7 @@ Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' } |
   ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-    $flags += [regex]::Matches($c, "\b[a-f0-9]{32}\b").Count
+    $flags += [regex]::Matches($c, "\b[a-fA-F0-9]{32}\b").Count
   }
 if ($flags -eq 0) { Write-Host "OK: 0 flags" -ForegroundColor Green }
 else { Write-Host "FAIL: $flags flags left" -ForegroundColor Red; $totalIssues += $flags }
@@ -41,7 +41,7 @@ Write-Host "`n=== [2/6] Real passwords/hashes/keys from dict ===" -ForegroundCol
 $leaks = 0
 foreach ($key in $replacements.Keys) {
     if ($key -match '^<.*>$') { continue }
-    if ($key -match '^[a-f0-9]{32}$') { continue }
+    if ($key -match '^[a-fA-F0-9]{32}$') { continue }
     $count = 0
     Get-ChildItem -Recurse -Filter *.md |
       Where-Object { $_.FullName -notmatch '\\\.git\\' } |
@@ -79,7 +79,7 @@ if ($withoutNote -gt 0) { $totalIssues += $withoutNote }
 # ============================================================
 Write-Host "`n=== [4/6] Long dashes ===" -ForegroundColor Cyan
 $d = 0
-foreach ($ext in @("*.md", "*.txt")) {
+foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
       Where-Object { $_.FullName -notmatch '\\\.git\\' } |
       ForEach-Object {
@@ -95,7 +95,7 @@ else { Write-Host "FAIL: $d long dashes" -ForegroundColor Red; $totalIssues += $
 # ============================================================
 Write-Host "`n=== [5/6] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
-foreach ($ext in @("*.md", "*.txt")) {
+foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
       Where-Object { $_.FullName -notmatch '\\\.git\\' } |
       ForEach-Object {

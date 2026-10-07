@@ -18,7 +18,7 @@ $utf8WithBom = New-Object System.Text.UTF8Encoding($true)
 
 Write-Host "`n=== Masking sensitive values ===" -ForegroundColor Cyan
 $filesMasked = 0
-foreach ($ext in @("*.md", "*.txt")) {
+foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
       Where-Object { $_.FullName -notmatch '\\\.git\\' } |
       ForEach-Object {
