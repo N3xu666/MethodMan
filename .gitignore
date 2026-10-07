@@ -23,3 +23,4 @@ update-readmes.ps1
 
 # Raw drafts (not for public)
 txt/
+audit.ps1
