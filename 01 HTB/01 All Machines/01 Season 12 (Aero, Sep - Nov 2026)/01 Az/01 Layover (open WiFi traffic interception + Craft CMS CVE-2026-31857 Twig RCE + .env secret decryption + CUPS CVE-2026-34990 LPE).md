@@ -2,7 +2,7 @@
 
 > Platforma: Hack The Box  
 > OS: Linux  
-> Çətinlik: Medium  
+> Çətinlik: Orta  
 > Status: Tamamlandı  
 > Nəticə: root
 
