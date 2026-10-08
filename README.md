@@ -3,9 +3,7 @@
 Personal collection of penetration testing writeups, methodologies and cheatsheets.
 Organized by platform and category.
 
-Main writeups available in Az/En/Ru.
-
-**45 walkthroughs x 3 languages (15 machines x Az/En/Ru).**
+Main writeups available in Az/En/Ru (Now: 15 machines)
 
 ---
 
