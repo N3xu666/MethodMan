@@ -50,7 +50,8 @@ Privilege Escalation (OliveTin)
 └── /tmp/.bs -p → root
 ```
 
-> Qeyd: Bütün flaglar, parollar və heşlər etik səbəblərə görə maskalanmışdır.
+> [!NOTE]
+> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.
 
 ---
 
@@ -81,7 +82,7 @@ nmap -sC -sV -p- -oN nmap_full.txt enigma.htb
 
 ---
 
-## Foothold (NFS)
+## İlkin Giriş (NFS)
 
 ```bash
 showmount -e enigma.htb
@@ -101,7 +102,7 @@ Giriş məlumatları:
 
 ---
 
-## Lateral Movement (Parolun Təkrar İstifadəsi + Poçt)
+## Üfüqi Yerdəyişmə (Parolun Təkrar İstifadəsi + Poçt)
 
 ```bash
 # /etc/hosts:
@@ -120,7 +121,7 @@ Roundcube: `http://mail001.enigma.htb`, giriş `sarah:<PASSWORD>`. Poçtda - Ope
 
 ---
 
-## Exploitation (OpenSTAManager)
+## İstismar (OpenSTAManager)
 
 ```
 http://support_001.enigma.htb/info.php → Version: 2.9.8
@@ -156,7 +157,7 @@ export TERM=xterm
 
 ---
 
-## Lateral Movement (Config → MySQL → Heş)
+## Üfüqi Yerdəyişmə (Config → MySQL → Heş)
 
 ```bash
 cat /var/www/html/openstamanager/config.inc.php
@@ -175,7 +176,7 @@ cat ~/user.txt
 
 ---
 
-## Privilege Escalation (OliveTin)
+## Səlahiyyətlərin Artırılması (OliveTin)
 
 ```bash
 ps aux | grep root

@@ -43,7 +43,8 @@ Privilege Escalation (sudo ssh ProxyCommand)
 └── root → cat /root/root.txt (<ROOT_FLAG>)
 ```
 
-> Qeyd: Bütün flaglar, parollar və heşlər etik səbəblərə görə maskalanmışdır.
+> [!NOTE]
+> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.
 
 ---
 
@@ -71,7 +72,7 @@ echo "10.129.229.88    cozyhosting.htb" | sudo tee -a /etc/hosts
 
 ---
 
-## Foothold
+## İlkin Giriş
 
 ```bash
 gobuster dir -u http://cozyhosting.htb -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt
@@ -179,7 +180,7 @@ cat user.txt
 
 ---
 
-## Privilege Escalation
+## Səlahiyyətlərin Artırılması
 
 ```bash
 sudo -l

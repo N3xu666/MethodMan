@@ -44,7 +44,8 @@ Privilege Escalation (LXD)
 └── cat /mnt/root/root/root.txt → <ROOT_FLAG>
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> All flags, passwords, hashes, and session tokens have been masked for ethical reasons.
 
 ---
 

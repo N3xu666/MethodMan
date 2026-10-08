@@ -42,7 +42,8 @@ Privilege Escalation
 └── cat /root/root.txt
 ```
 
-> Qeyd: Bütün flaglar, parollar və heşlər etik səbəblərə görə maskalanmışdır.
+> [!NOTE]
+> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.
 
 ---
 
@@ -77,7 +78,7 @@ Burp cavabında HTML şərhi tapıldı:
 
 ---
 
-## Foothold
+## İlkin Giriş
 
 ### Nibbleblog Versiyasının Müəyyən Edilməsi
 
@@ -194,7 +195,7 @@ cat /home/nibbler/user.txt
 
 ---
 
-## Privilege Escalation
+## Səlahiyyətlərin Artırılması
 
 ### sudo Sadalaması
 

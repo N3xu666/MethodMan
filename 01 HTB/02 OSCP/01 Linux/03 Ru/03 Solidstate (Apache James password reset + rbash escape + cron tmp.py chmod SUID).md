@@ -7,7 +7,7 @@
 
 ---
 
-## Attack Chain
+## Цепочка Атаки
 
 ```text
 Reconnaissance
@@ -36,17 +36,18 @@ Privilege Escalation
 └── /bin/bash -ip → root.txt
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям.
 
 ---
 
-## Machine Briefing
+## Брифинг Машины
 
 Debian 9 (stretch), Apache James 2.3.2 (SMTP/POP3/NNTP). Пароль root в админ-панели James дефолтный. Пользователи: james, thomas, john, mindy, mailadmin.
 
 ---
 
-## Reconnaissance
+## Разведка
 
 ### Port Scan
 
@@ -72,7 +73,7 @@ sudo nmap -p- -T4 10.129.1.53
 
 ---
 
-## Foothold
+## Первичный Доступ
 
 ### Apache James admin
 
@@ -146,7 +147,7 @@ bash -ip
 
 ---
 
-## Privilege Escalation
+## Повышение Привилегий
 
 ### LinEnum
 
@@ -216,7 +217,7 @@ cat /root/root.txt
 
 ---
 
-## Flags
+## Флаги
 
 | Флаг | Значение                         |
 |------|----------------------------------|
@@ -225,7 +226,7 @@ cat /root/root.txt
 
 ---
 
-## Key Takeaways
+## Ключевые Выводы
 
 - **Apache James admin на порту 4555** - дефолтные `root:root` дают полный контроль над списком пользователей и возможность сбросить пароль любому.
 - **Пароли в email-переписке** - POP3 открытым текстом отдаёт тело письма с учётными данными.

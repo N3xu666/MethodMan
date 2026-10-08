@@ -7,7 +7,7 @@
 
 ---
 
-## Attack Chain
+## Цепочка Атаки
 
 ```text
 Reconnaissance
@@ -46,17 +46,18 @@ Privilege Escalation (pepper → root)
 └── Root shell → cat /root/root.txt
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям.
 
 ---
 
-## Machine Briefing
+## Брифинг Машины
 
 Apache 2.4.25 (Debian) на порту 80 с сайтом "Stark Hotel" и дополнительный Apache на порту 64999 (с fail2ban). SQL-инъекция в `room.php?cod=` позволяет писать файлы через `INTO OUTFILE`, что даёт webshell. Далее - command injection в `simpler.py` для перехода на `pepper` и SUID `systemctl` для root.
 
 ---
 
-## Reconnaissance
+## Разведка
 
 ### Port Scan
 
@@ -90,7 +91,7 @@ gobuster dir -u http://jarvis.htb -w /usr/share/seclists/Discovery/Web-Content/r
 
 ---
 
-## Foothold (SQL Injection)
+## Первичный Доступ (SQL Injection)
 
 ### Подтверждение инъекции
 
@@ -180,7 +181,7 @@ curl -s -G "http://jarvis.htb/room.php" \
 
 ---
 
-## Exploitation (RCE via INTO OUTFILE)
+## Эксплуатация (RCE via INTO OUTFILE)
 
 ### Определение web-root
 
@@ -246,7 +247,7 @@ export TERM=xterm
 
 ---
 
-## Lateral Movement (www-data → pepper)
+## Боковое Перемещение (www-data → pepper)
 
 ### Enumeration
 
@@ -322,7 +323,7 @@ cat /home/pepper/user.txt
 
 ---
 
-## Privilege Escalation (pepper → root)
+## Повышение Привилегий (pepper → root)
 
 ### Enumeration
 
@@ -389,7 +390,7 @@ cat /root/root.txt
 
 ---
 
-## Flags
+## Флаги
 
 | Флаг | Значение                         |
 |------|----------------------------------|
@@ -398,7 +399,7 @@ cat /root/root.txt
 
 ---
 
-## Key Takeaways
+## Ключевые Выводы
 
 - **Ручная SQLi без sqlmap** - boolean-based, ORDER BY, UNION SELECT. На экзамене OSCP sqlmap запрещён, всё делается руками.
 - **`INTO OUTFILE` не перезаписывает файл** - при повторной записи с тем же именем MariaDB вернёт ошибку. Используй новое имя.

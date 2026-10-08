@@ -36,7 +36,8 @@ Privilege Escalation
 └── /bin/bash -ip → root.txt
 ```
 
-> Qeyd: Bütün flaglar, parollar və heşlər etik səbəblərə görə maskalanmışdır.
+> [!NOTE]
+> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.
 
 ---
 
@@ -72,7 +73,7 @@ sudo nmap -p- -T4 10.129.1.53
 
 ---
 
-## Foothold
+## İlkin Giriş
 
 ### Apache James admin
 
@@ -146,7 +147,7 @@ bash -ip
 
 ---
 
-## Privilege Escalation
+## Səlahiyyətlərin Artırılması
 
 ### LinEnum
 

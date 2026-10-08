@@ -40,7 +40,8 @@ Privilege Escalation (VNC)
 └── vncviewer -passwd secret 127.0.0.1::6901 → root.txt
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> All flags, passwords, hashes, and session tokens have been masked for ethical reasons.
 
 ---
 

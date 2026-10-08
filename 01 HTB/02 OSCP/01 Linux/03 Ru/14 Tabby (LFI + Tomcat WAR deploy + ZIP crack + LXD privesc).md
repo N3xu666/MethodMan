@@ -7,7 +7,7 @@
 
 ---
 
-## Attack Chain
+## Цепочка Атаки
 
 ```text
 Reconnaissance
@@ -44,17 +44,18 @@ Privilege Escalation (LXD)
 └── cat /mnt/root/root/root.txt → <ROOT_FLAG>
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям.
 
 ---
 
-## Machine Briefing
+## Брифинг Машины
 
 Apache 2.4.41 (Mega Hosting) и Tomcat 9.0.31 на Ubuntu 20.04. Второй vhost `megahosting.htb` уязвим к LFI, что позволяет прочитать `tomcat-users.xml` и получить доступ к интерфейсу Tomcat `manager/text`. Развёртывание WAR-файла даёт shell от `tomcat`. Защищённый паролем ZIP-архив даёт пароль от `ash`, а группа `lxd` через привилегированный контейнер приводит к root.
 
 ---
 
-## Reconnaissance
+## Разведка
 
 ### Port Scan
 
@@ -85,7 +86,7 @@ echo "10.129.77.170    tabby.htb megahosting.htb" | sudo tee -a /etc/hosts
 
 ---
 
-## Foothold (LFI → Tomcat creds)
+## Первичный Доступ (LFI → Tomcat creds)
 
 ### Подтверждение LFI
 
@@ -115,7 +116,7 @@ curl -s "http://megahosting.htb/news.php?file=../../../../usr/share/tomcat9/etc/
 
 ---
 
-## Exploitation (WAR deploy)
+## Эксплуатация (WAR deploy)
 
 ### Проверка доступа
 
@@ -186,7 +187,7 @@ export TERM=xterm
 
 ---
 
-## Lateral Movement (ZIP crack)
+## Боковое Перемещение (ZIP crack)
 
 ### Поиск архива
 
@@ -221,7 +222,7 @@ cat /home/ash/user.txt
 
 ---
 
-## Privilege Escalation (LXD)
+## Повышение Привилегий (LXD)
 
 ### Enumeration
 
@@ -278,7 +279,7 @@ cat root.txt
 
 ---
 
-## Flags
+## Флаги
 
 | Флаг | Значение                         |
 |------|----------------------------------|
@@ -287,7 +288,7 @@ cat root.txt
 
 ---
 
-## Key Takeaways
+## Ключевые Выводы
 
 - **Обнаружение второго vhost** - внешней ссылки на главной странице достаточно; всегда внимательно читай HTML.
 - **LFI + конфигурационный файл** - `tomcat-users.xml` хранит учётные данные в открытом виде; в пакете Ubuntu путь `/usr/share/tomcat9/etc/`.

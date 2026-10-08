@@ -7,7 +7,7 @@
 
 ---
 
-## Attack Chain
+## Цепочка Атаки
 
 ```text
 Reconnaissance
@@ -50,17 +50,18 @@ Privilege Escalation (OliveTin)
 └── /tmp/.bs -p → root
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям.
 
 ---
 
-## Machine Briefing
+## Брифинг Машины
 
 Многосервисная Linux-машина: почтовый сервер (Dovecot), NFS, Roundcube, OpenSTAManager и локальный OliveTin под root.
 
 ---
 
-## Reconnaissance
+## Разведка
 
 ### Port Scan
 
@@ -81,7 +82,7 @@ nmap -sC -sV -p- -oN nmap_full.txt enigma.htb
 
 ---
 
-## Foothold (NFS)
+## Первичный Доступ (NFS)
 
 ```bash
 showmount -e enigma.htb
@@ -101,7 +102,7 @@ pdftotext /tmp/nfs_enigma/New_Employee_Access.pdf -
 
 ---
 
-## Lateral Movement (Password Reuse + Mail)
+## Боковое Перемещение (Password Reuse + Mail)
 
 ```bash
 # /etc/hosts:
@@ -120,7 +121,7 @@ Roundcube: `http://mail001.enigma.htb`, вход `sarah:<PASSWORD>`. В почт
 
 ---
 
-## Exploitation (OpenSTAManager)
+## Эксплуатация (OpenSTAManager)
 
 ```
 http://support_001.enigma.htb/info.php → Version: 2.9.8
@@ -156,7 +157,7 @@ export TERM=xterm
 
 ---
 
-## Lateral Movement (Config → MySQL → Hash)
+## Боковое Перемещение (Config → MySQL → Hash)
 
 ```bash
 cat /var/www/html/openstamanager/config.inc.php
@@ -175,7 +176,7 @@ cat ~/user.txt
 
 ---
 
-## Privilege Escalation (OliveTin)
+## Повышение Привилегий (OliveTin)
 
 ```bash
 ps aux | grep root
@@ -230,7 +231,7 @@ cat /root/root.txt
 
 ---
 
-## Flags
+## Флаги
 
 | Флаг | Значение                         |
 |------|----------------------------------|
@@ -239,7 +240,7 @@ cat /root/root.txt
 
 ---
 
-## Key Takeaways
+## Ключевые Выводы
 
 - **NFS без ограничений** - всегда проверять `showmount -e`.
 - **Password reuse** - временные пароли часто не меняют.

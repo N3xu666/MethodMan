@@ -127,18 +127,18 @@ Write-Host "`n[8] Attack Chain" -ForegroundColor Yellow
 $noAttackChain = @()
 foreach ($wt in $walkthroughs) {
     $c = [System.IO.File]::ReadAllText($wt.FullName, $utf8)
-    if (-not ($c -match '(?m)^##\s+(Attack Chain|Hücum Zənciri)')) { $noAttackChain += $wt.Name }
+    if (-not ($c -match '(?m)^##\s+(Attack Chain|Hücum Zənciri|Цепочка Атаки)')) { $noAttackChain += $wt.Name }
 }
 if ($noAttackChain.Count -eq 0) { Write-Pass "all walkthroughs have Attack Chain" } else { Write-Fail "missing Attack Chain:"; $noAttackChain | ForEach-Object { Write-Info "    $_" } }
 
 # 9. NOTE PLACEMENT
 Write-Host "`n[9] Ethical note placement" -ForegroundColor Yellow
 $badNote = @()
-$noteText = '(have been masked for ethical reasons|etik səbəblərə görə maskalanmışdır)'
+$noteText = '(All flags, passwords, hashes, and session tokens have been masked for ethical reasons|Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям|Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir)'
 foreach ($wt in $walkthroughs) {
     $c = [System.IO.File]::ReadAllText($wt.FullName, $utf8)
     if ($c -notmatch $noteText) { $badNote += "$($wt.Name) - MISSING"; continue }
-    $pattern = '(?s)(```text.*?```)\s*(>\s*(?:Note|Qeyd):[^\r\n]*(?:have been masked|etik səbəblərə görə maskalanmışdır)[^\r\n]*)\s*\r?\n\s*---'
+    $pattern = '(?s)(```text.*?```)\s*(>\s*\[!NOTE\][^\r\n]*\r?\n>\s*[^\r\n]+)\s*\r?\n\s*---'
     if ($c -notmatch $pattern) { $badNote += "$($wt.Name) - wrong position" }
 }
 if ($badNote.Count -eq 0) { Write-Pass "all walkthroughs: Note right after Attack Chain" } else { Write-Fail "Note issues:"; $badNote | ForEach-Object { Write-Info "    $_" } }
@@ -232,7 +232,7 @@ if (Test-Path "update-readmes.ps1") { Write-Pass "update-readmes.ps1 exists" } e
 if (Test-Path "mask.ps1") {
     $m = Get-Content "mask.ps1" -Raw
     if ($m -match 'masking-dict\.ps1') { Write-Pass "mask.ps1 references masking-dict.ps1" } else { Write-Fail "mask.ps1 does not reference dict" }
-    if ($m -match 'etik səbəblərə görə maskalanmışdır') { Write-Pass "mask.ps1 recognizes Az Note" } else { Write-Warn "mask.ps1 does not recognize Az Note" }
+    if ($m -match 'gizlədilmişdir') { Write-Pass "mask.ps1 recognizes Az Note" } else { Write-Warn "mask.ps1 does not recognize Az Note" }
 }
 if (Test-Path "check.ps1") {
     $chk = Get-Content "check.ps1" -Raw

@@ -40,7 +40,8 @@ Privilege Escalation (VNC)
 └── vncviewer -passwd secret 127.0.0.1::6901 → root.txt
 ```
 
-> Qeyd: Bütün flaglar, parollar və heşlər etik səbəblərə görə maskalanmışdır.
+> [!NOTE]
+> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.
 
 ---
 
@@ -67,7 +68,7 @@ OS: FreeBSD 11.x.
 
 ---
 
-## Foothold
+## İlkin Giriş
 
 ### Saytın araşdırılması
 
@@ -163,7 +164,7 @@ cat user.txt
 
 ---
 
-## Privilege Escalation
+## Səlahiyyətlərin Artırılması
 
 ### Ev qovluğundakı fayllar
 

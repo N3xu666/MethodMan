@@ -44,7 +44,8 @@ Privilege Escalation (LXD)
 └── cat /mnt/root/root/root.txt → <ROOT_FLAG>
 ```
 
-> Qeyd: Bütün flaglar, parollar və heşlər etik səbəblərə görə maskalanmışdır.
+> [!NOTE]
+> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.
 
 ---
 
@@ -85,7 +86,7 @@ Yəni eyni serverdə ikinci vhost `megahosting.htb` var və `news.php` `file` pa
 
 ---
 
-## Foothold (LFI → Tomcat creds)
+## İlkin Giriş (LFI → Tomcat creds)
 
 ### LFI-nin təsdiqlənməsi
 
@@ -115,7 +116,7 @@ curl -s "http://megahosting.htb/news.php?file=../../../../usr/share/tomcat9/etc/
 
 ---
 
-## Exploitation (WAR deploy)
+## İstismar (WAR deploy)
 
 ### Girişin yoxlanılması
 
@@ -186,7 +187,7 @@ export TERM=xterm
 
 ---
 
-## Lateral Movement (ZIP crack)
+## Üfüqi Yerdəyişmə (ZIP crack)
 
 ### Arxivin tapılması
 
@@ -221,7 +222,7 @@ cat /home/ash/user.txt
 
 ---
 
-## Privilege Escalation (LXD)
+## Səlahiyyətlərin Artırılması (LXD)
 
 ### Enumeration
 

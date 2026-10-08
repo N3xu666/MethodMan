@@ -7,7 +7,7 @@
 
 ---
 
-## Attack Chain
+## Цепочка Атаки
 
 ```text
 Reconnaissance
@@ -43,17 +43,18 @@ Privilege Escalation (sudo wget)
 └── sudo su → root
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям.
 
 ---
 
-## Machine Briefing
+## Брифинг Машины
 
 Solaris с Finger-сервисом на порту 79 и SSH на нестандартном порту 22022. В `/backup/` оставлена резервная копия `/etc/shadow`.
 
 ---
 
-## Reconnaissance
+## Разведка
 
 ### Port Scan
 
@@ -70,7 +71,7 @@ sudo nmap -sC -sV -p- sunday.htb
 
 ---
 
-## Enumeration (Finger)
+## Перечисление (Finger)
 
 ```bash
 msfconsole
@@ -93,7 +94,7 @@ root@10.129.77.192: root     Super-User     pts/3     <Apr 24 10:37>     <PASSWO
 
 ---
 
-## Foothold
+## Первичный Доступ
 
 ```bash
 ssh -p 22022 sunny@sunday.htb
@@ -112,7 +113,7 @@ sudo /root/troll
 
 ---
 
-## Lateral Movement (Backup)
+## Боковое Перемещение (Backup)
 
 ```bash
 cd /backup
@@ -146,7 +147,7 @@ cat user.txt
 
 ---
 
-## Privilege Escalation
+## Повышение Привилегий
 
 ```bash
 sudo -l
@@ -180,7 +181,7 @@ cat /root/root.txt
 
 ---
 
-## Flags
+## Флаги
 
 | Флаг | Значение                         |
 |------|----------------------------------|
@@ -189,7 +190,7 @@ cat /root/root.txt
 
 ---
 
-## Key Takeaways
+## Ключевые Выводы
 
 - **Finger (79) - недооценённый сервис.** Не только список пользователей, но и подсказки в полях типа Office Location.
 - **Нестандартные порты** - обязательно `-p-`, SSH на 22022 легко пропустить.

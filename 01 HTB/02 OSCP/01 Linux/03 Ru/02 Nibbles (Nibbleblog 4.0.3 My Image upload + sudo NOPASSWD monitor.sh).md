@@ -7,7 +7,7 @@
 
 ---
 
-## Attack Chain
+## Цепочка Атаки
 
 ```text
 Reconnaissance
@@ -42,17 +42,18 @@ Privilege Escalation
 └── cat /root/root.txt
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям.
 
 ---
 
-## Machine Briefing
+## Брифинг Машины
 
 Ubuntu 16.04 с Apache 2.4.18. На веб-сервере - Nibbleblog 4.0.3 "Coffee". Плагин My Image позволяет загружать файлы без проверки расширения.
 
 ---
 
-## Reconnaissance
+## Разведка
 
 ### Port Scan
 
@@ -77,7 +78,7 @@ sudo nmap -sC -sV -A -T5 -Pn 10.129.96.84
 
 ---
 
-## Foothold
+## Первичный Доступ
 
 ### Определение версии Nibbleblog
 
@@ -194,7 +195,7 @@ cat /home/nibbler/user.txt
 
 ---
 
-## Privilege Escalation
+## Повышение Привилегий
 
 ### Enumeration sudo
 
@@ -224,7 +225,7 @@ cat /root/root.txt
 
 ---
 
-## Flags
+## Флаги
 
 | Флаг | Значение                       |
 |------|--------------------------------|
@@ -233,7 +234,7 @@ cat /root/root.txt
 
 ---
 
-## Key Takeaways
+## Ключевые Выводы
 
 - **Nibbleblog 4.0.3 My Image plugin** - загрузка файлов без проверки расширения и MIME, классический путь к RCE.
 - **GIF8-обёртка** - обход проверки на "изображение" без необходимости реально пересобирать файл.

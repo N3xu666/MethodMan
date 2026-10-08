@@ -36,25 +36,41 @@ foreach ($ext in @("*.md")) {
 }
 Write-Host "Files masked: $filesMasked" -ForegroundColor Green
 
-$note = "> Note: All flags, passwords, and hashes have been masked for ethical reasons.`r`n"
+function Get-NoteForFile($filePath) {
+    if ($filePath -match '\\01 Az\\') {
+        return "> [!NOTE]`r`n> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir."
+    } elseif ($filePath -match '\\03 Ru\\') {
+        return "> [!NOTE]`r`n> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям."
+    } else {
+        return "> [!NOTE]`r`n> All flags, passwords, hashes, and session tokens have been masked for ethical reasons."
+    }
+}
 Write-Host "`n=== Adding note after Attack Chain ===" -ForegroundColor Cyan
 $filesWithNote = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -notin @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', '_WORKFLOW.md') } |
   ForEach-Object {
     $content = [System.IO.File]::ReadAllText($_.FullName, [System.Text.Encoding]::UTF8)
-    if ($content -match "have been masked for ethical reasons" -or $content -match "etik səbəblərə görə maskalanmışdır") {
-        Write-Host "[SKIP] Note exists: $($_.Name)"
+    $note = Get-NoteForFile $_.FullName
+    $noteTexts = @(
+        'All flags, passwords, hashes, and session tokens have been masked for ethical reasons',
+        'Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям',
+        'Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir'
+    )
+    $hasNote = $false
+    foreach ($nt in $noteTexts) { if ($content.Contains($nt)) { $hasNote = $true; break } }
+    if ($hasNote) {
+        Write-Host "[SKIP] Note exists: $($_.Name)" -ForegroundColor DarkGray
         return
     }
     $pattern = '(?s)(```text.*?```)\r?\n'
     if ($content -match $pattern) {
         $new = $content -replace $pattern, "`$1`r`n`r`n$note"
         [System.IO.File]::WriteAllText($_.FullName, $new, $utf8WithBom)
-        Write-Host "[NOTE] $($_.Name)"
+        Write-Host "[NOTE] $($_.Name)" -ForegroundColor Cyan
         $filesWithNote++
     } else {
-        Write-Host "[SKIP] No Attack Chain: $($_.Name)"
+        Write-Host "[SKIP] No Attack Chain: $($_.Name)" -ForegroundColor DarkGray
     }
   }
 Write-Host "Notes added: $filesWithNote" -ForegroundColor Green

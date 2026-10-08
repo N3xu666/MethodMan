@@ -7,7 +7,7 @@
 
 ---
 
-## Attack Chain
+## Цепочка Атаки
 
 ```text
 Reconnaissance
@@ -43,17 +43,18 @@ Privilege Escalation (sudo ssh ProxyCommand)
 └── root → cat /root/root.txt (<ROOT_FLAG>)
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям.
 
 ---
 
-## Machine Briefing
+## Брифинг Машины
 
 Spring Boot-приложение с открытым Actuator, JAR-файлом с паролем БД, bcrypt-хешем админа и `sudo ssh` для LPE.
 
 ---
 
-## Reconnaissance
+## Разведка
 
 ```bash
 nmap -p- --min-rate=5000 -T4 -oG - cozyhosting.htb | grep open
@@ -71,7 +72,7 @@ echo "10.129.229.88    cozyhosting.htb" | sudo tee -a /etc/hosts
 
 ---
 
-## Foothold
+## Первичный Доступ
 
 ```bash
 gobuster dir -u http://cozyhosting.htb -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt
@@ -138,7 +139,7 @@ export TERM=xterm
 
 ---
 
-## Credential Leak
+## Утечка Учётных Данных
 
 ```bash
 ls /app
@@ -179,7 +180,7 @@ cat user.txt
 
 ---
 
-## Privilege Escalation
+## Повышение Привилегий
 
 ```bash
 sudo -l
@@ -203,7 +204,7 @@ cat /root/root.txt
 
 ---
 
-## Flags
+## Флаги
 
 | Флаг | Значение                         |
 |------|----------------------------------|
@@ -212,7 +213,7 @@ cat /root/root.txt
 
 ---
 
-## Key Takeaways
+## Ключевые Выводы
 
 - **Spring Boot Actuator** - `/actuator/sessions` отдаёт ID сессий без авторизации.
 - **Command Injection через `${IFS}`** - обход фильтра пробелов.

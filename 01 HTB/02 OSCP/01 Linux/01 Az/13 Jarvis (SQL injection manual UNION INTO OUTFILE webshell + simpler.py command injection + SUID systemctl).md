@@ -46,7 +46,8 @@ Privilege Escalation (pepper → root)
 └── Root shell → cat /root/root.txt
 ```
 
-> Qeyd: Bütün flaglar, parollar və heşlər etik səbəblərə görə maskalanmışdır.
+> [!NOTE]
+> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.
 
 ---
 
@@ -90,7 +91,7 @@ gobuster dir -u http://jarvis.htb -w /usr/share/seclists/Discovery/Web-Content/r
 
 ---
 
-## Foothold (SQL Injection)
+## İlkin Giriş (SQL Injection)
 
 ### İnyeksiyanın təsdiqlənməsi
 
@@ -180,7 +181,7 @@ curl -s -G "http://jarvis.htb/room.php" \
 
 ---
 
-## Exploitation (INTO OUTFILE vasitəsilə RCE)
+## İstismar (INTO OUTFILE vasitəsilə RCE)
 
 ### Web kökünün müəyyən edilməsi
 
@@ -246,7 +247,7 @@ export TERM=xterm
 
 ---
 
-## Lateral Movement (www-data → pepper)
+## Üfüqi Yerdəyişmə (www-data → pepper)
 
 ### Enumeration
 
@@ -322,7 +323,7 @@ cat /home/pepper/user.txt
 
 ---
 
-## Privilege Escalation (pepper → root)
+## Səlahiyyətlərin Artırılması (pepper → root)
 
 ### Enumeration
 

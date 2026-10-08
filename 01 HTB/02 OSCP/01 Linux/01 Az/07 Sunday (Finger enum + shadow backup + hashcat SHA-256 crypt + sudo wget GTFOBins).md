@@ -43,7 +43,8 @@ Privilege Escalation (sudo wget)
 └── sudo su → root
 ```
 
-> Qeyd: Bütün flaglar, parollar və heşlər etik səbəblərə görə maskalanmışdır.
+> [!NOTE]
+> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.
 
 ---
 
@@ -70,7 +71,7 @@ Platforma - Solaris.
 
 ---
 
-## Enumeration (Finger)
+## Sadalanma (Finger)
 
 ```bash
 msfconsole
@@ -93,7 +94,7 @@ Office Location sahəsi `<PASSWORD>` ehtiva edir - administratorun ipucusu.
 
 ---
 
-## Foothold
+## İlkin Giriş
 
 ```bash
 ssh -p 22022 sunny@sunday.htb
@@ -112,7 +113,7 @@ Skript yalnız `id`-i çap edir. Root shell vermir.
 
 ---
 
-## Lateral Movement (Backup)
+## Üfüqi Yerdəyişmə (Backup)
 
 ```bash
 cd /backup
@@ -146,7 +147,7 @@ cat user.txt
 
 ---
 
-## Privilege Escalation
+## Səlahiyyətlərin Artırılması
 
 ```bash
 sudo -l

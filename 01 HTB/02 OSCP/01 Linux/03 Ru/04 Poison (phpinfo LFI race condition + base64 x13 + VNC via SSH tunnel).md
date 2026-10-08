@@ -7,7 +7,7 @@
 
 ---
 
-## Attack Chain
+## Цепочка Атаки
 
 ```text
 Reconnaissance
@@ -40,17 +40,18 @@ Privilege Escalation (VNC)
 └── vncviewer -passwd secret 127.0.0.1::6901 → root.txt
 ```
 
-> Note: All flags, passwords, and hashes have been masked for ethical reasons.
+> [!NOTE]
+> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям.
 
 ---
 
-## Machine Briefing
+## Брифинг Машины
 
 FreeBSD с Apache 2.4.29 + PHP 5.6.32. На главной странице - список тестовых скриптов. VNC-сервер на localhost под root.
 
 ---
 
-## Reconnaissance
+## Разведка
 
 ### Port Scan
 
@@ -67,7 +68,7 @@ OS: FreeBSD 11.x.
 
 ---
 
-## Foothold
+## Первичный Доступ
 
 ### Изучение сайта
 
@@ -163,7 +164,7 @@ cat user.txt
 
 ---
 
-## Privilege Escalation
+## Повышение Привилегий
 
 ### Файлы в домашней директории
 
@@ -209,7 +210,7 @@ vncviewer -passwd secret 127.0.0.1::6901
 
 ---
 
-## Flags
+## Флаги
 
 | Флаг | Значение                         |
 |------|----------------------------------|
@@ -218,7 +219,7 @@ vncviewer -passwd secret 127.0.0.1::6901
 
 ---
 
-## Key Takeaways
+## Ключевые Выводы
 
 - **LFI через phpinfo + race condition** - открытый `phpinfo()` раскрывает временный путь загруженного файла; выиграв гонку между записью tmp-файла и его удалением, можно добиться его выполнения через LFI.
 - **Многослойный base64** - проверяйте, не декодируется ли строка повторно; используйте `for`-цикл.

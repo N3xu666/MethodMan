@@ -104,7 +104,14 @@ Get-ChildItem -Recurse -Filter *.md |
         $stubCount++
     } else {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-        if ($c -match "have been masked for ethical reasons" -or $c -match "etik səbəblərə görə maskalanmışdır") { $withNote++ }
+        $noteTexts = @(
+            'All flags, passwords, hashes, and session tokens have been masked for ethical reasons',
+            'Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям',
+            'Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir'
+        )
+        $hasNote = $false
+        foreach ($nt in $noteTexts) { if ($c.Contains($nt)) { $hasNote = $true; break } }
+        if ($hasNote) { $withNote++ }
         else { Write-Host "  MISSING NOTE: $($_.Name)" -ForegroundColor Yellow; $withoutNote++ }
     }
   }
