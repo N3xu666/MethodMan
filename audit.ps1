@@ -6,9 +6,38 @@
 #   - New section [21]: language pairs per category.
 #   - New section [22]: summary (N machines x 3 languages).
 #   - All other checks unchanged.
+#
+# Stub detection (twelfth pass):
+#   Files whose first 15 lines contain a "Status: **Completed**" marker
+#   (any language: En/Ru/Az) are treated as stubs (active machines)
+#   and excluded from walkthrough structure/Attack Chain/Note checks
+#   and from machine counts.
+#   The txt/ directory (drafts, .gitignore) is excluded from all scans.
 # ============================================================
 
 cd $PSScriptRoot
+
+# Stub markers (active machines - placeholder files)
+$stubMarkers = @(
+    'Status: **Completed**',      # En
+    'Status: **Пройдено**',        # Ru (English prefix)
+    'Статус: **Пройдено**',        # Ru (native prefix)
+    'Status: **Tamamlandı**'      # Az
+)
+
+function Test-StubFile([string]$filePath) {
+    try {
+        $head = Get-Content -Path $filePath -TotalCount 15 -ErrorAction Stop
+        foreach ($line in $head) {
+            foreach ($marker in $stubMarkers) {
+                if ($line -like "*$marker*") { return $true }
+            }
+        }
+    } catch {
+        return $false
+    }
+    return $false
+}
 
 $utf8 = [System.Text.Encoding]::UTF8
 $script:pass = 0
@@ -70,7 +99,10 @@ if (-not $untracked) { Write-Pass "no untracked files" } else { Write-Warn "untr
 
 # 6. WALKTHROUGHS (DYNAMIC COUNT)
 Write-Host "`n[6] Walkthroughs" -ForegroundColor Yellow
-$walkthroughs = Get-ChildItem -Recurse -Filter *.md -Path "01 HTB" | Where-Object { $_.FullName -match '\\0[123] (Az|En|Ru)\\' }
+$walkthroughs = Get-ChildItem -Recurse -Filter *.md -Path "01 HTB" | Where-Object {
+    $_.FullName -match '\\0[123] (Az|En|Ru)\\' -and
+    -not (Test-StubFile $_.FullName)
+}
 Write-Info "found $($walkthroughs.Count) walkthrough files"
 if ($walkthroughs.Count % 3 -eq 0) {
     $machineCount = $walkthroughs.Count / 3
@@ -114,7 +146,7 @@ if ($badNote.Count -eq 0) { Write-Pass "all walkthroughs: Note right after Attac
 # 10. REAL 32-HEX FLAGS
 Write-Host "`n[10] Real 32-hex flags (case-insensitive)" -ForegroundColor Yellow
 $flagCount = 0
-Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $flagCount += [regex]::Matches($c, "\b[a-fA-F0-9]{32}\b").Count
 }
@@ -131,7 +163,7 @@ if (Test-Path "masking-dict.ps1") {
         if ($key -match '^<.*>$') { continue }
         if ($key -match '^[a-fA-F0-9]{32}$') { continue }
         $count = 0
-        Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+        Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
             $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
             $count += ([regex]::Matches($c, [regex]::Escape($key))).Count
         }
@@ -143,7 +175,7 @@ if (Test-Path "masking-dict.ps1") {
 # 12. LONG DASHES / BROKEN CHARS
 Write-Host "`n[12] Long dashes / broken chars" -ForegroundColor Yellow
 $d = 0; $b = 0
-Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $d += [regex]::Matches($c, "[\u2013\u2014\u2212]").Count
     $b += [regex]::Matches($c, "[\uFFFD]").Count
@@ -157,7 +189,7 @@ $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLA
 $a = 0
 foreach ($art in $artifacts) {
     $count = 0
-    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($art))).Count
     }
@@ -170,7 +202,7 @@ Write-Host "`n[14] Placeholders usage" -ForegroundColor Yellow
 $placeholders = @('<USER_FLAG>', '<ROOT_FLAG>', '<PASSWORD>', '<BCRYPT_HASH>', '<MYSQL_HASH>', '<SHA256_HASH>', '<TOKEN>', '<SESSION_ID>')
 foreach ($ph in $placeholders) {
     $count = 0
-    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($ph))).Count
     }
@@ -219,7 +251,7 @@ if (Test-Path ".git\hooks\pre-commit") {
 # 18. ENCODING (UTF-8 BOM)
 Write-Host "`n[18] Encoding (UTF-8 BOM)" -ForegroundColor Yellow
 $bomIssues = @()
-Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
     $bytes = [System.IO.File]::ReadAllBytes($_.FullName)
     if ($bytes.Length -lt 3 -or $bytes[0] -ne 0xEF -or $bytes[1] -ne 0xBB -or $bytes[2] -ne 0xBF) { $bomIssues += $_.Name }
 }
@@ -241,9 +273,9 @@ $categories = Get-ChildItem -Path "01 HTB" -Directory -Recurse | Where-Object {
 }
 Write-Info "categories with 01 Az/02 En/03 Ru: $($categories.Count)"
 foreach ($cat in $categories) {
-    $az = @(Get-ChildItem (Join-Path $cat.FullName "01 Az") -Filter *.md -EA SilentlyContinue).Count
-    $en = @(Get-ChildItem (Join-Path $cat.FullName "02 En") -Filter *.md -EA SilentlyContinue).Count
-    $ru = @(Get-ChildItem (Join-Path $cat.FullName "03 Ru") -Filter *.md -EA SilentlyContinue).Count
+    $az = @(Get-ChildItem (Join-Path $cat.FullName "01 Az") -Filter *.md -EA SilentlyContinue | Where-Object { -not (Test-StubFile $_.FullName) }).Count
+    $en = @(Get-ChildItem (Join-Path $cat.FullName "02 En") -Filter *.md -EA SilentlyContinue | Where-Object { -not (Test-StubFile $_.FullName) }).Count
+    $ru = @(Get-ChildItem (Join-Path $cat.FullName "03 Ru") -Filter *.md -EA SilentlyContinue | Where-Object { -not (Test-StubFile $_.FullName) }).Count
     $catName = $cat.FullName.Replace((Get-Location).Path + '\', '')
     if ($az -eq $en -and $en -eq $ru) {
         Write-Pass "$catName - Az=$az En=$en Ru=$ru"
@@ -257,7 +289,7 @@ Write-Host "`n[21] Summary" -ForegroundColor Yellow
 $totalMachines = 0
 if ($categories.Count -gt 0) {
     foreach ($cat in $categories) {
-        $az = @(Get-ChildItem (Join-Path $cat.FullName "01 Az") -Filter *.md -EA SilentlyContinue).Count
+        $az = @(Get-ChildItem (Join-Path $cat.FullName "01 Az") -Filter *.md -EA SilentlyContinue | Where-Object { -not (Test-StubFile $_.FullName) }).Count
         $totalMachines += $az
     }
 }

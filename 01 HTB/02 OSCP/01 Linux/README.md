@@ -23,6 +23,15 @@ Writeups available in three languages: `01 Az`, `02 En`, `03 Ru`.
 | 13 | Jarvis | [Az](./01%20Az/13%20Jarvis%20%28SQL%20injection%20manual%20UNION%20INTO%20OUTFILE%20webshell%20%2B%20simpler.py%20command%20injection%20%2B%20SUID%20systemctl%29.md) | [En](./02%20En/13%20Jarvis%20%28SQL%20injection%20manual%20UNION%20INTO%20OUTFILE%20webshell%20%2B%20simpler.py%20command%20injection%20%2B%20SUID%20systemctl%29.md) | [Ru](./03%20Ru/13%20Jarvis%20%28SQL%20injection%20manual%20UNION%20INTO%20OUTFILE%20webshell%20%2B%20simpler.py%20command%20injection%20%2B%20SUID%20systemctl%29.md) |
 | 14 | Tabby | [Az](./01%20Az/14%20Tabby%20%28LFI%20%2B%20Tomcat%20WAR%20deploy%20%2B%20ZIP%20crack%20%2B%20LXD%20privesc%29.md) | [En](./02%20En/14%20Tabby%20%28LFI%20%2B%20Tomcat%20WAR%20deploy%20%2B%20ZIP%20crack%20%2B%20LXD%20privesc%29.md) | [Ru](./03%20Ru/14%20Tabby%20%28LFI%20%2B%20Tomcat%20WAR%20deploy%20%2B%20ZIP%20crack%20%2B%20LXD%20privesc%29.md) |
 
+## Completed (Writeups Pending)
+
+The following machines have been completed, but writeups are withheld
+while the machines are still active on Hack The Box (per HTB ToS).
+
+| # | Machine | Difficulty | Status |
+|---|---------|------------|--------|
+| 15 | Connected | Easy | ✅ completed · ⏳ writeup pending |
+
 ## Archive
 
 Raw drafts are not stored. Final writeups are in `01 Az/`, `02 En/`, `03 Ru/`.

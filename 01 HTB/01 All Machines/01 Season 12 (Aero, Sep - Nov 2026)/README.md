@@ -8,8 +8,16 @@ Writeups available in three languages: `01 Az`, `02 En`, `03 Ru`.
 
 | # | Machine | Az | En | Ru |
 |---|---------|-----|-----|-----|
-| 01 | Layover | [Az](./01%20Az/01%20Layover%20%28open%20WiFi%20traffic%20interception%20%2B%20Craft%20CMS%20CVE-2026-31857%20Twig%20RCE%20%2B%20.env%20secret%20decryption%20%2B%20CUPS%20CVE-2026-34990%20LPE%29.md) | [En](./02%20En/01%20Layover%20%28open%20WiFi%20traffic%20interception%20%2B%20Craft%20CMS%20CVE-2026-31857%20Twig%20RCE%20%2B%20.env%20secret%20decryption%20%2B%20CUPS%20CVE-2026-34990%20LPE%29.md) | [Ru](./03%20Ru/01%20Layover%20%28open%20WiFi%20traffic%20interception%20%2B%20Craft%20CMS%20CVE-2026-31857%20Twig%20RCE%20%2B%20.env%20secret%20decryption%20%2B%20CUPS%20CVE-2026-34990%20LPE%29.md) |
-| 02 | Touch | [Az](./01%20Az/02%20Touch%20%28Nexion%20DeviceHub%20serial%20leak%20%2B%20kiosk%20escape%20%2B%20MySQL%20creds%20leak%20%2B%20UDF%20hijacking%20SYSTEM%29.md) | [En](./02%20En/02%20Touch%20%28Nexion%20DeviceHub%20serial%20leak%20%2B%20kiosk%20escape%20%2B%20MySQL%20creds%20leak%20%2B%20UDF%20hijacking%20SYSTEM%29.md) | [Ru](./03%20Ru/02%20Touch%20%28Nexion%20DeviceHub%20serial%20leak%20%2B%20kiosk%20escape%20%2B%20MySQL%20creds%20leak%20%2B%20UDF%20hijacking%20SYSTEM%29.md) |
+
+## Completed (Writeups Pending)
+
+The following machines have been completed, but writeups are withheld
+while the machines are still active on Hack The Box (per HTB ToS).
+
+| # | Machine | Difficulty | Status |
+|---|---------|------------|--------|
+| 01 | Layover | Medium | ✅ completed · ⏳ writeup pending |
+| 02 | Touch | Medium | ✅ completed · ⏳ writeup pending |
 
 ## Archive
 
