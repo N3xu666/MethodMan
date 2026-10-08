@@ -23,7 +23,7 @@ $excluded = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', '_WORKFLOW.md')
 # ============================================================
 # 1. Real 32-hex flags
 # ============================================================
-Write-Host "`n=== [1/6] Real 32-hex flags ===" -ForegroundColor Cyan
+Write-Host "`n=== [1/7] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' } |
@@ -37,7 +37,7 @@ else { Write-Host "FAIL: $flags flags left" -ForegroundColor Red; $totalIssues +
 # ============================================================
 # 2. Real passwords/hashes/keys from dictionary
 # ============================================================
-Write-Host "`n=== [2/6] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
+Write-Host "`n=== [2/7] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
 $leaks = 0
 foreach ($key in $replacements.Keys) {
     if ($key -match '^<.*>$') { continue }
@@ -60,7 +60,7 @@ else { Write-Host "FAIL: $leaks leaks" -ForegroundColor Red; $totalIssues += $le
 # ============================================================
 # 3. Note after Attack Chain (walkthroughs only)
 # ============================================================
-Write-Host "`n=== [3/6] Ethical note in walkthroughs ===" -ForegroundColor Cyan
+Write-Host "`n=== [3/7] Ethical note in walkthroughs ===" -ForegroundColor Cyan
 $withNote = 0
 $withoutNote = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -77,7 +77,7 @@ if ($withoutNote -gt 0) { $totalIssues += $withoutNote }
 # ============================================================
 # 4. Long dashes
 # ============================================================
-Write-Host "`n=== [4/6] Long dashes ===" -ForegroundColor Cyan
+Write-Host "`n=== [4/7] Long dashes ===" -ForegroundColor Cyan
 $d = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -93,7 +93,7 @@ else { Write-Host "FAIL: $d long dashes" -ForegroundColor Red; $totalIssues += $
 # ============================================================
 # 5. Broken chars
 # ============================================================
-Write-Host "`n=== [5/6] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
+Write-Host "`n=== [5/7] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -109,7 +109,7 @@ else { Write-Host "FAIL: $b broken chars" -ForegroundColor Red; $totalIssues += 
 # ============================================================
 # 6. Masking artifacts
 # ============================================================
-Write-Host "`n=== [6/6] Masking artifacts ===" -ForegroundColor Cyan
+Write-Host "`n=== [6/7] Masking artifacts ===" -ForegroundColor Cyan
 $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLAG>FLAG')
 $a = 0
 foreach ($art in $artifacts) {
@@ -129,11 +129,41 @@ if ($a -eq 0) { Write-Host "OK: 0 artifacts" -ForegroundColor Green }
 else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a }
 
 # ============================================================
+# ============================================================
+# 7. Heuristic: possibly unmasked secrets (WARN only, does not block)
+# ============================================================
+Write-Host "`n=== [7/7] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
+$suspicious = @()
+Get-ChildItem -Recurse -Filter *.md |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -ne '_WORKFLOW.md' } |
+  ForEach-Object {
+    $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
+    $mm = [regex]::Matches($ct, '(?i)(password|passwd|pwd)\s*[:=]\s*([^\s`<>]{5,})')
+    foreach ($x in $mm) {
+        $val = $x.Groups[2].Value
+        if ($val -match '^<.*>$') { continue }
+        if ($val -match '^\$2[aby]\$' -or $val -match '^\*?[A-F0-9]{32,}$') { continue }
+        if ($val -match '^(password|null|none|undefined|example|test|changeme|N/A)$') { continue }
+        $suspicious += "$($_.Name): $($x.Value)"
+    }
+  }
+if ($suspicious.Count -eq 0) {
+    Write-Host "OK: 0 suspicious (all matches look masked or benign)" -ForegroundColor Green
+} else {
+    Write-Host "WARN: $($suspicious.Count) possible unmasked secrets (manual review):" -ForegroundColor Yellow
+    $suspicious | Select-Object -First 10 | ForEach-Object { Write-Host "  $_" -ForegroundColor Gray }
+    if ($suspicious.Count -gt 10) { Write-Host "  ... and $($suspicious.Count - 10) more" -ForegroundColor Gray }
+}
+
 # Summary
 # ============================================================
 Write-Host "`n============================================" -ForegroundColor Cyan
 if ($totalIssues -eq 0) {
     Write-Host "ALL CHECKS PASSED - ready to commit + push" -ForegroundColor Green
+    Write-Host ""
+    Write-Host "  REMINDER before committing a NEW walkthrough:" -ForegroundColor Magenta
+    Write-Host "    1. Add new real secrets to masking-dict.ps1 (passwords, flags, hashes)." -ForegroundColor Magenta
+    Write-Host "    2. Run .\update-readmes.ps1 to refresh README tables and counters." -ForegroundColor Magenta
 } else {
     Write-Host "TOTAL ISSUES: $totalIssues - fix before push" -ForegroundColor Red
     exit 1
