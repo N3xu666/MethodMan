@@ -1,7 +1,7 @@
 ﻿# MethodMan
 
-Personal collection of penetration testing writeups, methodologies and cheatsheets.
-Organized by platform and category.
+Personal collection of penetration testing writeups, methodologies and cheatsheets,
+organized by platform and category.
 
 Main writeups available in Az/En/Ru (Now: 15 machines)
 
