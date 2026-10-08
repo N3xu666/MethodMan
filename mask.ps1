@@ -4,7 +4,7 @@
 # Usage: .\mask.ps1
 
 $ErrorActionPreference = "Stop"
-$repo = "C:\Users\Irshad\Documents\GitHub\MethodMan"
+$repo = $PSScriptRoot
 Set-Location $repo
 
 $dictPath = Join-Path $repo "masking-dict.ps1"
