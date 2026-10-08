@@ -19,10 +19,10 @@ cd $PSScriptRoot
 
 # Stub markers (active machines - placeholder files)
 $stubMarkers = @(
-    'Status: **Completed**',      # En
-    'Status: **Пройдено**',        # Ru (English prefix)
-    'Статус: **Пройдено**',        # Ru (native prefix)
-    'Status: **Tamamlandı**'      # Az
+    'Status: Completed',      # En
+    'Status: Пройдено',        # Ru (English prefix)
+    'Статус: Пройдено',        # Ru (native prefix)
+    'Status: Tamamlandı'      # Az
 )
 
 function Test-StubFile([string]$filePath) {
