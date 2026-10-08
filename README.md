@@ -3,7 +3,7 @@
 Personal collection of penetration testing writeups, methodologies and cheatsheets,  
 organized by platform and category.
 
-Writeups available in Az/En/Ru (Now: 15 machines)
+Writeups available in Az/En/Ru (Now: 16 machines)
 
 ---
 
