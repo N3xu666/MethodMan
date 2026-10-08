@@ -152,7 +152,7 @@ if ($d -eq 0) { Write-Pass "0 long dashes" } else { Write-Fail "$d long dashes" 
 if ($b -eq 0) { Write-Pass "0 broken chars" } else { Write-Fail "$b broken chars" }
 
 # 13. MASKING ARTIFACTS
-Write-Host "`n[14] Masking artifacts" -ForegroundColor Yellow
+Write-Host "`n[13] Masking artifacts" -ForegroundColor Yellow
 $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLAG>FLAG', '<PASSWORD><PASSWORD>')
 $a = 0
 foreach ($art in $artifacts) {
@@ -166,7 +166,7 @@ foreach ($art in $artifacts) {
 if ($a -eq 0) { Write-Pass "0 artifacts" }
 
 # 14. PLACEHOLDERS USAGE
-Write-Host "`n[15] Placeholders usage" -ForegroundColor Yellow
+Write-Host "`n[14] Placeholders usage" -ForegroundColor Yellow
 $placeholders = @('<USER_FLAG>', '<ROOT_FLAG>', '<PASSWORD>', '<BCRYPT_HASH>', '<MYSQL_HASH>', '<SHA256_HASH>', '<TOKEN>', '<SESSION_ID>')
 foreach ($ph in $placeholders) {
     $count = 0
@@ -178,7 +178,7 @@ foreach ($ph in $placeholders) {
 }
 
 # 15. DOCUMENTATION
-Write-Host "`n[16] Documentation" -ForegroundColor Yellow
+Write-Host "`n[15] Documentation" -ForegroundColor Yellow
 if (Test-Path "CHEATSHEET.md") {
     $cs = [System.IO.File]::ReadAllText((Join-Path (Get-Location) "CHEATSHEET.md"), $utf8)
     $sections = [regex]::Matches($cs, '(?m)^##\s+\d+\.\s').Count
@@ -191,7 +191,7 @@ if (Test-Path "METHODOLOGY.md") {
 } else { Write-Fail "METHODOLOGY.md missing" }
 
 # 16. SCRIPTS
-Write-Host "`n[17] Scripts" -ForegroundColor Yellow
+Write-Host "`n[16] Scripts" -ForegroundColor Yellow
 if (Test-Path "mask.ps1") { Write-Pass "mask.ps1 exists" } else { Write-Fail "mask.ps1 missing" }
 if (Test-Path "check.ps1") { Write-Pass "check.ps1 exists" } else { Write-Fail "check.ps1 missing" }
 if (Test-Path "masking-dict.ps1") { Write-Pass "masking-dict.ps1 exists" } else { Write-Fail "masking-dict.ps1 missing" }
@@ -209,7 +209,7 @@ if (Test-Path "check.ps1") {
 }
 
 # 17. PRE-COMMIT HOOK
-Write-Host "`n[18] Pre-commit hook" -ForegroundColor Yellow
+Write-Host "`n[17] Pre-commit hook" -ForegroundColor Yellow
 if (Test-Path ".git\hooks\pre-commit") {
     $hook = Get-Content ".git\hooks\pre-commit" -Raw
     if ($hook -match 'check\.ps1') { Write-Pass "hook runs check.ps1" } else { Write-Fail "hook does not run check.ps1" }
@@ -217,7 +217,7 @@ if (Test-Path ".git\hooks\pre-commit") {
 } else { Write-Fail "pre-commit hook missing" }
 
 # 18. ENCODING (UTF-8 BOM)
-Write-Host "`n[19] Encoding (UTF-8 BOM)" -ForegroundColor Yellow
+Write-Host "`n[18] Encoding (UTF-8 BOM)" -ForegroundColor Yellow
 $bomIssues = @()
 Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
     $bytes = [System.IO.File]::ReadAllBytes($_.FullName)
@@ -225,15 +225,15 @@ Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.
 }
 if ($bomIssues.Count -eq 0) { Write-Pass "all .md files have UTF-8 BOM" } else { Write-Warn "$($bomIssues.Count) .md files missing BOM:"; $bomIssues | Select-Object -First 5 | ForEach-Object { Write-Info "    $_" } }
 
-# 20. LOCAL vs ORIGIN FILE LIST
-Write-Host "`n[20] Local vs origin/main file list" -ForegroundColor Yellow
+# 19. LOCAL vs ORIGIN FILE LIST
+Write-Host "`n[19] Local vs origin/main file list" -ForegroundColor Yellow
 $localFiles = git ls-files | Sort-Object
 $remoteFiles = git ls-tree -r --name-only origin/main 2>$null | Sort-Object
 $diff = Compare-Object $localFiles $remoteFiles
 if (-not $diff) { Write-Pass "local and origin/main track the same files" } else { Write-Fail "file list differs"; $diff | Select-Object -First 10 | ForEach-Object { Write-Info "    $($_.SideIndicator) $($_.InputObject)" } }
 
 # 20. LANGUAGE PAIRS PER CATEGORY
-Write-Host "`n[21] Language pairs per category" -ForegroundColor Yellow
+Write-Host "`n[20] Language pairs per category" -ForegroundColor Yellow
 $categories = Get-ChildItem -Path "01 HTB" -Directory -Recurse | Where-Object {
     (Test-Path (Join-Path $_.FullName "01 Az")) -and
     (Test-Path (Join-Path $_.FullName "02 En")) -and
@@ -253,7 +253,7 @@ foreach ($cat in $categories) {
 }
 
 # 21. SUMMARY BY MACHINE COUNT
-Write-Host "`n[22] Summary" -ForegroundColor Yellow
+Write-Host "`n[21] Summary" -ForegroundColor Yellow
 $totalMachines = 0
 if ($categories.Count -gt 0) {
     foreach ($cat in $categories) {
