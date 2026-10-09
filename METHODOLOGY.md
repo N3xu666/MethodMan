@@ -45,17 +45,54 @@ This is a working document - updated as new techniques and patterns emerge.
 
 ### 1.1 Port scanning
 
-**Always start with a full TCP scan.**
+**Adaptive scan intensity.** Pick the profile that matches your scope and target type.
 
+| Profile | When to use | Flags |
+|---------|-------------|-------|
+| **CTF / lab (HTB, OSCP)** | Isolated lab, you own the box, no production risk | `-T4 --min-rate=5000 --defeat-rst-ratelimit` |
+| **Authorized production pentest** | Client systems, agreed scope, potential IDS/IPS | `-T3 --max-rate=200 --max-retries 2` |
+| **Fragile / unknown** | Embedded, OT, legacy services | `-T2 --max-rate=50 --scan-delay 1s` |
+
+**Full TCP scan with the chosen profile:**
+
+    # Lab profile (default for HTB/OSCP)
     nmap -p- --min-rate=5000 --max-retries 1 --defeat-rst-ratelimit -T4 -Pn -n TARGET -oA scans/quick
 
-**Then targeted deep scan on open ports:**
+    # Production / cautious profile
+    nmap -p- -T3 --max-rate=200 --max-retries 2 -Pn -n TARGET -oA scans/quick
+
+**Then targeted deep scan on open ports (any profile):**
 
     nmap -sC -sV -Pn -n --open -p PORTS TARGET -oA scans/detail
 
-**UDP top ports (do not skip):**
+**UDP top ports (do not skip - but keep intensity low):**
 
     sudo nmap -sU --top-ports 50 TARGET
+
+### 1.1a Intensity decision tree
+
+    Scope allows aggressive scanning?
+    |
+    +-- Yes (HTB/OSCP, isolated lab) ------> -T4, min-rate=5000, parallel tools
+    |
+    +-- No (production, shared infrastructure)
+        |
+        +-- Target is resilient (web app, API)?
+        |   |
+        |   +-- Yes --> -T3, max-rate=200, sequential, watch for 429/503
+        |   |
+        |   +-- No (OT, embedded, legacy)
+        |       |
+        |       +-- -T2, max-rate=50, scan-delay 1s, single-threaded
+        |
+        +-- Previous scans caused issues?
+            |
+            +-- Yes --> reduce intensity one level, document in RoE notes
+            +-- No  --> keep current profile, monitor for degradation
+
+**Rule of thumb:** start lower than you think you need. You can always re-run at higher intensity; you cannot un-crash a service.
+
+---
 
 ### 1.2 Decision tree by port
 
@@ -75,13 +112,18 @@ This is a working document - updated as new techniques and patterns emerge.
 
 ### 1.3 Web enumeration
 
-**Always run in parallel:**
+**Parallelize only if allowed.** Aggressive parallel enumeration can crash fragile web apps or trigger WAF/rate-limits. Coordinate with the client.
 
-    ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -u http://TARGET/FUZZ -c
-    gobuster dir -u http://TARGET -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt
-    ffuf -w wordlist.txt -u http://TARGET/FUZZ -e .php,.txt,.bak,.old,.zip,.tar.gz
-    ffuf -w subdomains.txt -u http://TARGET/ -H "Host: FUZZ.domain"
+- **Lab (HTB/OSCP)** - run all tools in parallel.
+- **Production** - run **one tool at a time**, with `-t 5` or lower, and watch for 429/503 responses.
+
+    ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -u http://TARGET/FUZZ -c -t 20
+    gobuster dir -u http://TARGET -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt -t 20
+    ffuf -w wordlist.txt -u http://TARGET/FUZZ -e .php,.txt,.bak,.old,.zip,.tar.gz -t 20
+    ffuf -w subdomains.txt -u http://TARGET/ -H "Host: FUZZ.domain" -t 20
     whatweb -a 3 http://TARGET/
+
+**Production profile:** replace `-t 20` with `-t 5` and add `-p 0.1` (ffuf) / `--delay 200ms` (gobuster).
 
 **What to look for:**
 
