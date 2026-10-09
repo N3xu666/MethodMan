@@ -1,4 +1,8 @@
-﻿# mask.ps1
+﻿param(
+    [switch]$IncludeDrafts
+)
+
+# mask.ps1
 # Mask sensitive data in .md files.
 # Requires masking-dict.ps1 in the same directory.
 # Usage: .\mask.ps1
@@ -20,7 +24,7 @@ Write-Host "`n=== Masking sensitive values ===" -ForegroundColor Cyan
 $filesMasked = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and ($IncludeDrafts -or $_.FullName -notmatch '\\txt\\') -and $_.Name -notin @('_WORKFLOW.md', 'README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'SECURITY.md') } |
       ForEach-Object {
         $content = [System.IO.File]::ReadAllText($_.FullName, [System.Text.Encoding]::UTF8)
         $new = $content
@@ -48,7 +52,7 @@ function Get-NoteForFile($filePath) {
 Write-Host "`n=== Adding note after Attack Chain ===" -ForegroundColor Cyan
 $filesWithNote = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -notin @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', '_WORKFLOW.md') } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and ($IncludeDrafts -or $_.FullName -notmatch '\\txt\\') -and $_.Name -notin @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', '_WORKFLOW.md') } |
   ForEach-Object {
     $content = [System.IO.File]::ReadAllText($_.FullName, [System.Text.Encoding]::UTF8)
     $note = Get-NoteForFile $_.FullName

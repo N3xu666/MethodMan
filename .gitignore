@@ -1,4 +1,4 @@
-﻿# Masking dictionary (contains real secrets)
+# Masking dictionary (contains real secrets)
 masking-dict.ps1
 masking-check.ps1
 
@@ -30,3 +30,10 @@ check.ps1.bak
 .obsidian/
 
 social-preview.png
+
+# Backup files from workflow edits
+_WORKFLOW.md.*
+*.ps1.bak*
+*.ps1.tmp*
+# General backup files
+*.bak*
