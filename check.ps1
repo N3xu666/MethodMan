@@ -216,16 +216,12 @@ Get-ChildItem -Recurse -Filter *.md |
     if (Test-StubFile $_.FullName) { return }
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $lines2 = $ct -split "`n"
-    $inExpl = $false
     $explText = ""
     $inCode = $false
     foreach ($ln in $lines2) {
-        if ($ln -match '^```') { $inCode = -not $inCode }
-        if (-not $inCode -and $ln -match '^##\s+(Exploitation|Эксплуатация|İstismar|Foothold|Первичный Доступ|İlkin Giriş)\b') { $inExpl = $true; continue }
-        if ($inExpl -and -not $inCode -and $ln -match '^##\s+') { $inExpl = $false; continue }
-        if ($inExpl) { $explText += $ln + "`n" }
+        if ($ln -match '^```') { $inCode = -not $inCode; continue }
+        if (-not $inCode) { $explText += $ln + "`n" }
     }
-    if ($explText.Length -eq 0) { return }
     $script:checkedExpl++
     $hasCve = ($explText -match 'CVE-\d{4}-\d{4,}')
     $hasNoCve = ($explText -match 'No CVE \(custom vulnerability\)')
