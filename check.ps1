@@ -222,10 +222,10 @@ Get-ChildItem -Recurse -Filter *.md |
     foreach ($ln in $lines2) {
         if ($ln -match '^```') { $inCode = -not $inCode }
         if (-not $inCode -and $ln -match '^##\s+(Exploitation|Эксплуатация|İstismar|Foothold|Первичный Доступ|İlkin Giriş)\b') { $inExpl = $true; continue }
-        if ($inExpl -and -not $inCode -and $ln -match '^##\s+') { break }
+        if ($inExpl -and -not $inCode -and $ln -match '^##\s+') { $inExpl = $false; continue }
         if ($inExpl) { $explText += $ln + "`n" }
     }
-    if (-not $inExpl) { return }
+    if ($explText.Length -eq 0) { return }
     $script:checkedExpl++
     $hasCve = ($explText -match 'CVE-\d{4}-\d{4,}')
     $hasNoCve = ($explText -match 'No CVE \(custom vulnerability\)')
