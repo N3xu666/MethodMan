@@ -44,11 +44,11 @@ Write-Host "Files masked: $filesMasked" -ForegroundColor Green
 
 function Get-NoteForFile($filePath) {
     if ($filePath -match '\\01 Az\\') {
-        return "> [!NOTE]`r`n> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir."
+        return "> [!NOTE]`n> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir."
     } elseif ($filePath -match '\\03 Ru\\') {
-        return "> [!NOTE]`r`n> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям."
+        return "> [!NOTE]`n> Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям."
     } else {
-        return "> [!NOTE]`r`n> All flags, passwords, hashes, and session tokens have been masked for ethical reasons."
+        return "> [!NOTE]`n> All flags, passwords, hashes, and session tokens have been masked for ethical reasons."
     }
 }
 Write-Host "`n=== Adding note after Attack Chain ===" -ForegroundColor Cyan
@@ -71,7 +71,7 @@ Get-ChildItem -Recurse -Filter *.md |
     }
     $pattern = '(?s)(```text.*?```)\r?\n'
     if ($content -match $pattern) {
-        $new = $content -replace $pattern, "`$1`r`n`r`n$note`r`n"
+        $new = $content -replace $pattern, "`$1`n`n$note`n"
         [System.IO.File]::WriteAllText($_.FullName, $new, $utf8WithBom)
         Write-Host "[NOTE] $($_.Name)" -ForegroundColor Cyan
         $filesWithNote++
@@ -80,3 +80,4 @@ Get-ChildItem -Recurse -Filter *.md |
     }
   }
 Write-Host "Notes added: $filesWithNote" -ForegroundColor Green
+exit 0
