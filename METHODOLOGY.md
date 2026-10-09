@@ -401,9 +401,16 @@ Then use SSH tunnel:
 
 ### OSCP exam report specifics
 
+Report structure, evidence rules, and screenshot requirements are documented separately:
+
+- See [`methodology/OSCP-Reporting.md`](./methodology/OSCP-Reporting.md) for the current checklist (evidence, screenshots, report structure, common mistakes).
+- OffSec recommends the official exam report template, but does not mandate a specific format - verify the current requirements in the OffSec exam guide before submission.
+
+Quick summary (details in the linked document):
+
 - Each machine: Attack Chain -> Briefing -> Recon -> Foothold -> PrivEsc -> Flags -> Takeaways.
-- Include **every command** that led to compromise.
-- Screenshots of `whoami`, `ipconfig`/`ip a`, and flag files.
+- Screenshots of `whoami`, `ipconfig`/`ip a`, and flag files are mandatory.
+- Full command logs go to the appendix; the main body stays readable.
 - Separate section for **Active Directory set** (if applicable).
 - Submit within 24 hours.
 

@@ -63,7 +63,7 @@ Every commit is validated by a two-layer system:
 
 Both scripts run automatically in CI on every push (`.github/workflows/validate.yml`, Windows runner, pinned actions).
 
-The masking pipeline (`mask.ps1` + local-only `masking-dict.ps1` with real secrets) ensures no real flags, passwords, hashes, or tokens are ever published.
+The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known sensitive values) detects and masks flags (32-hex pattern), values listed in the dictionary, and heuristic password shapes. Detection is dictionary- and pattern-based, not exhaustive - manual review remains part of the workflow.
 
 ---
 
