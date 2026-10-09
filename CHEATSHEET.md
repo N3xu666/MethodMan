@@ -8,6 +8,22 @@ Grouped by attack phase, intended as a quick reference for OSCP preparation.
 
 ---
 
+## Scope & Authorization
+
+> **Read this first.**
+>
+> All commands, payloads, and techniques in this document are intended **only for systems you own or have explicit written permission to test** (HTB, OSCP labs, your own VMs, or a client engagement with a signed RoE).
+>
+> - **Authorized targets only.** Testing a system without permission is illegal in most jurisdictions and violates HTB/OSCP terms.
+> - **Check your RoE** for allowed techniques, allowed hours, allowed intensity, and excluded systems.
+> - **Destructive actions** (denial of service, data deletion, persistence, anti-forensics) require explicit written approval - assume they are **not** allowed unless stated otherwise.
+> - **Rate limits and lockouts.** Password spraying, brute force, and aggressive scans can lock accounts or crash services. Coordinate with the client, use jitter, and prefer small wordlists first.
+> - **Evidence, not damage.** The goal is a report, not destruction. Log your actions, keep raw output, and stop if something unexpected happens.
+>
+> This cheatsheet is a personal reference. It is **not** a substitute for a scope document.
+
+---
+
 ## Table of Contents
 
 - [1. Reconnaissance](#1-reconnaissance)
@@ -50,6 +66,8 @@ Grouped by attack phase, intended as a quick reference for OSCP preparation.
 ---
 
 ## 3. Web Exploitation
+
+> **Scope:** Exploit only in the agreed testing window and only against in-scope hosts. Some payloads can corrupt data (e.g., `INTO OUTFILE`, `DROP`, `UPDATE`) - prefer non-destructive read-only checks first. If in doubt, ask the client before firing.
 
 ### SQL Injection - manual
 
@@ -292,8 +310,22 @@ Grouped by attack phase, intended as a quick reference for OSCP preparation.
 
 ### Password spraying
 
-    crackmapexec smb TARGET -u users.txt -p Password123 --continue-on-success
-    hydra -L users.txt -P passwords.txt ssh://TARGET
+> **Warning:** spraying can **lock out accounts** and trigger IDS/EDR. Before running:
+> - Check the account lockout policy (`net accounts`, AD GPO).
+> - Get written approval from the client.
+> - Start with **1 password** against many users, not many passwords against one user.
+> - Add **jitter / delay** between attempts (`--delay`, `-t 1`, `-W`).
+> - Use `--continue-on-success` and stop on first hit.
+> - Prefer **small, targeted wordlists** (product defaults, seasonal patterns) over rockyou.
+
+    # SAFE first pass - one common password, no lockout risk
+    crackmapexec smb TARGET -u users.txt -p 'Password123' --continue-on-success
+
+    # Wider pass - throttled
+    crackmapexec smb TARGET -u users.txt -p passwords.txt --continue-on-success
+
+    # hydra with throttling (1 thread, 5s wait between attempts)
+    hydra -L users.txt -P passwords.txt -t 1 -W 5 ssh://TARGET
 
 ---
 
