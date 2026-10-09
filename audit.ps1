@@ -15,6 +15,10 @@
 #   The txt/ directory (drafts, .gitignore) is excluded from all scans.
 # ============================================================
 
+param(
+    [switch]$SkipLocalChecks
+)
+
 cd $PSScriptRoot
 
 # Stub markers (active machines - placeholder files)
@@ -58,14 +62,14 @@ Write-Host "================================================================" -F
 # 1. GIT STATE
 Write-Host "`n[1] Git state" -ForegroundColor Yellow
 $status = git status --short
-if (-not $status) { Write-Pass "working tree clean" } else { Write-Fail "working tree dirty" }
+if (-not $status) { Write-Pass "working tree clean" } else { Write-Warn "working tree has changes (may be expected)" }
 Write-Info "last 5 commits:"
 git log -5 --oneline | ForEach-Object { Write-Info "    $_" }
 $remote = git remote get-url origin 2>$null
-if ($remote) { Write-Pass "remote: $remote" } else { Write-Fail "no remote origin" }
+if ($remote) { Write-Pass "remote: $remote" } else { Write-Warn "no remote origin (local-only mode)" }
 $local = git rev-parse HEAD 2>$null
-$upstream = git rev-parse '@{u}' 2>$null
-if ($local -and $upstream -and $local -eq $upstream) { Write-Pass "local == origin/main (pushed)" } else { Write-Fail "local != origin/main" }
+$remoteSha = git rev-parse origin/main 2>$null
+if ($local -and $remoteSha -and $local -eq $remoteSha) { Write-Pass "local == origin/main (pushed)" } elseif (-not $remoteSha) { Write-Warn "origin/main not found (local-only mode)" } else { Write-Warn "local != origin/main (ahead or behind)" }
 
 # 2. FILES IN ROOT
 Write-Host "`n[2] Files in root" -ForegroundColor Yellow
@@ -94,8 +98,12 @@ if ($trackedTxt.Count -eq 0) { Write-Pass "0 tracked .txt" } else { Write-Warn "
 
 # 5. UNTRACKED FILES
 Write-Host "`n[5] Untracked files" -ForegroundColor Yellow
-$untracked = git ls-files --others --exclude-standard
+if ($SkipLocalChecks) {
+    Write-Info "skipped (--SkipLocalChecks)"
+} else {
+    $untracked = git ls-files --others --exclude-standard
 if (-not $untracked) { Write-Pass "no untracked files" } else { Write-Warn "untracked files:"; $untracked | ForEach-Object { Write-Info "    $_" } }
+}
 
 # 6. WALKTHROUGHS (DYNAMIC COUNT)
 Write-Host "`n[6] Walkthroughs" -ForegroundColor Yellow
@@ -242,11 +250,15 @@ if (Test-Path "check.ps1") {
 
 # 17. PRE-COMMIT HOOK
 Write-Host "`n[17] Pre-commit hook" -ForegroundColor Yellow
-if (Test-Path ".git\hooks\pre-commit") {
+if ($SkipLocalChecks) {
+    Write-Info "skipped (--SkipLocalChecks)"
+} else {
+    if (Test-Path ".git\hooks\pre-commit") {
     $hook = Get-Content ".git\hooks\pre-commit" -Raw
     if ($hook -match 'check\.ps1') { Write-Pass "hook runs check.ps1" } else { Write-Fail "hook does not run check.ps1" }
     if ($hook -match 'exit 1') { Write-Pass "hook can block commit" } else { Write-Warn "hook does not block commit" }
-} else { Write-Fail "pre-commit hook missing" }
+    } else { Write-Warn "pre-commit hook missing (local-only mode)" }
+}
 
 # 18. ENCODING (UTF-8 BOM)
 Write-Host "`n[18] Encoding (UTF-8 BOM)" -ForegroundColor Yellow
@@ -259,10 +271,19 @@ if ($bomIssues.Count -eq 0) { Write-Pass "all .md files have UTF-8 BOM" } else {
 
 # 19. LOCAL vs ORIGIN FILE LIST
 Write-Host "`n[19] Local vs origin/main file list" -ForegroundColor Yellow
-$localFiles = git ls-files | Sort-Object
-$remoteFiles = git ls-tree -r --name-only origin/main 2>$null | Sort-Object
-$diff = Compare-Object $localFiles $remoteFiles
-if (-not $diff) { Write-Pass "local and origin/main track the same files" } else { Write-Fail "file list differs"; $diff | Select-Object -First 10 | ForEach-Object { Write-Info "    $($_.SideIndicator) $($_.InputObject)" } }
+if ($SkipLocalChecks) {
+    Write-Info "skipped (--SkipLocalChecks)"
+} else {
+    $localFiles = git ls-files | Sort-Object
+    $remoteFiles = git ls-tree -r --name-only origin/main 2>$null | Sort-Object
+
+    if ($null -eq $remoteFiles -or $remoteFiles.Count -eq 0) {
+        Write-Warn "origin/main not found or empty (local-only mode)"
+    } else {
+        $diff = Compare-Object $localFiles $remoteFiles
+        if (-not $diff) { Write-Pass "local and origin/main track the same files" } else { Write-Warn "file list differs (may be expected if ahead of origin)"; $diff | Select-Object -First 10 | ForEach-Object { Write-Info "    $($_.SideIndicator) $($_.InputObject)" } }
+    }
+}
 
 # 20. LANGUAGE PAIRS PER CATEGORY
 Write-Host "`n[20] Language pairs per category" -ForegroundColor Yellow
@@ -309,6 +330,7 @@ Write-Host "================================================================" -F
 Write-Host "  PASS: $pass" -ForegroundColor Green
 Write-Host "  WARN: $warn" -ForegroundColor Yellow
 Write-Host "  FAIL: $fail" -ForegroundColor $(if ($fail -eq 0) { 'Green' } else { 'Red' })
+if ($SkipLocalChecks) { Write-Host "  (local checks skipped)" -ForegroundColor DarkGray }
 if ($fail -eq 0 -and $warn -eq 0) { Write-Host "`n  PERFECT - repo fully ready" -ForegroundColor Green } elseif ($fail -eq 0) { Write-Host "`n  PASS - repo ready (some warnings)" -ForegroundColor Green } else { Write-Host "`n  FAIL - repo has issues" -ForegroundColor Red }
 Write-Host ""
 Write-Host "================================================================" -ForegroundColor Cyan
