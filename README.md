@@ -58,10 +58,10 @@ MethodMan/
 
 Every commit is validated by a two-layer system:
 
-- **`check.ps1`** - fast pre-commit hook (7 checks: real flags, dict leaks, ethical note, dashes, broken chars, masking artifacts, heuristic password detection). Runs in ~2 seconds.
-- **`audit.ps1`** - full repository audit (49 checks: git state, tracked files, walkthrough structure, Attack Chain, note placement, flags, dict leaks, dashes, encoding, placeholders, documentation, scripts, hook, origin sync, dynamic machine count, language-pair verification). Runs in ~5 seconds.
+- **`check.ps1`** - fast pre-commit hook (8 checks: real flags, dict leaks, ethical note, dashes, broken chars, masking artifacts, heuristic password detection, CVE reference). Runs in ~2 seconds.
+- **`audit.ps1`** - full local repository audit (git state, tracked files, walkthrough structure, Attack Chain, note placement, flags, dict leaks, dashes, encoding, placeholders, documentation, scripts, hook, origin sync, dynamic machine count, language-pair verification). Runs in ~5 seconds.
 
-Both scripts run automatically in CI on every push (`.github/workflows/validate.yml`, Windows runner, pinned actions).
+CI runs `check.ps1` and `tests/run-tests.ps1` on every push (`.github/workflows/validate.yml`, Windows runner, pinned actions). `audit.ps1` is local-only (`-SkipLocalChecks` for repo-only mode).
 
 The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known sensitive values) detects and masks flags (32-hex pattern), values listed in the dictionary, and heuristic password shapes. Detection is dictionary- and pattern-based, not exhaustive - manual review remains part of the workflow.
 
