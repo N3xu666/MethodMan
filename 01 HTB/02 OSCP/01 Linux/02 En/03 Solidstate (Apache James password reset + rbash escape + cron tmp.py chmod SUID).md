@@ -81,6 +81,10 @@ Port 4555/tcp (rsip) is open - the Apache James admin interface.
 nc 10.129.1.53 4555
 ```
 
+**CVE-2015-7611** (NVD: https://nvd.nist.gov/vuln/detail/CVE-2015-7611)
+
+Apache James 2.3.2 - unauthenticated password reset via the admin interface on port 4555 (default `root:root`).
+
 Login `root:root`. Then:
 
 ```
@@ -128,6 +132,9 @@ ssh mindy@10.129.1.53
 cat user.txt
 # <USER_FLAG>
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ### Escaping rbash
 
@@ -214,6 +221,9 @@ whoami
 cat /root/root.txt
 # <ROOT_FLAG>
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 
