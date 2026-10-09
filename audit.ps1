@@ -294,14 +294,45 @@ $categories = Get-ChildItem -Path "01 HTB" -Directory -Recurse | Where-Object {
 }
 Write-Info "categories with 01 Az/02 En/03 Ru: $($categories.Count)"
 foreach ($cat in $categories) {
-    $az = @(Get-ChildItem (Join-Path $cat.FullName "01 Az") -Filter *.md -EA SilentlyContinue | Where-Object { -not (Test-StubFile $_.FullName) }).Count
-    $en = @(Get-ChildItem (Join-Path $cat.FullName "02 En") -Filter *.md -EA SilentlyContinue | Where-Object { -not (Test-StubFile $_.FullName) }).Count
-    $ru = @(Get-ChildItem (Join-Path $cat.FullName "03 Ru") -Filter *.md -EA SilentlyContinue | Where-Object { -not (Test-StubFile $_.FullName) }).Count
+    $azKeys = @()
+    $enKeys = @()
+    $ruKeys = @()
+    foreach ($f in Get-ChildItem (Join-Path $cat.FullName "01 Az") -Filter *.md -EA SilentlyContinue) {
+        if (-not (Test-StubFile $f.FullName) -and $f.Name -match '^(\d+)\s+([A-Za-z0-9_]+)\s+\(') {
+            $azKeys += "$($Matches[1]) $($Matches[2])"
+        }
+    }
+    foreach ($f in Get-ChildItem (Join-Path $cat.FullName "02 En") -Filter *.md -EA SilentlyContinue) {
+        if (-not (Test-StubFile $f.FullName) -and $f.Name -match '^(\d+)\s+([A-Za-z0-9_]+)\s+\(') {
+            $enKeys += "$($Matches[1]) $($Matches[2])"
+        }
+    }
+    foreach ($f in Get-ChildItem (Join-Path $cat.FullName "03 Ru") -Filter *.md -EA SilentlyContinue) {
+        if (-not (Test-StubFile $f.FullName) -and $f.Name -match '^(\d+)\s+([A-Za-z0-9_]+)\s+\(') {
+            $ruKeys += "$($Matches[1]) $($Matches[2])"
+        }
+    }
+    $azKeys = $azKeys | Sort-Object
+    $enKeys = $enKeys | Sort-Object
+    $ruKeys = $ruKeys | Sort-Object
     $catName = $cat.FullName.Replace((Get-Location).Path + '\', '')
-    if ($az -eq $en -and $en -eq $ru) {
-        Write-Pass "$catName - Az=$az En=$en Ru=$ru"
+    $azStr = $azKeys -join '|'
+    $enStr = $enKeys -join '|'
+    $ruStr = $ruKeys -join '|'
+    if ($azStr -eq $enStr -and $enStr -eq $ruStr) {
+        Write-Pass "$catName - Az=$($azKeys.Count) En=$($enKeys.Count) Ru=$($ruKeys.Count) (same set)"
     } else {
-        Write-Fail "$catName - Az=$az En=$en Ru=$ru (MISMATCH)"
+        Write-Fail "$catName - sets differ"
+        $diffAzEn = Compare-Object $azKeys $enKeys
+        $diffAzRu = Compare-Object $azKeys $ruKeys
+        if ($diffAzEn) {
+            Write-Info "  Az vs En:"
+            $diffAzEn | ForEach-Object { Write-Info "    $($_.SideIndicator) $($_.InputObject)" }
+        }
+        if ($diffAzRu) {
+            Write-Info "  Az vs Ru:"
+            $diffAzRu | ForEach-Object { Write-Info "    $($_.SideIndicator) $($_.InputObject)" }
+        }
     }
 }
 
