@@ -85,6 +85,8 @@ Title: "Temporary website to test local .php scripts."
 | listfiles.php | file listing → pwdbackup.txt, browse.php               |
 | phpinfo.php   | phpinfo, `file_uploads = On`                           |
 
+No CVE (custom vulnerability) - phpinfo() is exposed, leaking the temporary upload path; combined with an LFI in browse.php this enables a race-condition RCE (phpinfolfi technique).
+
 ### LFI Race Condition (phpinfo)
 
 ```bash
@@ -115,6 +117,9 @@ Launch:
 ```bash
 python3 phpinfolfi_modifyed.py 10.129.1.254 80 100
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 Shell as `www`.
 
@@ -162,6 +167,9 @@ cat user.txt
 # <USER_FLAG>
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 ---
 
 ## Privilege Escalation
@@ -205,6 +213,9 @@ ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254
 ```bash
 vncviewer -passwd secret 127.0.0.1::6901
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 Via VNC, we access the root desktop. Read `root.txt`.
 
