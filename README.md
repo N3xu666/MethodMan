@@ -8,6 +8,11 @@ Personal collection of penetration testing writeups, methodologies and cheatshee
 organized by platform and category.
 
 Writeups available in Az/En/Ru (Now: 14 machines)
+New machines and platforms will be added as they are completed,
+while methodologies and cheatsheets are updated regularly.
+
+> [!NOTE]
+> All flags, passwords, hashes, and session tokens have been masked for ethical reasons.
 
 ---
 
