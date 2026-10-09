@@ -51,7 +51,7 @@ function Test-StubFile([string]$filePath) {
 # Not-published files (skip in all content checks)
 $excluded = @('_WORKFLOW.md', 'masking-dict.ps1')
 # Files that are not walkthroughs (no Note, no Attack Chain)
-$notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', '_WORKFLOW.md', 'masking-dict.ps1')
+$notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', '_WORKFLOW.md', 'masking-dict.ps1', 'SECURITY.md')
 
 # ============================================================
 # 1. Real 32-hex flags

@@ -1,0 +1,41 @@
+﻿name: Validate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Run check.ps1
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Create placeholder masking-dict.ps1
+        shell: pwsh
+        run: |
+          $placeholder = @('# CI placeholder - no real secrets', '$maskingDict = @{}')
+          $p = Join-Path (Get-Location) 'masking-dict.ps1'
+          $u = New-Object System.Text.UTF8Encoding($true)
+          [System.IO.File]::WriteAllLines($p, $placeholder, $u)
+          Write-Host 'Placeholder masking-dict.ps1 created.'
+
+      - name: Run check.ps1
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+          .\check.ps1
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "check.ps1 failed with exit code $LASTEXITCODE"
+            exit $LASTEXITCODE
+          }

@@ -1,5 +1,9 @@
 ﻿# MethodMan
 
+[![Validate](https://github.com/N3xu666/MethodMan/actions/workflows/validate.yml/badge.svg)](https://github.com/N3xu666/MethodMan/actions/workflows/validate.yml)
+[![Last commit](https://img.shields.io/github/last-commit/N3xu666/MethodMan)](https://github.com/N3xu666/MethodMan/commits/main)
+[![Repo size](https://img.shields.io/github/repo-size/N3xu666/MethodMan)](https://github.com/N3xu666/MethodMan)
+
 Personal collection of penetration testing writeups, methodologies and cheatsheets,  
 organized by platform and category.
 
