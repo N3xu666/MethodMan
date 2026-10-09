@@ -12,11 +12,15 @@
 #
 # The txt/ directory (drafts, .gitignore) is excluded from all checks.
 
+param(
+    [string]$DictPath = 'masking-dict.ps1'
+)
+
 $ErrorActionPreference = "Stop"
 $repo = $PSScriptRoot
 Set-Location $repo
 
-$dictPath = Join-Path $repo "masking-dict.ps1"
+$dictPath = Join-Path $repo $DictPath
 if (-not (Test-Path $dictPath)) {
     Write-Host "ERROR: masking-dict.ps1 not found" -ForegroundColor Red
     exit 1
@@ -59,7 +63,7 @@ $notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', '_WORKFLOW.m
 Write-Host "`n=== [1/7] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -notin $excluded } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $flags += [regex]::Matches($c, "\b[a-fA-F0-9]{32}\b").Count
@@ -77,7 +81,7 @@ foreach ($key in $replacements.Keys) {
     if ($key -match '^[a-fA-F0-9]{32}$') { continue }
     $count = 0
     Get-ChildItem -Recurse -Filter *.md |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($key))).Count
@@ -98,7 +102,7 @@ $withNote = 0
 $withoutNote = 0
 $stubCount = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -notin $notWalkthrough } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.Name -notin $notWalkthrough } |
   ForEach-Object {
     if (Test-StubFile $_.FullName) {
         $stubCount++
@@ -127,7 +131,7 @@ Write-Host "`n=== [4/7] Long dashes ===" -ForegroundColor Cyan
 $d = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $d += [regex]::Matches($c, "[\u2013\u2014\u2212]").Count
@@ -143,7 +147,7 @@ Write-Host "`n=== [5/7] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $b += [regex]::Matches($c, "[\uFFFD]").Count
@@ -161,7 +165,7 @@ $a = 0
 foreach ($art in $artifacts) {
     $count = 0
     Get-ChildItem -Recurse -Filter *.md |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($art))).Count
@@ -180,7 +184,7 @@ else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a 
 Write-Host "`n=== [7/7] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
 $suspicious = @()
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -notin $excluded } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $mm = [regex]::Matches($ct, '(?i)(password|passwd|pwd)\s*[:=]\s*([^\s`<>]{5,})')

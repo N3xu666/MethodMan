@@ -1,5 +1,6 @@
 ﻿param(
-    [switch]$IncludeDrafts
+    [switch]$IncludeDrafts,
+    [string]$DictPath = 'masking-dict.ps1'
 )
 
 # mask.ps1
@@ -11,7 +12,7 @@ $ErrorActionPreference = "Stop"
 $repo = $PSScriptRoot
 Set-Location $repo
 
-$dictPath = Join-Path $repo "masking-dict.ps1"
+$dictPath = Join-Path $repo $DictPath
 if (-not (Test-Path $dictPath)) {
     Write-Host "ERROR: masking-dict.ps1 not found at $dictPath" -ForegroundColor Red
     exit 1
@@ -28,7 +29,8 @@ foreach ($ext in @("*.md")) {
       ForEach-Object {
         $content = [System.IO.File]::ReadAllText($_.FullName, [System.Text.Encoding]::UTF8)
         $new = $content
-        foreach ($key in $replacements.Keys) {
+        $sortedKeys = $replacements.Keys | Sort-Object { $_.Length } -Descending
+        foreach ($key in $sortedKeys) {
             $new = $new.Replace($key, $replacements[$key])
         }
         if ($content -ne $new) {
@@ -69,7 +71,7 @@ Get-ChildItem -Recurse -Filter *.md |
     }
     $pattern = '(?s)(```text.*?```)\r?\n'
     if ($content -match $pattern) {
-        $new = $content -replace $pattern, "`$1`r`n`r`n$note"
+        $new = $content -replace $pattern, "`$1`r`n`r`n$note`r`n"
         [System.IO.File]::WriteAllText($_.FullName, $new, $utf8WithBom)
         Write-Host "[NOTE] $($_.Name)" -ForegroundColor Cyan
         $filesWithNote++

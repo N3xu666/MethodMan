@@ -1,4 +1,4 @@
-﻿name: Validate
+name: Validate
 
 on:
   push:
@@ -35,6 +35,26 @@ jobs:
         run: |
           Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
           .\check.ps1
+          if ($null -ne $LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+  test:
+    name: Run mask.ps1 tests
+    runs-on: windows-latest
+    needs: check
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Run tests
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+          .\tests\run-tests.ps1
           if ($null -ne $LASTEXITCODE -and $LASTEXITCODE -ne 0) {
             exit $LASTEXITCODE
           }
