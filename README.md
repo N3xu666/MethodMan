@@ -11,7 +11,9 @@
 New machines and platforms will be added as they are completed,  
 while methodologies and cheatsheets are updated regularly.
 
-Writeups available in Az/En/Ru (Now: 14 machines)
+Writeups available in Az/En/Ru. Currently: **14 published (retired) + 3 active stubs** = **17 completed machines**.
+
+> The `(Now: M machines)` counter counts **only published walkthroughs** (machines retired on Hack The Box). Writeups for active machines are withheld per HTB ToS and stored as stubs (`Status: Completed`) until retirement.
 
 > [!NOTE]
 > All flags, passwords, hashes, and session tokens have been masked for ethical reasons.
@@ -47,6 +49,21 @@ MethodMan/
 | [HTB / OSCP / Linux](./01%20HTB/02%20OSCP/01%20Linux/) | Linux machines for OSCP prep | [Az](./01%20HTB/02%20OSCP/01%20Linux/01%20Az/) | [En](./01%20HTB/02%20OSCP/01%20Linux/02%20En/) | [Ru](./01%20HTB/02%20OSCP/01%20Linux/03%20Ru/) |
 | [HTB / OSCP / Windows](./01%20HTB/02%20OSCP/02%20Windows/) | Windows machines for OSCP prep | - | - | - |
 | [HTB / OSCP / Active Directory and Networks](./01%20HTB/02%20OSCP/03%20Active%20Directory%20and%20Networks/) | AD and networks | - | - | - |
+
+**Note:** files marked with `Status: Completed` are **stubs** for machines still active on HTB. Full writeups are published after retirement.
+
+---
+
+## Quality & Automation
+
+Every commit is validated by a two-layer system:
+
+- **`check.ps1`** - fast pre-commit hook (7 checks: real flags, dict leaks, ethical note, dashes, broken chars, masking artifacts, heuristic password detection). Runs in ~2 seconds.
+- **`audit.ps1`** - full repository audit (49 checks: git state, tracked files, walkthrough structure, Attack Chain, note placement, flags, dict leaks, dashes, encoding, placeholders, documentation, scripts, hook, origin sync, dynamic machine count, language-pair verification). Runs in ~5 seconds.
+
+Both scripts run automatically in CI on every push (`.github/workflows/validate.yml`, Windows runner, pinned actions).
+
+The masking pipeline (`mask.ps1` + local-only `masking-dict.ps1` with real secrets) ensures no real flags, passwords, hashes, or tokens are ever published.
 
 ---
 
