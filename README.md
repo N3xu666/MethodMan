@@ -4,8 +4,8 @@
 [![Last commit](https://img.shields.io/github/last-commit/N3xu666/MethodMan)](https://github.com/N3xu666/MethodMan/commits/main)
 [![Repo size](https://img.shields.io/github/repo-size/N3xu666/MethodMan)](https://github.com/N3xu666/MethodMan)
 
-Personal collection of penetration testing writeups, methodologies and cheatsheets,  
-organized by platform and category.
+**Personal collection of penetration testing writeups, methodologies and cheatsheets,**  
+**organized by platform and category.**
 
 New machines and platforms will be added as they are completed,  
 while methodologies and cheatsheets are updated regularly.
@@ -56,6 +56,13 @@ MethodMan/
 - **`03 Ru/`** - Russian writeups.
 - Each writeup follows a unified structure: Attack Chain -> Machine Briefing -> Recon -> Foothold -> Lateral Movement -> Privilege Escalation -> Flags -> Key Takeaways.
 - All sensitive data (flags, passwords, hashes) is masked.
+
+---
+
+## License
+
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.
+See [LICENSE](./LICENSE) for details.
 
 ---
 
