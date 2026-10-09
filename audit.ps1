@@ -315,3 +315,4 @@ Write-Host "================================================================" -F
 Write-Host "     FINAL AUDIT v3 COMPLETE" -ForegroundColor Cyan
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
+exit $(if ($fail -gt 0) { 1 } else { 0 })

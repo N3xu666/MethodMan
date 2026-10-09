@@ -209,6 +209,7 @@ if ($totalIssues -eq 0) {
     Write-Host "  REMINDER before committing a NEW walkthrough:" -ForegroundColor Magenta
     Write-Host "    1. Add new real secrets to masking-dict.ps1 (passwords, flags, hashes)." -ForegroundColor Magenta
     Write-Host "    2. Run .\update-readmes.ps1 to refresh README tables and counters." -ForegroundColor Magenta
+    exit 0
 } else {
     Write-Host "TOTAL ISSUES: $totalIssues - fix before push" -ForegroundColor Red
     exit 1
