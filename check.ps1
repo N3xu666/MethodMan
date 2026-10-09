@@ -218,9 +218,11 @@ Get-ChildItem -Recurse -Filter *.md |
     $lines2 = $ct -split "`n"
     $inExpl = $false
     $explText = ""
+    $inCode = $false
     foreach ($ln in $lines2) {
-        if ($ln -match '^##\s+(Exploitation|Эксплуатация|İstismar)\b') { $inExpl = $true; continue }
-        if ($inExpl -and $ln -match '^##\s+') { break }
+        if ($ln -match '^```') { $inCode = -not $inCode }
+        if (-not $inCode -and $ln -match '^##\s+(Exploitation|Эксплуатация|İstismar|Foothold|Первичный Доступ|İlkin Giriş)\b') { $inExpl = $true; continue }
+        if ($inExpl -and -not $inCode -and $ln -match '^##\s+') { break }
         if ($inExpl) { $explText += $ln + "`n" }
     }
     if (-not $inExpl) { return }
