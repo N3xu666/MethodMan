@@ -154,7 +154,7 @@ if ($badNote.Count -eq 0) { Write-Pass "all walkthroughs: Note right after Attac
 # 10. REAL 32-HEX FLAGS
 Write-Host "`n[10] Real 32-hex flags (case-insensitive)" -ForegroundColor Yellow
 $flagCount = 0
-Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $flagCount += [regex]::Matches($c, "\b[a-fA-F0-9]{32}\b").Count
 }
@@ -171,7 +171,7 @@ if (Test-Path "masking-dict.ps1") {
         if ($key -match '^<.*>$') { continue }
         if ($key -match '^[a-fA-F0-9]{32}$') { continue }
         $count = 0
-        Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+        Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
             $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
             $count += ([regex]::Matches($c, [regex]::Escape($key))).Count
         }
@@ -183,7 +183,7 @@ if (Test-Path "masking-dict.ps1") {
 # 12. LONG DASHES / BROKEN CHARS
 Write-Host "`n[12] Long dashes / broken chars" -ForegroundColor Yellow
 $d = 0; $b = 0
-Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $d += [regex]::Matches($c, "[\u2013\u2014\u2212]").Count
     $b += [regex]::Matches($c, "[\uFFFD]").Count
@@ -197,7 +197,7 @@ $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLA
 $a = 0
 foreach ($art in $artifacts) {
     $count = 0
-    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($art))).Count
     }
@@ -210,7 +210,7 @@ Write-Host "`n[14] Placeholders usage" -ForegroundColor Yellow
 $placeholders = @('<USER_FLAG>', '<ROOT_FLAG>', '<PASSWORD>', '<BCRYPT_HASH>', '<MYSQL_HASH>', '<SHA256_HASH>', '<TOKEN>', '<SESSION_ID>')
 foreach ($ph in $placeholders) {
     $count = 0
-    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($ph))).Count
     }
@@ -229,6 +229,11 @@ if (Test-Path "METHODOLOGY.md") {
     $phases = [regex]::Matches($mt, '(?m)^##\s+Phase').Count
     if ($phases -ge 5) { Write-Pass "METHODOLOGY.md has $phases phases" } else { Write-Warn "METHODOLOGY.md has only $phases phases" }
 } else { Write-Fail "METHODOLOGY.md missing" }
+if (Test-Path "methodology/OSCP-Reporting.md") {
+    $or = [System.IO.File]::ReadAllText((Join-Path (Get-Location) "methodology/OSCP-Reporting.md"), $utf8)
+    $oscpSections = [regex]::Matches($or, '(?m)^##\s+\d+\.\s').Count
+    if ($oscpSections -ge 4) { Write-Pass "methodology/OSCP-Reporting.md has $oscpSections sections" } else { Write-Warn "OSCP-Reporting.md has only $oscpSections sections" }
+} else { Write-Warn "methodology/OSCP-Reporting.md missing (optional)" }
 
 # 16. SCRIPTS
 Write-Host "`n[16] Scripts" -ForegroundColor Yellow
@@ -263,7 +268,7 @@ if ($SkipLocalChecks) {
 # 18. ENCODING (UTF-8 BOM)
 Write-Host "`n[18] Encoding (UTF-8 BOM)" -ForegroundColor Yellow
 $bomIssues = @()
-Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
+Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.Name -ne '_WORKFLOW.md' } | ForEach-Object {
     $bytes = [System.IO.File]::ReadAllBytes($_.FullName)
     if ($bytes.Length -lt 3 -or $bytes[0] -ne 0xEF -or $bytes[1] -ne 0xBB -or $bytes[2] -ne 0xBF) { $bomIssues += $_.Name }
 }
