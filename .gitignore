@@ -38,4 +38,4 @@ _WORKFLOW.md.*
 *.bak*
 # Fix-edit backups
 *.fix-*
-*.fix2-*
+*.fix2-*tools/
