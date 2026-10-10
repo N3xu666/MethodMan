@@ -7,9 +7,6 @@
 
 ![MethodMan - trilingual HTB writeups, methodology and cheatsheet collection](./social-preview.png)
 
-**Personal collection of penetration testing writeups, methodologies and cheatsheets,**  
-**organized by platform and category.**
-
 New machines and platforms will be added as they are completed,  
 while methodologies and cheatsheets are updated regularly.
 
