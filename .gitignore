@@ -29,7 +29,6 @@ check.ps1.bak
 # Obsidian (personal settings, not for public)
 .obsidian/
 
-social-preview.png
 
 # Backup files from workflow edits
 _WORKFLOW.md.*

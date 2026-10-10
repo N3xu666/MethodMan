@@ -5,6 +5,8 @@
 [![Repo size](https://img.shields.io/github/repo-size/N3xu666/MethodMan)](https://github.com/N3xu666/MethodMan)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
+![MethodMan - trilingual HTB writeups, methodology and cheatsheet collection](./social-preview.png)
+
 **Personal collection of penetration testing writeups, methodologies and cheatsheets,**  
 **organized by platform and category.**
 
