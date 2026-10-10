@@ -2,7 +2,7 @@
 
 ## About This Repository
 
-MethodMan is a personal collection of penetration testing walkthroughs,
+MethodMan is a personal collection of penetration testing walkthroughs, tools,
 methodologies, and cheatsheets, published as a portfolio and community resource.
 
 All published walkthroughs are **fully masked**: flags, passwords, hashes, tokens,
