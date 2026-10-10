@@ -36,6 +36,14 @@ MethodMan/
 |       |   +-- 03 Ru/
 |       +-- 02 Windows/
 |       +-- 03 Active Directory and Networks/
++-- 02 Web/                # web app testing cheatsheet (English only)
+|   +-- 01 Recon/
+|   +-- 02 Frameworks/
+|   +-- 03 Languages/
+|   +-- 04 Servers/
+|   +-- 05 CMS/
+|   +-- 06 Technologies/
+|   +-- 07 Vulnerabilities/
 +-- tools/                # custom pentest tools (Python / Go / Bash)
 ```
 
