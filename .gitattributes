@@ -4,5 +4,19 @@
 # PowerShell scripts: keep CRLF
 *.ps1 text eol=crlf
 
-# Markdown: LF is fine
+# Unix text files: LF
 *.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+LICENSE text eol=lf
+
+# Binary files: never normalize
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
