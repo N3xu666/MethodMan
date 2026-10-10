@@ -20,3 +20,8 @@ LICENSE text eol=lf
 *.gif binary
 *.ico binary
 *.pdf binary
+
+# Force Linguist to count tools/ as real code
+tools/**/*.py linguist-detectable=true
+tools/**/*.go linguist-detectable=true
+tools/**/*.sh linguist-detectable=true
