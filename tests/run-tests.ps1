@@ -125,6 +125,59 @@ try {
         Write-Host "    hash after:  $hashAfter"
     }
 
+
+    # --- Test 4: check.ps1 detects dict leak (positive) ---
+    Write-Section "Test 4: check.ps1 detects a dict leak"
+
+    $tmpLeak = Join-Path $env:TEMP "methodman-check-leak-$(Get-Random)"
+    New-Item -Path $tmpLeak -ItemType Directory -Force | Out-Null
+
+    Copy-Item (Join-Path $repo "check.ps1") (Join-Path $tmpLeak "check.ps1") -Force
+    Copy-Item (Join-Path $fixtures "masking-dict.test.ps1") (Join-Path $tmpLeak "masking-dict.test.ps1") -Force
+    Copy-Item ((Join-Path (Join-Path (Join-Path $fixtures "check-input") "leak") "01 Az")) (Join-Path $tmpLeak "01 Az") -Recurse -Force
+
+    Push-Location $tmpLeak
+    try {
+        $outLeak = & ".\check.ps1" -DictPath "masking-dict.test.ps1" 2>&1
+        $exitLeak = $LASTEXITCODE
+    } finally {
+        Pop-Location
+    }
+    Remove-Item $tmpLeak -Recurse -Force -ErrorAction SilentlyContinue
+
+    $outLeakStr = $outLeak -join "`n"
+    if ($exitLeak -eq 1) {
+        Write-Pass "check.ps1 detected the dict leak (exit=1)"
+    } else {
+        Write-Fail "check.ps1 did NOT detect the dict leak (exit=$exitLeak)"
+    }
+
+    # --- Test 5: check.ps1 passes on clean file (negative) ---
+    Write-Section "Test 5: check.ps1 passes on a clean file"
+
+    $tmpClean = Join-Path $env:TEMP "methodman-check-clean-$(Get-Random)"
+    New-Item -Path $tmpClean -ItemType Directory -Force | Out-Null
+
+    Copy-Item (Join-Path $repo "check.ps1") (Join-Path $tmpClean "check.ps1") -Force
+    Copy-Item (Join-Path $fixtures "masking-dict.test.ps1") (Join-Path $tmpClean "masking-dict.test.ps1") -Force
+    Copy-Item ((Join-Path (Join-Path (Join-Path $fixtures "check-input") "clean") "01 Az")) (Join-Path $tmpClean "01 Az") -Recurse -Force
+
+    Push-Location $tmpClean
+    try {
+        $outClean = & ".\check.ps1" -DictPath "masking-dict.test.ps1" 2>&1
+        $exitClean = $LASTEXITCODE
+    } finally {
+        Pop-Location
+    }
+    Remove-Item $tmpClean -Recurse -Force -ErrorAction SilentlyContinue
+
+    $outCleanStr = $outClean -join "`n"
+    if ($exitClean -eq 0) {
+        Write-Pass "check.ps1 passed on clean file (exit=0)"
+    } else {
+        Write-Fail "check.ps1 failed on clean file (exit=$exitClean)"
+    }
+
 } finally {
     # --- Cleanup ---
     if (Test-Path $tmp) {
