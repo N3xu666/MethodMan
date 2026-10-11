@@ -101,14 +101,14 @@ Tools:
 
 | CVE | Affected | Impact | NVD |
 |-----|----------|--------|-----|
-| CVE-2020-0688 | Exchange Server (ViewState) | RCE via static machineKey | https://nvd.nist.gov/vuln/detail/CVE-2020-0688 |
-| CVE-2021-34473 | Exchange Server (ProxyShell) | RCE pre-auth | https://nvd.nist.gov/vuln/detail/CVE-2021-34473 |
-| CVE-2021-34523 | Exchange Server (ProxyShell) | Elevation via PowerShell backend | https://nvd.nist.gov/vuln/detail/CVE-2021-34523 |
-| CVE-2021-31207 | Exchange Server (ProxyShell) | Post-auth RCE via mailbox export | https://nvd.nist.gov/vuln/detail/CVE-2021-31207 |
-| CVE-2022-41040 | Exchange Server (ProxyNotShell) | SSRF | https://nvd.nist.gov/vuln/detail/CVE-2022-41040 |
-| CVE-2022-41082 | Exchange Server (ProxyNotShell) | RCE post-auth | https://nvd.nist.gov/vuln/detail/CVE-2022-41082 |
-| CVE-2023-34362 | MOVEit Transfer | SQLi to RCE | https://nvd.nist.gov/vuln/detail/CVE-2023-34362 |
-| CVE-2024-38063 | Windows TCP/IP (not .NET, but relevant) | RCE | https://nvd.nist.gov/vuln/detail/CVE-2024-38063 |
+| CVE-2020-0688 | Exchange 2010 SP3 RU30 / 2013 CU23 / 2016 CU14-15 / 2019 CU3-4 | RCE via static machineKey | https://nvd.nist.gov/vuln/detail/CVE-2020-0688 |
+| CVE-2021-34473 | Exchange 2013 CU23 / 2016 CU19-20 / 2019 CU8-9 | RCE pre-auth | https://nvd.nist.gov/vuln/detail/CVE-2021-34473 |
+| CVE-2021-34523 | Exchange 2013 CU23 / 2016 CU19-20 / 2019 CU8-9 | Elevation via PowerShell backend | https://nvd.nist.gov/vuln/detail/CVE-2021-34523 |
+| CVE-2021-31207 | Exchange 2013 CU23 / 2016 CU19-20 / 2019 CU8-9 | Post-auth RCE via mailbox export | https://nvd.nist.gov/vuln/detail/CVE-2021-31207 |
+| CVE-2022-41040 | Exchange 2013 / 2016 / 2019 | SSRF | https://nvd.nist.gov/vuln/detail/CVE-2022-41040 |
+| CVE-2022-41082 | Exchange 2013 / 2016 / 2019 | RCE post-auth | https://nvd.nist.gov/vuln/detail/CVE-2022-41082 |
+| CVE-2023-34362 | MOVEit Transfer 2021.0.x - 2023.0.x (all before 2023.0.1) | SQLi to RCE | https://nvd.nist.gov/vuln/detail/CVE-2023-34362 |
+| CVE-2024-38063 | Windows Server 2008-2022, Win 10/11 (IPv6 enabled) | RCE | https://nvd.nist.gov/vuln/detail/CVE-2024-38063 |
 
 ---
 
