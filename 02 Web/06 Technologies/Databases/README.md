@@ -22,8 +22,20 @@ Databases are the payoff of a web pentest. Every step before them (recon,
 fingerprinting, injection) is preparation. Once you reach the DB, you get
 credentials, hashes, file read/write, and often direct RCE.
 
-This file is the **entry point**: how to tell which DB you are looking at,
+This file is an **introductory index**: how to tell which DB you are likely looking at,
 what it leaks without credentials, and which sibling file to open next.
+Each database has its own dedicated page; this README is the shared entry point,
+not a substitute for those pages.
+
+**Per-database pages in this folder:**
+
+- [MySQL.md](./MySQL.md)
+- [PostgreSQL.md](./PostgreSQL.md)
+- [MSSQL.md](./MSSQL.md)
+- [MongoDB.md](./MongoDB.md)
+- [Redis.md](./Redis.md)
+- [SQLite.md](./SQLite.md)
+- [Oracle.md](./Oracle.md)
 
 ### 1.1 Why databases matter
 
@@ -121,16 +133,21 @@ The fastest way: cause a SQL error and read the message.
 | `MongoError` / `MongoServerError` | MongoDB |
 | `sqlite3.OperationalError` | SQLite (Python) |
 
-### 2.4 Response-header fingerprinting
+### 2.4 Response-header hints (app stack, not the DBMS)
 
-| Header / body marker | Likely backend |
-|----------------------|----------------|
-| `X-Powered-By: PHP` | MySQL / MariaDB (typical LAMP) |
-| `X-Powered-By: Express` + Mongo error | MongoDB + Node |
-| `Server: Microsoft-IIS` + `.aspx` | MSSQL |
-| `X-AspNet-Version` | MSSQL |
-| `Server: gunicorn` / `Werkzeug` | PostgreSQL (typical Django/Flask) |
-| `Set-Cookie: JSESSIONID` + `.jsp` | Oracle / PostgreSQL |
+HTTP response headers identify the **application stack** (language, framework,
+web server). They do NOT identify the database. Treat the table below as a
+weak prior for which DB is *plausible* given the stack - never as proof.
+Confirm with error-message fingerprinting (2.3) or a direct connect.
+
+| Header / body marker | App stack hint | DB commonly paired (guess only) |
+|----------------------|----------------|----------------------------------|
+| `X-Powered-By: PHP` | PHP | MySQL / MariaDB (typical LAMP) |
+| `X-Powered-By: Express` | Node.js / Express | MongoDB or PostgreSQL (both common) |
+| `Server: Microsoft-IIS` + `.aspx` | IIS / ASP.NET | MSSQL (common) |
+| `X-AspNet-Version` | ASP.NET | MSSQL (common) |
+| `Server: gunicorn` / `Werkzeug` | Python (Django/Flask) | PostgreSQL / MySQL / SQLite (no single default) |
+| `Set-Cookie: JSESSIONID` + `.jsp` | Java / servlet container | Oracle / PostgreSQL / MySQL (no single default) |
 
 ### 2.5 Default credentials
 
