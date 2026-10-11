@@ -40,3 +40,4 @@ _WORKFLOW.md.*
 *.fix-*
 *.fix2-*
 tools/
+PROMPT_NEXT_SESSION.txt
