@@ -60,7 +60,7 @@ $notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Report
 # ============================================================
 # 1. Real 32-hex flags
 # ============================================================
-Write-Host "`n=== [1/11] Real 32-hex flags ===" -ForegroundColor Cyan
+Write-Host "`n=== [1/12] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\02 Web\\' -and $_.Name -notin $excluded } |
@@ -74,7 +74,7 @@ else { Write-Host "FAIL: $flags flags left" -ForegroundColor Red; $totalIssues +
 # ============================================================
 # 2. Real passwords/hashes/keys from dictionary
 # ============================================================
-Write-Host "`n=== [2/11] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
+Write-Host "`n=== [2/12] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
 $leaks = 0
 foreach ($key in $replacements.Keys) {
     if ($key -match '^<.*>$') { continue }
@@ -97,7 +97,7 @@ else { Write-Host "FAIL: $leaks leaks" -ForegroundColor Red; $totalIssues += $le
 # ============================================================
 # 3. Note after Attack Chain (walkthroughs only, skip stubs)
 # ============================================================
-Write-Host "`n=== [3/11] Ethical note in walkthroughs ===" -ForegroundColor Cyan
+Write-Host "`n=== [3/12] Ethical note in walkthroughs ===" -ForegroundColor Cyan
 $withNote = 0
 $withoutNote = 0
 $stubCount = 0
@@ -127,7 +127,7 @@ if ($withoutNote -gt 0) { $totalIssues += $withoutNote }
 # ============================================================
 # 4. Long dashes
 # ============================================================
-Write-Host "`n=== [4/11] Long dashes ===" -ForegroundColor Cyan
+Write-Host "`n=== [4/12] Long dashes ===" -ForegroundColor Cyan
 $d = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -143,7 +143,7 @@ else { Write-Host "FAIL: $d long dashes" -ForegroundColor Red; $totalIssues += $
 # ============================================================
 # 5. Broken chars
 # ============================================================
-Write-Host "`n=== [5/11] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
+Write-Host "`n=== [5/12] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -159,7 +159,7 @@ else { Write-Host "FAIL: $b broken chars" -ForegroundColor Red; $totalIssues += 
 # ============================================================
 # 6. Masking artifacts
 # ============================================================
-Write-Host "`n=== [6/11] Masking artifacts ===" -ForegroundColor Cyan
+Write-Host "`n=== [6/12] Masking artifacts ===" -ForegroundColor Cyan
 $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLAG>FLAG')
 $a = 0
 foreach ($art in $artifacts) {
@@ -181,7 +181,7 @@ else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a 
 # ============================================================
 # 7. Heuristic: possibly unmasked secrets (WARN only, does not block)
 # ============================================================
-Write-Host "`n=== [7/11] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [7/12] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
 $suspicious = @()
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\02 Web\\' -and $_.Name -notin $excluded } |
@@ -214,7 +214,7 @@ if ($suspicious.Count -eq 0) {
 # ============================================================
 # 8. CVE reference in Exploitation (WARN only, does not block)
 # ============================================================
-Write-Host "`n=== [8/11] CVE reference in Exploitation (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [8/12] CVE reference in Exploitation (WARN only) ===" -ForegroundColor Cyan
 $missingCve = @()
 $checkedExpl = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -250,7 +250,7 @@ if ($missingCve.Count -eq 0) {
 # Scans: 02 Web/**, methodology/**, root *.md (README, CHEATSHEET,
 # METHODOLOGY, SECURITY). Looks for %%XX%% style markers.
 # ============================================================
-Write-Host "`n=== [9/11] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
+Write-Host "`n=== [9/12] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
 $docRootFiles = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'SECURITY.md')
 $placeholderCount = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -278,7 +278,7 @@ else { Write-Host "FAIL: $placeholderCount unreplaced placeholders" -ForegroundC
 # 10. Broken relative links in docs (WARN only, does not block)
 # Scans: 02 Web/**/*.md, methodology/**/*.md, root *.md. Skips code blocks, anchors, http(s)/mailto.
 # ============================================================
-Write-Host "`n=== [10/11] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [10/12] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
 $brokenLinks = @()
 $linkFiles = @()
 $linkFiles += Get-ChildItem -Path "02 Web" -Recurse -Filter *.md -ErrorAction SilentlyContinue
@@ -321,7 +321,7 @@ else {
 # 11. Counter consistency in root README (WARN only, does not block)
 # Compares root README counter with actual file counts.
 # ============================================================
-Write-Host "`n=== [11/11] Counter consistency in root README (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [11/12] Counter consistency in root README (WARN only) ===" -ForegroundColor Cyan
 $counterWarn = 0
 
 # Count published (non-stub) and stubs in all 01 Az/ folders
@@ -365,6 +365,46 @@ if (Test-Path $readmePath) {
     }
 } else {
     Write-Host "WARN: root README.md not found" -ForegroundColor Yellow
+}
+
+# ============================================================
+# 12. CVE version ranges in docs tables (WARN only, does not block)
+# Scans 02 Web/** for table rows that reference a CVE and an NVD/MITRE
+# link but contain no version range (no digit outside the CVE ID).
+# References lists (`- CVE-...: url`) are skipped on purpose.
+# ============================================================
+Write-Host "`n=== [12/12] CVE version ranges in docs tables (WARN only) ===" -ForegroundColor Cyan
+$bareCve = @()
+Get-ChildItem -Recurse -Filter *.md |
+  Where-Object { $_.FullName -match '\\02 Web\\' } |
+  ForEach-Object {
+    $lines3 = [System.IO.File]::ReadAllLines($_.FullName, $utf8)
+    for ($i = 0; $i -lt $lines3.Count; $i++) {
+      $ln = $lines3[$i]
+      if ($ln -notmatch '^\|\s*CVE-\d{4}-\d{4,}') { continue }
+      if ($ln -notmatch 'nvd\.nist\.gov|cve\.mitre\.org') { continue }
+      $cells = $ln.Split('|') | ForEach-Object { $_.Trim() }
+      $hasVersion = $false
+      foreach ($c in $cells) {
+        if ($c -eq '') { continue }
+        if ($c -match 'CVE-\d{4}') { continue }
+        if ($c -match 'nvd\.nist\.gov') { continue }
+        if ($c -match 'cve\.mitre\.org') { continue }
+        if ($c -match '^https?://') { continue }
+        if ($c -match '\d') { $hasVersion = $true; break }
+      }
+      if (-not $hasVersion) {
+        $rel = if ($_.FullName.StartsWith($repo)) { $_.FullName.Substring($repo.Length).TrimStart('\') } else { $_.FullName }
+        $script:bareCve += "${rel}:$($i+1): $($ln.Trim())"
+      }
+    }
+  }
+if ($bareCve.Count -eq 0) {
+  Write-Host "OK: all CVE table rows include a version range" -ForegroundColor Green
+} else {
+  Write-Host "WARN: $($bareCve.Count) CVE table row(s) without version range (manual review):" -ForegroundColor Yellow
+  $bareCve | Select-Object -First 10 | ForEach-Object { Write-Host "  $_" -ForegroundColor Gray }
+  if ($bareCve.Count -gt 10) { Write-Host "  ... and $($bareCve.Count - 10) more" -ForegroundColor Gray }
 }
 
 # ============================================================
