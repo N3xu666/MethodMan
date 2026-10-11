@@ -45,10 +45,6 @@ If you believe any tool in this repository has been used against a system
 without authorization, or you have received unsolicited traffic originating
 from this code, contact: huseynovirshad@gmail.com
 
-We do not condone unauthorized use. All tools are intended for authorized
-penetration testing, CTF environments (Hack The Box, OSCP labs), and
-educational purposes only.
-
 ---
 
 ## What Qualifies

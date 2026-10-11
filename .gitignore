@@ -39,5 +39,4 @@ _WORKFLOW.md.*
 # Fix-edit backups
 *.fix-*
 *.fix2-*
-tools/
 PROMPT_NEXT_SESSION.txt
