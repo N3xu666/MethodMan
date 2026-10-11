@@ -63,12 +63,11 @@ MethodMan/
 
 ## Quality & Automation
 
-Every commit is validated by a two-layer system:
+Validation is split across three independent layers:
 
-- **`check.ps1`** - fast pre-commit hook (8 checks: real flags, dict leaks, ethical note, dashes, broken chars, masking artifacts, heuristic password detection, CVE reference). Runs in ~2 seconds.
-- **`audit.ps1`** - full local repository audit (git state, tracked files, walkthrough structure, Attack Chain, note placement, flags, dict leaks, dashes, encoding, placeholders, documentation, scripts, hook, origin sync, dynamic machine count, language-pair verification). Runs in ~5 seconds.
-
-CI runs `check.ps1` and `tests/run-tests.ps1` on every push (`.github/workflows/validate.yml`, Windows runner, pinned actions). `audit.ps1` is local-only (`-SkipLocalChecks` for repo-only mode).
+- **Pre-commit hook (`check.ps1`)** - LOCAL only, opt-in. Lives in `.git/hooks/pre-commit`, which is not tracked by git (git does not clone hooks). To install, copy the `check.ps1` invocation into `.git/hooks/pre-commit` (see `_WORKFLOW.md` section 2). Fast (8 checks, ~2 seconds), blocks commits with real flags, dict leaks, missing ethical note, dashes, broken chars, masking artifacts, heuristic passwords, missing CVE reference.
+- **Manual audit (`audit.ps1`)** - LOCAL only, run by the operator before important pushes. Covers git state, tracked files, walkthrough structure, Attack Chain, note placement, flags, dict leaks, dashes, encoding, placeholders, documentation, scripts, hook, origin sync, dynamic machine count, language-pair verification. Not run in CI.
+- **CI (`.github/workflows/validate.yml`)** - runs `check.ps1` and `tests/run-tests.ps1` on every push to any branch (Windows runner, pinned actions, read-only permissions). Uses a placeholder `masking-dict.ps1` (the real dict is not in git). Does NOT run `audit.ps1`.
 
 The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known sensitive values) detects and masks flags (32-hex pattern), values listed in the dictionary, and heuristic password shapes. Detection is dictionary- and pattern-based, not exhaustive - manual review remains part of the workflow.
 
