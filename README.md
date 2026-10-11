@@ -8,7 +8,7 @@
 ![MethodMan - trilingual HTB writeups, methodology and cheatsheet collection](./social-preview.png)
 
 New machines and platforms will be added as they are completed,  
-while tools, methodologies and cheatsheets are updated regularly.
+while methodologies and cheatsheets are updated regularly.
 
 Writeups available in Az/En/Ru. Currently: **14 published (retired) + 3 active stubs** = **17 completed machines**.
 
@@ -44,7 +44,6 @@ MethodMan/
 |   +-- 05 CMS/
 |   +-- 06 Technologies/
 |   +-- 07 Vulnerabilities/
-+-- tools/                # custom pentest tools (Python / Go / Bash)
 ```
 
 ---
