@@ -1,6 +1,6 @@
 ﻿# Databases
 
-> Part of [06 Technologies](../README.md) in the [Web Application Testing Cheatsheet](../../README.md).
+> Part of [06 Technologies](../../README.md) in the [Web Application Testing Cheatsheet](../../README.md).
 
 **Contents:**
 

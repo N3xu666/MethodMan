@@ -365,7 +365,7 @@ python2 tplmap.py -u 'http://target/hello?name=INJECT'
 > SSTI to RCE is a strong foothold proof. Show the chain: probe -> engine
 > -> RCE -> shell.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 

@@ -5,7 +5,7 @@
 
 > [!CAUTION]
 > Authorized use only. All techniques here are for OSCP labs, Hack The Box,
-> and explicitly authorized penetration tests. See [../../SECURITY.md](../../SECURITY.md).
+> and explicitly authorized penetration tests. See [../SECURITY.md](../SECURITY.md).
 
 ---
 
@@ -216,7 +216,7 @@ Protocols, auth, and cross-cutting technologies.
 
 | File | Focus |
 |------|-------|
-| [Databases.md](./06%20Technologies/Databases.md) | Detect and identify the DB engine |
+| [Databases.md](./06%20Technologies/Databases/README.md) | Detect and identify the DB engine |
 | [JWT.md](./06%20Technologies/JWT.md) | alg=none, kid injection, JWK, weak secret |
 | [OAuth.md](./06%20Technologies/OAuth.md) | redirect_uri, state, PKCE |
 | [GraphQL.md](./06%20Technologies/GraphQL.md) | introspection, batching, IDOR |
@@ -263,7 +263,7 @@ Vulnerability classes with exploitation recipes.
 ## Workflow
 
 Standard web-testing workflow. Adjust per target profile
-(lab vs production - see [../../METHODOLOGY.md](../../METHODOLOGY.md)).
+(lab vs production - see [../METHODOLOGY.md](../METHODOLOGY.md)).
 
 1. **Fingerprint** - `whatweb`, `curl -I`, nmap HTTP scripts.
 2. **Enumerate** - directories (`feroxbuster`), files, vhosts (`ffuf`).
@@ -278,16 +278,16 @@ Standard web-testing workflow. Adjust per target profile
 > [!IMPORTANT]
 > For OSCP, every proof step (foothold, privilege escalation) needs a
 > screenshot with command, output, and timestamp. See
-> [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> [../methodology/OSCP-Reporting.md](../methodology/OSCP-Reporting.md).
 
 ---
 
 ## Related Sections
 
-- [../../CHEATSHEET.md](../../CHEATSHEET.md) - general pentest commands.
-- [../../METHODOLOGY.md](../../METHODOLOGY.md) - engagement workflow.
-- [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md) - exam reporting.
-- [../../01 HTB/](../../01%20HTB/) - HTB walkthroughs using these techniques.
+- [../CHEATSHEET.md](../CHEATSHEET.md) - general pentest commands.
+- [../METHODOLOGY.md](../METHODOLOGY.md) - engagement workflow.
+- [../methodology/OSCP-Reporting.md](../methodology/OSCP-Reporting.md) - exam reporting.
+- [../01 HTB/](../01%20HTB/) - HTB walkthroughs using these techniques.
 
 ---
 

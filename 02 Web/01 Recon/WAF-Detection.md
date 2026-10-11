@@ -311,7 +311,7 @@ curl -s "http://target/?q=UnIoN%20SeLeCt%201,2,3"
 > OSCP report: screenshot `wafw00f` output only if the WAF affected your
 > exploitation path (i.e. you had to bypass). Otherwise summarize in text.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 

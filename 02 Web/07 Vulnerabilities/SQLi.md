@@ -543,7 +543,7 @@ SELECT sql FROM sqlite_master WHERE name='users';
 
 Comments: `--`, `/* */`.
 
-> See also: [../06 Technologies/Databases.md](../06%20Technologies/Databases.md)
+> See also: [../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md)
 
 ---
 
@@ -601,7 +601,7 @@ Places where SQLi shows up most often:
 - Cookies: `session=`, `uid=`, `role=`
 - HTTP headers: `User-Agent`, `Referer`, `X-Forwarded-For`, `X-Real-IP`
 - JSON body: `{"id":"1"}` -> sqlmap `-r req.txt` handles it
-- XML body: -> see [../06 Technologies/XXE.md](../06%20Technologies/XXE.md)
+- XML body: -> see [../06 Technologies/XXE.md](../07%20Vulnerabilities/XXE.md)
 
 For REST/JSON specifics, see [../06 Technologies/REST.md](../06%20Technologies/REST.md)
 (once published).
@@ -617,7 +617,7 @@ For REST/JSON specifics, see [../06 Technologies/REST.md](../06%20Technologies/R
 > - Screenshot the final credential / flag extracted.
 > - Screenshot any RCE (`--os-shell`, `--file-write`) proving the foothold.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 
@@ -662,7 +662,7 @@ sqlmap -r req.txt --tamper=space2comment,randomcase --random-agent
 - sqlmap tamper scripts: https://github.com/sqlmapproject/sqlmap/wiki/Tamper-scripts
 - OWASP WSTG - SQLi: https://owasp.org/www-project-web-security-testing-guide/
 
-> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/Databases.md](../06%20Technologies/Databases.md), [../06 Technologies/REST.md](../06%20Technologies/REST.md)
+> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md), [../06 Technologies/REST.md](../06%20Technologies/REST.md)
 
 ---
 
