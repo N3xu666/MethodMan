@@ -2,7 +2,7 @@
 
 [![Validate](https://github.com/N3xu666/MethodMan/actions/workflows/validate.yml/badge.svg?style=flat-square)](https://github.com/N3xu666/MethodMan/actions/workflows/validate.yml)
 [![Last commit](https://img.shields.io/github/last-commit/N3xu666/MethodMan?style=flat-square&label=last&v=4)](https://github.com/N3xu666/MethodMan/commits/main)
-[![Repo size](https://img.shields.io/github/repo-size/N3xu666/MethodMan?style=flat-square&label=size&v=3)](https://github.com/N3xu666/MethodMan)
+[![Repo size](https://img.shields.io/github/repo-size/N3xu666/MethodMan?style=flat-square&label=repo&v=5)](https://github.com/N3xu666/MethodMan)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 ![MethodMan - trilingual HTB writeups, methodology and cheatsheet collection](./social-preview.png)
