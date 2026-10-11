@@ -1,3 +1,21 @@
+﻿Scope:
+
+This LICENSE (CC BY-NC 4.0) applies to DOCUMENTATION in this repository:
+walkthroughs (01 HTB/), web application testing reference (02 Web/),
+METHODOLOGY.md, CHEATSHEET.md, README.md, SECURITY.md, and other
+prose/Markdown content.
+
+SOURCE CODE (when present under tools/) is licensed separately under the
+MIT License (see tools/LICENSE). The MIT license applies to .py, .go, .sh,
+and other executable source files, but NOT to documentation.
+
+If a file is ambiguous, the following rule applies:
+  - .md, .txt, .rst                 -> CC BY-NC 4.0 (this license)
+  - .py, .go, .sh, .ps1 (under tools/) -> MIT (tools/LICENSE)
+  - .ps1 in repo root (check/mask/audit/update-readmes) -> see LICENSE.ps1
+    (currently CC BY-NC 4.0; may migrate to MIT in a future release)
+
+---
 Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
 
 Copyright (c) 2026 Irshad Huseynov

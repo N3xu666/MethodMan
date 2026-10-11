@@ -3,7 +3,8 @@
 [![Validate](https://github.com/N3xu666/MethodMan/actions/workflows/validate.yml/badge.svg?style=flat-square)](https://github.com/N3xu666/MethodMan/actions/workflows/validate.yml)
 [![Last commit](https://img.shields.io/github/last-commit/N3xu666/MethodMan?style=flat-square&label=last&v=4)](https://github.com/N3xu666/MethodMan/commits/main)
 [![Repo size](https://img.shields.io/github/repo-size/N3xu666/MethodMan?style=flat-square&label=repo&v=5)](https://github.com/N3xu666/MethodMan)
-[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Docs: CC BY-NC 4.0](https://img.shields.io/badge/Docs-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Code: MIT](https://img.shields.io/badge/Code-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 ![MethodMan - trilingual HTB writeups, methodology and cheatsheet collection](./social-preview.png)
 
@@ -85,8 +86,12 @@ The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known se
 
 ## License
 
-This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License.
-See [LICENSE](./LICENSE) for details.
+This repository uses a **dual-license model**:
+
+- **Documentation** (walkthroughs, `02 Web/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
+- **Source code** (when present under `tools/`) - MIT License. The MIT license applies to `.py`, `.go`, `.sh`, and other executable source files, but NOT to documentation. The MIT license text will live at `tools/LICENSE` once source code is published.
+
+See [LICENSE](./LICENSE) for the full text and the file-type rules.
 
 ---
 
