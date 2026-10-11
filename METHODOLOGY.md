@@ -3,6 +3,9 @@
 Personal penetration testing methodology, refined through 15+ HTB machines and OSCP preparation.
 This is a working document - updated as new techniques and patterns emerge.
 
+> **Web application testing:** see the dedicated [02 Web](./02%20Web/README.md) cheatsheet
+> for stack-specific enumeration and exploitation (Frameworks, Languages, Servers, CMS, Technologies).
+
 > Structure: **Reconnaissance -> Foothold -> Lateral Movement -> Privilege Escalation -> Post-Exploitation**
 > At each phase: **what to check -> what to look for -> what to do if stuck**.
 
