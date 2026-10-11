@@ -1,7 +1,11 @@
-﻿# Web Application Testing Cheatsheet
+﻿# Web Application Security Reference
 
-> OSCP-grade web application testing reference, organized by stack.
-> English only. Commands are universal; no localization.
+> Web application security reference organized by stack: frameworks,
+> languages, servers, CMS, databases, technologies, and vulnerabilities.
+> Covers detection, enumeration, exploitation patterns, and known CVEs
+> (with NVD/MITRE links). Commands are universal; English only.
+>
+> Last technical review: 2026-10-12
 
 > [!CAUTION]
 > Authorized use only. All techniques here are for OSCP labs, Hack The Box,
