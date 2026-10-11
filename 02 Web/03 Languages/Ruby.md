@@ -184,7 +184,7 @@ requirements:
       header: "abc"
 ```
 
-**Tool:** `rails_yaml_deser` (public PoCs) or `msf%% module.
+**Tool:** `rails_yaml_deser` (public PoCs) or `msf module`.
 
 ### 4.6 Command injection
 
