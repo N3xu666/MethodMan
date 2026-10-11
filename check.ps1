@@ -276,11 +276,15 @@ else { Write-Host "FAIL: $placeholderCount unreplaced placeholders" -ForegroundC
 
 # ============================================================
 # 10. Broken relative links in docs (WARN only, does not block)
-# Scans: 02 Web/**/*.md. Skips code blocks, anchors, http(s)/mailto.
+# Scans: 02 Web/**/*.md, methodology/**/*.md, root *.md. Skips code blocks, anchors, http(s)/mailto.
 # ============================================================
 Write-Host "`n=== [10/10] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
 $brokenLinks = @()
-Get-ChildItem -Path "02 Web" -Recurse -Filter *.md -ErrorAction SilentlyContinue |
+$linkFiles = @()
+$linkFiles += Get-ChildItem -Path "02 Web" -Recurse -Filter *.md -ErrorAction SilentlyContinue
+$linkFiles += Get-ChildItem -Path "methodology" -Recurse -Filter *.md -ErrorAction SilentlyContinue
+$linkFiles += Get-ChildItem -Path "." -Filter *.md -ErrorAction SilentlyContinue | Where-Object { $_.Name -notin $excluded }
+$linkFiles |
   ForEach-Object {
     $f = $_
     $dir = $f.Directory.FullName
@@ -306,7 +310,7 @@ Get-ChildItem -Path "02 Web" -Recurse -Filter *.md -ErrorAction SilentlyContinue
       }
     }
   }
-if ($brokenLinks.Count -eq 0) { Write-Host "OK: 0 broken relative links in 02 Web" -ForegroundColor Green }
+if ($brokenLinks.Count -eq 0) { Write-Host "OK: 0 broken relative links in docs (02 Web, methodology, root)" -ForegroundColor Green }
 else {
   Write-Host "WARN: $($brokenLinks.Count) broken relative link(s):" -ForegroundColor Yellow
   $brokenLinks | Select-Object -First 10 | ForEach-Object { Write-Host "  $_" -ForegroundColor Gray }
