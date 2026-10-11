@@ -1,11 +1,15 @@
 ﻿# OSCP Active Directory and Networks
 
-Active Directory and network machines prepared for the OSCP certification.
+> **Planned category - no published writeups yet.**
 
-No writeups added yet. This section will be filled in as machines are completed.
+This section will collect Active Directory and network machines prepared
+for the OSCP certification. Writeups will be added here as machines are
+completed and retired on Hack The Box. There is no content to browse yet.
+
+*Last reviewed: 2026-10-12*
 
 ## Structure
 
-- **`01 Az/`** - Azerbaijani writeups.
-- **`02 En/`** - English writeups.
-- **`03 Ru/`** - Russian writeups.
+- **`01 Az/`** - Azerbaijani writeups (empty until first machine is published).
+- **`02 En/`** - English writeups (empty until first machine is published).
+- **`03 Ru/`** - Russian writeups (empty until first machine is published).
