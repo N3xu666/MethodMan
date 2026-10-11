@@ -376,7 +376,7 @@ interactsh-client
 > XXE file read alone is a finding. XXE -> credentials -> foothold is the
 > usual exam chain.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 

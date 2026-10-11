@@ -4,6 +4,8 @@ Writeups for HTB Season 12: Aero, running from September to November 2026.
 
 Writeups available in three languages: `01 Az`, `02 En`, `03 Ru`.
 
+*Last checked: 2026-10-11*
+
 ## Machines
 
 | # | Machine | Az | En | Ru |

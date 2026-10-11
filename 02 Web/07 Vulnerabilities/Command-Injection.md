@@ -355,7 +355,7 @@ commix --url='http://target/api' --data='host=127.0.0.1' --batch
 >
 > Command injection is a strong foothold proof. Capture request and response.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 

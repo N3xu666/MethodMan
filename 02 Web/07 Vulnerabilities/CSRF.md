@@ -221,7 +221,7 @@ Some apps check Referer header. Bypass if:
 >
 > CSRF is usually part of an exploitation chain, not a foothold by itself.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 

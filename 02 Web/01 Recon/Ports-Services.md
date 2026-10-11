@@ -114,7 +114,7 @@ The `-sV` banner + `Server:` header together give you the stack.
 ## 4. Common Database Ports
 
 Exposed database ports = direct access target. Full exploitation in
-[../06 Technologies/Databases.md](../06%20Technologies/Databases.md).
+[../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md).
 
 | Port | Database | Notes |
 |------|----------|-------|
@@ -310,9 +310,9 @@ See [Fingerprinting.md](./Fingerprinting.md) §7 for stack-specific debug pages.
 | 8888 | Jupyter | `07 Vulnerabilities/Command-Injection.md` §Jupyter |
 | 9000 | Portainer, PHP-FPM | [../03 Languages/PHP.md](../03%20Languages/PHP.md) |
 | 9090 | Cockpit, Prometheus | Info leak (no dedicated file yet) |
-| 9200 | Elasticsearch | [../06 Technologies/Databases.md](../06%20Technologies/Databases.md) |
+| 9200 | Elasticsearch | [../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md) |
 | 15672 | RabbitMQ management | `07 Vulnerabilities/` (RCE via definitions) |
-| 3306 / 5432 / 1433 / 27017 / 6379 | MySQL / PostgreSQL / MSSQL / MongoDB / Redis | [../06 Technologies/Databases.md](../06%20Technologies/Databases.md) |
+| 3306 / 5432 / 1433 / 27017 / 6379 | MySQL / PostgreSQL / MSSQL / MongoDB / Redis | [../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md) |
 
 ---
 
@@ -325,7 +325,7 @@ See [Fingerprinting.md](./Fingerprinting.md) §7 for stack-specific debug pages.
 > - Screenshot the specific port + banner only if it is part of the foothold
 >   or privesc chain.
 >
-> See [../../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
 
 ---
 

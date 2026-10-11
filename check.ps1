@@ -60,7 +60,7 @@ $notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Report
 # ============================================================
 # 1. Real 32-hex flags
 # ============================================================
-Write-Host "`n=== [1/8] Real 32-hex flags ===" -ForegroundColor Cyan
+Write-Host "`n=== [1/10] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\02 Web\\' -and $_.Name -notin $excluded } |
@@ -74,7 +74,7 @@ else { Write-Host "FAIL: $flags flags left" -ForegroundColor Red; $totalIssues +
 # ============================================================
 # 2. Real passwords/hashes/keys from dictionary
 # ============================================================
-Write-Host "`n=== [2/8] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
+Write-Host "`n=== [2/10] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
 $leaks = 0
 foreach ($key in $replacements.Keys) {
     if ($key -match '^<.*>$') { continue }
@@ -97,7 +97,7 @@ else { Write-Host "FAIL: $leaks leaks" -ForegroundColor Red; $totalIssues += $le
 # ============================================================
 # 3. Note after Attack Chain (walkthroughs only, skip stubs)
 # ============================================================
-Write-Host "`n=== [3/8] Ethical note in walkthroughs ===" -ForegroundColor Cyan
+Write-Host "`n=== [3/10] Ethical note in walkthroughs ===" -ForegroundColor Cyan
 $withNote = 0
 $withoutNote = 0
 $stubCount = 0
@@ -127,7 +127,7 @@ if ($withoutNote -gt 0) { $totalIssues += $withoutNote }
 # ============================================================
 # 4. Long dashes
 # ============================================================
-Write-Host "`n=== [4/8] Long dashes ===" -ForegroundColor Cyan
+Write-Host "`n=== [4/10] Long dashes ===" -ForegroundColor Cyan
 $d = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -143,7 +143,7 @@ else { Write-Host "FAIL: $d long dashes" -ForegroundColor Red; $totalIssues += $
 # ============================================================
 # 5. Broken chars
 # ============================================================
-Write-Host "`n=== [5/8] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
+Write-Host "`n=== [5/10] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -159,7 +159,7 @@ else { Write-Host "FAIL: $b broken chars" -ForegroundColor Red; $totalIssues += 
 # ============================================================
 # 6. Masking artifacts
 # ============================================================
-Write-Host "`n=== [6/8] Masking artifacts ===" -ForegroundColor Cyan
+Write-Host "`n=== [6/10] Masking artifacts ===" -ForegroundColor Cyan
 $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLAG>FLAG')
 $a = 0
 foreach ($art in $artifacts) {
@@ -181,7 +181,7 @@ else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a 
 # ============================================================
 # 7. Heuristic: possibly unmasked secrets (WARN only, does not block)
 # ============================================================
-Write-Host "`n=== [7/8] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [7/10] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
 $suspicious = @()
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\02 Web\\' -and $_.Name -notin $excluded } |
@@ -207,7 +207,7 @@ if ($suspicious.Count -eq 0) {
 # ============================================================
 # 8. CVE reference in Exploitation (WARN only, does not block)
 # ============================================================
-Write-Host "`n=== [8/8] CVE reference in Exploitation (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [8/10] CVE reference in Exploitation (WARN only) ===" -ForegroundColor Cyan
 $missingCve = @()
 $checkedExpl = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -238,7 +238,75 @@ if ($missingCve.Count -eq 0) {
     if ($missingCve.Count -gt 10) { Write-Host "  ... and $($missingCve.Count - 10) more" -ForegroundColor Gray }
 }
 
-# Summary
+# ============================================================
+# 9. Unreplaced placeholders in docs (FAIL)
+# Scans: 02 Web/**, methodology/**, root *.md (README, CHEATSHEET,
+# METHODOLOGY, SECURITY). Looks for %%XX%% style markers.
+# ============================================================
+Write-Host "`n=== [9/10] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
+$docRootFiles = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'SECURITY.md')
+$placeholderCount = 0
+Get-ChildItem -Recurse -Filter *.md |
+  Where-Object {
+    $_.FullName -notmatch '\\\.git\\' -and
+    $_.FullName -notmatch '\\txt\\' -and
+    $_.FullName -notmatch '\\tests\\' -and
+    $_.FullName -notmatch '\\tools\\' -and
+    ($_.FullName -match '\\02 Web\\' -or $_.FullName -match '\\methodology\\' -or $_.Name -in $docRootFiles)
+  } |
+  ForEach-Object {
+    $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
+    $matches = [regex]::Matches($ct, '%%[A-Z0-9]+%%')
+    if ($matches.Count -gt 0) {
+      $rel = if ($_.FullName.StartsWith($repo)) { $_.FullName.Substring($repo.Length).TrimStart('\') } else { $_.FullName }
+      $unique = ($matches | ForEach-Object { $_.Value } | Sort-Object -Unique) -join ', '
+      Write-Host "  PLACEHOLDER: $rel ($($matches.Count) markers: $unique)" -ForegroundColor Red
+      $script:placeholderCount += $matches.Count
+    }
+  }
+if ($placeholderCount -eq 0) { Write-Host "OK: 0 unreplaced placeholders in docs" -ForegroundColor Green }
+else { Write-Host "FAIL: $placeholderCount unreplaced placeholders" -ForegroundColor Red; $totalIssues += $placeholderCount }
+
+# ============================================================
+# 10. Broken relative links in docs (WARN only, does not block)
+# Scans: 02 Web/**/*.md. Skips code blocks, anchors, http(s)/mailto.
+# ============================================================
+Write-Host "`n=== [10/10] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
+$brokenLinks = @()
+Get-ChildItem -Path "02 Web" -Recurse -Filter *.md -ErrorAction SilentlyContinue |
+  ForEach-Object {
+    $f = $_
+    $dir = $f.Directory.FullName
+    $ln = 0
+    $inCode = $false
+    Get-Content -Path $f.FullName | ForEach-Object {
+      $ln++
+      $line = $_
+      if ($line -match '^```') { $inCode = -not $inCode; return }
+      if ($inCode) { return }
+      [regex]::Matches($line, '\]\(([^)]+)\)') | ForEach-Object {
+        $link = $_.Groups[1].Value.Trim()
+        if ($link -match '^https?:' -or $link -match '^mailto:' -or $link -match '^#') { return }
+        $noAnchor = ($link -split '#')[0]
+        if ($noAnchor -eq '') { return }
+        $decoded = [System.Uri]::UnescapeDataString($noAnchor)
+        $combined = Join-Path $dir $decoded
+        try { $target = [System.IO.Path]::GetFullPath($combined) } catch { return }
+        if (-not (Test-Path $target)) {
+          $rel = if ($f.FullName.StartsWith($repo)) { $f.FullName.Substring($repo.Length).TrimStart('\') } else { $f.FullName }
+          $script:brokenLinks += "${rel}:${ln}: $link"
+        }
+      }
+    }
+  }
+if ($brokenLinks.Count -eq 0) { Write-Host "OK: 0 broken relative links in 02 Web" -ForegroundColor Green }
+else {
+  Write-Host "WARN: $($brokenLinks.Count) broken relative link(s):" -ForegroundColor Yellow
+  $brokenLinks | Select-Object -First 10 | ForEach-Object { Write-Host "  $_" -ForegroundColor Gray }
+  if ($brokenLinks.Count -gt 10) { Write-Host "  ... and $($brokenLinks.Count - 10) more" -ForegroundColor Gray }
+}
+
+# ============================================================# Summary
 # ============================================================
 Write-Host "`n============================================" -ForegroundColor Cyan
 if ($totalIssues -eq 0) {
