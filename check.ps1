@@ -187,12 +187,19 @@ Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\02 Web\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-    $mm = [regex]::Matches($ct, '(?i)(password|passwd|pwd)\s*[:=]\s*([^\s`<>]{5,})')
+    $mm = [regex]::Matches($ct, '(?i)(password|passwd|pwd|secret|token|api[_-]?key|apikey)\s*[:=]\s*([^\s`<>]{5,})')
     foreach ($x in $mm) {
         $val = $x.Groups[2].Value
         if ($val -match '^<.*>$') { continue }
         if ($val -match '^\$2[aby]\$' -or $val -match '^\*?[A-F0-9]{32,}$') { continue }
-        if ($val -match '^(password|null|none|undefined|example|test|changeme|N/A)$') { continue }
+        # P1.1: skip sudo directives and path segments (PASSWD: /usr/bin/wget)
+if ($val -match '^[/\\]') { continue }
+if ($val -match '^\.') { continue }
+# P1.1: skip Hydra placeholders (^PASS^, ^USER^)
+if ($val -match '\^') { continue }
+# P1.1: skip ALL_CAPS identifiers (env var refs, constants)
+if ($val -match '^[A-Z_]{3,}$') { continue }
+if ($val -match '^(password|null|none|undefined|example|test|changeme|N/A)$') { continue }
         $suspicious += "$($_.Name): $($x.Value)"
     }
   }
