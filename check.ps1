@@ -60,7 +60,7 @@ $notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Report
 # ============================================================
 # 1. Real 32-hex flags
 # ============================================================
-Write-Host "`n=== [1/10] Real 32-hex flags ===" -ForegroundColor Cyan
+Write-Host "`n=== [1/11] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\02 Web\\' -and $_.Name -notin $excluded } |
@@ -74,7 +74,7 @@ else { Write-Host "FAIL: $flags flags left" -ForegroundColor Red; $totalIssues +
 # ============================================================
 # 2. Real passwords/hashes/keys from dictionary
 # ============================================================
-Write-Host "`n=== [2/10] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
+Write-Host "`n=== [2/11] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
 $leaks = 0
 foreach ($key in $replacements.Keys) {
     if ($key -match '^<.*>$') { continue }
@@ -97,7 +97,7 @@ else { Write-Host "FAIL: $leaks leaks" -ForegroundColor Red; $totalIssues += $le
 # ============================================================
 # 3. Note after Attack Chain (walkthroughs only, skip stubs)
 # ============================================================
-Write-Host "`n=== [3/10] Ethical note in walkthroughs ===" -ForegroundColor Cyan
+Write-Host "`n=== [3/11] Ethical note in walkthroughs ===" -ForegroundColor Cyan
 $withNote = 0
 $withoutNote = 0
 $stubCount = 0
@@ -127,7 +127,7 @@ if ($withoutNote -gt 0) { $totalIssues += $withoutNote }
 # ============================================================
 # 4. Long dashes
 # ============================================================
-Write-Host "`n=== [4/10] Long dashes ===" -ForegroundColor Cyan
+Write-Host "`n=== [4/11] Long dashes ===" -ForegroundColor Cyan
 $d = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -143,7 +143,7 @@ else { Write-Host "FAIL: $d long dashes" -ForegroundColor Red; $totalIssues += $
 # ============================================================
 # 5. Broken chars
 # ============================================================
-Write-Host "`n=== [5/10] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
+Write-Host "`n=== [5/11] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -159,7 +159,7 @@ else { Write-Host "FAIL: $b broken chars" -ForegroundColor Red; $totalIssues += 
 # ============================================================
 # 6. Masking artifacts
 # ============================================================
-Write-Host "`n=== [6/10] Masking artifacts ===" -ForegroundColor Cyan
+Write-Host "`n=== [6/11] Masking artifacts ===" -ForegroundColor Cyan
 $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLAG>FLAG')
 $a = 0
 foreach ($art in $artifacts) {
@@ -181,18 +181,25 @@ else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a 
 # ============================================================
 # 7. Heuristic: possibly unmasked secrets (WARN only, does not block)
 # ============================================================
-Write-Host "`n=== [7/10] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [7/11] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
 $suspicious = @()
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\02 Web\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-    $mm = [regex]::Matches($ct, '(?i)(password|passwd|pwd)\s*[:=]\s*([^\s`<>]{5,})')
+    $mm = [regex]::Matches($ct, '(?i)(password|passwd|pwd|secret|token|api[_-]?key|apikey)\s*[:=]\s*([^\s`<>]{5,})')
     foreach ($x in $mm) {
         $val = $x.Groups[2].Value
         if ($val -match '^<.*>$') { continue }
         if ($val -match '^\$2[aby]\$' -or $val -match '^\*?[A-F0-9]{32,}$') { continue }
-        if ($val -match '^(password|null|none|undefined|example|test|changeme|N/A)$') { continue }
+        # P1.1: skip sudo directives and path segments (PASSWD: /usr/bin/wget)
+if ($val -match '^[/\\]') { continue }
+if ($val -match '^\.') { continue }
+# P1.1: skip Hydra placeholders (^PASS^, ^USER^)
+if ($val -match '\^') { continue }
+# P1.1: skip ALL_CAPS identifiers (env var refs, constants)
+if ($val -match '^[A-Z_]{3,}$') { continue }
+if ($val -match '^(password|null|none|undefined|example|test|changeme|N/A)$') { continue }
         $suspicious += "$($_.Name): $($x.Value)"
     }
   }
@@ -207,7 +214,7 @@ if ($suspicious.Count -eq 0) {
 # ============================================================
 # 8. CVE reference in Exploitation (WARN only, does not block)
 # ============================================================
-Write-Host "`n=== [8/10] CVE reference in Exploitation (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [8/11] CVE reference in Exploitation (WARN only) ===" -ForegroundColor Cyan
 $missingCve = @()
 $checkedExpl = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -243,7 +250,7 @@ if ($missingCve.Count -eq 0) {
 # Scans: 02 Web/**, methodology/**, root *.md (README, CHEATSHEET,
 # METHODOLOGY, SECURITY). Looks for %%XX%% style markers.
 # ============================================================
-Write-Host "`n=== [9/10] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
+Write-Host "`n=== [9/11] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
 $docRootFiles = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'SECURITY.md')
 $placeholderCount = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -269,11 +276,15 @@ else { Write-Host "FAIL: $placeholderCount unreplaced placeholders" -ForegroundC
 
 # ============================================================
 # 10. Broken relative links in docs (WARN only, does not block)
-# Scans: 02 Web/**/*.md. Skips code blocks, anchors, http(s)/mailto.
+# Scans: 02 Web/**/*.md, methodology/**/*.md, root *.md. Skips code blocks, anchors, http(s)/mailto.
 # ============================================================
-Write-Host "`n=== [10/10] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [10/11] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
 $brokenLinks = @()
-Get-ChildItem -Path "02 Web" -Recurse -Filter *.md -ErrorAction SilentlyContinue |
+$linkFiles = @()
+$linkFiles += Get-ChildItem -Path "02 Web" -Recurse -Filter *.md -ErrorAction SilentlyContinue
+$linkFiles += Get-ChildItem -Path "methodology" -Recurse -Filter *.md -ErrorAction SilentlyContinue
+$linkFiles += Get-ChildItem -Path "." -Filter *.md -ErrorAction SilentlyContinue | Where-Object { $_.Name -notin $excluded }
+$linkFiles |
   ForEach-Object {
     $f = $_
     $dir = $f.Directory.FullName
@@ -299,14 +310,65 @@ Get-ChildItem -Path "02 Web" -Recurse -Filter *.md -ErrorAction SilentlyContinue
       }
     }
   }
-if ($brokenLinks.Count -eq 0) { Write-Host "OK: 0 broken relative links in 02 Web" -ForegroundColor Green }
+if ($brokenLinks.Count -eq 0) { Write-Host "OK: 0 broken relative links in docs (02 Web, methodology, root)" -ForegroundColor Green }
 else {
   Write-Host "WARN: $($brokenLinks.Count) broken relative link(s):" -ForegroundColor Yellow
   $brokenLinks | Select-Object -First 10 | ForEach-Object { Write-Host "  $_" -ForegroundColor Gray }
   if ($brokenLinks.Count -gt 10) { Write-Host "  ... and $($brokenLinks.Count - 10) more" -ForegroundColor Gray }
 }
 
-# ============================================================# Summary
+# ============================================================
+# 11. Counter consistency in root README (WARN only, does not block)
+# Compares root README counter with actual file counts.
+# ============================================================
+Write-Host "`n=== [11/11] Counter consistency in root README (WARN only) ===" -ForegroundColor Cyan
+$counterWarn = 0
+
+# Count published (non-stub) and stubs in all 01 Az/ folders
+$publishedTotal = 0
+$stubsTotal = 0
+$categories = Get-ChildItem -Recurse -Directory -Filter "01 Az" -ErrorAction SilentlyContinue |
+    Where-Object { $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\tests\\' }
+foreach ($cat in $categories) {
+    $files = Get-ChildItem -Path $cat.FullName -Filter *.md -ErrorAction SilentlyContinue
+    foreach ($f in $files) {
+        if (Test-StubFile $f.FullName) { $stubsTotal++ } else { $publishedTotal++ }
+    }
+}
+
+# Read root README counter
+$readmePath = Join-Path $repo "README.md"
+if (Test-Path $readmePath) {
+    $readmeContent = [System.IO.File]::ReadAllText($readmePath, $utf8)
+    $counterMatch = [regex]::Match($readmeContent, 'Currently:\s+\*\*(\d+)\s+published.*?\+\s+(\d+)\s+active stubs\*\*\s+=\s+\*\*(\d+)\s+completed')
+    if ($counterMatch.Success) {
+        $readmePub = [int]$counterMatch.Groups[1].Value
+        $readmeStub = [int]$counterMatch.Groups[2].Value
+        $readmeTotal = [int]$counterMatch.Groups[3].Value
+        if ($readmePub -ne $publishedTotal) {
+            Write-Host "WARN: README published=$readmePub, actual=$publishedTotal" -ForegroundColor Yellow
+            $counterWarn++
+        }
+        if ($readmeStub -ne $stubsTotal) {
+            Write-Host "WARN: README stubs=$readmeStub, actual=$stubsTotal" -ForegroundColor Yellow
+            $counterWarn++
+        }
+        if ($readmeTotal -ne ($readmePub + $readmeStub)) {
+            Write-Host "WARN: README total=$readmeTotal, sum=$($readmePub + $readmeStub)" -ForegroundColor Yellow
+            $counterWarn++
+        }
+        if ($counterWarn -eq 0) {
+            Write-Host "OK: README counter matches actual ($publishedTotal published + $stubsTotal stubs)" -ForegroundColor Green
+        }
+    } else {
+        Write-Host "WARN: root README counter pattern not found" -ForegroundColor Yellow
+    }
+} else {
+    Write-Host "WARN: root README.md not found" -ForegroundColor Yellow
+}
+
+# ============================================================
+# Summary
 # ============================================================
 Write-Host "`n============================================" -ForegroundColor Cyan
 if ($totalIssues -eq 0) {

@@ -53,6 +53,25 @@ function Write-Fail($msg) { Write-Host "  [FAIL] $msg" -ForegroundColor Red; $sc
 function Write-Warn($msg) { Write-Host "  [WARN] $msg" -ForegroundColor Yellow; $script:warn++ }
 function Write-Info($msg) { Write-Host "  $msg" -ForegroundColor Gray }
 
+# P1.2: git exit code tracking
+$script:gitErrors = 0
+
+function Invoke-GitSafe {
+    param(
+        [string[]]$GitArgs,
+        [string]$Context = "",
+        [int[]]$AllowedExitCodes = @(0)
+    )
+    $output = & git @GitArgs 2>&1
+    $code = $LASTEXITCODE
+    if ($code -notin $AllowedExitCodes) {
+        $script:gitErrors++
+        $ctx = if ($Context) { " [$Context]" } else { "" }
+        Write-Warn "git $($GitArgs -join ' ')$ctx failed (exit=$code)"
+    }
+    return $output
+}
+
 Write-Host ""
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host "     FINAL AUDIT v3 - MethodMan" -ForegroundColor Cyan
@@ -61,15 +80,17 @@ Write-Host "================================================================" -F
 
 # 1. GIT STATE
 Write-Host "`n[1] Git state" -ForegroundColor Yellow
-$status = git status --short
-if (-not $status) { Write-Pass "working tree clean" } else { Write-Warn "working tree has changes (may be expected)" }
+$gitBefore = $script:gitErrors
+$status = Invoke-GitSafe -GitArgs @("status", "--short") -Context "status"
+if ($script:gitErrors -gt $gitBefore) { Write-Fail "git status failed - cannot determine working tree state" } elseif (-not $status) { Write-Pass "working tree clean" } else { Write-Warn "working tree has changes (may be expected)" }
 Write-Info "last 5 commits:"
 git log -5 --oneline | ForEach-Object { Write-Info "    $_" }
-$remote = git remote get-url origin 2>$null
+$remote = Invoke-GitSafe -GitArgs @("remote", "get-url", "origin") -Context "remote" -AllowedExitCodes @(0, 2, 128)
 if ($remote) { Write-Pass "remote: $remote" } else { Write-Warn "no remote origin (local-only mode)" }
-$local = git rev-parse HEAD 2>$null
-$remoteSha = git rev-parse origin/main 2>$null
+$local = Invoke-GitSafe -GitArgs @("rev-parse", "HEAD") -Context "rev-parse HEAD"
+$remoteSha = Invoke-GitSafe -GitArgs @("rev-parse", "origin/main") -Context "rev-parse origin/main" -AllowedExitCodes @(0, 128)
 if ($local -and $remoteSha -and $local -eq $remoteSha) { Write-Pass "local == origin/main (pushed)" } elseif (-not $remoteSha) { Write-Warn "origin/main not found (local-only mode)" } else { Write-Warn "local != origin/main (ahead or behind)" }
+if ($script:gitErrors -gt 0) { Write-Fail "$($script:gitErrors) git command(s) failed in section [1]" }
 
 # 2. FILES IN ROOT
 Write-Host "`n[2] Files in root" -ForegroundColor Yellow
@@ -81,28 +102,32 @@ $gitignoreContent = Get-Content ".gitignore" -ErrorAction SilentlyContinue
 if ($gitignoreContent) { Write-Pass ".gitignore exists" } else { Write-Fail ".gitignore missing" }
 $mustIgnore = @('masking-dict.ps1', '_WORKFLOW.md', 'update-readmes.ps1', 'txt/')
 foreach ($f in $mustIgnore) {
+    $gitBefore3 = $script:gitErrors
     $checkPath = if ($f -eq 'txt/') { "01 HTB/02 OSCP/01 Linux/txt/ru/01 Sea.txt" } else { $f }
-    $ignored = git check-ignore $checkPath 2>$null
-    if ($ignored) { Write-Pass "$f is ignored" } else { Write-Fail "$f NOT ignored" }
+    $ignored = Invoke-GitSafe -GitArgs @("check-ignore", $checkPath) -Context "check-ignore $checkPath" -AllowedExitCodes @(0, 1)
+    if ($script:gitErrors -gt $gitBefore3) { Write-Warn "$f - git check-ignore failed (exit != 0/1)" } elseif ($ignored) { Write-Pass "$f is ignored" } else { Write-Fail "$f NOT ignored" }
 }
 
 # 4. TRACKED FILES
 Write-Host "`n[4] Tracked files" -ForegroundColor Yellow
-$trackedMd = git ls-files "*.md"
-Write-Pass "tracked .md: $($trackedMd.Count)"
-$trackedPs1 = git ls-files "*.ps1"
+$gitBefore4 = $script:gitErrors
+$trackedMd = Invoke-GitSafe -GitArgs @("ls-files", "*.md") -Context "ls-files md"
+if ($script:gitErrors -gt $gitBefore4) { Write-Fail "git ls-files *.md failed" } else { Write-Pass "tracked .md: $($trackedMd.Count)" }
+$trackedPs1 = Invoke-GitSafe -GitArgs @("ls-files", "*.ps1") -Context "ls-files ps1"
 Write-Info "tracked .ps1 ($($trackedPs1.Count)):"
 $trackedPs1 | ForEach-Object { Write-Info "    $_" }
-$trackedTxt = git ls-files "*.txt"
-if ($trackedTxt.Count -eq 0) { Write-Pass "0 tracked .txt" } else { Write-Warn "$($trackedTxt.Count) tracked .txt" }
+$gitBefore4b = $script:gitErrors
+$trackedTxt = Invoke-GitSafe -GitArgs @("ls-files", "*.txt") -Context "ls-files txt"
+if ($script:gitErrors -gt $gitBefore4b) { Write-Fail "git ls-files *.txt failed" } elseif ($trackedTxt.Count -eq 0) { Write-Pass "0 tracked .txt" } else { Write-Warn "$($trackedTxt.Count) tracked .txt" }
 
 # 5. UNTRACKED FILES
 Write-Host "`n[5] Untracked files" -ForegroundColor Yellow
 if ($SkipLocalChecks) {
     Write-Info "skipped (--SkipLocalChecks)"
 } else {
-    $untracked = git ls-files --others --exclude-standard
-if (-not $untracked) { Write-Pass "no untracked files" } else { Write-Warn "untracked files:"; $untracked | ForEach-Object { Write-Info "    $_" } }
+    $gitBefore5 = $script:gitErrors
+$untracked = Invoke-GitSafe -GitArgs @("ls-files", "--others", "--exclude-standard") -Context "ls-files --others"
+if ($script:gitErrors -gt $gitBefore5) { Write-Fail "git ls-files --others failed" } elseif (-not $untracked) { Write-Pass "no untracked files" } else { Write-Warn "untracked files:"; $untracked | ForEach-Object { Write-Info "    $_" } }
 }
 
 # 6. WALKTHROUGHS (DYNAMIC COUNT)
@@ -279,8 +304,8 @@ Write-Host "`n[19] Local vs origin/main file list" -ForegroundColor Yellow
 if ($SkipLocalChecks) {
     Write-Info "skipped (--SkipLocalChecks)"
 } else {
-    $localFiles = git ls-files | Sort-Object
-    $remoteFiles = git ls-tree -r --name-only origin/main 2>$null | Sort-Object
+    $localFiles = Invoke-GitSafe -GitArgs @("ls-files") -Context "ls-files" | Sort-Object
+    $remoteFiles = Invoke-GitSafe -GitArgs @("ls-tree", "-r", "--name-only", "origin/main") -Context "ls-tree origin/main" -AllowedExitCodes @(0, 128) | Sort-Object
 
     if ($null -eq $remoteFiles -or $remoteFiles.Count -eq 0) {
         Write-Warn "origin/main not found or empty (local-only mode)"
@@ -363,6 +388,9 @@ Write-Host ""
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host "     SUMMARY" -ForegroundColor Cyan
 Write-Host "================================================================" -ForegroundColor Cyan
+if ($script:gitErrors -gt 0) {
+    Write-Host "  git errors: $($script:gitErrors)" -ForegroundColor Red
+}
 Write-Host "  PASS: $pass" -ForegroundColor Green
 Write-Host "  WARN: $warn" -ForegroundColor Yellow
 Write-Host "  FAIL: $fail" -ForegroundColor $(if ($fail -eq 0) { 'Green' } else { 'Red' })
@@ -373,4 +401,4 @@ Write-Host "================================================================" -F
 Write-Host "     FINAL AUDIT v3 COMPLETE" -ForegroundColor Cyan
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
-exit $(if ($fail -gt 0) { 1 } else { 0 })
+exit $(if ($fail -gt 0 -or $script:gitErrors -gt 0) { 1 } else { 0 })
