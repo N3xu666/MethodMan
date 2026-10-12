@@ -428,7 +428,7 @@ def cmd_start(args: argparse.Namespace) -> int:
     append_transcript(draft_path, cleaned)
 
     print()
-    print(f"[Session_Report] Transcript cleaned: {len(raw)} -> {len(cleaned)} bytes.")
+    print(f"[Session_Report] Transcript cleaned: {len(raw.encode('utf-8'))} -> {len(cleaned.encode('utf-8'))} bytes.")
     print(f"[Session_Report] Final draft: {draft_path}")
     if result is not None and result.returncode != 0:
         sys.stderr.write(
@@ -475,8 +475,8 @@ def cmd_reclean(args: argparse.Namespace) -> int:
 
     print(f"[Session_Report] Recleaned: {session_dir}")
     print(f"[Session_Report] Cleaner:   heuristic")
-    print(f"[Session_Report] Raw:       {len(raw)} bytes")
-    print(f"[Session_Report] Cleaned:   {len(cleaned)} bytes")
+    print(f"[Session_Report] Raw:       {len(raw.encode('utf-8'))} bytes")
+    print(f"[Session_Report] Cleaned:   {len(cleaned.encode('utf-8'))} bytes")
     print(f"[Session_Report] Draft:     {draft_path}")
     return 0
 
