@@ -1,7 +1,8 @@
 ﻿# Session_Report.py
 
 > Linux-only terminal session recorder that produces a MethodMan walkthrough
-> draft in the section 3.2 format.
+> draft in the section 3.2 format. Records in a clean `bash` subshell by
+> default, so the transcript is readable regardless of your own shell config.
 
 ---
 
@@ -30,7 +31,7 @@ python3 Session_Report.py --version
 ```
 
 The script is self-contained (standard library only). No `git clone`, no
-`pip install`, no dependencies required for the basic mode.
+`pip install`, no dependencies required for the default mode.
 
 To also fetch the documentation:
 
@@ -47,29 +48,45 @@ curl -fsSL -o Session_Report.md \
   macOS and Windows are not supported (macOS `script(1)` has different flags
   and no `-f`; Windows has no equivalent).
 - **Python 3.9+** (uses `list[str]` in annotations, `datetime.timezone.utc`,
-  and `str.removeprefix`-free code - all available since 3.9).
+  `tempfile.mkstemp`, all available since 3.9).
 - **`util-linux`** installed (`script` binary in `$PATH`).
   - Debian / Ubuntu: `sudo apt install util-linux`
   - Fedora / RHEL: `sudo dnf install util-linux`
   - Arch: `sudo pacman -S util-linux`
+- **`/bin/bash`** for the default clean-shell mode (present on virtually
+  every Linux distribution). If missing, the tool falls back to `/bin/sh`.
 - Standard library only for the default mode. No pip dependencies required.
 
-### Optional: pyte for better cleanup
+### Optional: pyte for `--raw-shell` mode
 
-The default transcript cleaner is a stdlib-only heuristic. It removes ANSI
-escape sequences and common shell prompt redraw artifacts, but it cannot
-perfectly emulate a terminal.
+If you pass `--raw-shell`, the recorder runs inside your own `$SHELL` with
+its user configs. Shells like zsh, fish, and powerlevel10k redraw the prompt
+on every keystroke, which leaves artifacts in the transcript.
 
-For high-fidelity cleanup (especially with zsh and other shells that redraw
-the prompt), install `pyte` and pass `--use-pyte`:
+Install `pyte` (a small pure-Python terminal emulator) and pass `--use-pyte`
+to resolve those artifacts correctly:
 
 ```bash
 pip install pyte        # or: pip install --user pyte
 ```
 
-`pyte` is a small pure-Python terminal emulator. When available and requested,
-it replays the raw session through a virtual screen and yields the exact
-final visible buffer.
+For the default clean-shell mode, `pyte` is not needed.
+
+---
+
+## How recording works
+
+The tool starts `script(1)` with an explicit child command:
+
+- **Default (`clean` mode):** `bash --noprofile --norc --rcfile <temp>` where
+  `<temp>` is a minimal rc that sets `PS1='$ '` and disables bracketed paste.
+  Your own `.bashrc`, `.zshrc`, oh-my-zsh, powerlevel10k, and syntax
+  highlighting are **not** loaded. The transcript contains only commands and
+  their output.
+- **`--raw-shell` mode:** your `$SHELL` with its own configs. Prompt redraws
+  and color escapes end up in the transcript. Use `--use-pyte` to clean it.
+
+The chosen mode is recorded in `metadata.json` (field `shell`).
 
 ---
 
@@ -80,7 +97,7 @@ final visible buffer.
 ```
 python Session_Report.py start --machine <name> [--target <ip>]
                                [--language en|ru|az] [--output <dir>]
-                               [--use-pyte]
+                               [--raw-shell] [--use-pyte]
 ```
 
 ### Rebuild a draft from an existing session
@@ -101,25 +118,35 @@ re-recording the session.
 | `--target` | no | empty | Target IP or hostname. Stored in metadata and in the draft. |
 | `--language` | no | `en` | Walkthrough language. One of `en`, `ru`, `az`. |
 | `--output` | no | `sessions` | Output root directory. Created if missing. |
-| `--use-pyte` | no | off | Use pyte for transcript cleanup (requires `pyte` installed). |
+| `--raw-shell` | no | off | Record in your own `$SHELL` with its user configs. |
+| `--use-pyte` | no | off | Use pyte for cleanup (requires `pyte`). Recommended with `--raw-shell`. |
 
-### Example
+### Example (default, clean shell)
 
 ```
 $ python Session_Report.py start --machine Layover --target 10.10.11.10 --language en
 [Session_Report] Session directory: /home/op/MethodMan/sessions/Layover-20261012T143012Z
 [Session_Report] Metadata:          /home/op/MethodMan/sessions/Layover-20261012T143012Z/metadata.json
 [Session_Report] Draft:             /home/op/MethodMan/sessions/Layover-20261012T143012Z/walkthrough-draft.md
+[Session_Report] Shell:             /bin/bash --noprofile --norc (clean, no user configs)
 [Session_Report] Cleaner:           heuristic
 [Session_Report] Starting script(1). Type 'exit' to stop recording.
 
-Script started, output log file is '/home/op/MethodMan/sessions/Layover-20261012T143012Z/raw.txt'.
-op@kali:~$ nmap -p- --min-rate 5000 10.10.11.10
+$ nmap -p- --min-rate 5000 10.10.11.10
 ...
-op@kali:~$ exit
+$ exit
 
 [Session_Report] Transcript cleaned: 8432 -> 6211 bytes.
 [Session_Report] Final draft: /home/op/MethodMan/sessions/Layover-20261012T143012Z/walkthrough-draft.md
+```
+
+### Example (`--raw-shell` with pyte)
+
+```
+$ python Session_Report.py start --machine Layover --raw-shell --use-pyte
+[Session_Report] Shell:             /usr/bin/zsh (raw, user configs loaded)
+[Session_Report] Cleaner:           pyte
+...
 ```
 
 ---
@@ -129,15 +156,14 @@ op@kali:~$ exit
 ```
 sessions/
 +-- <machine>-<UTC timestamp>/
-    +-- metadata.json          # machine, target, started, host, operator, language
-    +-- raw.txt                # raw script(1) output (ANSI escapes, banner, \r)
+    +-- metadata.json          # machine, target, started, host, operator, language, shell
+    +-- raw.txt                # raw script(1) output
     +-- walkthrough-draft.md   # cleaned draft in MethodMan section 3.2 format
 ```
 
-`raw.txt` is kept for reference (it contains ANSI escapes and the script(1)
-banner). The `.md` draft is the cleaned version with the AI prompt block,
-the walkthrough skeleton, and the raw transcript appended under
-`## Raw Transcript`.
+`raw.txt` is kept for reference. The `.md` draft is the cleaned version with
+the AI prompt block, the walkthrough skeleton, and the raw transcript
+appended under `## Raw Transcript`.
 
 **Note:** `sessions/` is listed in `.gitignore`. Drafts are local-only until
 you decide to publish them (after masking, per section 3).
@@ -146,47 +172,35 @@ you decide to publish them (after masking, per section 3).
 
 ## Transcript cleanup
 
-Two modes are available:
+Cleanup runs on the raw `script(1)` output before appending to the `.md`.
+Two levels are available:
 
 ### Default: heuristic cleaner (stdlib only)
 
-```
-python Session_Report.py start --machine Foo --target 10.0.0.1
-```
-
-Steps performed on the raw transcript:
+Steps:
 
 1. **ANSI escape sequences** stripped (CSI, OSC, two-character escapes).
+   This removes color codes, bracketed-paste toggles (`ESC[?2004h/l`),
+   reverse-video echo (`ESC[7m`, `ESC[27m`), and cursor-forward (`ESC[C`).
 2. **`script(1)` banner** lines removed (`Script started on ...`,
    `Script done on ...`, `Script started, output file is ...`).
 3. **Line endings** normalized: `\r\n` and lone `\r` -> `\n`.
 4. **Whitespace-only lines** converted to empty lines.
-5. **Prompt redraw rollbacks** collapsed: if two adjacent lines share a
-   long prefix (>= 6 chars) and the second is longer by >= 3 chars, the
-   first is dropped. This handles the common zsh/bash redraw artifact
-   where the same line appears twice after ANSI stripping.
-6. **Blank runs collapsed**: 3+ consecutive newlines -> 2.
+5. **Blank runs collapsed**: 3+ consecutive newlines -> 2.
 
-Best-effort. Handles most sessions cleanly. Some shells emit unusual
-escape sequences that the heuristic cannot fully resolve.
+Sufficient for the default clean-shell mode.
 
-### Optional: pyte terminal emulator
+### Optional: pyte terminal emulator (`--use-pyte`)
 
-```
-pip install pyte
-python Session_Report.py start --machine Foo --target 10.0.0.1 --use-pyte
-```
+For `--raw-shell` mode, the user's shell may emit cursor-move sequences
+(`ESC[<n>D`, `ESC[<n>G`) and per-keystroke syntax highlighting. These cannot
+be correctly resolved by a regex. `pyte` replays the stream through a real
+terminal emulator and yields the exact final visible buffer.
 
-When `pyte` is available and `--use-pyte` is passed, the raw byte stream is
-fed through a real terminal emulator (200 columns, 200 lines, 10000-line
-scrollback). Cursor moves, erase-line, and redraw sequences are applied to
-a virtual screen, and the final visible buffer is used as the transcript.
+Behavior:
 
-This produces a **correct** rendering for any shell (zsh, bash, fish), at
-the cost of one small pure-Python dependency.
-
-If `--use-pyte` is passed but `pyte` is not installed, the tool prints a
-warning and falls back to the heuristic cleaner.
+- `--use-pyte` and `pyte` installed: use the emulator (correct).
+- `--use-pyte` and `pyte` missing: warning to stderr, fall back to heuristic.
 
 ### Rebuild an existing draft
 
@@ -230,12 +244,11 @@ See `../../SECURITY.md` for the project-wide policy on authorized use.
 - **Linux only.** See Requirements.
 - **Single terminal.** One invocation = one recording session. Multiple
   parallel terminals are not merged.
-- **Interactive only.** The recorder runs an interactive subshell. It does
-  not wrap a single command; use `script -c "cmd" raw.txt` directly for that.
+- **Default mode has no shell conveniences.** No aliases, no tab completion,
+  no `~/.bashrc`. This is intentional: the walkthrough should show the raw
+  commands. If you need your usual environment, use `--raw-shell`.
 - **No masking.** Real secrets (flags, passwords, hashes) are captured as-is.
   Mask them manually before publishing, per section 3 of `_WORKFLOW.md`.
-- **Heuristic cleaner is best-effort.** For perfect results with shells that
-  redraw the prompt aggressively, install `pyte` and use `--use-pyte`.
 
 ---
 
@@ -249,14 +262,14 @@ To run a smoke test locally on Linux:
 
 ```
 $ python Session_Report.py --version
-Session_Report.py 0.2.0
+Session_Report.py 0.3.0
 
 $ python Session_Report.py start --machine Test --target 127.0.0.1
 # ... type a few commands, then 'exit'
 $ ls sessions/Test-*/
 metadata.json  raw.txt  walkthrough-draft.md
 
-# Rebuild after installing pyte:
+# Rebuild with pyte (only relevant for --raw-shell):
 $ pip install pyte
 $ python Session_Report.py reclean sessions/Test-*/ --use-pyte
 ```
