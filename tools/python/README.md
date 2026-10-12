@@ -1,6 +1,6 @@
-# Python Tools
+﻿# Python Tools
 
-> **Status:** scaffolding only. No runnable tools yet. First instrument (`Session_Report.py`) is in design; see [Session_Report spec](#) when it lands.
+> **Status:** active. `Session_Report.py` is available; more tools will be added as they are built.
 
 Part of the [tools](../README.md) collection. Scope and legal boundaries:
 see [SECURITY.md](../../SECURITY.md).
@@ -23,7 +23,7 @@ exam, client engagement with written permission).
 
 | Tool | Purpose | Status |
 |------|---------|--------|
-| `Session_Report.py` | Terminal session recorder that produces a walkthrough draft (Linux-only, uses `script(1)`). | planned |
+| [`Session_Report.py`](./Session_Report.md) | Terminal session recorder that produces a walkthrough draft (Linux-only, uses `script(1)`). | active |
 
 ## Conventions
 
