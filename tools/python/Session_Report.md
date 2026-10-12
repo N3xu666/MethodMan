@@ -381,6 +381,12 @@ metadata.json  raw.txt  walkthrough-draft.md
 
 ---
 
+## License
+
+MIT. Applies to `Session_Report.py`, this document, and the rest of the `methodman-session-report` pip package.
+
+Documentation elsewhere in the repository is licensed under CC BY-NC 4.0 - see [../../LICENSE](../../LICENSE).
+
 ## See also
 
 - `_WORKFLOW.md` section 3.2 - walkthrough standard the draft follows.

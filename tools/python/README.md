@@ -33,6 +33,12 @@ exam, client engagement with written permission).
 - No third-party dependencies unless justified in the tool doc.
 - No hardcoded targets, credentials, or IPs.
 
+## License
+
+MIT. Applies to every file in this directory (`.py`, `.md`, `pyproject.toml`), including the pip-installable `methodman-session-report` package.
+
+Documentation elsewhere in the repository (walkthroughs, `02 Web/`, `METHODOLOGY.md`, `CHEATSHEET.md`) is licensed under CC BY-NC 4.0 - see [../../LICENSE](../../LICENSE).
+
 ## See Also
 
 - [tools/README.md](../README.md) - collection overview.
