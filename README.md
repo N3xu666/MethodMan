@@ -58,6 +58,18 @@ MethodMan/
 | [HTB / OSCP / Windows](./01%20HTB/02%20OSCP/02%20Windows/) | Windows machines for OSCP prep | - | - | - |
 | [HTB / OSCP / Active Directory and Networks](./01%20HTB/02%20OSCP/03%20Active%20Directory%20and%20Networks/) | AD and networks | - | - | - |
 
+### Other Resources
+
+Reference material and tooling, independent of any single HTB machine:
+
+| Resource | Description |
+|----------|-------------|
+| [Web Application Security Reference](./02%20Web/) | Stack-organized web testing reference (recon, frameworks, languages, servers, CMS, technologies, vulnerabilities). 59 files. |
+| [METHODOLOGY.md](./METHODOLOGY.md) | Engagement phases, intensity profiles, checklists. |
+| [CHEATSHEET.md](./CHEATSHEET.md) | Quick command reference for common tools and techniques. |
+| [methodology/OSCP-Reporting.md](./methodology/OSCP-Reporting.md) | OSCP exam reporting rules (evidence, screenshots, structure). |
+| [tools/](./tools/) | Custom pentest tools (Python, Go, Bash). First tool: `Session_Report.py` - terminal session recorder. |
+
 **Note:** files marked with `Status: Completed` are **stubs** for machines still active on HTB. Full writeups are published after retirement.
 
 ---
