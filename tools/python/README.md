@@ -27,7 +27,7 @@ exam, client engagement with written permission).
 
 ## Conventions
 
-- Python 3.10+.
+- Python 3.9+.
 - One tool = one `.py` file + one `.md` doc.
 - Header comment in each `.py`: purpose, target platforms, authorized-use disclaimer.
 - No third-party dependencies unless justified in the tool doc.

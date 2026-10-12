@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Session_Report.py - Linux terminal session recorder for MethodMan.
 
@@ -33,11 +33,11 @@ import json
 import os
 import platform
 import re
+import shlex
 import shutil
 import socket
 import subprocess
 import sys
-import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -354,14 +354,17 @@ def append_transcript(draft_path: Path, cleaned: str) -> None:
         fh.write(FOOTER_TEMPLATE.format(version=TOOL_VERSION, fence=FENCE))
 
 
-def _build_script_cmd(raw_path: Path, shell_path: str, mode: str) -> tuple[list[str], str | None]:
+def _build_script_cmd(raw_path: Path, shell_path: str, mode: str, session_dir: Path) -> tuple[list[str], str | None]:
     temp_rc: str | None = None
 
     if mode == "clean" and shell_path.endswith("bash"):
-        fd, temp_rc = tempfile.mkstemp(prefix="session-report-rc-", suffix=".sh")
-        os.close(fd)
-        Path(temp_rc).write_text(DEFAULT_CLEAN_RC, encoding="utf-8")
-        inner = f"{shell_path} --noprofile --norc --rcfile {temp_rc}"
+        temp_rc_path = session_dir / ".clean-rc.sh"
+        temp_rc_path.write_text(DEFAULT_CLEAN_RC, encoding="utf-8")
+        temp_rc = str(temp_rc_path)
+        inner = (
+            f"{shlex.quote(shell_path)} --noprofile --norc "
+            f"--rcfile {shlex.quote(temp_rc)}"
+        )
     else:
         inner = shell_path
 
@@ -383,7 +386,7 @@ def cmd_start(args: argparse.Namespace) -> int:
     write_metadata(session_dir, args, shell_desc)
     write_draft_header(draft_path, args, shell_desc)
 
-    script_cmd, temp_rc = _build_script_cmd(raw_path, shell_path, mode)
+    script_cmd, temp_rc = _build_script_cmd(raw_path, shell_path, mode, session_dir)
 
     print(f"[Session_Report] Session directory: {session_dir}")
     print(f"[Session_Report] Metadata:          {session_dir / 'metadata.json'}")
