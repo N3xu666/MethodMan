@@ -8,7 +8,7 @@ Azerbaijani (`01 Az`), English (`02 En`), and Russian (`03 Ru`).
 
 | # | Machine | Az | En | Ru |
 |---|---------|-----|-----|-----|
-| 09 | Active | [Az](./01%20Az/09%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) | [En](./02%20En/09%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) | [Ru](./03%20Ru/09%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) |
+| 01 | Active | [Az](./01%20Az/01%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) | [En](./02%20En/01%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) | [Ru](./03%20Ru/01%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) |
 
 ## Completed (Writeups Pending)
 
