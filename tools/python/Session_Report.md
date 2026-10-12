@@ -248,6 +248,119 @@ See `../../SECURITY.md` for the project-wide policy on authorized use.
 
 ---
 
+## Recording multi-window sessions
+
+### The problem
+
+`Session_Report.py` records **one terminal**. `script(1)` captures a single
+pty and cannot see what happens in another window. In a typical HTB or
+OSCP session you almost always need a second window (a `nc` listener, a
+`python -m http.server`, Metasploit, a reverse-shell catcher). Only the
+window where `session-report start` was launched ends up in `raw.txt`.
+
+There is no perfect solution: every approach either changes your habits,
+is invasive, or captures only part of the work. Pick the option that fits
+your workflow.
+
+### Option A - tmux (recommended)
+
+Work inside a single `tmux` session. All windows and panes share one pty,
+so `script(1)` sees everything.
+
+```bash
+tmux new -s htb
+# inside tmux, in the first pane:
+session-report start --machine Foo --target 10.10.11.10
+
+# create more windows / panes:
+#   Ctrl+b c   new window
+#   Ctrl+b %   split vertically
+#   Ctrl+b "   split horizontally
+#   Ctrl+b n   next window
+#   Ctrl+b p   previous window
+#   Ctrl+b d   detach (session keeps running)
+
+# when done: exit each shell; the tmux session ends and the draft is ready
+```
+
+Pros:
+
+- One recording covers every window and pane.
+- Nothing is added to `~/.bashrc` or `~/.zshrc`.
+- Explicit start and end.
+- Works with `nc`, Metasploit, `ssh`, reverse shells - everything.
+
+Cons:
+
+- You must work inside `tmux` (`Ctrl+b` prefix).
+- Mouse support is off by default; enable with `set -g mouse on` in
+  `~/.tmux.conf` if you want scrolling and copy-paste to work as usual.
+
+### Option B - one session per window, merge manually
+
+Start a separate recorder in each window that matters:
+
+```bash
+# window 1 (the main work)
+session-report start --machine Foo --target 10.10.11.10
+
+# window 2 (the listener)
+session-report start --machine Foo-listener
+```
+
+At the end you have two independent session directories. Open both drafts
+and copy the relevant lines from the listener draft into the main draft
+under `## Foothold` or `## Privilege Escalation`.
+
+Pros:
+
+- No `tmux` required.
+- Everything is captured - just in separate files.
+
+Cons:
+
+- You must remember to run `session-report start` in every new window.
+- Manual merge at the end.
+
+### Option C - shell hook that auto-starts script (not recommended)
+
+A hook in `~/.bashrc` / `~/.zshrc` can start `script` automatically in
+every new interactive shell while a flag file exists. This gives the
+closest experience to "work as usual and forget about recording".
+However, it is **not implemented** in the current version of
+`Session_Report.py` and is documented here only so you understand the
+trade-offs before asking for it.
+
+Pros:
+
+- The closest thing to "no change in habits".
+
+Cons:
+
+- Invasive: it modifies `~/.bashrc` / `~/.zshrc`.
+- Invisible recording: you do not see that it is running; a mistyped
+  password or token ends up in a log file.
+- Breaks in subtle ways with nested pty: `ssh`, `docker exec`,
+  `sudo su -`, `screen`, `tmux`.
+- `session-report stop` cannot reliably flush sessions that are still
+  open; either the user closes every window manually or the tool kills
+  them, losing buffered output.
+- Logs are not masked. Every command typed in every shell is recorded.
+
+### Recommendation
+
+Use **Option A (tmux)** for any session where a second window is likely.
+It is the cleanest available approach. If you have never used `tmux`,
+treat it as a 10-minute investment. The four keys you need are
+`Ctrl+b c` (new window), `Ctrl+b %` (vertical split),
+`Ctrl+b n` / `Ctrl+b p` (switch windows), and `Ctrl+b d` (detach).
+
+If you cannot use `tmux`, use **Option B** and accept the manual merge.
+
+**Do not use Option C** unless you fully understand the trade-offs;
+it is not implemented in the current version.
+---
+
 ## Tests
 
 CI runs `python -m py_compile tools/python/Session_Report.py` to catch
