@@ -1,15 +1,24 @@
 ﻿# OSCP Active Directory and Networks
 
-> **Planned category - no published writeups yet.**
+Writeups for Hack The Box Active Directory and Networks machines prepared
+for the OSCP certification. Each writeup is published in three languages:
+Azerbaijani (`01 Az`), English (`02 En`), and Russian (`03 Ru`).
 
-This section will collect Active Directory and network machines prepared
-for the OSCP certification. Writeups will be added here as machines are
-completed and retired on Hack The Box. There is no content to browse yet.
+## Machines
 
-*Last reviewed: 2026-10-12*
+| # | Machine | Az | En | Ru |
+|---|---------|-----|-----|-----|
+| 09 | Active | [Az](./01%20Az/09%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) | [En](./02%20En/09%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) | [Ru](./03%20Ru/09%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) |
 
-## Structure
+## Completed (Writeups Pending)
 
-- **`01 Az/`** - Azerbaijani writeups (empty until first machine is published).
-- **`02 En/`** - English writeups (empty until first machine is published).
-- **`03 Ru/`** - Russian writeups (empty until first machine is published).
+The following machines have been completed, but writeups are withheld
+while the machines are still active on Hack The Box (per HTB ToS).
+
+| # | Machine | Difficulty | Status |
+|---|---------|------------|--------|
+|   |         |            |        |
+
+## Archive
+
+Raw drafts are not stored. Final writeups are in `01 Az/`, `02 En/`, `03 Ru/`.

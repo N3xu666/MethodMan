@@ -11,7 +11,7 @@
 New machines and platforms will be added as they are completed,  
 while methodologies and cheatsheets are updated regularly.
 
-Writeups available in Az/En/Ru. Currently: **14 published (retired) + 3 active stubs** = **17 completed machines**.
+Writeups available in Az/En/Ru. Currently: **15 published (retired) + 3 active stubs** = **18 completed machines**.
 
 > The `(Now: M machines)` counter counts **only published walkthroughs** (machines retired on Hack The Box). Writeups for active machines are withheld per HTB ToS and stored as stubs (`Status: Completed`) until retirement.
 
