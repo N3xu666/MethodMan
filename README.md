@@ -66,7 +66,22 @@ MethodMan/
 
 Validation is split across three independent layers:
 
-- **Pre-commit hook (`check.ps1`)** - LOCAL only, opt-in. Lives in `.git/hooks/pre-commit`, which is not tracked by git (git does not clone hooks). To install, copy the `check.ps1` invocation into `.git/hooks/pre-commit` (see `_WORKFLOW.md` section 2). Fast (8 checks, ~2 seconds), blocks commits with real flags, dict leaks, missing ethical note, dashes, broken chars, masking artifacts, heuristic passwords, missing CVE reference.
+- **Pre-commit hook (`check.ps1`)** - LOCAL only, opt-in. Lives in `.git/hooks/pre-commit`, which is not tracked by git (git does not clone hooks). To install, add a one-line invocation of `check.ps1` to `.git/hooks/pre-commit` and make it executable. Fast (13 checks, ~2 seconds).
+
+  **Blocking errors (commit is refused):**
+  - real 32-hex flags,
+  - leaks from the local masking dictionary,
+  - missing ethical note in a walkthrough,
+  - long dashes, broken UTF-8 chars, masking artifacts,
+  - unreplaced placeholder markers in docs,
+  - backslash-escaped Markdown in docs.
+
+  **Advisory warnings (commit is allowed):**
+  - heuristic suspicious passwords,
+  - Exploitation section without a CVE reference,
+  - broken relative links in docs,
+  - counter drift in root README,
+  - CVE table rows without a version range.
 - **Manual audit (`audit.ps1`)** - LOCAL only, run by the operator before important pushes. Covers git state, tracked files, walkthrough structure, Attack Chain, note placement, flags, dict leaks, dashes, encoding, placeholders, documentation, scripts, hook, origin sync, dynamic machine count, language-pair verification. Not run in CI.
 - **CI (`.github/workflows/validate.yml`)** - runs `check.ps1` and `tests/run-tests.ps1` on every push to any branch (Windows runner, pinned actions, read-only permissions). Uses a placeholder `masking-dict.ps1` (the real dict is not in git). Does NOT run `audit.ps1`.
 
@@ -89,7 +104,7 @@ The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known se
 This repository uses a **dual-license model**:
 
 - **Documentation** (walkthroughs, `02 Web/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
-- **Source code** (when present under `tools/`) - MIT License. The MIT license applies to `.py`, `.go`, `.sh`, and other executable source files, but NOT to documentation. The MIT license text will live at `tools/LICENSE` once source code is published.
+- **Source code** (`.py`, `.go`, `.sh`, `.ps1`, `.yml`) - MIT License, applies to `tools/` and to the root scripts (`check.ps1`, `mask.ps1`, `audit.ps1`, `tests/run-tests.ps1`). Full text: [tools/LICENSE](./tools/LICENSE).
 
 See [LICENSE](./LICENSE) for the full text and the file-type rules.
 

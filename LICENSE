@@ -5,15 +5,17 @@ walkthroughs (01 HTB/), web application testing reference (02 Web/),
 METHODOLOGY.md, CHEATSHEET.md, README.md, SECURITY.md, and other
 prose/Markdown content.
 
-SOURCE CODE (when present under tools/) is licensed separately under the
-MIT License (see tools/LICENSE). The MIT license applies to .py, .go, .sh,
-and other executable source files, but NOT to documentation.
+SOURCE CODE is licensed separately under the MIT License.
+The MIT license applies to all executable source files in this repository,
+including:
+
+  - tools/**/*.py, tools/**/*.go, tools/**/*.sh  (see tools/LICENSE)
+  - check.ps1, mask.ps1, audit.ps1, tests/run-tests.ps1  (root scripts)
 
 If a file is ambiguous, the following rule applies:
-  - .md, .txt, .rst                 -> CC BY-NC 4.0 (this license)
-  - .py, .go, .sh, .ps1 (under tools/) -> MIT (tools/LICENSE)
-  - .ps1 in repo root (check/mask/audit/update-readmes) -> see LICENSE.ps1
-    (currently CC BY-NC 4.0; may migrate to MIT in a future release)
+  - .md, .txt, .rst                      -> CC BY-NC 4.0 (this license)
+  - .py, .go, .sh, .ps1                  -> MIT
+  - .yml (GitHub Actions workflows)      -> MIT
 
 ---
 Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
