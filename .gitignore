@@ -47,3 +47,4 @@ PROMPT_NEXT_SESSION.txt
 __pycache__/
 *.pyc
 .pytest_cache/
+patch-*.ps1
