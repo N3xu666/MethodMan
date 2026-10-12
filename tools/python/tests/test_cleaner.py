@@ -1,4 +1,4 @@
-"""Tests for the transcript cleaner in Session_Report.py.
+﻿"""Tests for the transcript cleaner in Session_Report.py.
 
 Covers: ANSI stripping, backspace handling, prompt-echo dedupe
 (only immediate next line), whitespace collapsing, and the public
@@ -86,6 +86,33 @@ class TestDedupeCommandEcho:
             "important: use ls carefully",
             "bash-5.3$ ls",
             "file1.txt",
+        ]
+        assert _dedupe_command_echo(lines) == expected
+
+    def test_standalone_output_line_equal_to_earlier_command_is_kept(self):
+        # Regression for the pre-v0.6.0 bug: a session-wide dedupe dropped
+        # ANY line equal to an earlier command, including legitimate output.
+        # Here the file contents contain a standalone line "ls", and a real
+        # "ls" command runs later. The standalone "ls" line MUST survive.
+        lines = [
+            "bash-5.3$ cat script.sh",
+            "cat script.sh",
+            "echo hello",
+            "ls",
+            "echo world",
+            "bash-5.3$ ls",
+            "ls",
+            "script.sh",
+        ]
+        # Only the immediate echo after each prompt is dropped.
+        # The standalone "ls" line inside the file contents stays.
+        expected = [
+            "bash-5.3$ cat script.sh",
+            "echo hello",
+            "ls",
+            "echo world",
+            "bash-5.3$ ls",
+            "script.sh",
         ]
         assert _dedupe_command_echo(lines) == expected
 
