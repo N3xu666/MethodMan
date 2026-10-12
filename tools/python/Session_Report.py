@@ -219,7 +219,7 @@ def _strip_ansi(raw: str) -> str:
 
 def _dedupe_command_echo(lines: list[str]) -> list[str]:
     """
-    Remove plain-command echo lines that duplicate a prompt line.
+    Remove a plain-command echo line that immediately follows its prompt.
 
     With PTY echo off and bracketed paste still on, bash sometimes writes
     each command twice:
@@ -229,26 +229,29 @@ def _dedupe_command_echo(lines: list[str]) -> list[str]:
         hello               <- real output
 
     After ANSI stripping both command variants survive. Rule: keep the
-    prompt version, drop the plain version when the prompt version was
-    seen earlier in the transcript. This yields a uniform layout where
-    every command is prefixed by its prompt.
+    prompt version, drop the plain version ONLY when it is the very next
+    line after the prompt. This keeps real output that happens to contain
+    a string equal to an earlier command (e.g. `ls` inside a file).
     """
-    seen_prompt: set[str] = set()
     keep: list[str] = []
-    for line in lines:
-        m = PROMPT_LINE_RE.match(line)
-        if m:
-            body = m.group("cmd").strip()
-            if body:
-                seen_prompt.add(body)
-            keep.append(line)
-            continue
-
-        stripped = line.strip()
-        if stripped and stripped in seen_prompt:
-            # Drop the plain duplicate; the prompt version is already kept.
-            continue
+    i = 0
+    n = len(lines)
+    while i < n:
+        line = lines[i]
         keep.append(line)
+        m = PROMPT_LINE_RE.match(line)
+        if m is None:
+            i += 1
+            continue
+        body = m.group("cmd").strip()
+        if not body:
+            i += 1
+            continue
+        # Look at the immediate next line only.
+        if i + 1 < n and lines[i + 1].strip() == body:
+            i += 2  # skip the echo line
+        else:
+            i += 1
     return keep
 
 
