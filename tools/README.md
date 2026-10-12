@@ -30,12 +30,15 @@ built for specific phases of the workflow.
 
 | Language | Directory | Tools | Purpose |
 |----------|-----------|-------|---------|
-| Python | [`python/`](./python/README.md) | 0 | PoC scripts, output parsers, automation |
+| Python | [`python/`](./python/README.md) | 1 | PoC scripts, output parsers, automation |
 | Go | [`go/`](./go/README.md) | 0 | Network utilities, compiled binaries |
 | Bash | [`bash/`](./bash/README.md) | 0 | System wrappers, recon helpers |
 
-**Status:** _no tools published yet. First tool planned: `Session_Report.py`
-(Python, terminal session recorder)._
+### Published tools
+
+| Tool | Language | Description |
+|------|----------|-------------|
+| [`Session_Report.py`](./python/Session_Report.py) | Python | Terminal session recorder that produces a walkthrough draft. See [`python/Session_Report.md`](./python/Session_Report.md) for documentation. |
 
 Each language directory has its own `README.md` with conventions and a
 tools table specific to that language.
