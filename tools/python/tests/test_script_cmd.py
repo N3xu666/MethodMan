@@ -6,6 +6,7 @@ Regression coverage for:
 """
 
 import argparse
+import shlex
 import sys
 from pathlib import Path
 from unittest import mock
@@ -46,9 +47,12 @@ class TestBuildScriptCmd:
         cmd, temp_rc = _build_script_cmd(raw, "/opt/my shell/bash", "clean", tmp_path)
 
         inner = cmd[-1]
-        # shlex.quote wraps paths with spaces in single quotes.
-        assert "'/opt/my shell/bash'" in inner
-        assert "'{}'".format(temp_rc) in inner
+        # shlex.quote is POSIX: paths with spaces get wrapped in single
+        # quotes; simple paths are returned unchanged. Compare against
+        # what shlex.quote actually produces so the test behaves the
+        # same on Windows and Linux.
+        assert shlex.quote("/opt/my shell/bash") in inner
+        assert shlex.quote(temp_rc) in inner
 
     def test_clean_mode_quotes_path_with_semicolon(self, tmp_path: Path):
         raw = tmp_path / "raw.txt"
