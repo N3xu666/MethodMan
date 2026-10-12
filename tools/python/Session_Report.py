@@ -9,18 +9,19 @@ No keylogger. No /dev/input/event*. Only script(1) from util-linux.
 
 Authorized use only. See ../../SECURITY.md.
 
-By default the session runs in a clean `bash --noprofile --norc` subshell,
-so the transcript is free of shell prompt redraw artifacts, syntax
-highlighting, and multi-line prompts - regardless of the user's own shell
-config (zsh, fish, oh-my-zsh, powerlevel10k, ...). Pass `--raw-shell` to
-record inside your own $SHELL instead (transcript will contain redraw
-artifacts; use --use-pyte to clean them).
+By default the session runs in a clean `bash --noprofile --norc` subshell
+with a short PS1='$ '. This removes the shell prompt redraw noise that
+zsh/fish/oh-my-zsh/powerlevel10k emit on every keystroke. Pass
+`--raw-shell` to record inside your own $SHELL instead.
+
+Cleanup is a stdlib-only heuristic tailored for script(1) output. See
+_clean_heuristic for details.
 
 Usage:
     python Session_Report.py start --machine <name> [--target <ip>]
                                    [--language en|ru|az] [--output <dir>]
-                                   [--raw-shell] [--use-pyte]
-    python Session_Report.py reclean <session_dir> [--use-pyte]
+                                   [--raw-shell]
+    python Session_Report.py reclean <session_dir>
 
 Exit codes:
     0 - session recorded / recleaned successfully
@@ -44,18 +45,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-TOOL_VERSION = "0.3.0"
+TOOL_VERSION = "0.4.0"
 SUPPORTED_LANGUAGES = ("en", "ru", "az")
 DEFAULT_OUTPUT_DIR = "sessions"
 DEFAULT_CLEAN_SHELL = "/bin/bash"
 DEFAULT_CLEAN_RC = "# Session_Report.py clean rc\nPS1='$ '\nunset PROMPT_COMMAND\nbind 'set enable-bracketed-paste off' 2>/dev/null || true\n"
-
-# Optional dependency: pyte gives a correct terminal emulator for cleaning.
-try:
-    import pyte  # type: ignore
-    HAS_PYTE = True
-except ImportError:
-    HAS_PYTE = False
 
 # Runtime-built triple-backtick fence (keeps this source file free of
 # literal triple-backtick sequences, which break Markdown rendering when
@@ -78,6 +72,9 @@ SCRIPT_BANNER_RE = re.compile(
     r"^Script (?:started on|done on|started, output file is|done, output file is) .*$",
     re.MULTILINE,
 )
+
+# Matches a bash/sh prompt line: "bash-5.3$ cmd" or "$ cmd" or "sh-5.2$ cmd".
+PROMPT_LINE_RE = re.compile(r"^(?:bash-\d+\.\d+|sh-\d+\.\d+)?\$ (?P<cmd>.*)$")
 
 
 AI_PROMPT_TEMPLATE = """\
@@ -194,50 +191,100 @@ def _strip_ansi(raw: str) -> str:
     return text
 
 
+def _drop_prompt_duplicates(lines: list[str]) -> list[str]:
+    """
+    Remove prompt lines whose command body appears later in the transcript.
+
+    Bash in bracketed-paste mode (and even in plain mode) prints the whole
+    input block first, then executes the commands. After ANSI stripping the
+    transcript looks like:
+
+        bash-5.3$ echo hello
+        bash-5.3$ ls -la
+        echo hello           <- echoed again by the shell/PTY
+        ls -la               <- echoed again
+        hello                <- real output
+        total 0
+        ...
+
+    Rule: a line matching "<prompt>$ <cmd>" is dropped if <cmd> (stripped)
+    appears as a standalone line somewhere later in the file. We keep the
+    LAST occurrence.
+    """
+    # For each prompt line, check if the body appears later as a non-prompt line.
+    keep: list[str] = []
+    n = len(lines)
+    for i, line in enumerate(lines):
+        m = PROMPT_LINE_RE.match(line)
+        if not m:
+            keep.append(line)
+            continue
+
+        body = m.group("cmd").strip()
+        if not body:
+            keep.append(line)
+            continue
+
+        # Search forward for a line equal to the body.
+        found_later = False
+        for j in range(i + 1, n):
+            if lines[j].strip() == body:
+                found_later = True
+                break
+
+        if found_later:
+            # Drop this prompt line - the body appears later.
+            continue
+        keep.append(line)
+    return keep
+
+
+def _collapse_consecutive_duplicates(lines: list[str]) -> list[str]:
+    """
+    Drop adjacent duplicate non-empty lines. Handles the common case where
+    a command appears both in the "input echo block" and in the "output
+    block" as a literal (e.g. `echo hello` also emits `hello`, but `ls`
+    does not - so only the command line itself gets deduplicated).
+
+    Two adjacent non-empty lines are considered duplicates if they are
+    byte-identical after rstrip. This is deliberately conservative: any
+    real duplicate output (like two identical lines from `ls`) is preserved
+    only if separated by a non-duplicate line.
+    """
+    out: list[str] = []
+    for line in lines:
+        if out and line and out[-1] == line:
+            continue
+        out.append(line)
+    return out
+
+
 def _clean_heuristic(raw: str) -> str:
     """
-    stdlib-only cleaner. Sufficient for the default clean-shell mode
-    (bash --noprofile --norc): bracketed paste, reverse-video echo, and
-    cursor-forward sequences are all that remain, and they are ANSI-stripped.
+    stdlib-only cleaner tailored for script(1) + clean bash.
+
+    Steps:
+    1. Strip ANSI escape sequences and script(1) banner.
+    2. Normalize \\r\\n and \\r to \\n.
+    3. Split into lines.
+    4. Convert whitespace-only lines to empty.
+    5. Drop prompt lines whose command body appears later (bash input-echo block).
+    6. Collapse adjacent duplicates.
+    7. Collapse blank runs.
     """
     text = _strip_ansi(raw)
     lines = text.split("\n")
-    lines = ["" if ln.strip() == "" else ln for ln in lines]
+
+    # Whitespace-only -> empty.
+    lines = ["" if ln.strip() == "" else ln.rstrip() for ln in lines]
+
+    # Drop prompt lines whose body is echoed later.
+    lines = _drop_prompt_duplicates(lines)
+
+    # Collapse adjacent duplicate non-empty lines.
+    lines = _collapse_consecutive_duplicates(lines)
+
     text = "\n".join(lines)
-    text = re.sub(r"\n{3,}", "\n\n", text)
-    return text.strip() + "\n"
-
-
-def _clean_with_pyte(raw: str) -> str:
-    """
-    Correct terminal-emulator cleanup via pyte.
-
-    Needed only for --raw-shell mode, where the user's own shell (zsh,
-    fish, powerlevel10k, oh-my-zsh, ...) emits cursor-move and redraw
-    sequences that a regex cannot resolve.
-    """
-    if not HAS_PYTE:
-        return _clean_heuristic(raw)
-
-    screen = pyte.HistoryScreen(columns=200, lines=200, history=10000)
-    stream = pyte.Stream(screen)
-
-    text = SCRIPT_BANNER_RE.sub("", raw)
-    stream.feed(text)
-
-    result_lines: list[str] = []
-    for line in screen.history.top:
-        result_lines.append("".join(line[x].data for x in sorted(line.keys())))
-    for y in range(screen.lines):
-        row = screen.buffer[y]
-        result_lines.append("".join(row[x].data for x in range(screen.columns)))
-
-    cleaned = [ln.rstrip() for ln in result_lines]
-    while cleaned and not cleaned[0].strip():
-        cleaned.pop(0)
-    while cleaned and not cleaned[-1].strip():
-        cleaned.pop()
-    text = "\n".join(cleaned)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip() + "\n"
 
@@ -246,17 +293,16 @@ def clean_transcript(raw: str, use_pyte: bool = False) -> str:
     """
     Clean a raw script(1) transcript.
 
-    If use_pyte=True and pyte is installed, uses a real terminal emulator.
-    Otherwise uses the stdlib-only heuristic cleaner.
+    The `use_pyte` argument is accepted for backward compatibility but is
+    no longer recommended: pyte does not handle script(1) streams correctly
+    (no explicit cursor-positioning in the log). It is ignored by default.
     """
     if use_pyte:
-        if not HAS_PYTE:
-            sys.stderr.write(
-                "WARN: --use-pyte requested but pyte is not installed. "
-                "Falling back to heuristic cleaner.\n"
-                "      Install pyte: pip install pyte\n"
-            )
-        return _clean_with_pyte(raw)
+        sys.stderr.write(
+            "WARN: --use-pyte is deprecated. pyte does not handle script(1) "
+            "streams correctly.\n"
+            "      Using the built-in heuristic cleaner instead.\n"
+        )
     return _clean_heuristic(raw)
 
 
@@ -270,23 +316,20 @@ def build_session_dir(output_root: Path, machine: str) -> Path:
 
 def _resolve_shell(args: argparse.Namespace) -> tuple[str, str, str]:
     """
-    Return (shell_description, script_command, cleanup_hint).
+    Return (shell_description, shell_path, mode).
 
-    Default mode: clean bash without user rc, short PS1, no bracketed paste.
-    --raw-shell: the user's own $SHELL, with user configs.
+    mode is "clean" (default) or "raw" (--raw-shell).
     """
-    if args.raw_shell:
+    if getattr(args, "raw_shell", False):
         user_shell = os.environ.get("SHELL") or "/bin/bash"
         return (
             f"{user_shell} (raw, user configs loaded)",
             user_shell,
-            "raw-shell",
+            "raw",
         )
 
-    # Clean mode: bash --noprofile --norc, with a minimal temporary rc.
     bash = DEFAULT_CLEAN_SHELL
     if not Path(bash).exists():
-        # Fallback: /bin/sh (POSIX, no bash-specific rc).
         return ("/bin/sh (clean fallback)", "/bin/sh", "clean")
 
     return (
@@ -338,8 +381,7 @@ def append_transcript(draft_path: Path, cleaned: str) -> None:
         fh.write(FOOTER_TEMPLATE.format(version=TOOL_VERSION, fence=FENCE))
 
 
-def _build_script_cmd(raw_path: Path, args: argparse.Namespace,
-                      shell_path: str, cleanup_hint: str) -> tuple[list[str], str | None]:
+def _build_script_cmd(raw_path: Path, shell_path: str, mode: str) -> tuple[list[str], str | None]:
     """
     Return (argv, temp_rc_path_or_None).
 
@@ -349,7 +391,7 @@ def _build_script_cmd(raw_path: Path, args: argparse.Namespace,
     """
     temp_rc: str | None = None
 
-    if cleanup_hint == "clean" and shell_path.endswith("bash"):
+    if mode == "clean" and shell_path.endswith("bash"):
         fd, temp_rc = tempfile.mkstemp(prefix="session-report-rc-", suffix=".sh")
         os.close(fd)
         Path(temp_rc).write_text(DEFAULT_CLEAN_RC, encoding="utf-8")
@@ -371,18 +413,17 @@ def cmd_start(args: argparse.Namespace) -> int:
     raw_path = session_dir / "raw.txt"
     draft_path = session_dir / "walkthrough-draft.md"
 
-    shell_desc, shell_path, cleanup_hint = _resolve_shell(args)
+    shell_desc, shell_path, mode = _resolve_shell(args)
     write_metadata(session_dir, args, shell_desc)
     write_draft_header(draft_path, args, shell_desc)
 
-    script_cmd, temp_rc = _build_script_cmd(raw_path, args, shell_path, cleanup_hint)
+    script_cmd, temp_rc = _build_script_cmd(raw_path, shell_path, mode)
 
     print(f"[Session_Report] Session directory: {session_dir}")
     print(f"[Session_Report] Metadata:          {session_dir / 'metadata.json'}")
     print(f"[Session_Report] Draft:             {draft_path}")
     print(f"[Session_Report] Shell:             {shell_desc}")
-    print(f"[Session_Report] Cleaner:           "
-          f"{'pyte' if (args.use_pyte and HAS_PYTE) else 'heuristic'}")
+    print(f"[Session_Report] Cleaner:           heuristic")
     print(f"[Session_Report] Starting script(1). Type 'exit' to stop recording.")
     print()
 
@@ -409,7 +450,7 @@ def cmd_start(args: argparse.Namespace) -> int:
         return 1
 
     raw = raw_path.read_text(encoding="utf-8", errors="replace")
-    cleaned = clean_transcript(raw, use_pyte=args.use_pyte)
+    cleaned = clean_transcript(raw)
     append_transcript(draft_path, cleaned)
 
     print()
@@ -423,7 +464,7 @@ def cmd_start(args: argparse.Namespace) -> int:
 def cmd_reclean(args: argparse.Namespace) -> int:
     """
     Rebuild walkthrough-draft.md from an existing raw.txt, without
-    re-recording. Useful after improving the cleaner or installing pyte.
+    re-recording.
     """
     session_dir = Path(args.session_dir).expanduser().resolve()
     if not session_dir.is_dir():
@@ -450,15 +491,14 @@ def cmd_reclean(args: argparse.Namespace) -> int:
     )
 
     raw = raw_path.read_text(encoding="utf-8", errors="replace")
-    cleaned = clean_transcript(raw, use_pyte=args.use_pyte)
+    cleaned = clean_transcript(raw)
 
     shell_desc = meta.get("shell", "unknown")
     write_draft_header(draft_path, header_ns, shell_desc)
     append_transcript(draft_path, cleaned)
 
     print(f"[Session_Report] Recleaned: {session_dir}")
-    print(f"[Session_Report] Cleaner:   "
-          f"{'pyte' if (args.use_pyte and HAS_PYTE) else 'heuristic'}")
+    print(f"[Session_Report] Cleaner:   heuristic")
     print(f"[Session_Report] Raw:       {len(raw)} bytes")
     print(f"[Session_Report] Cleaned:   {len(cleaned)} bytes")
     print(f"[Session_Report] Draft:     {draft_path}")
@@ -486,10 +526,7 @@ def build_parser() -> argparse.ArgumentParser:
                        help=f"Output root directory (default: {DEFAULT_OUTPUT_DIR}).")
     start.add_argument("--raw-shell", action="store_true",
                        help="Record in your own $SHELL with its configs "
-                            "(may produce prompt redraw artifacts in the transcript).")
-    start.add_argument("--use-pyte", action="store_true",
-                       help="Use pyte terminal emulator for cleanup "
-                            "(requires: pip install pyte). Recommended with --raw-shell.")
+                            "(transcript may contain prompt redraw artifacts).")
     start.set_defaults(func=cmd_start)
 
     reclean = sub.add_parser(
@@ -498,9 +535,6 @@ def build_parser() -> argparse.ArgumentParser:
     )
     reclean.add_argument("session_dir",
                          help="Path to an existing sessions/<machine>-<ts>/ directory.")
-    reclean.add_argument("--use-pyte", action="store_true",
-                         help="Use pyte terminal emulator for cleanup "
-                              "(requires: pip install pyte).")
     reclean.set_defaults(func=cmd_reclean)
 
     return parser
