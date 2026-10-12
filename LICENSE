@@ -17,6 +17,12 @@ If a file is ambiguous, the following rule applies:
   - .py, .go, .sh, .ps1                  -> MIT
   - .yml (GitHub Actions workflows)      -> MIT
 
+Note: the rule above is file-type based. Markdown documentation inside
+tools/ (e.g. tools/python/README.md, tools/python/Session_Report.md) is
+CC BY-NC 4.0 like all other .md files in this repository, even though the
+source code in the same directories is MIT. tools/LICENSE contains the
+MIT text that applies to source code under tools/.
+
 ---
 Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
 

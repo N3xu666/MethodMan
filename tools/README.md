@@ -57,7 +57,7 @@ tools table specific to that language.
 ## See Also
 
 - [`../README.md`](../README.md) - main repository README.
-- [`LICENSE`](./LICENSE) - MIT (tools). Documentation elsewhere in the repo is CC BY-NC 4.0 (see [`../LICENSE`](../LICENSE)).
+- [`LICENSE`](./LICENSE) - MIT for source code under `tools/`. Markdown documentation under `tools/` (including this file) is CC BY-NC 4.0 like all other `.md` files in the repo (see [`../LICENSE`](../LICENSE)).
 - [GitHub Linguist](https://github.com/github/linguist) - `.gitattributes` marks `tools/**` as `linguist-detectable=true` so the language bar chart reflects these tools.
 
 ---

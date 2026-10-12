@@ -35,9 +35,13 @@ exam, client engagement with written permission).
 
 ## License
 
-MIT. Applies to every file in this directory (`.py`, `.md`, `pyproject.toml`), including the pip-installable `methodman-session-report` package.
+**Source code** (`.py`, `pyproject.toml`, and the pip-installable
+`methodman-session-report` package) is licensed under the MIT License -
+see [`../../tools/LICENSE`](../../tools/LICENSE).
 
-Documentation elsewhere in the repository (walkthroughs, `02 Web/`, `METHODOLOGY.md`, `CHEATSHEET.md`) is licensed under CC BY-NC 4.0 - see [../../LICENSE](../../LICENSE).
+**Markdown documentation** in this directory (`README.md`,
+`Session_Report.md`) is CC BY-NC 4.0, like every other `.md` file in this
+repository - see [`../../LICENSE`](../../LICENSE).
 
 ## See Also
 
