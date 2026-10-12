@@ -1,102 +1,129 @@
 ﻿# Session_Report.py
 
 > Linux-only terminal session recorder that produces a MethodMan walkthrough
-> draft in the section 3.2 format.
+> draft in the section 3.2 format. Records in a clean `bash` subshell by
+> default, so the transcript is readable regardless of your own shell config.
 
 ---
 
 ## Purpose
 
 Record a live terminal session (Hack The Box, OSCP lab, or local practice)
-
 and turn it into a structured walkthrough draft. The draft is written to a
-
 per-session directory together with the raw transcript and a metadata file.
 
 Use case: during a pentest or CTF session, run the recorder once at the
-
 start, work normally in the subshell, exit when done. The result is a
-
 `walkthrough-draft.md` with the MethodMan section 3.2 skeleton, ready to be
-
 finished by hand (or by an AI assistant) into a full writeup.
+
+---
+
+## Quick start (standalone)
+
+If you only want the tool and not the whole repository:
+
+```bash
+mkdir -p ~/tools && cd ~/tools
+curl -fsSL -o Session_Report.py \
+  https://raw.githubusercontent.com/N3xu666/MethodMan/main/tools/python/Session_Report.py
+python3 Session_Report.py --version
+```
+
+The script is self-contained (standard library only). No `git clone`, no
+`pip install`, no dependencies required.
+
+To also fetch the documentation:
+
+```bash
+curl -fsSL -o Session_Report.md \
+  https://raw.githubusercontent.com/N3xu666/MethodMan/main/tools/python/Session_Report.md
+```
 
 ---
 
 ## Requirements
 
 - **Linux only.** The recorder relies on `script(1)` from `util-linux`.
-
-&#x20; macOS and Windows are not supported (macOS `script(1)` has different flags
-
-&#x20; and no `-f`; Windows has no equivalent).
-
+  macOS and Windows are not supported (macOS `script(1)` has different flags
+  and no `-f`; Windows has no equivalent).
 - **Python 3.9+** (uses `list[str]` in annotations, `datetime.timezone.utc`,
-
-&#x20; and `str.removeprefix`-free code - all available since 3.9).
-
+  `tempfile.mkstemp`, all available since 3.9).
 - **`util-linux`** installed (`script` binary in `$PATH`).
-
-&#x20; - Debian / Ubuntu: `sudo apt install util-linux`
-
-&#x20; - Fedora / RHEL: `sudo dnf install util-linux`
-
-&#x20; - Arch: `sudo pacman -S util-linux`
-
+  - Debian / Ubuntu: `sudo apt install util-linux`
+  - Fedora / RHEL: `sudo dnf install util-linux`
+  - Arch: `sudo pacman -S util-linux`
+- **`/bin/bash`** for the default clean-shell mode (present on virtually
+  every Linux distribution). If missing, the tool falls back to `/bin/sh`.
 - Standard library only. No pip dependencies.
+
+---
+
+## How recording works
+
+The tool starts `script(1)` with an explicit child command:
+
+- **Default (`clean` mode):** `bash --noprofile --norc --rcfile <temp>` where
+  `<temp>` is a minimal rc that sets a short `PS1` and disables PTY echo on
+  the first prompt. Your own `.bashrc`, `.zshrc`, oh-my-zsh, powerlevel10k,
+  and syntax highlighting are **not** loaded. The transcript contains only
+  commands and their output, with no prompt redraw noise.
+- **`--raw-shell` mode:** your `$SHELL` with its own configs. Prompt redraws
+  and color escapes end up in the transcript. The heuristic cleaner will
+  strip the ANSI escapes, but zsh/fish/oh-my-zsh may leave residue. Use
+  `--raw-shell` only if you specifically need your own environment (aliases,
+  tab completion, custom prompt).
+
+The chosen mode is recorded in `metadata.json` (field `shell`).
 
 ---
 
 ## Usage
 
-```
+### Record a session
 
+```
 python Session_Report.py start --machine <name> [--target <ip>]
-
-&#x20;                              [--language en|ru|az] [--output <dir>]
-
+                               [--language en|ru|az] [--output <dir>]
+                               [--raw-shell]
 ```
 
-### Arguments
+### Rebuild a draft from an existing session
+
+```
+python Session_Report.py reclean <session_dir>
+```
+
+Use `reclean` after upgrading the tool to regenerate `walkthrough-draft.md`
+from the saved `raw.txt` without re-recording the session.
+
+### Arguments (start)
 
 | Flag | Required | Default | Description |
-
 |------|----------|---------|-------------|
-
 | `--machine` | yes | - | Machine name (e.g. `Layover`). Used for the session directory name. |
-
 | `--target` | no | empty | Target IP or hostname. Stored in metadata and in the draft. |
-
 | `--language` | no | `en` | Walkthrough language. One of `en`, `ru`, `az`. |
-
 | `--output` | no | `sessions` | Output root directory. Created if missing. |
+| `--raw-shell` | no | off | Record in your own `$SHELL` with its user configs. |
 
-### Example
+### Example (default, clean shell)
 
 ```
-
 $ python Session_Report.py start --machine Layover --target 10.10.11.10 --language en
-
 [Session_Report] Session directory: /home/op/MethodMan/sessions/Layover-20261012T143012Z
-
 [Session_Report] Metadata:          /home/op/MethodMan/sessions/Layover-20261012T143012Z/metadata.json
-
 [Session_Report] Draft:             /home/op/MethodMan/sessions/Layover-20261012T143012Z/walkthrough-draft.md
-
+[Session_Report] Shell:             /bin/bash --noprofile --norc (clean, no user configs)
+[Session_Report] Cleaner:           heuristic
 [Session_Report] Starting script(1). Type 'exit' to stop recording.
 
-Script started, output log file is '/home/op/MethodMan/sessions/Layover-20261012T143012Z/raw.txt'.
-
-op@kali:\~$ nmap -p- --min-rate 5000 10.10.11.10
-
+$ nmap -p- --min-rate 5000 10.10.11.10
 ...
-
-op@kali:\~$ exit
+$ exit
 
 [Session_Report] Transcript cleaned: 8432 -> 6211 bytes.
-
 [Session_Report] Final draft: /home/op/MethodMan/sessions/Layover-20261012T143012Z/walkthrough-draft.md
-
 ```
 
 ---
@@ -104,67 +131,65 @@ op@kali:\~$ exit
 ## Output layout
 
 ```
-
 sessions/
-
 +-- <machine>-<UTC timestamp>/
-
-&#x20;   +-- metadata.json          # machine, target, started, host, operator, language
-
-&#x20;   +-- raw.txt                # raw script(1) output (ANSI escapes, banner, \\r)
-
-&#x20;   +-- walkthrough-draft.md   # cleaned draft in MethodMan section 3.2 format
-
+    +-- metadata.json          # machine, target, started, host, operator, language, shell
+    +-- raw.txt                # raw script(1) output
+    +-- walkthrough-draft.md   # cleaned draft in MethodMan section 3.2 format
 ```
 
-`raw.txt` is kept for reference (it contains ANSI escapes and the script(1)
-
-banner). The `.md` draft is the cleaned version with the AI prompt block,
-
-the walkthrough skeleton, and the raw transcript appended under
-
-`## Raw Transcript`.
+`raw.txt` is kept for reference. The `.md` draft is the cleaned version with
+the AI prompt block, the walkthrough skeleton, and the raw transcript
+appended under `## Raw Transcript`.
 
 **Note:** `sessions/` is listed in `.gitignore`. Drafts are local-only until
-
 you decide to publish them (after masking, per section 3).
 
 ---
 
 ## Transcript cleanup
 
-Before appending to the `.md`, the raw transcript is cleaned:
+Cleanup runs on the raw `script(1)` output before appending to the `.md`.
+The cleaner is stdlib-only and tailored for the clean-shell mode.
+
+Steps:
 
 1. **ANSI escape sequences** stripped (CSI, OSC, two-character escapes).
+   Removes color codes, bracketed-paste toggles (`ESC[?2004h/l`),
+   reverse-video echo (`ESC[7m`, `ESC[27m`), cursor moves
+   (`ESC[A`, `ESC[B`, `ESC[C`, `ESC[D`), and erase-to-end (`ESC[K`).
+2. **`script(1)` banner** lines removed.
+3. **Line endings** normalized: `\r\n` and lone `\r` -> `\n`.
+4. **Whitespace-only lines** converted to empty lines, trailing
+   whitespace stripped.
+5. **Prompt duplicates dropped.** Bash prints the full input block before
+   executing, so each command appears twice after ANSI stripping: once as
+   `bash-5.3$ cmd` and once as plain `cmd`. The cleaner drops the prompt
+   version when the plain version appears later.
+6. **Adjacent duplicate lines collapsed.**
+7. **Blank runs collapsed**: 3+ consecutive newlines -> 2.
 
-&#x20;  Covers SGR colors (`\\x1b[31m`), cursor movement, title updates, and reset
+Result: a readable transcript with commands and their real output, no
+shell prompt noise.
 
-&#x20;  sequences emitted by `ls`, `nmap`, `curl`, `metasploit`, etc.
+### Rebuild an existing draft
 
-2. **`script(1)` banner** lines removed (`Script started on ...`,
+```
+python Session_Report.py reclean sessions/Layover-20261012T143012Z
+```
 
-&#x20;  `Script done on ...`, `Script started, output file is ...`).
-
-3. **Line endings** normalized: `\\r\\n` and lone `\\r` -> `\\n`.
-
-4. **Blank runs collapsed**: 3+ consecutive newlines -> 2.
-
-The cleanup is best-effort. If a tool emits unusual escape sequences, the
-
-result may still contain artifacts - review the draft before publishing.
+Reads `metadata.json` and `raw.txt` from the session directory, regenerates
+`walkthrough-draft.md` from the header down. The existing `.md` is
+overwritten.
 
 ---
 
 ## Exit codes
 
 | Code | Meaning |
-
 |------|---------|
-
-| 0 | Session recorded successfully. |
-
-| 1 | Runtime failure (e.g. `script(1)` failed to launch, `raw.txt` missing after exit). |
-
+| 0 | Session recorded / recleaned successfully. |
+| 1 | Runtime failure (e.g. `script(1)` failed to launch, `raw.txt` missing). |
 | 2 | Platform check failed: not Linux, or `script(1)` not found in `$PATH`. |
 
 ---
@@ -172,16 +197,11 @@ result may still contain artifacts - review the draft before publishing.
 ## Safety
 
 - **No keylogger.** The tool does not read `/dev/input/event*`, does not hook
-
-&#x20; the kernel, does not intercept syscalls. It only invokes `script(1)` in a
-
-&#x20; child process, exactly as a user would run it manually.
-
+  the kernel, does not intercept syscalls. It only invokes `script(1)` in a
+  child process, exactly as a user would run it manually.
 - **No network.** The recorder is fully offline.
-
 - **No telemetry.** The tool does not phone home, does not write outside the
-
-&#x20; chosen output directory.
+  chosen output directory.
 
 See `../../SECURITY.md` for the project-wide policy on authorized use.
 
@@ -190,45 +210,36 @@ See `../../SECURITY.md` for the project-wide policy on authorized use.
 ## Limitations
 
 - **Linux only.** See Requirements.
-
 - **Single terminal.** One invocation = one recording session. Multiple
-
-&#x20; parallel terminals are not merged.
-
-- **Interactive only.** The recorder runs an interactive subshell. It does
-
-&#x20; not wrap a single command; use `script -c "cmd" raw.txt` directly for that.
-
+  parallel terminals are not merged.
+- **Default mode has no shell conveniences.** No aliases, no tab completion,
+  no `~/.bashrc`. This is intentional: the walkthrough should show the raw
+  commands. If you need your usual environment, use `--raw-shell`.
+- **`--raw-shell` may leave residue.** zsh/fish/oh-my-zsh emit cursor-move
+  and redraw sequences that a regex cleaner cannot fully resolve. The
+  transcript will be readable but may contain extra blank lines or repeated
+  prompt fragments.
 - **No masking.** Real secrets (flags, passwords, hashes) are captured as-is.
-
-&#x20; Mask them manually before publishing, per section 3 of `_WORKFLOW.md`.
+  Mask them manually before publishing, per section 3 of `_WORKFLOW.md`.
 
 ---
 
 ## Tests
 
 CI runs `python -m py_compile tools/python/Session_Report.py` to catch
-
 syntax errors. Full functional tests require a Linux environment and are
-
 not part of the CI matrix.
 
 To run a smoke test locally on Linux:
 
 ```
-
 $ python Session_Report.py --version
-
-Session_Report.py 0.1.0
+Session_Report.py 0.6.0
 
 $ python Session_Report.py start --machine Test --target 127.0.0.1
-
 # ... type a few commands, then 'exit'
-
 $ ls sessions/Test-*/
-
 metadata.json  raw.txt  walkthrough-draft.md
-
 ```
 
 ---
@@ -236,10 +247,6 @@ metadata.json  raw.txt  walkthrough-draft.md
 ## See also
 
 - `_WORKFLOW.md` section 3.2 - walkthrough standard the draft follows.
-
 - `_WORKFLOW.md` section 6.2 - placeholder scheme for masking.
-
 - `../../SECURITY.md` - authorized use policy.
-
 - `../../methodology/OSCP-Reporting.md` - OSCP report evidence rules.
-
