@@ -145,6 +145,39 @@ class TestCmdStart:
         rc = cmd_start(args)
         assert rc == 1
 
+    def test_cmd_start_returns_1_when_script_exits_nonzero(
+        self, tmp_path, monkeypatch
+    ):
+        # script(1) can exit non-zero (e.g. shell failed to start, or
+        # the user session ended abnormally) while still producing a
+        # partial raw.txt. cmd_start must surface this as rc 1, but the
+        # draft must still be written so no data is lost.
+        monkeypatch.setattr("Session_Report.check_platform", lambda: None)
+
+        def fake_run(cmd, *a, **kw):
+            raw_path = Path(cmd[cmd.index("-f") + 1])
+            raw_path.write_text(
+                "Script started on x\n$ whoami\nwhoami\nroot\nScript done on x\n",
+                encoding="utf-8",
+            )
+            return mock.Mock(returncode=3)
+
+        monkeypatch.setattr("Session_Report.subprocess.run", fake_run)
+
+        args = _fake_start_args(tmp_path)
+        rc = cmd_start(args)
+        assert rc == 1
+
+        # Draft must still exist and contain the cleaned transcript,
+        # so the user does not lose data on a non-zero script(1) exit.
+        session_dirs = [p for p in tmp_path.iterdir() if p.is_dir()]
+        assert len(session_dirs) == 1
+        draft = (session_dirs[0] / "walkthrough-draft.md").read_text(
+            encoding="utf-8"
+        )
+        assert "root" in draft
+        assert "End of raw transcript" in draft
+
 
 # ---------- cmd_reclean (end-to-end, no shell) ----------
 

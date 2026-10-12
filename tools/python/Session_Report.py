@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Session_Report.py - Linux terminal session recorder for MethodMan.
 
@@ -431,7 +431,13 @@ def cmd_start(args: argparse.Namespace) -> int:
     print(f"[Session_Report] Transcript cleaned: {len(raw)} -> {len(cleaned)} bytes.")
     print(f"[Session_Report] Final draft: {draft_path}")
     if result is not None and result.returncode != 0:
-        print(f"[Session_Report] Note: script(1) exited with code {result.returncode}.")
+        sys.stderr.write(
+            "[Session_Report] ERROR: script(1) exited with code {}."
+            " Draft was still produced at: {}\n".format(
+                result.returncode, draft_path
+            )
+        )
+        return 1
     return 0
 
 
