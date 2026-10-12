@@ -23,6 +23,7 @@ update-readmes.ps1
 
 # Raw drafts (not for public)
 txt/
+sessions/
 audit.ps1.bak*
 check.ps1.bak
 
@@ -40,3 +41,8 @@ _WORKFLOW.md.*
 *.fix-*
 *.fix2-*
 PROMPT_NEXT_SESSION.txt
+
+
+# Python bytecode caches
+__pycache__/
+*.pyc

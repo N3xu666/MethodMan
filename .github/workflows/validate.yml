@@ -1,4 +1,4 @@
-﻿name: Validate
+name: Validate
 
 on:
   push:
@@ -57,3 +57,34 @@ jobs:
           if ($null -ne $LASTEXITCODE -and $LASTEXITCODE -ne 0) {
             exit $LASTEXITCODE
           }
+
+  tools-syntax:
+    name: Validate tools/ Python syntax
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b  # v5.3.0
+        with:
+          python-version: "3.12"
+
+      - name: Compile all tools/**/*.py
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob
+          files=(tools/**/*.py)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No Python tools found - nothing to compile."
+            exit 0
+          fi
+          for f in "${files[@]}"; do
+            echo "Compiling: $f"
+            python -m py_compile "$f"
+          done
+          echo "All Python tools compiled successfully."
