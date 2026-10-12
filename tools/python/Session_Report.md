@@ -64,10 +64,10 @@ curl -fsSL -o Session_Report.md \
 The tool starts `script(1)` with an explicit child command:
 
 - **Default (`clean` mode):** `bash --noprofile --norc --rcfile <temp>` where
-  `<temp>` is a minimal rc that sets `PS1='$ '` and disables bracketed paste.
-  Your own `.bashrc`, `.zshrc`, oh-my-zsh, powerlevel10k, and syntax
-  highlighting are **not** loaded. The transcript contains only commands and
-  their output.
+  `<temp>` is a minimal rc that sets a short `PS1` and disables PTY echo on
+  the first prompt. Your own `.bashrc`, `.zshrc`, oh-my-zsh, powerlevel10k,
+  and syntax highlighting are **not** loaded. The transcript contains only
+  commands and their output, with no prompt redraw noise.
 - **`--raw-shell` mode:** your `$SHELL` with its own configs. Prompt redraws
   and color escapes end up in the transcript. The heuristic cleaner will
   strip the ANSI escapes, but zsh/fish/oh-my-zsh may leave residue. Use
@@ -234,7 +234,7 @@ To run a smoke test locally on Linux:
 
 ```
 $ python Session_Report.py --version
-Session_Report.py 0.4.0
+Session_Report.py 0.6.0
 
 $ python Session_Report.py start --machine Test --target 127.0.0.1
 # ... type a few commands, then 'exit'
