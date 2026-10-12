@@ -46,3 +46,4 @@ PROMPT_NEXT_SESSION.txt
 # Python bytecode caches
 __pycache__/
 *.pyc
+.pytest_cache/

@@ -369,7 +369,9 @@ def _build_script_cmd(raw_path: Path, shell_path: str, mode: str, session_dir: P
             f"--rcfile {shlex.quote(temp_rc)}"
         )
     else:
-        inner = shell_path
+        # Raw mode (user $SHELL) or clean non-bash: still quote, because
+        # $SHELL can contain spaces or shell metacharacters.
+        inner = shlex.quote(shell_path)
 
     cmd = ["script", "-a", "-q", "-f", str(raw_path), "-c", inner]
     return cmd, temp_rc
