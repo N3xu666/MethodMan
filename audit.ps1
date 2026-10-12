@@ -118,7 +118,9 @@ Write-Info "tracked .ps1 ($($trackedPs1.Count)):"
 $trackedPs1 | ForEach-Object { Write-Info "    $_" }
 $gitBefore4b = $script:gitErrors
 $trackedTxt = Invoke-GitSafe -GitArgs @("ls-files", "*.txt") -Context "ls-files txt"
-if ($script:gitErrors -gt $gitBefore4b) { Write-Fail "git ls-files *.txt failed" } elseif ($trackedTxt.Count -eq 0) { Write-Pass "0 tracked .txt" } else { Write-Warn "$($trackedTxt.Count) tracked .txt" }
+$txtWhitelist = @("tools/python/tests/requirements.txt")
+$nonWhitelisted = @($trackedTxt | Where-Object { $txtWhitelist -notcontains $_ })
+if ($script:gitErrors -gt $gitBefore4b) { Write-Fail "git ls-files *.txt failed" } elseif ($trackedTxt.Count -eq 0) { Write-Pass "0 tracked .txt" } elseif ($nonWhitelisted.Count -eq 0) { Write-Pass "$($trackedTxt.Count) tracked .txt (all whitelisted)" } else { Write-Warn "$($trackedTxt.Count) tracked .txt (not whitelisted: $($nonWhitelisted -join ", "))" }
 
 # 5. UNTRACKED FILES
 Write-Host "`n[5] Untracked files" -ForegroundColor Yellow
