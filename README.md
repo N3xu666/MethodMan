@@ -6,7 +6,7 @@
 [![Docs: CC BY-NC 4.0](https://img.shields.io/badge/Docs-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Code: MIT](https://img.shields.io/badge/Code-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-![MethodMan - trilingual HTB writeups, methodology and cheatsheet collection](./social-preview.png)
+![MethodMan - trilingual HTB writeups, web application security reference, methodology and tools](./social-preview.png)
 
 New machines and platforms will be added as they are completed,  
 while methodologies and cheatsheets are updated regularly.
