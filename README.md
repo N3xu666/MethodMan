@@ -11,7 +11,7 @@
 New machines and platforms will be added as they are completed,  
 while methodologies and cheatsheets are updated regularly.
 
-Writeups available in Az/En/Ru. Currently: **15 published (retired) + 3 active stubs** = **18 completed machines**.
+Writeups available in Az/En/Ru. Currently: **16 published (retired) + 3 active stubs** = **19 completed machines**.
 
 > The `(Now: M machines)` counter counts **only published walkthroughs** (machines retired on Hack The Box). Writeups for active machines are withheld per HTB ToS and stored as stubs (`Status: Completed`) until retirement.
 
@@ -55,7 +55,7 @@ MethodMan/
 |---------|-------------|-----|-----|-----|
 | [HTB / Season 12 Aero](./01%20HTB/01%20All%20Machines/01%20Season%2012%20%28Aero%2C%20Sep%20-%20Nov%202026%29/) | Special HTB season, Sep - Nov 2026 | [Az](./01%20HTB/01%20All%20Machines/01%20Season%2012%20%28Aero%2C%20Sep%20-%20Nov%202026%29/01%20Az/) | [En](./01%20HTB/01%20All%20Machines/01%20Season%2012%20%28Aero%2C%20Sep%20-%20Nov%202026%29/02%20En/) | [Ru](./01%20HTB/01%20All%20Machines/01%20Season%2012%20%28Aero%2C%20Sep%20-%20Nov%202026%29/03%20Ru/) |
 | [HTB / OSCP / Linux](./01%20HTB/02%20OSCP/01%20Linux/) | Linux machines for OSCP prep | [Az](./01%20HTB/02%20OSCP/01%20Linux/01%20Az/) | [En](./01%20HTB/02%20OSCP/01%20Linux/02%20En/) | [Ru](./01%20HTB/02%20OSCP/01%20Linux/03%20Ru/) |
-| [HTB / OSCP / Windows](./01%20HTB/02%20OSCP/02%20Windows/) | Windows machines for OSCP prep | - | - | - |
+| [HTB / OSCP / Windows](./01%20HTB/02%20OSCP/02%20Windows/) | Windows machines for OSCP prep | [Az](./01%20HTB/02%20OSCP/02%20Windows/01%20Az/) | [En](./01%20HTB/02%20OSCP/02%20Windows/02%20En/) | [Ru](./01%20HTB/02%20OSCP/02%20Windows/03%20Ru/) |
 | [HTB / OSCP / Active Directory and Networks](./01%20HTB/02%20OSCP/03%20Active%20Directory%20and%20Networks/) | AD and networks | - | - | - |
 
 ### Other Resources
