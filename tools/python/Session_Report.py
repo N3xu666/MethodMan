@@ -458,7 +458,21 @@ def cmd_reclean(args: argparse.Namespace) -> int:
         sys.stderr.write(f"ERROR: metadata.json not found in {session_dir}\n")
         return 1
 
-    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    try:
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        sys.stderr.write(
+            "ERROR: metadata.json is not valid JSON: {}\n".format(exc)
+        )
+        return 1
+
+    if not isinstance(meta, dict):
+        sys.stderr.write(
+            "ERROR: metadata.json must contain a JSON object (got {}).\n".format(
+                type(meta).__name__
+            )
+        )
+        return 1
 
     header_ns = argparse.Namespace(
         machine=meta.get("machine", "Unknown"),

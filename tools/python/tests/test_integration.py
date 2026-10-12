@@ -242,3 +242,27 @@ class TestCmdReclean:
         args = argparse.Namespace(session_dir=str(sd))
         rc = cmd_reclean(args)
         assert rc == 1
+
+    def test_reclean_malformed_json_returns_1(self, tmp_path):
+        # A corrupted metadata.json must not raise an unhandled
+        # exception; cmd_reclean returns 1 with a short error message.
+        sd = tmp_path / "FakeBox-20261012T000000Z"
+        sd.mkdir()
+        _write_raw(sd, "$ whoami\nroot\n")
+        (sd / "metadata.json").write_text("{ not json", encoding="utf-8")
+
+        args = argparse.Namespace(session_dir=str(sd))
+        rc = cmd_reclean(args)
+        assert rc == 1
+
+    def test_reclean_non_object_json_returns_1(self, tmp_path):
+        # Valid JSON that is not an object (list, string, number) must
+        # not reach meta.get(...) and crash with AttributeError.
+        sd = tmp_path / "FakeBox-20261012T000000Z"
+        sd.mkdir()
+        _write_raw(sd, "$ whoami\nroot\n")
+        (sd / "metadata.json").write_text("[1, 2, 3]", encoding="utf-8")
+
+        args = argparse.Namespace(session_dir=str(sd))
+        rc = cmd_reclean(args)
+        assert rc == 1
