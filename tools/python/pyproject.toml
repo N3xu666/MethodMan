@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "methodman-session-report"
+version = "0.6.0"
+description = "Linux terminal session recorder that produces a MethodMan walkthrough draft"
+readme = "Session_Report.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "N3xu666", email = "huseynovirshad@gmail.com" }]
+keywords = [
+    "pentest",
+    "oscp",
+    "hackthebox",
+    "walkthrough",
+    "session-recorder",
+    "script",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: System :: Logging",
+]
+
+[project.urls]
+Homepage = "https://github.com/N3xu666/MethodMan"
+Repository = "https://github.com/N3xu666/MethodMan"
+Issues = "https://github.com/N3xu666/MethodMan/issues"
+
+[project.scripts]
+session-report = "Session_Report:main"
+
+[tool.setuptools]
+py-modules = ["Session_Report"]
