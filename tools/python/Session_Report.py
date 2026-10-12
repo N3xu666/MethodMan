@@ -42,28 +42,22 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-TOOL_VERSION = "0.5.0"
+TOOL_VERSION = "0.5.2"
 SUPPORTED_LANGUAGES = ("en", "ru", "az")
 DEFAULT_OUTPUT_DIR = "sessions"
 DEFAULT_CLEAN_SHELL = "/bin/bash"
 
 # rc file for the clean subshell.
 # - PS1: short prompt, no colors, no multi-line.
-# - PROMPT_COMMAND: disable PTY echo on the first prompt (before the user
-#   can type anything), then unset itself. This removes the shell's
-#   "echo input" block from the transcript while still showing the user
-#   what they type on their terminal (stty -echo affects the PTY echo, not
-#   readline; bash still displays typed characters via readline).
-# - bind: disable bracketed paste (best-effort; not all shells honour it).
+# - PROMPT_COMMAND: disable PTY echo on the first prompt, then unset itself.
+# - bind: disable bracketed paste (best-effort).
 DEFAULT_CLEAN_RC = (
     "PS1='$ '\n"
     "PROMPT_COMMAND='stty -echo 2>/dev/null; unset PROMPT_COMMAND; "
     "bind \"set enable-bracketed-paste off\" 2>/dev/null'\n"
 )
 
-# Runtime-built triple-backtick fence (keeps this source file free of
-# literal triple-backtick sequences, which break Markdown rendering when
-# the source is displayed inside a fenced block).
+# Runtime-built triple-backtick fence.
 FENCE = chr(96) * 3
 
 ANSI_ESCAPE_RE = re.compile(
@@ -82,6 +76,9 @@ SCRIPT_BANNER_RE = re.compile(
     r"^Script (?:started on|done on|started, output file is|done, output file is) .*$",
     re.MULTILINE,
 )
+
+# Matches a bash/sh prompt line: "bash-5.3$ cmd", "$ cmd", "sh-5.2$ cmd".
+PROMPT_LINE_RE = re.compile(r"^(?:bash-\d+\.\d+|sh-\d+\.\d+)?\$ (?P<cmd>.*)$")
 
 
 AI_PROMPT_TEMPLATE = """\
@@ -220,27 +217,53 @@ def _strip_ansi(raw: str) -> str:
     return text
 
 
+def _drop_prompt_duplicates(lines: list[str]) -> list[str]:
+    """
+    Drop prompt lines whose command body also appears later as a plain line.
+
+    With PTY echo off and bracketed paste still on, bash sometimes writes
+    each command twice:
+
+        bash-5.3$ echo hello
+        echo hello          <- same command, no prompt
+        hello               <- real output
+
+    After ANSI stripping the duplicate survives. Rule: for each line
+    matching "<prompt>$ <cmd>", if a later line equals <cmd> (stripped),
+    drop the prompt line.
+    """
+    keep: list[str] = []
+    n = len(lines)
+    for i, line in enumerate(lines):
+        m = PROMPT_LINE_RE.match(line)
+        if not m:
+            keep.append(line)
+            continue
+
+        body = m.group("cmd").strip()
+        if not body:
+            keep.append(line)
+            continue
+
+        found_later = False
+        for j in range(i + 1, n):
+            if lines[j].strip() == body:
+                found_later = True
+                break
+
+        if not found_later:
+            keep.append(line)
+    return keep
+
+
 def _clean_heuristic(raw: str) -> str:
     """
     stdlib-only cleaner tailored for script(1) + clean bash subshell.
-
-    With PTY echo disabled via PROMPT_COMMAND, the raw stream consists of
-    per-command blocks:
-
-        ESC[?2004h<PROMPT> <CMD> CR
-        ESC[?2004l<OUTPUT> CR
-
-    After ANSI stripping and newline normalization, each command appears
-    once as "bash-5.3$ cmd" followed by its output. The cleaner:
-    1. strips ANSI escapes,
-    2. applies backspaces (to recover from typing mistakes),
-    3. normalizes line endings,
-    4. collapses whitespace-only lines,
-    5. collapses 3+ blank lines into 2.
     """
     text = _strip_ansi(raw)
     lines = text.split("\n")
     lines = ["" if ln.strip() == "" else ln.rstrip() for ln in lines]
+    lines = _drop_prompt_duplicates(lines)
     text = "\n".join(lines)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip() + "\n"
@@ -251,8 +274,7 @@ def clean_transcript(raw: str, use_pyte: bool = False) -> str:
     Clean a raw script(1) transcript.
 
     The `use_pyte` argument is accepted for backward compatibility but is
-    ignored: pyte does not handle script(1) streams correctly (the log has
-    no explicit cursor-positioning sequences).
+    ignored: pyte does not handle script(1) streams correctly.
     """
     if use_pyte:
         sys.stderr.write(
@@ -273,7 +295,6 @@ def build_session_dir(output_root: Path, machine: str) -> Path:
 def _resolve_shell(args: argparse.Namespace) -> tuple[str, str, str]:
     """
     Return (shell_description, shell_path, mode).
-
     mode is "clean" (default) or "raw" (--raw-shell).
     """
     if getattr(args, "raw_shell", False):
@@ -338,13 +359,6 @@ def append_transcript(draft_path: Path, cleaned: str) -> None:
 
 
 def _build_script_cmd(raw_path: Path, shell_path: str, mode: str) -> tuple[list[str], str | None]:
-    """
-    Return (argv, temp_rc_path_or_None).
-
-    Clean mode uses bash --noprofile --norc --rcfile <temp> to enforce a
-    minimal PS1 and disable PTY echo on the first prompt.
-    Raw mode uses the user's $SHELL with its own configs.
-    """
     temp_rc: str | None = None
 
     if mode == "clean" and shell_path.endswith("bash"):
@@ -418,10 +432,6 @@ def cmd_start(args: argparse.Namespace) -> int:
 
 
 def cmd_reclean(args: argparse.Namespace) -> int:
-    """
-    Rebuild walkthrough-draft.md from an existing raw.txt, without
-    re-recording.
-    """
     session_dir = Path(args.session_dir).expanduser().resolve()
     if not session_dir.is_dir():
         sys.stderr.write(f"ERROR: session directory not found: {session_dir}\n")
@@ -481,8 +491,7 @@ def build_parser() -> argparse.ArgumentParser:
     start.add_argument("--output", default=DEFAULT_OUTPUT_DIR,
                        help=f"Output root directory (default: {DEFAULT_OUTPUT_DIR}).")
     start.add_argument("--raw-shell", action="store_true",
-                       help="Record in your own $SHELL with its configs "
-                            "(transcript may contain prompt redraw artifacts).")
+                       help="Record in your own $SHELL with its configs.")
     start.set_defaults(func=cmd_start)
 
     reclean = sub.add_parser(
