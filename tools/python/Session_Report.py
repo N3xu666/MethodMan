@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Session_Report.py - Linux terminal session recorder for MethodMan.
 
@@ -42,7 +42,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-TOOL_VERSION = "0.5.2"
+TOOL_VERSION = "0.6.0"
 SUPPORTED_LANGUAGES = ("en", "ru", "az")
 DEFAULT_OUTPUT_DIR = "sessions"
 DEFAULT_CLEAN_SHELL = "/bin/bash"
@@ -217,9 +217,9 @@ def _strip_ansi(raw: str) -> str:
     return text
 
 
-def _drop_prompt_duplicates(lines: list[str]) -> list[str]:
+def _dedupe_command_echo(lines: list[str]) -> list[str]:
     """
-    Drop prompt lines whose command body also appears later as a plain line.
+    Remove plain-command echo lines that duplicate a prompt line.
 
     With PTY echo off and bracketed paste still on, bash sometimes writes
     each command twice:
@@ -228,31 +228,27 @@ def _drop_prompt_duplicates(lines: list[str]) -> list[str]:
         echo hello          <- same command, no prompt
         hello               <- real output
 
-    After ANSI stripping the duplicate survives. Rule: for each line
-    matching "<prompt>$ <cmd>", if a later line equals <cmd> (stripped),
-    drop the prompt line.
+    After ANSI stripping both command variants survive. Rule: keep the
+    prompt version, drop the plain version when the prompt version was
+    seen earlier in the transcript. This yields a uniform layout where
+    every command is prefixed by its prompt.
     """
+    seen_prompt: set[str] = set()
     keep: list[str] = []
-    n = len(lines)
-    for i, line in enumerate(lines):
+    for line in lines:
         m = PROMPT_LINE_RE.match(line)
-        if not m:
+        if m:
+            body = m.group("cmd").strip()
+            if body:
+                seen_prompt.add(body)
             keep.append(line)
             continue
 
-        body = m.group("cmd").strip()
-        if not body:
-            keep.append(line)
+        stripped = line.strip()
+        if stripped and stripped in seen_prompt:
+            # Drop the plain duplicate; the prompt version is already kept.
             continue
-
-        found_later = False
-        for j in range(i + 1, n):
-            if lines[j].strip() == body:
-                found_later = True
-                break
-
-        if not found_later:
-            keep.append(line)
+        keep.append(line)
     return keep
 
 
@@ -263,7 +259,7 @@ def _clean_heuristic(raw: str) -> str:
     text = _strip_ansi(raw)
     lines = text.split("\n")
     lines = ["" if ln.strip() == "" else ln.rstrip() for ln in lines]
-    lines = _drop_prompt_duplicates(lines)
+    lines = _dedupe_command_echo(lines)
     text = "\n".join(lines)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip() + "\n"
