@@ -186,12 +186,14 @@ Steps:
 3. **Line endings** normalized: `\r\n` and lone `\r` -> `\n`.
 4. **Whitespace-only lines** converted to empty lines, trailing
    whitespace stripped.
-5. **Prompt duplicates dropped.** Bash prints the full input block before
-   executing, so each command appears twice after ANSI stripping: once as
-   `bash-5.3$ cmd` and once as plain `cmd`. The cleaner drops the prompt
-   version when the plain version appears later.
-6. **Adjacent duplicate lines collapsed.**
-7. **Blank runs collapsed**: 3+ consecutive newlines -> 2.
+5. **Immediate prompt echo dropped.** Bash echoes the command before
+   executing, so a command may appear twice in a row after ANSI stripping:
+   once as `bash-5.3$ cmd` and once as plain `cmd`. The cleaner drops the
+   plain echo line only when it is the IMMEDIATE next line after its own
+   prompt. Real output that happens to equal an earlier command is kept
+   (this was a bug before v0.6.0: a session-wide dedupe dropped any line
+   matching an earlier command, including legitimate file contents).
+6. **Blank runs collapsed**: 3+ consecutive newlines -> 2.
 
 Result: a readable transcript with commands and their real output, no
 shell prompt noise.
@@ -363,9 +365,15 @@ it is not implemented in the current version.
 
 ## Tests
 
-CI runs `python -m py_compile tools/python/Session_Report.py` to catch
-syntax errors. Full functional tests require a Linux environment and are
-not part of the CI matrix.
+CI runs two jobs for this tool:
+
+- `tools-syntax` (ubuntu-latest): `python -m py_compile` on every `.py`
+  file under `tools/` to catch syntax errors.
+- `tools-tests` (ubuntu-latest): the pytest suite in
+  `tools/python/tests/` (40 tests covering the cleaner, `script` command
+  construction, and edge cases), plus a pip-install smoke test of the
+  `methodman-session-report` package (`pip install ./tools/python` +
+  `session-report --version`).
 
 To run a smoke test locally on Linux:
 
