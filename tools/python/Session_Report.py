@@ -193,19 +193,23 @@ def check_platform() -> None:
 
 def _apply_backspaces(text: str) -> str:
     """
-    Simulate backspace: '\\x08' removes the preceding character.
+    Simulate backspace: '\\x08' removes the preceding character on the
+    current line. A backspace at the start of a line (or right after a
+    newline) is ignored, matching terminal behaviour.
 
-    Iterate until stable: '\\b\\b' removes two chars, and a backspace may
-    reveal another backspace that was hidden behind it.
+    Implemented as a single-pass stack algorithm. A regex-based approach
+    is incorrect here because overlapping patterns consume backspace
+    characters before they can cancel the letters they were meant for.
     """
-    prev = None
-    while prev != text:
-        prev = text
-        # Non-newline char followed by backspace -> drop both.
-        text = re.sub(r"[^\n]\x08", "", text)
-        # Leading backspace on a line -> drop it.
-        text = re.sub(r"^\x08+", "", text, flags=re.MULTILINE)
-    return text
+    out: list[str] = []
+    for ch in text:
+        if ch == "\x08":
+            if out and out[-1] != "\n":
+                out.pop()
+            # else: ignore backspace at line start
+        else:
+            out.append(ch)
+    return "".join(out)
 
 
 def _strip_ansi(raw: str) -> str:
