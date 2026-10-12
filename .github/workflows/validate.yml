@@ -145,3 +145,30 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_CONFIG: .gitleaks.toml
+  audit:
+    name: Run audit.ps1 (informational)
+    runs-on: windows-latest
+    # NON-BLOCKING. Deepest check layer (21 sections), informational only.
+    # Local-state checks skipped via -SkipLocalChecks.
+    continue-on-error: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Create placeholder masking-dict.ps1
+        shell: pwsh
+        run: |
+          $placeholder = @('# CI placeholder - no real secrets', '$maskingDict = @{}')
+          $p = Join-Path (Get-Location) 'masking-dict.ps1'
+          $u = New-Object System.Text.UTF8Encoding($true)
+          [System.IO.File]::WriteAllLines($p, $placeholder, $u)
+          Write-Host 'Placeholder masking-dict.ps1 created.'
+
+      - name: Run audit.ps1
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+          .\audit.ps1 -SkipLocalChecks
