@@ -36,7 +36,13 @@ MethodMan/
 |       |   +-- 02 En/
 |       |   +-- 03 Ru/
 |       +-- 02 Windows/
+|       |   +-- 01 Az/
+|       |   +-- 02 En/
+|       |   +-- 03 Ru/
 |       +-- 03 Active Directory and Networks/
+|           +-- 01 Az/
+|           +-- 02 En/
+|           +-- 03 Ru/
 +-- 02 Web/                # web app testing cheatsheet (English only)
 |   +-- 01 Recon/
 |   +-- 02 Frameworks/
