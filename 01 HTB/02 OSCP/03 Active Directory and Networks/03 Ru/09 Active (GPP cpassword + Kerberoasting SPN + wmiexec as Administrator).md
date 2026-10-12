@@ -299,6 +299,9 @@ gpp-decrypt '<GPP_CPASSWORD>'
 
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 Получены учётные данные: `active.htb\SVC_TGS : <PASSWORD>`.
 
 ---
@@ -415,6 +418,9 @@ Progress.........: 10543104/14344385 (73.50%)
 
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 Получены учётные данные: `active.htb\Administrator : <PASSWORD>`.
 
 Аккаунт - Domain Admin. Impacket `wmiexec.py` даёт полуинтерактивный shell через WMI/SMB:
@@ -446,6 +452,9 @@ C:\>type C:\Users\Administrator\Desktop\root.txt
 <ROOT_FLAG>
 
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 

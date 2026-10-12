@@ -199,6 +199,9 @@ gpp-decrypt '<GPP_CPASSWORD>'
 <PASSWORD>
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 Credentials recovered: `active.htb\SVC_TGS : <PASSWORD>`.
 
 ---
@@ -285,6 +288,9 @@ Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
 Progress.........: 10543104/14344385 (73.50%)
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 Credentials recovered: `active.htb\Administrator : <PASSWORD>`.
 
 The account is a Domain Admin. Impacket's wmiexec.py gives a semi-interactive shell over WMI/SMB:
@@ -307,6 +313,9 @@ active\administrator
 C:\>type C:\Users\Administrator\Desktop\root.txt
 <ROOT_FLAG>
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 

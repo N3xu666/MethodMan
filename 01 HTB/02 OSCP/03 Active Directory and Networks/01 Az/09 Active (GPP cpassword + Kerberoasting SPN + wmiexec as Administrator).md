@@ -299,6 +299,9 @@ gpp-decrypt '<GPP_CPASSWORD>'
 
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 Kredlər əldə edildi: `active.htb\SVC_TGS : <PASSWORD>`.
 
 ---
@@ -415,6 +418,9 @@ Progress.........: 10543104/14344385 (73.50%)
 
 ```
 
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
+
 Kredlər əldə edildi: `active.htb\Administrator : <PASSWORD>`.
 
 Hesab Domain Admin-dir. Impacket `wmiexec.py` WMI/SMB üzərindən yarıinteraktiv shell verir:
@@ -446,6 +452,9 @@ C:\>type C:\Users\Administrator\Desktop\root.txt
 <ROOT_FLAG>
 
 ```
+
+> [!IMPORTANT]
+> OSCP report: take a screenshot of this step (command + output + timestamp).
 
 ---
 
