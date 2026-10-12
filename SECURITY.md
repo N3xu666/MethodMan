@@ -94,7 +94,3 @@ No bug bounty is offered. Credit will be given in the advisory if desired.
 - Hack The Box platform itself (report to HTB support)
 - Third-party tools mentioned in walkthroughs (report to their maintainers)
 - The author's personal machine or local environment
-
----
-
-*Last updated: 2026-10-09*
