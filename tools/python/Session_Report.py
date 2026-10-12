@@ -10,12 +10,9 @@ No keylogger. No /dev/input/event*. Only script(1) from util-linux.
 Authorized use only. See ../../SECURITY.md.
 
 By default the session runs in a clean `bash --noprofile --norc` subshell
-with a short PS1='$ '. This removes the shell prompt redraw noise that
-zsh/fish/oh-my-zsh/powerlevel10k emit on every keystroke. Pass
-`--raw-shell` to record inside your own $SHELL instead.
-
-Cleanup is a stdlib-only heuristic tailored for script(1) output. See
-_clean_heuristic for details.
+with PTY echo disabled (via PROMPT_COMMAND). This produces a clean
+transcript regardless of the user's own shell (zsh, fish, oh-my-zsh,
+powerlevel10k). Pass `--raw-shell` to record inside your own $SHELL instead.
 
 Usage:
     python Session_Report.py start --machine <name> [--target <ip>]
@@ -45,11 +42,24 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-TOOL_VERSION = "0.4.0"
+TOOL_VERSION = "0.5.0"
 SUPPORTED_LANGUAGES = ("en", "ru", "az")
 DEFAULT_OUTPUT_DIR = "sessions"
 DEFAULT_CLEAN_SHELL = "/bin/bash"
-DEFAULT_CLEAN_RC = "# Session_Report.py clean rc\nPS1='$ '\nunset PROMPT_COMMAND\nbind 'set enable-bracketed-paste off' 2>/dev/null || true\n"
+
+# rc file for the clean subshell.
+# - PS1: short prompt, no colors, no multi-line.
+# - PROMPT_COMMAND: disable PTY echo on the first prompt (before the user
+#   can type anything), then unset itself. This removes the shell's
+#   "echo input" block from the transcript while still showing the user
+#   what they type on their terminal (stty -echo affects the PTY echo, not
+#   readline; bash still displays typed characters via readline).
+# - bind: disable bracketed paste (best-effort; not all shells honour it).
+DEFAULT_CLEAN_RC = (
+    "PS1='$ '\n"
+    "PROMPT_COMMAND='stty -echo 2>/dev/null; unset PROMPT_COMMAND; "
+    "bind \"set enable-bracketed-paste off\" 2>/dev/null'\n"
+)
 
 # Runtime-built triple-backtick fence (keeps this source file free of
 # literal triple-backtick sequences, which break Markdown rendering when
@@ -72,9 +82,6 @@ SCRIPT_BANNER_RE = re.compile(
     r"^Script (?:started on|done on|started, output file is|done, output file is) .*$",
     re.MULTILINE,
 )
-
-# Matches a bash/sh prompt line: "bash-5.3$ cmd" or "$ cmd" or "sh-5.2$ cmd".
-PROMPT_LINE_RE = re.compile(r"^(?:bash-\d+\.\d+|sh-\d+\.\d+)?\$ (?P<cmd>.*)$")
 
 
 AI_PROMPT_TEMPLATE = """\
@@ -184,106 +191,52 @@ def check_platform() -> None:
         sys.exit(2)
 
 
+def _apply_backspaces(text: str) -> str:
+    """
+    Simulate backspace: '\\x08' removes the preceding character.
+
+    Iterate until stable: '\\b\\b' removes two chars, and a backspace may
+    reveal another backspace that was hidden behind it.
+    """
+    prev = None
+    while prev != text:
+        prev = text
+        # Non-newline char followed by backspace -> drop both.
+        text = re.sub(r"[^\n]\x08", "", text)
+        # Leading backspace on a line -> drop it.
+        text = re.sub(r"^\x08+", "", text, flags=re.MULTILINE)
+    return text
+
+
 def _strip_ansi(raw: str) -> str:
     text = ANSI_ESCAPE_RE.sub("", raw)
     text = SCRIPT_BANNER_RE.sub("", text)
     text = text.replace("\r\n", "\n").replace("\r", "\n")
+    text = _apply_backspaces(text)
     return text
-
-
-def _drop_prompt_duplicates(lines: list[str]) -> list[str]:
-    """
-    Remove prompt lines whose command body appears later in the transcript.
-
-    Bash in bracketed-paste mode (and even in plain mode) prints the whole
-    input block first, then executes the commands. After ANSI stripping the
-    transcript looks like:
-
-        bash-5.3$ echo hello
-        bash-5.3$ ls -la
-        echo hello           <- echoed again by the shell/PTY
-        ls -la               <- echoed again
-        hello                <- real output
-        total 0
-        ...
-
-    Rule: a line matching "<prompt>$ <cmd>" is dropped if <cmd> (stripped)
-    appears as a standalone line somewhere later in the file. We keep the
-    LAST occurrence.
-    """
-    # For each prompt line, check if the body appears later as a non-prompt line.
-    keep: list[str] = []
-    n = len(lines)
-    for i, line in enumerate(lines):
-        m = PROMPT_LINE_RE.match(line)
-        if not m:
-            keep.append(line)
-            continue
-
-        body = m.group("cmd").strip()
-        if not body:
-            keep.append(line)
-            continue
-
-        # Search forward for a line equal to the body.
-        found_later = False
-        for j in range(i + 1, n):
-            if lines[j].strip() == body:
-                found_later = True
-                break
-
-        if found_later:
-            # Drop this prompt line - the body appears later.
-            continue
-        keep.append(line)
-    return keep
-
-
-def _collapse_consecutive_duplicates(lines: list[str]) -> list[str]:
-    """
-    Drop adjacent duplicate non-empty lines. Handles the common case where
-    a command appears both in the "input echo block" and in the "output
-    block" as a literal (e.g. `echo hello` also emits `hello`, but `ls`
-    does not - so only the command line itself gets deduplicated).
-
-    Two adjacent non-empty lines are considered duplicates if they are
-    byte-identical after rstrip. This is deliberately conservative: any
-    real duplicate output (like two identical lines from `ls`) is preserved
-    only if separated by a non-duplicate line.
-    """
-    out: list[str] = []
-    for line in lines:
-        if out and line and out[-1] == line:
-            continue
-        out.append(line)
-    return out
 
 
 def _clean_heuristic(raw: str) -> str:
     """
-    stdlib-only cleaner tailored for script(1) + clean bash.
+    stdlib-only cleaner tailored for script(1) + clean bash subshell.
 
-    Steps:
-    1. Strip ANSI escape sequences and script(1) banner.
-    2. Normalize \\r\\n and \\r to \\n.
-    3. Split into lines.
-    4. Convert whitespace-only lines to empty.
-    5. Drop prompt lines whose command body appears later (bash input-echo block).
-    6. Collapse adjacent duplicates.
-    7. Collapse blank runs.
+    With PTY echo disabled via PROMPT_COMMAND, the raw stream consists of
+    per-command blocks:
+
+        ESC[?2004h<PROMPT> <CMD> CR
+        ESC[?2004l<OUTPUT> CR
+
+    After ANSI stripping and newline normalization, each command appears
+    once as "bash-5.3$ cmd" followed by its output. The cleaner:
+    1. strips ANSI escapes,
+    2. applies backspaces (to recover from typing mistakes),
+    3. normalizes line endings,
+    4. collapses whitespace-only lines,
+    5. collapses 3+ blank lines into 2.
     """
     text = _strip_ansi(raw)
     lines = text.split("\n")
-
-    # Whitespace-only -> empty.
     lines = ["" if ln.strip() == "" else ln.rstrip() for ln in lines]
-
-    # Drop prompt lines whose body is echoed later.
-    lines = _drop_prompt_duplicates(lines)
-
-    # Collapse adjacent duplicate non-empty lines.
-    lines = _collapse_consecutive_duplicates(lines)
-
     text = "\n".join(lines)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip() + "\n"
@@ -294,14 +247,13 @@ def clean_transcript(raw: str, use_pyte: bool = False) -> str:
     Clean a raw script(1) transcript.
 
     The `use_pyte` argument is accepted for backward compatibility but is
-    no longer recommended: pyte does not handle script(1) streams correctly
-    (no explicit cursor-positioning in the log). It is ignored by default.
+    ignored: pyte does not handle script(1) streams correctly (the log has
+    no explicit cursor-positioning sequences).
     """
     if use_pyte:
         sys.stderr.write(
-            "WARN: --use-pyte is deprecated. pyte does not handle script(1) "
-            "streams correctly.\n"
-            "      Using the built-in heuristic cleaner instead.\n"
+            "WARN: --use-pyte is deprecated and ignored. "
+            "The built-in heuristic cleaner is used.\n"
         )
     return _clean_heuristic(raw)
 
@@ -386,7 +338,7 @@ def _build_script_cmd(raw_path: Path, shell_path: str, mode: str) -> tuple[list[
     Return (argv, temp_rc_path_or_None).
 
     Clean mode uses bash --noprofile --norc --rcfile <temp> to enforce a
-    minimal PS1 and disable bracketed paste.
+    minimal PS1 and disable PTY echo on the first prompt.
     Raw mode uses the user's $SHELL with its own configs.
     """
     temp_rc: str | None = None
