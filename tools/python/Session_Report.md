@@ -370,7 +370,7 @@ CI runs two jobs for this tool:
 - `tools-syntax` (ubuntu-latest): `python -m py_compile` on every `.py`
   file under `tools/` to catch syntax errors.
 - `tools-tests` (ubuntu-latest): the pytest suite in
-  `tools/python/tests/` (53 tests across three files: `test_cleaner.py`
+  `tools/python/tests/` (three files: `test_cleaner.py`
   for the transcript cleaner, `test_script_cmd.py` for shell-quoting and
   command construction, `test_integration.py` for `cmd_start` (with
   `subprocess.run` mocked) and `cmd_reclean` end-to-end), plus a
