@@ -5,6 +5,9 @@
 #   1. mask.ps1 replaces all 15 fake secrets with correct placeholders.
 #   2. mask.ps1 inserts [!NOTE] right after Attack Chain.
 #   3. mask.ps1 is idempotent (second run does not change output).
+#   4. check.ps1 detects a dict leak (positive).
+#   5. check.ps1 passes on a clean file (negative).
+#   6. check.ps1 heuristic flags ALL-CAPS secrets (regression for pass 68a.5).
 #
 # Usage:
 #   .\tests\run-tests.ps1
@@ -176,6 +179,44 @@ try {
         Write-Pass "check.ps1 passed on clean file (exit=0)"
     } else {
         Write-Fail "check.ps1 failed on clean file (exit=$exitClean)"
+    }
+
+    # --- Test 6: heuristic flags ALL-CAPS secrets (pass 68a.5 regression) ---
+    Write-Section "Test 6: heuristic flags ALL-CAPS secrets"
+
+    # Read the ALL-CAPS guard straight from check.ps1 so this test cannot
+    # drift from the implementation. History: the guard was ^[A-Z_]{3,}$
+    # (matched SECRETPASS, MYTOKEN, ADMINPW -> silenced real passwords).
+    # Fixed in pass 68a.5 to ^[A-Z_]{3,5}$ (only short env-var style names).
+    $checkSrc = [System.IO.File]::ReadAllText((Join-Path $repo "check.ps1"), [System.Text.Encoding]::UTF8)
+    $capsMatch = [regex]::Match($checkSrc, "\$val -match '(\^\[A-Z_\]\{3,5\}\$)'")
+    if (-not $capsMatch.Success) {
+        Write-Fail "could not find ALL-CAPS guard (^[A-Z_]{3,5}$) in check.ps1"
+    } else {
+        $capsRule = $capsMatch.Groups[1].Value
+        $cases = @(
+            @{ V = "SECRETPASS";       Flag = $true  }
+            @{ V = "MYTOKEN";          Flag = $true  }
+            @{ V = "ADMINPW";          Flag = $true  }
+            @{ V = "PASSWORD_ABC123";  Flag = $true  }
+            @{ V = "PATH";             Flag = $false }
+            @{ V = "HOME";             Flag = $false }
+            @{ V = "DEBUG";            Flag = $false }
+        )
+        $capsFail = 0
+        foreach ($tc in $cases) {
+            $isSkipped = $tc.V -match $capsRule
+            $flagged = -not $isSkipped
+            if ($flagged -ne $tc.Flag) {
+                Write-Host "    value=$($tc.V) expected_flagged=$($tc.Flag) actual_flagged=$flagged" -ForegroundColor Red
+                $capsFail++
+            }
+        }
+        if ($capsFail -eq 0) {
+            Write-Pass "ALL-CAPS guard flags secrets, skips env vars (7 cases)"
+        } else {
+            Write-Fail "$capsFail of 7 ALL-CAPS guard cases failed"
+        }
     }
 
 } finally {
