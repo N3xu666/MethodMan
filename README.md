@@ -8,8 +8,7 @@
 
 ![MethodMan - trilingual HTB writeups, web application security reference, methodology and tools](./social-preview.png)
 
-New machines and platforms will be added as they are completed,  
-while methodologies and cheatsheets are updated regularly.
+New HTB machines are added as they are completed (retired only - see the stub scheme below for active machines). Reference material grows in parallel: the Web Application Security Reference (`APPLICATIONS/`), methodology notes, cheatsheets, and custom tooling (`tools/`).
 
 Writeups available in Az/En/Ru. Currently: **16 published (retired) + 3 active stubs** = **19 completed machines**.
 
@@ -44,7 +43,7 @@ MethodMan/
 |               +-- 01 Az/
 |               +-- 02 En/
 |               +-- 03 Ru/
-+-- APPLICATIONS/            # web application security reference
++-- APPLICATIONS/            # application security reference
 |   +-- 01 Web/
 |       +-- 01 Recon/
 |       +-- 02 Frameworks/
@@ -52,7 +51,12 @@ MethodMan/
 |       +-- 04 Servers/
 |       +-- 05 CMS/
 |       +-- 06 Technologies/
+|       |   +-- Databases/
 |       +-- 07 Vulnerabilities/
+|       +-- 08 OWASP Top 10/
++-- methodology/             # OSCP reporting rules and notes
++-- tools/                   # custom pentest tools (Python, Go, Bash)
++-- tests/                   # test runner + fixtures for mask.ps1 / check.ps1
 ```
 
 ---
@@ -64,7 +68,8 @@ MethodMan/
 | [HTB / Season 12 Aero](./WRITEUPS/01%20Hack%20The%20Box/01%20All%20Machines/01%20Season%2012%20%28Aero%2C%20Sep%20-%20Nov%202026%29/) | Special HTB season, Sep - Nov 2026 | [Az](./WRITEUPS/01%20Hack%20The%20Box/01%20All%20Machines/01%20Season%2012%20%28Aero%2C%20Sep%20-%20Nov%202026%29/01%20Az/) | [En](./WRITEUPS/01%20Hack%20The%20Box/01%20All%20Machines/01%20Season%2012%20%28Aero%2C%20Sep%20-%20Nov%202026%29/02%20En/) | [Ru](./WRITEUPS/01%20Hack%20The%20Box/01%20All%20Machines/01%20Season%2012%20%28Aero%2C%20Sep%20-%20Nov%202026%29/03%20Ru/) |
 | [HTB / OSCP / Linux](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/01%20Linux/) | Linux machines for OSCP prep | [Az](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/01%20Linux/01%20Az/) | [En](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/01%20Linux/02%20En/) | [Ru](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/01%20Linux/03%20Ru/) |
 | [HTB / OSCP / Windows](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/02%20Windows/) | Windows machines for OSCP prep | [Az](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/02%20Windows/01%20Az/) | [En](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/02%20Windows/02%20En/) | [Ru](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/02%20Windows/03%20Ru/) |
-| [HTB / OSCP / Active Directory and Networks](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/03%20Active%20Directory%20and%20Networks/) | AD and networks | - | - | - |
+| [HTB / OSCP / Active Directory and Networks](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/03%20Active%20Directory%20and%20Networks/) | AD and networks | [Az](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/03%20Active%20Directory%20and%20Networks/01%20Az/) | [En](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/03%20Active%20Directory%20and%20Networks/02%20En/) | [Ru](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/03%20Active%20Directory%20and%20Networks/03%20Ru/) |
+| [Web Application Security Reference](./APPLICATIONS/01%20Web/) | Stack-organized web testing reference (recon, frameworks, languages, servers, CMS, technologies, vulnerabilities, OWASP Top 10) | - | [En](./APPLICATIONS/01%20Web/) | - |
 
 ### Other Resources
 
@@ -72,7 +77,7 @@ Reference material and tooling, independent of any single HTB machine:
 
 | Resource | Description |
 |----------|-------------|
-| [Web Application Security Reference](./APPLICATIONS/01%20Web/) | Stack-organized web testing reference (recon, frameworks, languages, servers, CMS, technologies, vulnerabilities). 59 files. |
+| [Web Application Security Reference](./APPLICATIONS/01%20Web/) | Stack-organized web testing reference (recon, frameworks, languages, servers, CMS, technologies, vulnerabilities, OWASP Top 10). 65 files. |
 | [METHODOLOGY.md](./METHODOLOGY.md) | Engagement phases, intensity profiles, checklists. |
 | [CHEATSHEET.md](./CHEATSHEET.md) | Quick command reference for common tools and techniques. |
 | [methodology/OSCP-Reporting.md](./methodology/OSCP-Reporting.md) | OSCP exam reporting rules (evidence, screenshots, structure). |
@@ -119,8 +124,9 @@ The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known se
 - **`01 Az/`** - Azerbaijani writeups.
 - **`02 En/`** - English writeups.
 - **`03 Ru/`** - Russian writeups.
-- Each writeup follows a unified structure: Attack Chain -> Machine Briefing -> Recon -> Foothold -> Lateral Movement -> Privilege Escalation -> Flags -> Key Takeaways.
+- Each writeup follows a unified structure: Attack Chain (tree) -> Machine Briefing -> Reconnaissance -> Foothold -> [Authenticated Enumeration (AD only)] -> [Exploitation] -> Lateral Movement -> Privilege Escalation -> Flags -> Key Takeaways. Exploitation sections carry a CVE reference (NVD/MITRE link or "No CVE"); key commands show expected output; OSCP machines include screenshot reminders (`> [!IMPORTANT]`).
 - All sensitive data (flags, passwords, hashes) is masked.
+- Machines still active on HTB are represented by **stubs** (`Status: Completed`, neutral filename). Full writeups are published after retirement.
 
 ---
 
@@ -128,7 +134,7 @@ The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known se
 
 This repository uses a **dual-license model**:
 
-- **Documentation** (walkthroughs, `02 Web/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
+- **Documentation** (walkthroughs, `APPLICATIONS/01 Web/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
 - **Source code** (`.py`, `.go`, `.sh`, `.ps1`, `.yml`) - MIT License, applies to `tools/` and to the root scripts (`check.ps1`, `mask.ps1`, `audit.ps1`, `tests/run-tests.ps1`). Full text: [tools/LICENSE](./tools/LICENSE).
 
 See [LICENSE](./LICENSE) for the full text and the file-type rules.
