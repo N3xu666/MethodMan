@@ -4,7 +4,7 @@
 > Use this to narrow down the stack before sending a single HTTP request.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -325,7 +325,7 @@ See [Fingerprinting.md](./Fingerprinting.md) §7 for stack-specific debug pages.
 > - Screenshot the specific port + banner only if it is part of the foothold
 >   or privesc chain.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

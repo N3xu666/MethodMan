@@ -4,7 +4,7 @@
 > environments, and forgotten services that share the same infrastructure.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -433,7 +433,7 @@ Each discovered subdomain / vhost becomes a new target.
 > Adding entries to `/etc/hosts` is exam-standard and does not require a
 > screenshot unless it directly leads to a foothold.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

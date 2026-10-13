@@ -4,7 +4,7 @@
 > or URL that the attacker controls. Often leads to source disclosure, then RCE.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -455,7 +455,7 @@ ffuf -u 'http://target/?file=FUZZ' -w /usr/share/seclists/Fuzzing/LFI/LFI-Jhaddi
 > LFI -> RCE chain is a common foothold. Always attempt: (1) log poisoning,
 > (2) php://input or data:// if allow_url_include=On, (3) session file poisoning.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

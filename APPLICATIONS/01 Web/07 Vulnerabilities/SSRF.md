@@ -4,7 +4,7 @@
 > protocol requests to a destination the attacker controls.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -414,7 +414,7 @@ interactsh-client
 >   used for lateral movement or privesc.
 > - Screenshot the final RCE (webshell, Groovy console, etc.).
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

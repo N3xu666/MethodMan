@@ -275,5 +275,5 @@ mentioned in the SSRF file; a consolidated AppSec section is not written.
 
 - [2021-vs-2025.md](./2021-vs-2025.md) - what changed between the two revisions.
 - [02 Web/README.md](../README.md) - top-level navigation for the whole section.
-- [METHODOLOGY.md](../../METHODOLOGY.md) - methodology reference.
-- [CHEATSHEET.md](../../CHEATSHEET.md) - command cheat sheet.
+- [METHODOLOGY.md](../../../METHODOLOGY.md) - methodology reference.
+- [CHEATSHEET.md](../../../CHEATSHEET.md) - command cheat sheet.

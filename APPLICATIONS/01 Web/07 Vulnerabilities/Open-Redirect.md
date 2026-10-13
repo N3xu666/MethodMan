@@ -5,7 +5,7 @@
 > token theft.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -232,7 +232,7 @@ See section 5.5 (open redirect on allowed domain -> external).
 >
 > Open redirect alone is a low-severity finding. Only matters in a chain.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

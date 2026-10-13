@@ -4,7 +4,7 @@
 > entities, leading to file read, SSRF, or denial of service.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -376,7 +376,7 @@ interactsh-client
 > XXE file read alone is a finding. XXE -> credentials -> foothold is the
 > usual exam chain.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

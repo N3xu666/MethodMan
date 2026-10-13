@@ -5,7 +5,7 @@
 > MSSQL, Oracle, SQLite.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -617,7 +617,7 @@ For REST/JSON specifics, see [../06 Technologies/REST.md](../06%20Technologies/R
 > - Screenshot the final credential / flag extracted.
 > - Screenshot any RCE (`--os-shell`, `--file-write`) proving the foothold.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

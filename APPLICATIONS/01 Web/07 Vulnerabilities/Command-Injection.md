@@ -4,7 +4,7 @@
 > (system, exec, popen, Runtime.exec, Process.Start).
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -355,7 +355,7 @@ commix --url='http://target/api' --data='host=127.0.0.1' --batch
 >
 > Command injection is a strong foothold proof. Capture request and response.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

@@ -4,7 +4,7 @@
 > Reflected, stored, DOM-based. Includes CSP and WAF context.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -469,7 +469,7 @@ python3 xsstrike.py -u http://target/?q=test
 > - Screenshot the stolen cookie or session (redacted where needed).
 > - If XSS leads to admin takeover: screenshot the admin panel accessed with the stolen session.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

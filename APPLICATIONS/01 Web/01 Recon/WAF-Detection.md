@@ -4,7 +4,7 @@
 > changes your entire approach to exploitation.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -311,7 +311,7 @@ curl -s "http://target/?q=UnIoN%20SeLeCt%201,2,3"
 > OSCP report: screenshot `wafw00f` output only if the WAF affected your
 > exploitation path (i.e. you had to bypass). Otherwise summarize in text.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

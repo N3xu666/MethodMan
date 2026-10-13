@@ -4,7 +4,7 @@
 > (Jinja2, Twig, Freemarker, ERB, etc.). Often leads to RCE.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -365,7 +365,7 @@ python2 tplmap.py -u 'http://target/hello?name=INJECT'
 > SSTI to RCE is a strong foothold proof. Show the chain: probe -> engine
 > -> RCE -> shell.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

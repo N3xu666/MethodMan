@@ -4,7 +4,7 @@
 > deserialization function that instantiates objects, leading to RCE.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -371,7 +371,7 @@ ysoserial.exe -g ObjectDataProvider -f Json.Net -c 'calc.exe'
 > Deserialization RCE is a direct foothold. Show the chain from the
 > encoded blob to the shell.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

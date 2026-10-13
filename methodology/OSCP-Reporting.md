@@ -94,7 +94,7 @@ Do NOT pad the report. Quality beats volume.
 
 ## 6. How This Maps to MethodMan Walkthroughs
 
-Walkthroughs in `01 HTB/02 OSCP/` carry an OSCP reporting note:
+Walkthroughs in `WRITEUPS/01 Hack The Box/02 OSCP/` carry an OSCP reporting note:
 
     > [!IMPORTANT]
     > OSCP report: take a screenshot of this step (command + output + timestamp).

