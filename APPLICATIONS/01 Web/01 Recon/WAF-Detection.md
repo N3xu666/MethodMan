@@ -238,7 +238,7 @@ In a lab (OSCP, HTB, PG) bypass attempts are fair game.
 3. **Vary encoding.** URL-encode, double-encode, unicode-encode, base64.
 4. **Vary case and whitespace.** `SeLeCt`, tabs instead of spaces, `+` vs `%20`.
 5. **Insert comments.** `SE/**/LECT`, `/*!50000SELECT*/` (MySQL version comment).
-6. **Use alternative payloads.** See [../07 Vulnerabilities/SQLi.md](../07%20Vulnerabilities/SQLi.md)
+6. **Use alternative payloads.** See [../08 Vulnerabilities/SQLi.md](../08%20Vulnerabilities/SQLi.md)
    for signature-free variants.
 7. **Adjust User-Agent.** Some WAFs block non-browser UAs at rule level.
 8. **Rate-limit.** `sqlmap --delay=1`, `--random-agent`.

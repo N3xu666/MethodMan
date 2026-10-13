@@ -11,7 +11,7 @@ verification) sides.
 
 | # | Category | Description | Status |
 |---|----------|-------------|--------|
-| 1 | [Web](./01%20Web/) | Web application security reference (recon, frameworks, languages, servers, CMS, technologies, vulnerabilities, OWASP Top 10) | active |
+| 1 | [Web](./01%20Web/) | Web application security reference (recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10) | active |
 | 2 | API (planned) | REST, GraphQL, gRPC, WebSocket, SOAP, OAuth2, rate limiting, API gateways, OWASP API Top 10 | planned |
 
 ## Format
@@ -35,9 +35,9 @@ APPLICATIONS/
 |   +-- 04 Servers/
 |   +-- 05 CMS/
 |   +-- 06 Technologies/
-|   |   +-- Databases/
-|   +-- 07 Vulnerabilities/
-|   +-- 08 OWASP Top 10/
+|   +-- 07 Databases/
+|   +-- 08 Vulnerabilities/
+|   +-- 09 OWASP Top 10/
 +-- 05 API/                      (planned)
     +-- 01 OWASP-API-Top-10.md
     +-- 02 REST.md

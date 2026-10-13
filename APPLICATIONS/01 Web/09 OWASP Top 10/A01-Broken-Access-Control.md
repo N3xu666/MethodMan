@@ -55,14 +55,14 @@ also the hardest to test automatically: a scanner cannot know what
 
 | Variant | Description | Where it lives |
 |---------|-------------|----------------|
-| IDOR | Direct object reference to another user's resource | `07 Vulnerabilities/IDOR.md` |
+| IDOR | Direct object reference to another user's resource | `08 Vulnerabilities/IDOR.md` |
 | Path Traversal | `../` to escape the intended directory | this file, section 3 |
 | Privilege Escalation | Horizontal (peer) or vertical (admin) | this file, section 4 |
 | CORS Misconfiguration | Overly permissive cross-origin policy | this file, section 5 |
 | Forced Browsing | Access to unlinked but reachable endpoints | this file, section 6 |
-| SSRF | Server fetches attacker-controlled URL | `07 Vulnerabilities/SSRF.md` + section 7 |
-| Open Redirect | Unvalidated redirect target | `07 Vulnerabilities/Open-Redirect.md` |
-| CSRF | Forged request from a trusted session | `07 Vulnerabilities/CSRF.md` |
+| SSRF | Server fetches attacker-controlled URL | `08 Vulnerabilities/SSRF.md` + section 7 |
+| Open Redirect | Unvalidated redirect target | `08 Vulnerabilities/Open-Redirect.md` |
+| CSRF | Forged request from a trusted session | `08 Vulnerabilities/CSRF.md` |
 
 ---
 
@@ -304,7 +304,7 @@ In OWASP Top 10:2021, SSRF is a separate category (A10). In the
 access control failure: the server performs requests outside its
 intended scope.
 
-**Full SSRF workflow:** see `07 Vulnerabilities/SSRF.md`.
+**Full SSRF workflow:** see `08 Vulnerabilities/SSRF.md`.
 
 ### Why it belongs to A01
 
@@ -628,9 +628,9 @@ Key patterns for OSCP:
 
 **Internal cross-references:**
 
-- [IDOR](../07%20Vulnerabilities/IDOR.md)
-- [SSRF](../07%20Vulnerabilities/SSRF.md)
-- [Open-Redirect](../07%20Vulnerabilities/Open-Redirect.md)
-- [CSRF](../07%20Vulnerabilities/CSRF.md)
+- [IDOR](../08%20Vulnerabilities/IDOR.md)
+- [SSRF](../08%20Vulnerabilities/SSRF.md)
+- [Open-Redirect](../08%20Vulnerabilities/Open-Redirect.md)
+- [CSRF](../08%20Vulnerabilities/CSRF.md)
 - [JWT](../06%20Technologies/JWT.md)
 - [OAuth](../06%20Technologies/OAuth.md)

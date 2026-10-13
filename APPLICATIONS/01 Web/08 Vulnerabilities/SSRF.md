@@ -222,7 +222,7 @@ gopherus --exploit mysql
 ```
 
 Full payloads for FastCGI, MySQL, SMTP, LDAP: see
-[../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md) (once published).
+[../07 Databases.md](../07%20Databases/README.md) (once published).
 
 ### 4.5 Cloud metadata (see section 6)
 
@@ -450,7 +450,7 @@ curl 'http://target/fetch?url=http://[::1]/'
 - Gopherus: https://github.com/tarunkant/Gopherus
 - interactsh: https://github.com/projectdiscovery/interactsh
 
-> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md), [../06 Technologies/REST.md](../06%20Technologies/REST.md)
+> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../07 Databases.md](../07%20Databases/README.md), [../06 Technologies/REST.md](../06%20Technologies/REST.md)
 
 ---
 

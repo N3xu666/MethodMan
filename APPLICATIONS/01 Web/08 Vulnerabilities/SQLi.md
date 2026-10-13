@@ -387,7 +387,7 @@ sqlmap -r req.txt --os-shell
 sqlmap -r req.txt --os-pwn
 ```
 
-> See also: [../06 Technologies/Databases/MySQL.md](../06%20Technologies/Databases/MySQL.md), [../06 Technologies/Databases/MSSQL.md](../06%20Technologies/Databases/MSSQL.md)
+> See also: [../07 Databases/MySQL.md](../07%20Databases/MySQL.md), [../07 Databases/MSSQL.md](../07%20Databases/MSSQL.md)
 
 ### 5.6 Techniques and risk level
 
@@ -424,7 +424,7 @@ sqlmap -r req.txt --technique=T
 ## 6. DB-Specific Notes
 
 Short SQLi-focused cheats per DB. Full details in
-[../06 Technologies/Databases/](../06%20Technologies/Databases/).
+[../07 Databases/](../07%20Databases/).
 
 ### 6.1 MySQL / MariaDB
 
@@ -543,7 +543,7 @@ SELECT sql FROM sqlite_master WHERE name='users';
 
 Comments: `--`, `/* */`.
 
-> See also: [../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md)
+> See also: [../07 Databases.md](../07%20Databases/README.md)
 
 ---
 
@@ -601,7 +601,7 @@ Places where SQLi shows up most often:
 - Cookies: `session=`, `uid=`, `role=`
 - HTTP headers: `User-Agent`, `Referer`, `X-Forwarded-For`, `X-Real-IP`
 - JSON body: `{"id":"1"}` -> sqlmap `-r req.txt` handles it
-- XML body: -> see [../06 Technologies/XXE.md](../07%20Vulnerabilities/XXE.md)
+- XML body: -> see [../06 Technologies/XXE.md](../08%20Vulnerabilities/XXE.md)
 
 For REST/JSON specifics, see [../06 Technologies/REST.md](../06%20Technologies/REST.md)
 (once published).
@@ -662,7 +662,7 @@ sqlmap -r req.txt --tamper=space2comment,randomcase --random-agent
 - sqlmap tamper scripts: https://github.com/sqlmapproject/sqlmap/wiki/Tamper-scripts
 - OWASP WSTG - SQLi: https://owasp.org/www-project-web-security-testing-guide/
 
-> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md), [../06 Technologies/REST.md](../06%20Technologies/REST.md)
+> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../07 Databases.md](../07%20Databases/README.md), [../06 Technologies/REST.md](../06%20Technologies/REST.md)
 
 ---
 

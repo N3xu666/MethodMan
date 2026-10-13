@@ -114,7 +114,7 @@ The `-sV` banner + `Server:` header together give you the stack.
 ## 4. Common Database Ports
 
 Exposed database ports = direct access target. Full exploitation in
-[../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md).
+[../07 Databases.md](../07%20Databases/README.md).
 
 | Port | Database | Notes |
 |------|----------|-------|
@@ -254,9 +254,9 @@ or `curl` often reveals default creds or unauthenticated access.
 
 | Port | Service | Web UI | Exploitation reference |
 |------|---------|--------|------------------------|
-| 7001 | Oracle WebLogic | `http://target:7001/console` | See `07 Vulnerabilities/Deserialization.md` |
+| 7001 | Oracle WebLogic | `http://target:7001/console` | See `08 Vulnerabilities/Deserialization.md` |
 | 8161 | ActiveMQ | `http://target:8161/admin` | Default `admin:admin` -> CVE-2016-3088 (fileserver RCE) |
-| 8888 | Jupyter Notebook | `http://target:8888` | No auth -> RCE via notebook (see `07 Vulnerabilities/Command-Injection.md` §Jupyter) |
+| 8888 | Jupyter Notebook | `http://target:8888` | No auth -> RCE via notebook (see `08 Vulnerabilities/Command-Injection.md` §Jupyter) |
 | 9000 | Portainer | `http://target:9000` | Admin panel; docker escape |
 | 9090 | Cockpit | `https://target:9090` | Linux systemd via web UI |
 | 9090 | Prometheus | `http://target:9090` | Info leak via `/metrics`, `/api/v1/targets` |
@@ -301,18 +301,18 @@ See [Fingerprinting.md](./Fingerprinting.md) §7 for stack-specific debug pages.
 | 80, 443 | Anything | [Fingerprinting.md](./Fingerprinting.md) |
 | 3000 | Node.js, Grafana, Next.js | [../02 Frameworks/Express.md](../02%20Frameworks/Express.md) |
 | 5000 | Flask, .NET Kestrel | [../02 Frameworks/Flask.md](../02%20Frameworks/Flask.md) |
-| 5601 | Kibana | `07 Vulnerabilities/` (CVE-2019-7609) |
+| 5601 | Kibana | `08 Vulnerabilities/` (CVE-2019-7609) |
 | 7001 | WebLogic | [../03 Languages/Java.md](../03%20Languages/Java.md) (deserialization) |
 | 8000 | Django, Python dev server | [../02 Frameworks/Django.md](../02%20Frameworks/Django.md) |
 | 8080 | Tomcat, Jenkins | [../04 Servers/Tomcat.md](../04%20Servers/Tomcat.md) |
-| 8161 | ActiveMQ | `07 Vulnerabilities/` (CVE-2016-3088) |
+| 8161 | ActiveMQ | `08 Vulnerabilities/` (CVE-2016-3088) |
 | 8443 | Tomcat HTTPS alt | [../04 Servers/Tomcat.md](../04%20Servers/Tomcat.md) |
-| 8888 | Jupyter | `07 Vulnerabilities/Command-Injection.md` §Jupyter |
+| 8888 | Jupyter | `08 Vulnerabilities/Command-Injection.md` §Jupyter |
 | 9000 | Portainer, PHP-FPM | [../03 Languages/PHP.md](../03%20Languages/PHP.md) |
 | 9090 | Cockpit, Prometheus | Info leak (no dedicated file yet) |
-| 9200 | Elasticsearch | [../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md) |
-| 15672 | RabbitMQ management | `07 Vulnerabilities/` (RCE via definitions) |
-| 3306 / 5432 / 1433 / 27017 / 6379 | MySQL / PostgreSQL / MSSQL / MongoDB / Redis | [../06 Technologies/Databases.md](../06%20Technologies/Databases/README.md) |
+| 9200 | Elasticsearch | [../07 Databases.md](../07%20Databases/README.md) |
+| 15672 | RabbitMQ management | `08 Vulnerabilities/` (RCE via definitions) |
+| 3306 / 5432 / 1433 / 27017 / 6379 | MySQL / PostgreSQL / MSSQL / MongoDB / Redis | [../07 Databases.md](../07%20Databases/README.md) |
 
 ---
 

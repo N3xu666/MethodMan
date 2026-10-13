@@ -157,7 +157,7 @@ Content-Type: application/json
 {"username": "admin", "password": {"$ne": null}}
 ```
 
-The `$ne` operator matches any non-null value, bypassing password checks. See [SQLi and NoSQLi](../../07 Vulnerabilities/SQLi.md) for details.
+The `$ne` operator matches any non-null value, bypassing password checks. See [SQLi and NoSQLi](../08 Vulnerabilities/SQLi.md) for details.
 
 ### 5.2 JavaScript execution via `$where`
 

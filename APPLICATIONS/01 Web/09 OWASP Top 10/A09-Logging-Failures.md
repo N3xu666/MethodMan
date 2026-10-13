@@ -789,9 +789,9 @@ Key patterns for OSCP:
 - [A06 - Vulnerable Components](./A06-Vulnerable-Components.md)
 - [2021-vs-2025.md](./2021-vs-2025.md)
 - [README.md](./README.md)
-- [07 Vulnerabilities/SSRF.md](../07%20Vulnerabilities/SSRF.md)
-- [07 Vulnerabilities/SQLi.md](../07%20Vulnerabilities/SQLi.md)
-- [07 Vulnerabilities/Command-Injection.md](../07%20Vulnerabilities/Command-Injection.md)
+- [08 Vulnerabilities/SSRF.md](../08%20Vulnerabilities/SSRF.md)
+- [08 Vulnerabilities/SQLi.md](../08%20Vulnerabilities/SQLi.md)
+- [08 Vulnerabilities/Command-Injection.md](../08%20Vulnerabilities/Command-Injection.md)
 
 ---
 

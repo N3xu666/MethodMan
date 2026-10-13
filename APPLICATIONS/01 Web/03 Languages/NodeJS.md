@@ -204,7 +204,7 @@ db.users.find({$where: "this.username == '" + input + "'"})
 // Payload: ' || '1'=='1
 ```
 
-See [MongoDB.md](../06 Technologies/Databases/MongoDB.md) for details.
+See [MongoDB.md](../07 Databases/MongoDB.md) for details.
 
 ### 4.6 Command injection
 

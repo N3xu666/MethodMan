@@ -1,7 +1,7 @@
 ﻿# Web Application Security Reference
 
 > Web application security reference organized by stack: frameworks,
-> languages, servers, CMS, databases, technologies, and vulnerabilities.
+> languages, servers, CMS, technologies, databases, vulnerabilities, and OWASP Top 10.
 > Covers detection, enumeration, exploitation patterns, and known CVEs
 > (with NVD/MITRE links). Commands are universal; English only.
 >
@@ -23,8 +23,9 @@
 - [04 Servers](#04-servers)
 - [05 CMS](#05-cms)
 - [06 Technologies](#06-technologies)
-- [07 Vulnerabilities](#07-vulnerabilities)
-- [08 OWASP Top 10](#08-owasp-top-10)
+- [07 Databases](#07-databases)
+- [08 Vulnerabilities](#08-vulnerabilities)
+- [09 OWASP Top 10](#09-owasp-top-10)
 - [Workflow](#workflow)
 
 ---
@@ -74,7 +75,7 @@ What do we see?
     +-- "JWT" in cookies         --> 06 Technologies/JWT.md
     +-- "OAuth" / "authorize"    --> 06 Technologies/OAuth.md
     +-- "/graphql" endpoint      --> 06 Technologies/GraphQL.md
-    +-- Database banner visible  --> 06 Technologies/Databases.md
+    +-- Database banner visible  --> 07 Databases/README.md
     +-- SSTI signature           --> 06 Technologies/SSTI.md
     |
     +-- Nothing obvious         --> 01 Recon/Fingerprinting.md
@@ -221,7 +222,6 @@ Protocols, auth, and cross-cutting technologies.
 
 | File | Focus |
 |------|-------|
-| [Databases.md](./06%20Technologies/Databases/README.md) | Detect and identify the DB engine |
 | [JWT.md](./06%20Technologies/JWT.md) | alg=none, kid injection, JWK, weak secret |
 | [OAuth.md](./06%20Technologies/OAuth.md) | redirect_uri, state, PKCE |
 | [GraphQL.md](./06%20Technologies/GraphQL.md) | introspection, batching, IDOR |
@@ -230,42 +230,45 @@ Protocols, auth, and cross-cutting technologies.
 | [SSTI.md](./06%20Technologies/SSTI.md) | Jinja2, Twig, Freemarker, ERB |
 | [Deserialization.md](./06%20Technologies/Deserialization.md) | PHP, Java, Python, .NET, Ruby |
 
-### Databases (deep dive)
+## 07 Databases
+
+Database engines, detection, and per-DB exploitation.
 
 | File | Engine |
 |------|--------|
-| [MySQL.md](./06%20Technologies/Databases/MySQL.md) | MySQL / MariaDB |
-| [PostgreSQL.md](./06%20Technologies/Databases/PostgreSQL.md) | PostgreSQL |
-| [MSSQL.md](./06%20Technologies/Databases/MSSQL.md) | Microsoft SQL Server |
-| [MongoDB.md](./06%20Technologies/Databases/MongoDB.md) | MongoDB |
-| [Redis.md](./06%20Technologies/Databases/Redis.md) | Redis |
-| [SQLite.md](./06%20Technologies/Databases/SQLite.md) | SQLite |
-| [Oracle.md](./06%20Technologies/Databases/Oracle.md) | Oracle DB |
+| [README.md](./07%20Databases/README.md) | Detection, enumeration, common misconfigurations |
+| [MySQL.md](./07%20Databases/MySQL.md) | MySQL / MariaDB |
+| [PostgreSQL.md](./07%20Databases/PostgreSQL.md) | PostgreSQL |
+| [MSSQL.md](./07%20Databases/MSSQL.md) | Microsoft SQL Server |
+| [MongoDB.md](./07%20Databases/MongoDB.md) | MongoDB |
+| [Redis.md](./07%20Databases/Redis.md) | Redis |
+| [SQLite.md](./07%20Databases/SQLite.md) | SQLite |
+| [Oracle.md](./07%20Databases/Oracle.md) | Oracle DB |
 
 ---
 
-## 07 Vulnerabilities
+## 08 Vulnerabilities
 
 Vulnerability classes with exploitation recipes.
 
 | File | Notes |
 |------|-------|
-| [SQLi.md](./07%20Vulnerabilities/SQLi.md) | Union, blind, time-based, error-based |
-| [XSS.md](./07%20Vulnerabilities/XSS.md) | Reflected, stored, DOM, CSP bypass |
-| [SSRF.md](./07%20Vulnerabilities/SSRF.md) | Cloud metadata, gopher, file:// |
-| [LFI-RFI.md](./07%20Vulnerabilities/LFI-RFI.md) | Wrappers, log poisoning |
-| [XXE.md](./07%20Vulnerabilities/XXE.md) | File read, SSRF, blind OOB |
-| [IDOR.md](./07%20Vulnerabilities/IDOR.md) | Horizontal / vertical escalation |
-| [File-Upload.md](./07%20Vulnerabilities/File-Upload.md) | Bypass, polyglot, magic bytes |
-| [Command-Injection.md](./07%20Vulnerabilities/Command-Injection.md) | Blind, OOB, WAF bypass |
-| [SSTI.md](./07%20Vulnerabilities/SSTI.md) | Server-side template injection |
-| [Deserialization.md](./07%20Vulnerabilities/Deserialization.md) | Multi-language |
-| [CSRF.md](./07%20Vulnerabilities/CSRF.md) | Token bypass, SameSite |
-| [Open-Redirect.md](./07%20Vulnerabilities/Open-Redirect.md) | Phishing, OAuth chain |
+| [SQLi.md](./08%20Vulnerabilities/SQLi.md) | Union, blind, time-based, error-based |
+| [XSS.md](./08%20Vulnerabilities/XSS.md) | Reflected, stored, DOM, CSP bypass |
+| [SSRF.md](./08%20Vulnerabilities/SSRF.md) | Cloud metadata, gopher, file:// |
+| [LFI-RFI.md](./08%20Vulnerabilities/LFI-RFI.md) | Wrappers, log poisoning |
+| [XXE.md](./08%20Vulnerabilities/XXE.md) | File read, SSRF, blind OOB |
+| [IDOR.md](./08%20Vulnerabilities/IDOR.md) | Horizontal / vertical escalation |
+| [File-Upload.md](./08%20Vulnerabilities/File-Upload.md) | Bypass, polyglot, magic bytes |
+| [Command-Injection.md](./08%20Vulnerabilities/Command-Injection.md) | Blind, OOB, WAF bypass |
+| [SSTI.md](./08%20Vulnerabilities/SSTI.md) | Server-side template injection |
+| [Deserialization.md](./08%20Vulnerabilities/Deserialization.md) | Multi-language |
+| [CSRF.md](./08%20Vulnerabilities/CSRF.md) | Token bypass, SameSite |
+| [Open-Redirect.md](./08%20Vulnerabilities/Open-Redirect.md) | Phishing, OAuth chain |
 
 ---
 
-## 08 OWASP Top 10
+## 09 OWASP Top 10
 
 Maps the OWASP Top 10:2021 categories to the files above.
 Includes four dedicated two-track files (A01, A04, A06, A09 - each with
@@ -273,12 +276,12 @@ Pentest and AppSec sections) and a comparison with the 2025 revision.
 
 | File | Notes |
 |------|-------|
-| [README.md](./08%20OWASP%20Top%2010/README.md) | Coverage map: 2021 categories -> existing files |
-| [2021-vs-2025.md](./08%20OWASP%20Top%2010/2021-vs-2025.md) | What changed between revisions |
-| [A01-Broken-Access-Control.md](./08%20OWASP%20Top%2010/A01-Broken-Access-Control.md) | A01: Broken Access Control (pentest + AppSec) |
-| [A04-Insecure-Design.md](./08%20OWASP%20Top%2010/A04-Insecure-Design.md) | A04: Insecure Design (pentest + AppSec) |
-| [A06-Vulnerable-Components.md](./08%20OWASP%20Top%2010/A06-Vulnerable-Components.md) | A06: Vulnerable Components (pentest + AppSec + supply chain) |
-| [A09-Logging-Failures.md](./08%20OWASP%20Top%2010/A09-Logging-Failures.md) | A09: Logging and Monitoring Failures (pentest + AppSec) |
+| [README.md](./09%20OWASP%20Top%2010/README.md) | Coverage map: 2021 categories -> existing files |
+| [2021-vs-2025.md](./09%20OWASP%20Top%2010/2021-vs-2025.md) | What changed between revisions |
+| [A01-Broken-Access-Control.md](./09%20OWASP%20Top%2010/A01-Broken-Access-Control.md) | A01: Broken Access Control (pentest + AppSec) |
+| [A04-Insecure-Design.md](./09%20OWASP%20Top%2010/A04-Insecure-Design.md) | A04: Insecure Design (pentest + AppSec) |
+| [A06-Vulnerable-Components.md](./09%20OWASP%20Top%2010/A06-Vulnerable-Components.md) | A06: Vulnerable Components (pentest + AppSec + supply chain) |
+| [A09-Logging-Failures.md](./09%20OWASP%20Top%2010/A09-Logging-Failures.md) | A09: Logging and Monitoring Failures (pentest + AppSec) |
 
 ---
 

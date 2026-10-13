@@ -13,7 +13,7 @@
 This section maps the OWASP Top 10:2021 categories to the existing
 `APPLICATIONS/01 Web/` content. It is a **navigational layer**, not a replacement for
 the technical files under `01 Recon/`, `02 Frameworks/`, `03 Languages/`,
-`04 Servers/`, `05 CMS/`, `06 Technologies/`, and `07 Vulnerabilities/`.
+`04 Servers/`, `05 CMS/`, `06 Technologies/`, and `08 Vulnerabilities/`.
 
 Each category below lists:
 
@@ -23,7 +23,7 @@ Each category below lists:
 
 **Status (2026-10-13):** four categories have dedicated two-track files
 (Pentest + AppSec): A01, A04, A06, A09. The remaining six categories are
-covered by existing files under `07 Vulnerabilities/` and
+covered by existing files under `08 Vulnerabilities/` and
 `06 Technologies/`.
 
 ---
@@ -63,14 +63,14 @@ OWASP Cheat Sheet Series at https://cheatsheetseries.owasp.org/.
 |---|----------|------------------|-----------------|-------|
 | A01 | Broken Access Control | Covered | Covered | [`A01-Broken-Access-Control.md`](./A01-Broken-Access-Control.md) |
 | A02 | Cryptographic Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
-| A03 | Injection | Covered | Partial | `07 Vulnerabilities/SQLi.md`, `Command-Injection.md`, `SSTI.md`, `XXE.md`, `LFI-RFI.md`, `Deserialization.md` |
+| A03 | Injection | Covered | Partial | `08 Vulnerabilities/SQLi.md`, `Command-Injection.md`, `SSTI.md`, `XXE.md`, `LFI-RFI.md`, `Deserialization.md` |
 | A04 | Insecure Design | Covered | Covered | [`A04-Insecure-Design.md`](./A04-Insecure-Design.md) |
 | A05 | Security Misconfiguration | Partial | Partial | `04 Servers/` (Apache, Nginx, IIS, Tomcat, Jetty), `06 Technologies/Databases/README.md` |
 | A06 | Vulnerable and Outdated Components | Covered | Covered | [`A06-Vulnerable-Components.md`](./A06-Vulnerable-Components.md) |
 | A07 | Identification and Authentication Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
 | A08 | Software and Data Integrity Failures | Partial | Partial | `06 Technologies/Deserialization.md`, `JWT.md` |
 | A09 | Security Logging and Monitoring Failures | Covered | Covered | [`A09-Logging-Failures.md`](./A09-Logging-Failures.md) |
-| A10 | Server-Side Request Forgery (SSRF) | Covered | Partial | `07 Vulnerabilities/SSRF.md` |
+| A10 | Server-Side Request Forgery (SSRF) | Covered | Partial | `08 Vulnerabilities/SSRF.md` |
 
 **Legend:**
 
@@ -89,10 +89,10 @@ disclosure, modification, or destruction of data.
 
 **Covered in:**
 
-- [IDOR](../07%20Vulnerabilities/IDOR.md) - insecure direct object references.
-- [SSRF](../07%20Vulnerabilities/SSRF.md) - server-side request forgery (also A10:2021; merged into A01 in 2025).
-- [Open-Redirect](../07%20Vulnerabilities/Open-Redirect.md) - unvalidated redirects.
-- [CSRF](../07%20Vulnerabilities/CSRF.md) - cross-site request forgery.
+- [IDOR](../08%20Vulnerabilities/IDOR.md) - insecure direct object references.
+- [SSRF](../08%20Vulnerabilities/SSRF.md) - server-side request forgery (also A10:2021; merged into A01 in 2025).
+- [Open-Redirect](../08%20Vulnerabilities/Open-Redirect.md) - unvalidated redirects.
+- [CSRF](../08%20Vulnerabilities/CSRF.md) - cross-site request forgery.
 
 **Gaps:** path traversal, privilege escalation, CORS misconfiguration,
 forced browsing.
@@ -126,12 +126,12 @@ attacker to inject code or commands into the application.
 
 **Covered in:**
 
-- [SQLi](../07%20Vulnerabilities/SQLi.md)
-- [Command-Injection](../07%20Vulnerabilities/Command-Injection.md)
-- [SSTI](../07%20Vulnerabilities/SSTI.md)
-- [XXE](../07%20Vulnerabilities/XXE.md)
-- [LFI-RFI](../07%20Vulnerabilities/LFI-RFI.md)
-- [Deserialization](../07%20Vulnerabilities/Deserialization.md)
+- [SQLi](../08%20Vulnerabilities/SQLi.md)
+- [Command-Injection](../08%20Vulnerabilities/Command-Injection.md)
+- [SSTI](../08%20Vulnerabilities/SSTI.md)
+- [XXE](../08%20Vulnerabilities/XXE.md)
+- [LFI-RFI](../08%20Vulnerabilities/LFI-RFI.md)
+- [Deserialization](../08%20Vulnerabilities/Deserialization.md)
 
 **Status:** fully covered on the pentest track. Best-covered category in the repo.
 
@@ -170,7 +170,7 @@ errors, open cloud storage, misconfigured HTTP headers.
 - [IIS](../04%20Servers/IIS.md)
 - [Tomcat](../04%20Servers/Tomcat.md)
 - [Jetty](../04%20Servers/Jetty.md)
-- [Databases overview](../06%20Technologies/Databases/README.md)
+- [Databases overview](../07%20Databases/README.md)
 
 **Gaps:** a single cross-server file covering misconfig as a class
 (HTTP headers, default creds, directory listing, verbose errors).
@@ -261,7 +261,7 @@ requests to unintended destinations.
 
 **Covered in:**
 
-- [SSRF](../07%20Vulnerabilities/SSRF.md)
+- [SSRF](../08%20Vulnerabilities/SSRF.md)
 
 **Status:** fully covered on the pentest track. In OWASP 2025, SSRF is
 merged into A01 Broken Access Control.
