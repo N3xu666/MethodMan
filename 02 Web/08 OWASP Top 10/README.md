@@ -64,7 +64,7 @@ OWASP Cheat Sheet Series at https://cheatsheetseries.owasp.org/.
 | A06 | Vulnerable and Outdated Components | Covered | Covered | [`A06-Vulnerable-Components.md`](./A06-Vulnerable-Components.md) |
 | A07 | Identification and Authentication Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
 | A08 | Software and Data Integrity Failures | Partial | Partial | `06 Technologies/Deserialization.md`, `JWT.md` |
-| A09 | Security Logging and Monitoring Failures | Missing | Planned (W3) | - |
+| A09 | Security Logging and Monitoring Failures | Covered | Covered | [`A09-Logging-Failures.md`](./A09-Logging-Failures.md) |
 | A10 | Server-Side Request Forgery (SSRF) | Covered | Partial | `07 Vulnerabilities/SSRF.md` |
 
 **Legend:**
@@ -242,7 +242,7 @@ attackers stay undetected, escalate, and persist.
 
 **Gaps:** all of it.
 
-**AppSec note:** see `A09-Logging-Failures.md` (W3). This is the most
+**AppSec note:** see [A09-Logging-Failures.md](./A09-Logging-Failures.md) (published). This is the most
 defensive category - primarily relevant to blue team / AppSec roles.
 The pentest angle is blind vulnerabilities and evidence collection.
 

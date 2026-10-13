@@ -277,6 +277,7 @@ Includes a comparison with the 2025 revision.
 | [A01-Broken-Access-Control.md](./08%20OWASP%20Top%2010/A01-Broken-Access-Control.md) | A01: Broken Access Control (pentest + AppSec) |
 | [A04-Insecure-Design.md](./08%20OWASP%20Top%2010/A04-Insecure-Design.md) | A04: Insecure Design (pentest + AppSec) |
 | [A06-Vulnerable-Components.md](./08%20OWASP%20Top%2010/A06-Vulnerable-Components.md) | A06: Vulnerable Components (pentest + AppSec + supply chain) |
+| [A09-Logging-Failures.md](./08%20OWASP%20Top%2010/A09-Logging-Failures.md) | A09: Logging and Monitoring Failures (pentest + AppSec) |
 
 ---
 
