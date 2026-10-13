@@ -11,14 +11,14 @@
 ## Purpose
 
 This section maps the OWASP Top 10:2021 categories to the existing
-`02 Web/` content. It is a **navigational layer**, not a replacement for
+`APPLICATIONS/01 Web/` content. It is a **navigational layer**, not a replacement for
 the technical files under `01 Recon/`, `02 Frameworks/`, `03 Languages/`,
 `04 Servers/`, `05 CMS/`, `06 Technologies/`, and `07 Vulnerabilities/`.
 
 Each category below lists:
 
 - a one-sentence description of the risk;
-- the files in `02 Web/` that cover it;
+- the files in `01 Web/` that cover it;
 - a coverage status: `Covered`, `Partial`, or `Missing`.
 
 **Status (2026-10-13):** four categories have dedicated two-track files
@@ -274,6 +274,6 @@ mentioned in the SSRF file; a consolidated AppSec section is not written.
 ## See also
 
 - [2021-vs-2025.md](./2021-vs-2025.md) - what changed between the two revisions.
-- [02 Web/README.md](../README.md) - top-level navigation for the whole section.
+- [01 Web/README.md](../README.md) - top-level navigation for the whole section.
 - [METHODOLOGY.md](../../../METHODOLOGY.md) - methodology reference.
 - [CHEATSHEET.md](../../../CHEATSHEET.md) - command cheat sheet.

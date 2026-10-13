@@ -1,6 +1,6 @@
 ﻿# Fingerprinting
 
-> OSCP-grade and production-safe web fingerprinting reference.
+> Web fingerprinting reference: passive and active detection, headers, cookies, favicon hashes, WAF signals. Lab-tested commands with production-safety tags.
 > Identify the stack without a browser, without triggering alerts.
 
 > [!CAUTION]

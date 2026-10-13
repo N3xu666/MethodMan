@@ -3,7 +3,7 @@
 Consolidated commands and techniques from all walkthroughs in this repository.
 Grouped by attack phase, intended as a quick reference for OSCP preparation.
 
-> **Deeper web app coverage:** see the dedicated [02 Web](./APPLICATIONS/01%20Web/README.md) cheatsheet
+> **Deeper web app coverage:** see the dedicated [Web Application Security Reference](./APPLICATIONS/01%20Web/README.md)
 > (Recon, Frameworks, Languages, Servers, CMS, Technologies, Vulnerabilities).
 
 > All examples use placeholder credentials (`<PASSWORD>`, `<USER_FLAG>`, `<ROOT_FLAG>`).
