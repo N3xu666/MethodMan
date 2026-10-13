@@ -1,11 +1,8 @@
 ﻿# Active (HTB)
 
 > Platforma: Hack The Box  
-
 > OS: Windows  
-
 > Çətinlik: Asan  
-
 > Nəticə: root
 
 ---

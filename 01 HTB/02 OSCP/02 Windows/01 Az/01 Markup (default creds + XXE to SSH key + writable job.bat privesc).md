@@ -1,8 +1,8 @@
 ﻿# Markup (HTB)
 
-> Platforma: Hack The Box
-> OS: Windows
-> Çətinlik: Asan
+> Platforma: Hack The Box  
+> OS: Windows  
+> Çətinlik: Asan  
 > Nəticə: Administrator
 
 ---

@@ -1,8 +1,8 @@
 ﻿# Markup (HTB)
 
-> Платформа: Hack The Box
-> ОС: Windows
-> Сложность: Легко
+> Платформа: Hack The Box  
+> ОС: Windows  
+> Сложность: Легко  
 > Результат: Administrator
 
 ---

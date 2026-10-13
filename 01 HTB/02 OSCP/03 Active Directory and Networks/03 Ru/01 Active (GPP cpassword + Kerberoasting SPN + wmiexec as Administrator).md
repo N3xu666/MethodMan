@@ -1,11 +1,8 @@
 ﻿# Active (HTB)
 
 > Платформа: Hack The Box  
-
 > ОС: Windows  
-
 > Сложность: Легко  
-
 > Результат: root
 
 ---
