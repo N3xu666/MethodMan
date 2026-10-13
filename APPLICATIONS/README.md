@@ -35,6 +35,7 @@ APPLICATIONS/
 |   +-- 04 Servers/
 |   +-- 05 CMS/
 |   +-- 06 Technologies/
+|   |   +-- Databases/
 |   +-- 07 Vulnerabilities/
 |   +-- 08 OWASP Top 10/
 +-- 05 API/                      (planned)

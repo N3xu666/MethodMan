@@ -17,7 +17,7 @@ while the machines are still active on Hack The Box (per HTB ToS).
 
 | # | Machine | Difficulty | Status |
 |---|---------|------------|--------|
-|   |         |            |        |
+| - | - | - | none pending |
 
 ## Archive
 
