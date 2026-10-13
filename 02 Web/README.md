@@ -24,6 +24,7 @@
 - [05 CMS](#05-cms)
 - [06 Technologies](#06-technologies)
 - [07 Vulnerabilities](#07-vulnerabilities)
+- [08 OWASP Top 10](#08-owasp-top-10)
 - [Workflow](#workflow)
 
 ---
@@ -261,6 +262,18 @@ Vulnerability classes with exploitation recipes.
 | [Deserialization.md](./07%20Vulnerabilities/Deserialization.md) | Multi-language |
 | [CSRF.md](./07%20Vulnerabilities/CSRF.md) | Token bypass, SameSite |
 | [Open-Redirect.md](./07%20Vulnerabilities/Open-Redirect.md) | Phishing, OAuth chain |
+
+---
+
+## 08 OWASP Top 10
+
+Maps the OWASP Top 10:2021 categories to the files above.
+Includes a comparison with the 2025 revision.
+
+| File | Notes |
+|------|-------|
+| [README.md](./08%20OWASP%20Top%2010/README.md) | Coverage map: 2021 categories -> existing files |
+| [2021-vs-2025.md](./08%20OWASP%20Top%2010/2021-vs-2025.md) | What changed between revisions |
 
 ---
 
