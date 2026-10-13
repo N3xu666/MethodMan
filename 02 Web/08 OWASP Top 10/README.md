@@ -56,7 +56,7 @@ OWASP Cheat Sheet Series at https://cheatsheetseries.owasp.org/.
 
 | # | Category | Pentest coverage | AppSec coverage | Where |
 |---|----------|------------------|-----------------|-------|
-| A01 | Broken Access Control | Partial | Planned (W3) | `07 Vulnerabilities/IDOR.md`, `SSRF.md`, `Open-Redirect.md`, `CSRF.md` |
+| A01 | Broken Access Control | Covered | Covered | [`A01-Broken-Access-Control.md`](./A01-Broken-Access-Control.md) |
 | A02 | Cryptographic Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
 | A03 | Injection | Covered | Partial | `07 Vulnerabilities/SQLi.md`, `Command-Injection.md`, `SSTI.md`, `XXE.md`, `LFI-RFI.md`, `Deserialization.md` |
 | A04 | Insecure Design | Missing | Planned (W3) | - |
@@ -92,7 +92,7 @@ disclosure, modification, or destruction of data.
 **Gaps:** path traversal, privilege escalation, CORS misconfiguration,
 forced browsing.
 
-**AppSec note:** see `A01-Broken-Access-Control.md` (W3) for root causes,
+**AppSec note:** see [A01-Broken-Access-Control.md](./A01-Broken-Access-Control.md) (published) for root causes,
 preventive controls (deny-by-default, policy engines), and verification.
 
 ---
