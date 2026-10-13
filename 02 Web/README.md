@@ -268,7 +268,8 @@ Vulnerability classes with exploitation recipes.
 ## 08 OWASP Top 10
 
 Maps the OWASP Top 10:2021 categories to the files above.
-Includes a comparison with the 2025 revision.
+Includes four dedicated two-track files (A01, A04, A06, A09 - each with
+Pentest and AppSec sections) and a comparison with the 2025 revision.
 
 | File | Notes |
 |------|-------|

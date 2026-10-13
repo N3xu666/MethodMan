@@ -21,6 +21,11 @@ Each category below lists:
 - the files in `02 Web/` that cover it;
 - a coverage status: `Covered`, `Partial`, or `Missing`.
 
+**Status (2026-10-13):** four categories have dedicated two-track files
+(Pentest + AppSec): A01, A04, A06, A09. The remaining six categories are
+covered by existing files under `07 Vulnerabilities/` and
+`06 Technologies/`.
+
 ---
 
 ## Scope and limitations
