@@ -59,7 +59,7 @@ OWASP Cheat Sheet Series at https://cheatsheetseries.owasp.org/.
 | A01 | Broken Access Control | Covered | Covered | [`A01-Broken-Access-Control.md`](./A01-Broken-Access-Control.md) |
 | A02 | Cryptographic Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
 | A03 | Injection | Covered | Partial | `07 Vulnerabilities/SQLi.md`, `Command-Injection.md`, `SSTI.md`, `XXE.md`, `LFI-RFI.md`, `Deserialization.md` |
-| A04 | Insecure Design | Missing | Planned (W3) | - |
+| A04 | Insecure Design | Covered | Covered | [`A04-Insecure-Design.md`](./A04-Insecure-Design.md) |
 | A05 | Security Misconfiguration | Partial | Partial | `04 Servers/` (Apache, Nginx, IIS, Tomcat, Jetty), `06 Technologies/Databases/README.md` |
 | A06 | Vulnerable and Outdated Components | Partial | Planned (W3) | `05 CMS/` (WordPress, Joomla, Drupal, Magento, PrestaShop) |
 | A07 | Identification and Authentication Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
@@ -147,7 +147,7 @@ business logic flaws, race conditions.
 
 **Gaps:** all of it.
 
-**AppSec note:** see `A04-Insecure-Design.md` (W3). This is the most
+**AppSec note:** see [A04-Insecure-Design.md](./A04-Insecure-Design.md) (published). This is the most
 AppSec-heavy category; the pentest track is limited to business logic
 and race condition testing.
 

@@ -275,6 +275,7 @@ Includes a comparison with the 2025 revision.
 | [README.md](./08%20OWASP%20Top%2010/README.md) | Coverage map: 2021 categories -> existing files |
 | [2021-vs-2025.md](./08%20OWASP%20Top%2010/2021-vs-2025.md) | What changed between revisions |
 | [A01-Broken-Access-Control.md](./08%20OWASP%20Top%2010/A01-Broken-Access-Control.md) | A01: Broken Access Control (pentest + AppSec) |
+| [A04-Insecure-Design.md](./08%20OWASP%20Top%2010/A04-Insecure-Design.md) | A04: Insecure Design (pentest + AppSec) |
 
 ---
 
