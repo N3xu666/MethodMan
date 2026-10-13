@@ -12,7 +12,7 @@ verification) sides.
 | # | Category | Description | Status |
 |---|----------|-------------|--------|
 | 1 | [Web](./01%20Web/) | Web application security reference (recon, frameworks, languages, servers, CMS, technologies, vulnerabilities, OWASP Top 10) | active |
-| 2 | [API](./05%20API/) | REST, GraphQL, gRPC, WebSocket, SOAP, OAuth2, rate limiting, API gateways, OWASP API Top 10 | planned |
+| 2 | API (planned) | REST, GraphQL, gRPC, WebSocket, SOAP, OAuth2, rate limiting, API gateways, OWASP API Top 10 | planned |
 
 ## Format
 
