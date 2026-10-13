@@ -61,7 +61,7 @@ OWASP Cheat Sheet Series at https://cheatsheetseries.owasp.org/.
 | A03 | Injection | Covered | Partial | `07 Vulnerabilities/SQLi.md`, `Command-Injection.md`, `SSTI.md`, `XXE.md`, `LFI-RFI.md`, `Deserialization.md` |
 | A04 | Insecure Design | Covered | Covered | [`A04-Insecure-Design.md`](./A04-Insecure-Design.md) |
 | A05 | Security Misconfiguration | Partial | Partial | `04 Servers/` (Apache, Nginx, IIS, Tomcat, Jetty), `06 Technologies/Databases/README.md` |
-| A06 | Vulnerable and Outdated Components | Partial | Planned (W3) | `05 CMS/` (WordPress, Joomla, Drupal, Magento, PrestaShop) |
+| A06 | Vulnerable and Outdated Components | Covered | Covered | [`A06-Vulnerable-Components.md`](./A06-Vulnerable-Components.md) |
 | A07 | Identification and Authentication Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
 | A08 | Software and Data Integrity Failures | Partial | Partial | `06 Technologies/Deserialization.md`, `JWT.md` |
 | A09 | Security Logging and Monitoring Failures | Missing | Planned (W3) | - |
@@ -193,7 +193,7 @@ Detection and exploitation of known CVEs.
 **Gaps:** a general file on CVE discovery workflow (WPScan, Nuclei,
 exploit-db, version fingerprinting).
 
-**AppSec note:** see `A06-Vulnerable-Components.md` (W3). In OWASP 2025,
+**AppSec note:** see [A06-Vulnerable-Components.md](./A06-Vulnerable-Components.md) (published). In OWASP 2025,
 this category is renamed and expanded to A03 Software Supply Chain Failures.
 
 ---
