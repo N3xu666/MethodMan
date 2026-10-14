@@ -76,7 +76,7 @@ What do we see?
     +-- "OAuth" / "authorize"    --> 06 Technologies/OAuth.md
     +-- "/graphql" endpoint      --> 06 Technologies/GraphQL.md
     +-- Database banner visible  --> 07 Databases/README.md
-    +-- SSTI signature           --> 06 Technologies/SSTI.md
+    +-- SSTI signature           --> 08 Vulnerabilities/SSTI.md
     |
     +-- Nothing obvious         --> 01 Recon/Fingerprinting.md
                                  + 01 Recon/VHosts-Subdomains.md
@@ -227,7 +227,7 @@ Protocols, auth, and cross-cutting technologies.
 | [GraphQL.md](../05%20API/03%20GraphQL.md) | introspection, batching, IDOR |
 | [REST.md](../05%20API/02%20REST.md) | mass assignment, IDOR, verb tampering |
 | [WebSocket.md](../05%20API/05%20WebSocket.md) | CSWSH, injection |
-| [SSTI.md](./06%20Technologies/SSTI.md) | Jinja2, Twig, Freemarker, ERB |
+| [SSTI.md](./08%20Vulnerabilities/SSTI.md) | Jinja2, Twig, Freemarker, ERB |
 | [Deserialization.md](./06%20Technologies/Deserialization.md) | PHP, Java, Python, .NET, Ruby |
 
 ## 07 Databases
