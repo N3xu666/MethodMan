@@ -63,7 +63,7 @@ $notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Report
 Write-Host "`n=== [1/14] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\01 Web\\' -and $_.Name -notin $excluded } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $flags += [regex]::Matches($c, "\b[a-fA-F0-9]{32}\b").Count
@@ -81,7 +81,7 @@ foreach ($key in $replacements.Keys) {
     if ($key -match '^[a-fA-F0-9]{32}$') { continue }
     $count = 0
     Get-ChildItem -Recurse -Filter *.md |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\01 Web\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($key))).Count
@@ -102,7 +102,7 @@ $withNote = 0
 $withoutNote = 0
 $stubCount = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\01 Web\\' -and $_.Name -notin $notWalkthrough } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.Name -notin $notWalkthrough } |
   ForEach-Object {
     if (Test-StubFile $_.FullName) {
         $stubCount++
@@ -131,7 +131,7 @@ Write-Host "`n=== [4/14] Long dashes ===" -ForegroundColor Cyan
 $d = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\01 Web\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $d += [regex]::Matches($c, "[\u2013\u2014\u2212]").Count
@@ -147,7 +147,7 @@ Write-Host "`n=== [5/14] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\01 Web\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $b += [regex]::Matches($c, "[\uFFFD]").Count
@@ -165,7 +165,7 @@ $a = 0
 foreach ($art in $artifacts) {
     $count = 0
     Get-ChildItem -Recurse -Filter *.md |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\01 Web\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($art))).Count
@@ -184,7 +184,7 @@ else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a 
 Write-Host "`n=== [7/14] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
 $suspicious = @()
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\01 Web\\' -and $_.Name -notin $excluded } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $mm = [regex]::Matches($ct, '(?i)(password|passwd|pwd|secret|token|api[_-]?key|apikey)\s*[:=]\s*([^\s`<>]{5,})')
@@ -218,7 +218,7 @@ Write-Host "`n=== [8/14] CVE reference in Exploitation (WARN only) ===" -Foregro
 $missingCve = @()
 $checkedExpl = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\01 Web\\' -and $_.Name -notin $notWalkthrough } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.Name -notin $notWalkthrough } |
   ForEach-Object {
     if (Test-StubFile $_.FullName) { return }
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
@@ -259,7 +259,7 @@ Get-ChildItem -Recurse -Filter *.md |
     $_.FullName -notmatch '\\txt\\' -and
     $_.FullName -notmatch '\\tests\\' -and
     $_.FullName -notmatch '\\tools\\' -and
-    ($_.FullName -match '\\01 Web\\' -or $_.FullName -match '\\methodology\\' -or $_.Name -in $docRootFiles)
+    ($_.FullName -match '\\APPLICATIONS\\' -or $_.FullName -match '\\methodology\\' -or $_.Name -in $docRootFiles)
   } |
   ForEach-Object {
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
@@ -380,7 +380,7 @@ if (Test-Path $readmePath) {
 Write-Host "`n=== [12/14] CVE version ranges in docs tables (WARN only) ===" -ForegroundColor Cyan
 $bareCve = @()
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -match '\\01 Web\\' } |
+  Where-Object { $_.FullName -match '\\APPLICATIONS\\' } |
   ForEach-Object {
     $lines3 = [System.IO.File]::ReadAllLines($_.FullName, $utf8)
     for ($i = 0; $i -lt $lines3.Count; $i++) {
@@ -417,7 +417,7 @@ if ($bareCve.Count -eq 0) {
 # ============================================================
 Write-Host "`n=== [13/14] Backslash escapes in docs ===" -ForegroundColor Cyan
 $bsEscapes = @()
-$docsRoots = @('APPLICATIONS\01 Web', 'tools')
+$docsRoots = @('APPLICATIONS', 'tools')
 $docsFiles = @()
 foreach ($root in $docsRoots) {
     $p = Join-Path $repo $root
