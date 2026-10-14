@@ -16,12 +16,12 @@ explicitly inside each file.
 | # | Subcategory | Focus |
 |---|-------------|-------|
 | 01 | [Active Directory](./01%20Active%20Directory/) | Domain, Kerberos, ADCS, trusts, ACL abuse |
-| 02 | Windows Infrastructure | Host hardening, IIS, SMB, RDP, WinRM, AV/EDR |
-| 03 | Linux Infrastructure | Permissions, SUID/SGID, cron, systemd, capabilities |
-| 04 | Network Services | DNS, DHCP, SNMP, NTP, LDAP, Kerberos |
-| 05 | Network Attacks | MITM, ARP spoofing, VLAN hopping, DNS poisoning, pivoting |
-| 06 | Wireless | WPA/WPA2/WPA3, WPS, evil twin, Bluetooth, RF |
-| 07 | Mail-and-VPN | SMTP/IMAP/POP3, Exchange, SPF/DKIM/DMARC, IPsec/OpenVPN/WireGuard |
+| 02 | [Windows Infrastructure](./02%20Windows%20Infrastructure/) | Host hardening, IIS, SMB, RDP, WinRM, AV/EDR |
+| 03 | [Linux Infrastructure](./03%20Linux%20Infrastructure/) | Permissions, SUID/SGID, cron, systemd, capabilities |
+| 04 | [Network Services](./04%20Network%20Services/) | DNS, DHCP, SNMP, NTP, LDAP, Kerberos |
+| 05 | [Network Attacks](./05%20Network%20Attacks/) | MITM, ARP spoofing, VLAN hopping, DNS poisoning, pivoting |
+| 06 | [Wireless](./06%20Wireless/) | WPA/WPA2/WPA3, WPS, evil twin, Bluetooth, RF |
+| 07 | [Mail-and-VPN](./07%20Mail-and-VPN/) | SMTP/IMAP/POP3, Exchange, SPF/DKIM/DMARC, IPsec/OpenVPN/WireGuard |
 
 ## Format
 
