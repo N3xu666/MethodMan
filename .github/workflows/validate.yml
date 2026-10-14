@@ -195,3 +195,25 @@ jobs:
           if ($null -ne $LASTEXITCODE -and $LASTEXITCODE -ne 0) {
             exit $LASTEXITCODE
           }
+  tables:
+    name: Run check-tables.ps1 (informational)
+    runs-on: windows-latest
+    needs: check
+    # NON-BLOCKING. Validates markdown tables for inconsistent link usage.
+    # Catches "added a row but forgot the link" bugs.
+    continue-on-error: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run check-tables.ps1
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+          .\check-tables.ps1
+          if ($null -ne $LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
