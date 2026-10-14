@@ -301,17 +301,17 @@ See [Fingerprinting.md](./Fingerprinting.md) §7 for stack-specific debug pages.
 | 80, 443 | Anything | [Fingerprinting.md](./Fingerprinting.md) |
 | 3000 | Node.js, Grafana, Next.js | [../02 Frameworks/Express.md](../02%20Frameworks/Express.md) |
 | 5000 | Flask, .NET Kestrel | [../02 Frameworks/Flask.md](../02%20Frameworks/Flask.md) |
-| 5601 | Kibana | `08 Vulnerabilities/` (CVE-2019-7609) |
+| 5601 | Kibana | [08 Vulnerabilities/](../08%20Vulnerabilities/) (CVE-2019-7609) |
 | 7001 | WebLogic | [../03 Languages/Java.md](../03%20Languages/Java.md) (deserialization) |
 | 8000 | Django, Python dev server | [../02 Frameworks/Django.md](../02%20Frameworks/Django.md) |
 | 8080 | Tomcat, Jenkins | [../04 Servers/Tomcat.md](../04%20Servers/Tomcat.md) |
-| 8161 | ActiveMQ | `08 Vulnerabilities/` (CVE-2016-3088) |
+| 8161 | ActiveMQ | [08 Vulnerabilities/](../08%20Vulnerabilities/) (CVE-2016-3088) |
 | 8443 | Tomcat HTTPS alt | [../04 Servers/Tomcat.md](../04%20Servers/Tomcat.md) |
-| 8888 | Jupyter | `08 Vulnerabilities/Command-Injection.md` §Jupyter |
+| 8888 | Jupyter | [Command-Injection.md](../08%20Vulnerabilities/Command-Injection.md) - Jupyter section |
 | 9000 | Portainer, PHP-FPM | [../03 Languages/PHP.md](../03%20Languages/PHP.md) |
 | 9090 | Cockpit, Prometheus | Info leak (no dedicated file yet) |
 | 9200 | Elasticsearch | [../07 Databases.md](../07%20Databases/README.md) |
-| 15672 | RabbitMQ management | `08 Vulnerabilities/` (RCE via definitions) |
+| 15672 | RabbitMQ management | [08 Vulnerabilities/](../08%20Vulnerabilities/) (RCE via definitions) |
 | 3306 / 5432 / 1433 / 27017 / 6379 | MySQL / PostgreSQL / MSSQL / MongoDB / Redis | [../07 Databases.md](../07%20Databases/README.md) |
 
 ---
