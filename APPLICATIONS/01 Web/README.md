@@ -228,7 +228,7 @@ Protocols, auth, and cross-cutting technologies.
 | [REST.md](../05%20API/02%20REST.md) | mass assignment, IDOR, verb tampering |
 | [WebSocket.md](../05%20API/05%20WebSocket.md) | CSWSH, injection |
 | [SSTI.md](./08%20Vulnerabilities/SSTI.md) | Jinja2, Twig, Freemarker, ERB |
-| [Deserialization.md](./06%20Technologies/Deserialization.md) | PHP, Java, Python, .NET, Ruby |
+| [Deserialization.md](./08%20Vulnerabilities/Deserialization.md) | PHP, Java, Python, .NET, Ruby |
 
 ## 07 Databases
 

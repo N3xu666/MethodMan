@@ -68,7 +68,7 @@ OWASP Cheat Sheet Series at https://cheatsheetseries.owasp.org/.
 | A05 | Security Misconfiguration | Partial | Partial | `04 Servers/` (Apache, Nginx, IIS, Tomcat, Jetty), `06 Technologies/Databases/README.md` |
 | A06 | Vulnerable and Outdated Components | Covered | Covered | [`A06-Vulnerable-Components.md`](./A06-Vulnerable-Components.md) |
 | A07 | Identification and Authentication Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
-| A08 | Software and Data Integrity Failures | Partial | Partial | `06 Technologies/Deserialization.md`, `JWT.md` |
+| A08 | Software and Data Integrity Failures | Partial | Partial | `08 Vulnerabilities/Deserialization.md`, `06 Technologies/JWT.md` |
 | A09 | Security Logging and Monitoring Failures | Covered | Covered | [`A09-Logging-Failures.md`](./A09-Logging-Failures.md) |
 | A10 | Server-Side Request Forgery (SSRF) | Covered | Partial | `08 Vulnerabilities/SSRF.md` |
 
@@ -228,7 +228,7 @@ data sources.
 
 **Covered in:**
 
-- [Deserialization](../06%20Technologies/Deserialization.md)
+- [Deserialization](../08%20Vulnerabilities/Deserialization.md)
 - [JWT](../06%20Technologies/JWT.md)
 
 **Gaps:** supply chain attacks, CI/CD pipeline risks, unsigned artifacts,
