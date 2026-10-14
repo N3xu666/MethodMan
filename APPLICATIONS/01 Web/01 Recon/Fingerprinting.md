@@ -501,7 +501,7 @@ Header/cookie signal -> likely stack -> recommended next file.
 | `Set-Cookie: laravel_session` | Laravel | [Frameworks/Laravel.md](../02%20Frameworks/Laravel.md) | Yes |
 | `Set-Cookie: connect.sid` | Express | [Frameworks/Express.md](../02%20Frameworks/Express.md) | Yes |
 | Cookie starts with `eyJ` | JWT | [Technologies/JWT.md](../06%20Technologies/JWT.md) | Yes |
-| `/graphql` responds | GraphQL | [Technologies/GraphQL.md](../06%20Technologies/GraphQL.md) | `[PROD-RISK]` |
+| `/graphql` responds | GraphQL | [Technologies/GraphQL.md](../../05%20API/03%20GraphQL.md) | `[PROD-RISK]` |
 | `/actuator` responds | Spring Boot | [Frameworks/Spring-Boot.md](../02%20Frameworks/Spring-Boot.md) | `[PROD-NO]` |
 
 ---

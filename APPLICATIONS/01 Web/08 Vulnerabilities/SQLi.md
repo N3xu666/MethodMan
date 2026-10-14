@@ -603,7 +603,7 @@ Places where SQLi shows up most often:
 - JSON body: `{"id":"1"}` -> sqlmap `-r req.txt` handles it
 - XML body: -> see [../06 Technologies/XXE.md](../08%20Vulnerabilities/XXE.md)
 
-For REST/JSON specifics, see [../06 Technologies/REST.md](../06%20Technologies/REST.md)
+For REST/JSON specifics, see [../../05 API/02 REST.md](../../05%20API/02%20REST.md)
 (once published).
 
 ---
@@ -662,7 +662,7 @@ sqlmap -r req.txt --tamper=space2comment,randomcase --random-agent
 - sqlmap tamper scripts: https://github.com/sqlmapproject/sqlmap/wiki/Tamper-scripts
 - OWASP WSTG - SQLi: https://owasp.org/www-project-web-security-testing-guide/
 
-> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../07 Databases.md](../07%20Databases/README.md), [../06 Technologies/REST.md](../06%20Technologies/REST.md)
+> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../07 Databases.md](../07%20Databases/README.md), [../../05 API/02 REST.md](../../05%20API/02%20REST.md)
 
 ---
 
