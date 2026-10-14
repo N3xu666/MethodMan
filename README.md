@@ -8,7 +8,7 @@
 
 ![MethodMan - trilingual HTB writeups, web application security reference, methodology and tools](./social-preview.png)
 
-New HTB machines are added as they are completed (retired only - see the stub scheme below for active machines). Reference material grows in parallel: the Web Application Security Reference (`APPLICATIONS/`), methodology notes, cheatsheets, and custom tooling (`tools/`).
+New HTB machines are added as they are completed (retired only - see the stub scheme below for active machines). Reference material grows in parallel: the Application Security Reference (`APPLICATIONS/`), the Infrastructure Security Reference (`INFRASTRUCTURE/`), methodology notes, cheatsheets, and custom tooling (`tools/`).
 
 Writeups available in Az/En/Ru. Currently: **17 published (retired) + 3 active stubs** = **20 completed machines**.
 
@@ -45,15 +45,26 @@ MethodMan/
 |               +-- 03 Ru/
 +-- APPLICATIONS/            # application security reference
 |   +-- 01 Web/
-|       +-- 01 Recon/
-|       +-- 02 Frameworks/
-|       +-- 03 Languages/
-|       +-- 04 Servers/
-|       +-- 05 CMS/
-|       +-- 06 Technologies/
-|       +-- 07 Databases/
-|       +-- 08 Vulnerabilities/
-|       +-- 09 OWASP Top 10/
+|   |   +-- 01 Recon/
+|   |   +-- 02 Frameworks/
+|   |   +-- 03 Languages/
+|   |   +-- 04 Servers/
+|   |   +-- 05 CMS/
+|   |   +-- 06 Technologies/
+|   |   +-- 07 Databases/
+|   |   +-- 08 Vulnerabilities/
+|   |   +-- 09 OWASP Top 10/
+|   +-- 05 API/
+|       +-- OWASP API Top 10, REST, GraphQL, gRPC, WebSocket, SOAP,
+|           Authentication, Rate-Limiting, API Gateway (9 files)
++-- INFRASTRUCTURE/          # infrastructure security reference
+|   +-- 01 Active Directory/
+|   +-- 02 Windows Infrastructure/
+|   +-- 03 Linux Infrastructure/
+|   +-- 04 Network Services/
+|   +-- 05 Network Attacks/
+|   +-- 06 Wireless/
+|   +-- 07 Mail-and-VPN/
 +-- methodology/             # OSCP reporting rules and notes
 +-- tools/                   # custom pentest tools (Python, Go, Bash)
 +-- tests/                   # test runner + fixtures for mask.ps1 / check.ps1
@@ -77,7 +88,8 @@ Reference material and tooling, independent of any single HTB machine:
 
 | Resource | Description |
 |----------|-------------|
-| [Web Application Security Reference](./APPLICATIONS/01%20Web/) | Stack-organized web testing reference (recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10). 65 files. |
+| [Application Security Reference](./APPLICATIONS/01%20Web/) | Web and API testing reference: recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10 (61 files); plus API Top 10, REST, GraphQL, gRPC, WebSocket, SOAP, auth, rate-limiting, API gateway (9 files). |
+| [Infrastructure Security Reference](./INFRASTRUCTURE/) | Active Directory, Windows, Linux, network services and attacks, wireless, mail and VPN. Two-track format (offensive + defensive) across 7 subcategories (46 files). |
 | [METHODOLOGY.md](./METHODOLOGY.md) | Engagement phases, intensity profiles, checklists. |
 | [CHEATSHEET.md](./CHEATSHEET.md) | Quick command reference for common tools and techniques. |
 | [methodology/OSCP-Reporting.md](./methodology/OSCP-Reporting.md) | OSCP exam reporting rules (evidence, screenshots, structure). |
@@ -91,7 +103,7 @@ Reference material and tooling, independent of any single HTB machine:
 
 Validation is split across three independent layers:
 
-- **Pre-commit hook (`check.ps1`)** - LOCAL only, opt-in. Lives in `.git/hooks/pre-commit`, which is not tracked by git (git does not clone hooks). To install, add a one-line invocation of `check.ps1` to `.git/hooks/pre-commit` and make it executable. Fast (13 checks, ~2 seconds).
+- **Pre-commit hook (`check.ps1`)** - LOCAL only, opt-in. Lives in `.git/hooks/pre-commit`, which is not tracked by git (git does not clone hooks). To install, add a one-line invocation of `check.ps1` to `.git/hooks/pre-commit` and make it executable. Fast (14 checks, ~2 seconds).
 
   **Blocking errors (commit is refused):**
   - real 32-hex flags,
@@ -134,7 +146,7 @@ The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known se
 
 This repository uses a **dual-license model**:
 
-- **Documentation** (walkthroughs, `APPLICATIONS/01 Web/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
+- **Documentation** (walkthroughs, `APPLICATIONS/`, `INFRASTRUCTURE/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
 - **Source code** (`.py`, `.go`, `.sh`, `.ps1`, `.yml`) - MIT License, applies to `tools/` and to the root scripts (`check.ps1`, `mask.ps1`, `audit.ps1`, `tests/run-tests.ps1`). Full text: [tools/LICENSE](./tools/LICENSE).
 
 See [LICENSE](./LICENSE) for the full text and the file-type rules.
