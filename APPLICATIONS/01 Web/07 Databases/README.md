@@ -8,11 +8,8 @@
 - [2. Detection - which DB is it?](#2-detection---which-db-is-it)
 - [3. Enumeration without credentials](#3-enumeration-without-credentials)
 - [4. Common misconfigurations](#4-common-misconfigurations)
-- [5. From web app to DB](#5-from-web-app-to-db)
-- [6. Per-DB quick reference](#6-per-db-quick-reference)
-- [7. Post-exploitation](#7-post-exploitation)
-- [8. OSCP notes](#8-oscp-notes)
-- [9. References](#9-references)
+
+**Per-database pages:** [MySQL](./MySQL.md) | [PostgreSQL](./PostgreSQL.md) | [MSSQL](./MSSQL.md) | [MongoDB](./MongoDB.md) | [Redis](./Redis.md) | [SQLite](./SQLite.md) | [Oracle](./Oracle.md)
 
 ---
 
