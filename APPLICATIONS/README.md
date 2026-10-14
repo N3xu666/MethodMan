@@ -12,7 +12,7 @@ verification) sides.
 | # | Category | Description | Status |
 |---|----------|-------------|--------|
 | 1 | [Web](./01%20Web/) | Web application security reference (recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10) | active |
-| 2 | API (planned) | REST, GraphQL, gRPC, WebSocket, SOAP, OAuth2, rate limiting, API gateways, OWASP API Top 10 | planned |
+| 2 | [API](./05%20API/) | API security reference (REST, GraphQL, gRPC, WebSocket, SOAP, authentication, rate limiting, API gateways, OWASP API Top 10) | active |
 
 ## Format
 
@@ -38,16 +38,16 @@ APPLICATIONS/
 |   +-- 07 Databases/
 |   +-- 08 Vulnerabilities/
 |   +-- 09 OWASP Top 10/
-+-- 05 API/                      (planned)
-    +-- 01 OWASP-API-Top-10.md
-    +-- 02 REST.md
-    +-- 03 GraphQL.md
-    +-- 04 gRPC.md
-    +-- 05 WebSocket.md
-    +-- 06 SOAP.md
-    +-- 07 Authentication.md
-    +-- 08 Rate-Limiting.md
-    +-- 09 API-Gateway.md
++-- 05 API/
+|   +-- 01 OWASP-API-Top-10.md
+|   +-- 02 REST.md
+|   +-- 03 GraphQL.md
+|   +-- 04 gRPC.md
+|   +-- 05 WebSocket.md
+|   +-- 06 SOAP.md
+|   +-- 07 Authentication.md
+|   +-- 08 Rate-Limiting.md
+|   +-- 09 API-Gateway.md
 ```
 
 ## Roadmap
