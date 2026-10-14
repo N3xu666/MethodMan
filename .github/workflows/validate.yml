@@ -172,3 +172,26 @@ jobs:
         run: |
           Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
           .\audit.ps1 -SkipLocalChecks
+
+  anchors:
+    name: Run check-anchors.ps1 (informational)
+    runs-on: windows-latest
+    needs: check
+    # NON-BLOCKING. Validates markdown anchor links (#section) in all tracked .md.
+    # Catches stale anchors after folder/file renames.
+    continue-on-error: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run check-anchors.ps1
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+          .\check-anchors.ps1
+          if ($null -ne $LASTEXITCODE -and $LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
