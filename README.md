@@ -10,7 +10,7 @@
 
 New HTB machines are added as they are completed (retired only - see the stub scheme below for active machines). Reference material grows in parallel: the Web Application Security Reference (`APPLICATIONS/`), methodology notes, cheatsheets, and custom tooling (`tools/`).
 
-Writeups available in Az/En/Ru. Currently: **16 published (retired) + 3 active stubs** = **19 completed machines**.
+Writeups available in Az/En/Ru. Currently: **17 published (retired) + 3 active stubs** = **20 completed machines**.
 
 > The `(Now: M machines)` counter counts **only published walkthroughs** (machines retired on Hack The Box). Writeups for active machines are withheld per HTB ToS and stored as stubs (`Status: Completed`) until retirement.
 

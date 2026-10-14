@@ -9,6 +9,7 @@ Azerbaijani (`01 Az`), English (`02 En`), and Russian (`03 Ru`).
 | # | Machine | Az | En | Ru |
 |---|---------|-----|-----|-----|
 | 01 | Active | [Az](./01%20Az/01%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) | [En](./02%20En/01%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) | [Ru](./03%20Ru/01%20Active%20%28GPP%20cpassword%20%2B%20Kerberoasting%20SPN%20%2B%20wmiexec%20as%20Administrator%29.md) |
+| 02 | Forest | [Az](./01%20Az/02%20Forest%20%28AS-REP%20Roast%20%2B%20Account%20Operators%20to%20Exchange%20WriteDacl%20%2B%20DCSync%29.md) | [En](./02%20En/02%20Forest%20%28AS-REP%20Roast%20%2B%20Account%20Operators%20to%20Exchange%20WriteDacl%20%2B%20DCSync%29.md) | [Ru](./03%20Ru/02%20Forest%20%28AS-REP%20Roast%20%2B%20Account%20Operators%20to%20Exchange%20WriteDacl%20%2B%20DCSync%29.md) |
 
 ## Completed (Writeups Pending)
 
