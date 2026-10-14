@@ -62,15 +62,15 @@ OWASP Cheat Sheet Series at https://cheatsheetseries.owasp.org/.
 | # | Category | Pentest coverage | AppSec coverage | Where |
 |---|----------|------------------|-----------------|-------|
 | A01 | Broken Access Control | Covered | Covered | [`A01-Broken-Access-Control.md`](./A01-Broken-Access-Control.md) |
-| A02 | Cryptographic Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
-| A03 | Injection | Covered | Partial | `08 Vulnerabilities/SQLi.md`, `Command-Injection.md`, `SSTI.md`, `XXE.md`, `LFI-RFI.md`, `Deserialization.md` |
+| A02 | Cryptographic Failures | Partial | Missing | [JWT](../06%20Technologies/JWT.md), [OAuth](../06%20Technologies/OAuth.md) |
+| A03 | Injection | Covered | Partial | [SQLi](../08%20Vulnerabilities/SQLi.md), [Command-Injection](../08%20Vulnerabilities/Command-Injection.md), [SSTI](../08%20Vulnerabilities/SSTI.md), [XXE](../08%20Vulnerabilities/XXE.md), [LFI-RFI](../08%20Vulnerabilities/LFI-RFI.md), [Deserialization](../08%20Vulnerabilities/Deserialization.md) |
 | A04 | Insecure Design | Covered | Covered | [`A04-Insecure-Design.md`](./A04-Insecure-Design.md) |
-| A05 | Security Misconfiguration | Partial | Partial | `04 Servers/` (Apache, Nginx, IIS, Tomcat, Jetty), `06 Technologies/Databases/README.md` |
+| A05 | Security Misconfiguration | Partial | Partial | [Apache](../04%20Servers/Apache.md), [Nginx](../04%20Servers/Nginx.md), [IIS](../04%20Servers/IIS.md), [Tomcat](../04%20Servers/Tomcat.md), [Jetty](../04%20Servers/Jetty.md), [Databases overview](../07%20Databases/README.md) |
 | A06 | Vulnerable and Outdated Components | Covered | Covered | [`A06-Vulnerable-Components.md`](./A06-Vulnerable-Components.md) |
-| A07 | Identification and Authentication Failures | Partial | Missing | `06 Technologies/JWT.md`, `OAuth.md` |
-| A08 | Software and Data Integrity Failures | Partial | Partial | `08 Vulnerabilities/Deserialization.md`, `06 Technologies/JWT.md` |
+| A07 | Identification and Authentication Failures | Partial | Missing | [JWT](../06%20Technologies/JWT.md), [OAuth](../06%20Technologies/OAuth.md) |
+| A08 | Software and Data Integrity Failures | Partial | Partial | [Deserialization](../08%20Vulnerabilities/Deserialization.md), [JWT](../06%20Technologies/JWT.md) |
 | A09 | Security Logging and Monitoring Failures | Covered | Covered | [`A09-Logging-Failures.md`](./A09-Logging-Failures.md) |
-| A10 | Server-Side Request Forgery (SSRF) | Covered | Partial | `08 Vulnerabilities/SSRF.md` |
+| A10 | Server-Side Request Forgery (SSRF) | Covered | Partial | [SSRF](../08%20Vulnerabilities/SSRF.md) |
 
 **Legend:**
 
