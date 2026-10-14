@@ -16,7 +16,7 @@ Writeups available in three languages: `01 Az`, `02 En`, `03 Ru`.
 | # | Category | Writeups |
 |---|----------|----------|
 | 1 | [Linux](./02%20OSCP/01%20Linux/) | 14 published + 1 active stub (× 3 languages) |
-| 2 | [Windows](./02%20OSCP/02%20Windows/) | 1 published (x 3 languages) |
+| 2 | [Windows](./02%20OSCP/02%20Windows/) | 1 published (× 3 languages) |
 | 3 | [Active Directory and Networks](./02%20OSCP/03%20Active%20Directory%20and%20Networks/) | 2 published (× 3 languages) |
 
 **Note:** `published` = retired on HTB, full writeup available. `active stubs` = machine still active, writeup withheld per HTB ToS (stub with `Status: Completed`).
