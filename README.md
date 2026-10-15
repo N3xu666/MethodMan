@@ -23,7 +23,8 @@ Writeups available in Az/En/Ru. Currently: **17 published (retired) + 3 active s
 
 ```
 MethodMan/
-+-- WRITEUPS/                # HTB walkthroughs, trilingual (Az, En, Ru)
+|
++-- WRITEUPS/                                   # HTB walkthroughs, trilingual (Az, En, Ru)
 |   +-- 01 Hack The Box/
 |       +-- 01 All Machines/
 |       |   +-- 01 Season 12 (Aero, Sep - Nov 2026)/
@@ -31,7 +32,8 @@ MethodMan/
 |           +-- 01 Linux/
 |           +-- 02 Windows/
 |           +-- 03 Active Directory and Networks/
-+-- APPLICATIONS/            # application security reference
+|
++-- APPLICATIONS/                               # application security reference
 |   +-- 01 Web/
 |   |   +-- 01 Recon/
 |   |   +-- 02 Frameworks/
@@ -53,7 +55,8 @@ MethodMan/
 |       +-- 07 Authentication.md
 |       +-- 08 Rate-Limiting.md
 |       +-- 09 API-Gateway.md
-+-- INFRASTRUCTURE/          # infrastructure security reference
+|
++-- INFRASTRUCTURE/                             # infrastructure security reference
 |   +-- 01 Active Directory/
 |   +-- 02 Windows Infrastructure/
 |   +-- 03 Linux Infrastructure/
@@ -61,13 +64,15 @@ MethodMan/
 |   +-- 05 Network Attacks/
 |   +-- 06 Wireless/
 |   +-- 07 Mail-and-VPN/
-+-- AI/                      # AI and LLM security reference
+|
++-- AI/                                         # AI and LLM security reference
 |   +-- 01 OWASP-LLM-Top-10-2026/
 |   +-- 02 RAG-and-Embeddings/
 |   +-- 03 Agents-and-MCP/
 |   +-- 04 AI-Supply-Chain/
 |   +-- 05 OSAI-Prep/
-+-- ANONYMITY-PRIVACY-OPSEC/ # anonymity, privacy and OpSec reference
+|
++-- ANONYMITY-PRIVACY-OPSEC/                    # anonymity, privacy and OpSec reference
 |   +-- 01 Anonymous Networks/
 |   +-- 02 Secure Communications/
 |   +-- 03 Operating Systems and Hygiene/
@@ -76,9 +81,10 @@ MethodMan/
 |   +-- 06 Anonymous Crypto Operations and AML/
 |   +-- 07 OpSec and Threat Models/
 |   +-- 08 Attacks and Detection/
-+-- methodology/             # OSCP reporting rules and notes
-+-- tools/                   # custom pentest tools (Python, Go, Bash)
-+-- tests/                   # test runner + fixtures for mask.ps1 / check.ps1
+|
++-- methodology/                                # OSCP reporting rules and notes
++-- tools/                                      # custom pentest tools (Python, Go, Bash)
++-- tests/                                      # test runner + fixtures for mask.ps1 / check.ps1
 ```
 
 ---
