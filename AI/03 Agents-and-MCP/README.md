@@ -37,10 +37,10 @@ Every file uses the two-track structure:
 
 | # | Topic | File | Status |
 |---|-------|------|--------|
-| 01 | Agent Fundamentals | 01 Agent-Fundamentals.md | planned |
-| 02 | MCP Protocol and Attacks | 02 MCP-Protocol.md | planned |
-| 03 | Agent Injection | 03 Agent-Injection.md | planned |
-| 04 | Agent Defense | 04 Agent-Defense.md | planned |
+| 01 | Agent Fundamentals | [01 Agent-Fundamentals.md](./01%20Agent-Fundamentals.md) | done |
+| 02 | MCP Protocol and Attacks | [02 MCP-Protocol.md](./02%20MCP-Protocol.md) | done |
+| 03 | Agent Injection | [03 Agent-Injection.md](./03%20Agent-Injection.md) | done |
+| 04 | Agent Defense | [04 Agent-Defense.md](./04%20Agent-Defense.md) | done |
 
 ## Scope
 

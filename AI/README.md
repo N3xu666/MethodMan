@@ -28,7 +28,7 @@ web application security.
 |---|-------------|-------|--------|
 | 01 | [OWASP-LLM-Top-10-2026](./01%20OWASP-LLM-Top-10-2026/) | 10 | done |
 | 02 | [RAG-and-Embeddings](./02%20RAG-and-Embeddings/) | ~4 | done |
-| 03 | Agents-and-MCP | ~4 | planned |
+| 03 | [Agents-and-MCP](./03%20Agents-and-MCP/) | ~4 | done |
 | 04 | AI-Supply-Chain | ~4 | planned |
 | 05 | OSAI-Prep | ~3 | planned |
 
