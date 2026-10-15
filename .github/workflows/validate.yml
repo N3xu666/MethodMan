@@ -2,9 +2,18 @@ name: Validate
 
 on:
   push:
+    paths-ignore:
+      # Skip runs for binary assets no job reads. .md/.ps1/.py are NOT ignored:
+      # CI exists to validate them (check.ps1, check-anchors, check-tables, pytest).
+      - '**.png'
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+
+# Cancel superseded runs on the same branch/PR to avoid wasted CI minutes.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -129,9 +138,7 @@ jobs:
   gitleaks:
     name: Scan for secrets (gitleaks)
     runs-on: ubuntu-latest
-    # NON-BLOCKING during ramp-up (pass 68a.1).
-    # Promote to blocking after several green sessions.
-    continue-on-error: true
+    # BLOCKING since 2026-10-14 (promoted after several green sessions).
 
     steps:
       - name: Checkout repository (full history)

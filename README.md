@@ -1,4 +1,4 @@
-﻿# MethodMan
+# MethodMan
 
 [![Validate](https://github.com/N3xu666/MethodMan/actions/workflows/validate.yml/badge.svg?style=flat-square)](https://github.com/N3xu666/MethodMan/actions/workflows/validate.yml)
 [![Last commit](https://img.shields.io/github/last-commit/N3xu666/MethodMan?style=flat-square&label=last&v=4)](https://github.com/N3xu666/MethodMan/commits/main)
@@ -119,13 +119,16 @@ Validation is split across three independent layers:
   - broken relative links in docs,
   - counter drift in root README,
   - CVE table rows without a version range.
-- **Manual audit (`audit.ps1`)** - LOCAL only, run by the operator before important pushes. Covers git state, tracked files, walkthrough structure, Attack Chain, note placement, flags, dict leaks, dashes, encoding, placeholders, documentation, scripts, hook, origin sync, dynamic machine count, language-pair verification. Not run in CI.
-- **CI (`.github/workflows/validate.yml`)** - runs 4 jobs on every push to any branch and on PRs to `main` (pinned actions, read-only permissions):
+- **Manual audit (`audit.ps1`)** - LOCAL only, run by the operator before important pushes. Covers git state, tracked files, walkthrough structure, Attack Chain, note placement, flags, dict leaks, dashes, encoding, placeholders, documentation, scripts, hook, origin sync, dynamic machine count, language-pair verification. The full audit is local-only; CI runs `audit.ps1 -SkipLocalChecks` as an informational job.
+- **CI (`.github/workflows/validate.yml`)** - runs 8 jobs on every push to any branch and on PRs to `main` (pinned actions, read-only permissions):
   - `check` (windows-latest) - `check.ps1` with a placeholder `masking-dict.ps1` (the real dict is not in git).
   - `test` (windows-latest) - `tests/run-tests.ps1` (masking + check.ps1 leak tests).
   - `tools-syntax` (ubuntu-latest) - `python -m py_compile` on every `.py` under `tools/`.
   - `tools-tests` (ubuntu-latest) - pytest suite in `tools/python/tests/` plus a pip-install smoke test of the `methodman-session-report` package.
-  Does NOT run `audit.ps1` (local-only).
+  - `gitleaks` (ubuntu-latest) - secret scan over full history with a custom 32-hex flag rule (`.gitleaks.toml`); blocking.
+  - `audit` (windows-latest) - `audit.ps1 -SkipLocalChecks` (informational, non-blocking).
+  - `anchors` (windows-latest) - `check-anchors.ps1` (informational, non-blocking).
+  - `tables` (windows-latest) - `check-tables.ps1` (informational, non-blocking).
 
 The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known sensitive values) detects and masks flags (32-hex pattern), values listed in the dictionary, and heuristic password shapes. Detection is dictionary- and pattern-based, not exhaustive - manual review remains part of the workflow.
 
