@@ -60,7 +60,7 @@ $notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Report
 # ============================================================
 # 1. Real 32-hex flags
 # ============================================================
-Write-Host "`n=== [1/16] Real 32-hex flags ===" -ForegroundColor Cyan
+Write-Host "`n=== [1/17] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.Name -notin $excluded } |
@@ -74,7 +74,7 @@ else { Write-Host "FAIL: $flags flags left" -ForegroundColor Red; $totalIssues +
 # ============================================================
 # 2. Real passwords/hashes/keys from dictionary
 # ============================================================
-Write-Host "`n=== [2/16] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
+Write-Host "`n=== [2/17] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
 $leaks = 0
 foreach ($key in $replacements.Keys) {
     if ($key -match '^<.*>$') { continue }
@@ -97,7 +97,7 @@ else { Write-Host "FAIL: $leaks leaks" -ForegroundColor Red; $totalIssues += $le
 # ============================================================
 # 3. Note after Attack Chain (walkthroughs only, skip stubs)
 # ============================================================
-Write-Host "`n=== [3/16] Ethical note in walkthroughs ===" -ForegroundColor Cyan
+Write-Host "`n=== [3/17] Ethical note in walkthroughs ===" -ForegroundColor Cyan
 $withNote = 0
 $withoutNote = 0
 $stubCount = 0
@@ -127,7 +127,7 @@ if ($withoutNote -gt 0) { $totalIssues += $withoutNote }
 # ============================================================
 # 4. Long dashes
 # ============================================================
-Write-Host "`n=== [4/16] Long dashes ===" -ForegroundColor Cyan
+Write-Host "`n=== [4/17] Long dashes ===" -ForegroundColor Cyan
 $d = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -143,7 +143,7 @@ else { Write-Host "FAIL: $d long dashes" -ForegroundColor Red; $totalIssues += $
 # ============================================================
 # 5. Broken chars
 # ============================================================
-Write-Host "`n=== [5/16] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
+Write-Host "`n=== [5/17] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -159,7 +159,7 @@ else { Write-Host "FAIL: $b broken chars" -ForegroundColor Red; $totalIssues += 
 # ============================================================
 # 6. Masking artifacts
 # ============================================================
-Write-Host "`n=== [6/16] Masking artifacts ===" -ForegroundColor Cyan
+Write-Host "`n=== [6/17] Masking artifacts ===" -ForegroundColor Cyan
 $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLAG>FLAG')
 $a = 0
 foreach ($art in $artifacts) {
@@ -181,7 +181,7 @@ else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a 
 # ============================================================
 # 7. Heuristic: possibly unmasked secrets (WARN only, does not block)
 # ============================================================
-Write-Host "`n=== [7/16] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [7/17] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
 $suspicious = @()
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.Name -notin $excluded } |
@@ -214,7 +214,7 @@ if ($suspicious.Count -eq 0) {
 # ============================================================
 # 8. CVE reference in Exploitation (WARN only, does not block)
 # ============================================================
-Write-Host "`n=== [8/16] CVE reference in Exploitation (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [8/17] CVE reference in Exploitation (WARN only) ===" -ForegroundColor Cyan
 $missingCve = @()
 $checkedExpl = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -250,7 +250,7 @@ if ($missingCve.Count -eq 0) {
 # Scans: APPLICATIONS/01 Web/**, methodology/**, root *.md (README, CHEATSHEET,
 # METHODOLOGY, SECURITY). Looks for %%XX%% style markers.
 # ============================================================
-Write-Host "`n=== [9/16] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
+Write-Host "`n=== [9/17] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
 $docRootFiles = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'SECURITY.md')
 $placeholderCount = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -278,7 +278,7 @@ else { Write-Host "FAIL: $placeholderCount unreplaced placeholders" -ForegroundC
 # 10. Broken relative links in docs (WARN only, does not block)
 # Scans: APPLICATIONS/01 Web/**/*.md, methodology/**/*.md, root *.md. Skips code blocks, anchors, http(s)/mailto.
 # ============================================================
-Write-Host "`n=== [10/16] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [10/17] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
 $brokenLinks = @()
 $linkExcludeNames = @('_WORKFLOW.md', '_SITE_PLAN.md', 'PROMPT_NEXT_SESSION.txt')
 $linkFiles = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyContinue |
@@ -325,7 +325,7 @@ else {
 # 11. Counter consistency in root README (WARN only, does not block)
 # Compares root README counter with actual file counts.
 # ============================================================
-Write-Host "`n=== [11/16] Counter consistency in root README (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [11/17] Counter consistency in root README (WARN only) ===" -ForegroundColor Cyan
 $counterWarn = 0
 
 # Count published (non-stub) and stubs in all 01 Az/ folders
@@ -377,7 +377,7 @@ if (Test-Path $readmePath) {
 # link but contain no version range (no digit outside the CVE ID).
 # References lists (`- CVE-...: url`) are skipped on purpose.
 # ============================================================
-Write-Host "`n=== [12/16] CVE version ranges in docs tables (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [12/17] CVE version ranges in docs tables (WARN only) ===" -ForegroundColor Cyan
 $bareCve = @()
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -match '\\APPLICATIONS\\' -or $_.FullName -match '\\INFRASTRUCTURE\\' -or $_.FullName -match '\\ANONYMITY-PRIVACY-OPSEC\\' -or $_.FullName -match '\\AI\\' } |
@@ -413,9 +413,9 @@ if ($bareCve.Count -eq 0) {
 
 # ============================================================
 # ============================================================
-# [13/16] Backslash escapes in docs (FAIL)
+# [13/17] Backslash escapes in docs (FAIL)
 # ============================================================
-Write-Host "`n=== [13/16] Backslash escapes in docs ===" -ForegroundColor Cyan
+Write-Host "`n=== [13/17] Backslash escapes in docs ===" -ForegroundColor Cyan
 $bsEscapes = @()
 $docsRoots = @('APPLICATIONS', 'INFRASTRUCTURE', 'ANONYMITY-PRIVACY-OPSEC', 'AI', 'tools')
 $docsFiles = @()
@@ -447,11 +447,11 @@ if ($bsEscapes.Count -eq 0) {
     $totalIssues += $bsEscapes.Count
 }
 # ============================================================
-# [14/16] Stale references in tracked .md (WARN only)
+# [14/17] Stale references in tracked .md (WARN only)
 # Detects old folder names / marketing phrases left after
 # restructures. Any occurrence is a signal to update the file.
 # ============================================================
-Write-Host "`n=== [14/16] Stale references (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [14/17] Stale references (WARN only) ===" -ForegroundColor Cyan
 $stalePhrases = @('02 Web', '01 HTB', 'OSCP-grade')
 $staleHits = @()
 $staleFiles = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyContinue |
@@ -483,13 +483,13 @@ if ($staleHits.Count -eq 0) {
 }
 
 # ============================================================
-# [15/16] Language counter marker consistency (WARN only)
+# [15/17] Language counter marker consistency (WARN only)
 # Every "(N <marker> 3 languages)" line in WRITEUPS/**/README.md
 # must use the multiplication sign U+00D7 between the number and
 # "3 languages". Latin "x", "X", "*", "-", or mojibake "G-" are
 # cosmetic drift (pass 71) and must be fixed.
 # ============================================================
-Write-Host "`n=== [15/16] Language counter marker (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [15/17] Language counter marker (WARN only) ===" -ForegroundColor Cyan
 $timesSign = [string][char]0x00D7
 $counterWarns = @()
 $counterFiles = Get-ChildItem -Path (Join-Path $repo "WRITEUPS") -Recurse -Filter "README.md" -ErrorAction SilentlyContinue
@@ -516,7 +516,7 @@ if ($counterWarns.Count -eq 0) {
     if ($counterWarns.Count -gt 10) { Write-Host "  ... and $($counterWarns.Count - 10) more" -ForegroundColor Gray }
 }
 # ============================================================
-Write-Host "`n=== [16/16] Chat citation markers (FAIL) ===" -ForegroundColor Cyan
+Write-Host "`n=== [16/17] Chat citation markers (FAIL) ===" -ForegroundColor Cyan
 $citationFiles = Get-ChildItem -Path $repo -Recurse -Filter "*.md" -File -ErrorAction SilentlyContinue |
     Where-Object {
         $_.FullName -notmatch '\\txt\\' -and
@@ -540,6 +540,51 @@ if ($citationHits.Count -eq 0) {
     $citationHits | ForEach-Object { Write-Host "  $_" -ForegroundColor Red }
     $totalIssues++
 }
+# ============================================================
+Write-Host "`n=== [17/17] References format (WARN only) ===" -ForegroundColor Cyan
+$refFiles = Get-ChildItem -Path $repo -Recurse -Filter "*.md" -File -ErrorAction SilentlyContinue |
+    Where-Object {
+        $_.FullName -notmatch '\\txt\\' -and
+        $_.FullName -notmatch '\\\.git\\' -and
+        $_.FullName -notmatch '\\tests\\' -and
+        $_.FullName -notmatch '_WORKFLOW' -and
+        $_.FullName -notmatch '\\WRITEUPS\\'
+    }
+$refWarns = @()
+foreach ($f in $refFiles) {
+    $ct = [System.IO.File]::ReadAllText($f.FullName, $utf8)
+    $ct = $ct -replace "`r`n", "`n"
+    $lines = $ct -split "`n"
+    $rs = -1
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -match '^##\s+(\d+\.\s+)?References\s*$') { $rs = $i; break }
+    }
+    if ($rs -lt 0) { continue }
+    $rel = $f.FullName.Replace($repo + '\', '')
+    for ($i = $rs + 1; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -match '^##\s+') { break }
+        $line = $lines[$i].Trim()
+        if ($line -eq '' -or $line -notmatch '^[-*]\s+') { continue }
+        $item = $line -replace '^[-*]\s+', ''
+        if ($item -match '^\[[^\]]+\]\(\.\.?/') { continue }
+        if ($item -match '^\[[^\]]+\]\(https?://') {
+            $refWarns += "$rel : B-format markdown link: $item"
+            continue
+        }
+        if ($item -match ':\s+https?://') {
+            $refWarns += "$rel : C-format colon URL: $item"
+            continue
+        }
+    }
+}
+if ($refWarns.Count -eq 0) {
+    Write-Host "OK: all References use etalon format" -ForegroundColor Green
+} else {
+    Write-Host "WARN: $($refWarns.Count) References item(s) not in etalon format 'description - url':" -ForegroundColor Yellow
+    $refWarns | Select-Object -First 10 | ForEach-Object { Write-Host "  $_" -ForegroundColor Gray }
+    if ($refWarns.Count -gt 10) { Write-Host "  ... and $($refWarns.Count - 10) more" -ForegroundColor Gray }
+}
+
 # Summary
 # ============================================================
 Write-Host "`n============================================" -ForegroundColor Cyan
