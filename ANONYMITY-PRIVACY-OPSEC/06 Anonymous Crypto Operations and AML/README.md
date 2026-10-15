@@ -56,14 +56,14 @@ All files in this subcategory use the **Hands-on** format:
 
 | # | File | Status |
 |---|------|--------|
-| 01 | Monero | planned |
-| 02 | Bitcoin | planned |
-| 03 | Physical and Prepaid | planned |
-| 04 | Mixers and Tumblers | planned |
-| 05 | Chain-Hopping and DEX | planned |
-| 06 | Transaction OpSec | planned |
-| 07 | AML and Chain Analysis | planned |
-| 08 | Cashing Out | planned |
+| 01 | [Monero](./01%20Monero.md) | done |
+| 02 | [Bitcoin](./02%20Bitcoin.md) | done |
+| 03 | [Physical and Prepaid](./03%20Physical%20and%20Prepaid.md) | done |
+| 04 | [Mixers and Tumblers](./04%20Mixers%20and%20Tumblers.md) | done |
+| 05 | [Chain-Hopping and DEX](./05%20Chain-Hopping%20and%20DEX.md) | done |
+| 06 | [Transaction OpSec](./06%20Transaction%20OpSec.md) | done |
+| 07 | [AML and Chain Analysis](./07%20AML%20and%20Chain%20Analysis.md) | done |
+| 08 | [Cashing Out](./08%20Cashing%20Out.md) | done |
 
 ## Related
 
