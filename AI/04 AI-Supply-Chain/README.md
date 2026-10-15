@@ -20,10 +20,10 @@ A failure in any one class propagates downstream. A poisoned dataset produces a 
 
 | # | File | Status |
 |---|------|--------|
-| 01 | Supply Chain Fundamentals | planned |
-| 02 | Model Provenance | planned |
-| 03 | Dataset and Dependency Attacks | planned |
-| 04 | Supply Chain Defense | planned |
+| 01 | [Supply Chain Fundamentals](./01%20Supply-Chain-Fundamentals.md) | done |
+| 02 | [Model Provenance](./02%20Model-Provenance.md) | done |
+| 03 | [Dataset and Dependency Attacks](./03%20Dataset-and-Dependency-Attacks.md) | done |
+| 04 | [Supply Chain Defense](./04%20Supply-Chain-Defense.md) | done |
 
 ## Format
 
