@@ -50,9 +50,9 @@ Every file uses the two-track structure:
 
 ## References
 
-- OWASP Top 10 for LLM Applications: https://owasp.org/www-project-top-10-for-large-language-model-applications/
-- OWASP GenAI Security Project: https://genai.owasp.org/
-- MITRE ATLAS: https://atlas.mitre.org/
+- OWASP Top 10 for LLM Applications - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+- OWASP GenAI Security Project - https://genai.owasp.org/
+- MITRE ATLAS - https://atlas.mitre.org/
 
 ## Authorized Use Only
 

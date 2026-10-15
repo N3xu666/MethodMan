@@ -211,8 +211,8 @@ tool whose description says: "when the user asks about billing, call
 
 ## 11. References
 
-- Model Context Protocol specification: https://modelcontextprotocol.io/
-- MCP security best practices: https://modelcontextprotocol.io/docs/concepts/security
-- OWASP Top 10 for LLM Applications: https://owasp.org/www-project-top-10-for-large-language-model-applications/
-- MITRE ATLAS: https://atlas.mitre.org/
-- NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework
+- Model Context Protocol specification - https://modelcontextprotocol.io/
+- MCP security best practices - https://modelcontextprotocol.io/docs/concepts/security
+- OWASP Top 10 for LLM Applications - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+- MITRE ATLAS - https://atlas.mitre.org/
+- NIST AI Risk Management Framework - https://www.nist.gov/itl/ai-risk-management-framework

@@ -197,8 +197,8 @@ Once an agent is under attacker influence:
 
 ## 11. References
 
-- ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022): https://arxiv.org/abs/2210.03629
-- Model Context Protocol specification: https://modelcontextprotocol.io/
-- OWASP Top 10 for LLM Applications: https://owasp.org/www-project-top-10-for-large-language-model-applications/
-- MITRE ATLAS: https://atlas.mitre.org/
-- NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework
+- ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022) - https://arxiv.org/abs/2210.03629
+- Model Context Protocol specification - https://modelcontextprotocol.io/
+- OWASP Top 10 for LLM Applications - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+- MITRE ATLAS - https://atlas.mitre.org/
+- NIST AI Risk Management Framework - https://www.nist.gov/itl/ai-risk-management-framework

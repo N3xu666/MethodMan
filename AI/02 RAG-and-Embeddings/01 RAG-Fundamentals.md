@@ -208,8 +208,8 @@ the model can do:
 
 ## 11. References
 
-- Retrieval-Augmented Generation (Lewis et al., 2020): https://arxiv.org/abs/2005.11401
-- Dense Passage Retrieval (Karpukhin et al., 2020): https://arxiv.org/abs/2004.04906
-- Sentence-BERT (Reimers and Gurevych, 2019): https://arxiv.org/abs/1908.10084
-- OWASP Top 10 for LLM Applications: https://owasp.org/www-project-top-10-for-large-language-model-applications/
-- MITRE ATLAS: https://atlas.mitre.org/
+- Retrieval-Augmented Generation (Lewis et al., 2020) - https://arxiv.org/abs/2005.11401
+- Dense Passage Retrieval (Karpukhin et al., 2020) - https://arxiv.org/abs/2004.04906
+- Sentence-BERT (Reimers and Gurevych, 2019) - https://arxiv.org/abs/1908.10084
+- OWASP Top 10 for LLM Applications - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+- MITRE ATLAS - https://atlas.mitre.org/

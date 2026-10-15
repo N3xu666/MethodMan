@@ -205,7 +205,7 @@ reviewer does not read.
 
 ## 11. References
 
-- Not what you've signed up for: Compromising Real-World LLM-Integrated Applications (Greshake et al., 2023): https://arxiv.org/abs/2302.12173
-- Indirect Prompt Injection (OWASP): https://genai.owasp.org/llmrisk/llm01-prompt-injection/
-- MITRE ATLAS: https://atlas.mitre.org/
-- NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework
+- Not what you've signed up for: Compromising Real-World LLM-Integrated Applications (Greshake et al., 2023) - https://arxiv.org/abs/2302.12173
+- Indirect Prompt Injection (OWASP) - https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+- MITRE ATLAS - https://atlas.mitre.org/
+- NIST AI Risk Management Framework - https://www.nist.gov/itl/ai-risk-management-framework

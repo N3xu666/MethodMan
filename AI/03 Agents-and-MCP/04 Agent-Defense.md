@@ -203,8 +203,8 @@ Minimum test suite for an agent deployment:
 
 ## 11. References
 
-- Not what you've signed up for (Greshake et al., 2023): https://arxiv.org/abs/2302.12173
-- Model Context Protocol specification: https://modelcontextprotocol.io/
-- OWASP Top 10 for LLM Applications: https://owasp.org/www-project-top-10-for-large-language-model-applications/
-- MITRE ATLAS: https://atlas.mitre.org/
-- NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework
+- Not what you've signed up for (Greshake et al., 2023) - https://arxiv.org/abs/2302.12173
+- Model Context Protocol specification - https://modelcontextprotocol.io/
+- OWASP Top 10 for LLM Applications - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+- MITRE ATLAS - https://atlas.mitre.org/
+- NIST AI Risk Management Framework - https://www.nist.gov/itl/ai-risk-management-framework

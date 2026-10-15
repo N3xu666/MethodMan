@@ -215,8 +215,8 @@ tenant B. This is the RAG equivalent of an IDOR.
 
 ## 11. References
 
-- Text Embeddings Reveal (Almost) As Much As Text (Morris et al., 2023): https://arxiv.org/abs/2310.06816
-- Sentence-BERT (Reimers and Gurevych, 2019): https://arxiv.org/abs/1908.10084
-- OWASP Top 10 for LLM Applications: https://owasp.org/www-project-top-10-for-large-language-model-applications/
-- MITRE ATLAS: https://atlas.mitre.org/
-- NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework
+- Text Embeddings Reveal (Almost) As Much As Text (Morris et al., 2023) - https://arxiv.org/abs/2310.06816
+- Sentence-BERT (Reimers and Gurevych, 2019) - https://arxiv.org/abs/1908.10084
+- OWASP Top 10 for LLM Applications - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+- MITRE ATLAS - https://atlas.mitre.org/
+- NIST AI Risk Management Framework - https://www.nist.gov/itl/ai-risk-management-framework
