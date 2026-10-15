@@ -23,34 +23,34 @@ main networks: Nym (a mixnet), Freenet/Hyphanet, GNUnet, and Yggdrasil.
 ## 1. Overview
 
 Lokinet is the reference implementation of LLARP, a Layer 3 onion
-routing protocol [citation:1]. It is designed as a hybrid between Tor
+routing protocol. It is designed as a hybrid between Tor
 and I2P: it provides low-latency onion routing (like Tor) with
-support for in-network services called SNApps (like I2P) [citation:12].
+support for in-network services called SNApps (like I2P).
 
 Key architectural differences from Tor and I2P:
 
 - **Network layer (Layer 3)** - Lokinet routes IP packets, not TCP
   streams. This means it can carry UDP, ICMP, and any other IP
-  protocol, including real-time voice and video [citation:12].
+  protocol, including real-time voice and video.
 - **Staked service nodes** - relays are operated by Oxen Service Nodes
   that stake OXEN tokens and are economically incentivized to provide
-  quality service, unlike Tor's volunteer relays [citation:2][citation:12].
+  quality service, unlike Tor's volunteer relays.
 - **Blockchain coordination** - peer discovery and node registration
   use the Oxen blockchain rather than a central directory or a
-  distributed DHT [citation:2].
+  distributed DHT.
 - **Packet-switched** - like I2P, Lokinet uses packet switching rather
-  than Tor's circuit switching [citation:2].
+  than Tor's circuit switching.
 
 **Alternatives covered in this file:**
 
 - **Nym** - a mixnet that provides stronger resistance to global
-  passive adversaries at the cost of latency [citation:4][citation:14].
+  passive adversaries at the cost of latency.
 - **Freenet/Hyphanet** - a distributed storage and publishing network
-  with high latency, optimized for censorship-resistant publishing [citation:2].
+  with high latency, optimized for censorship-resistant publishing.
 - **GNUnet** - a research-oriented P2P framework with a modular
-  architecture and strong adversary-resistance assumptions [citation:5].
+  architecture and strong adversary-resistance assumptions.
 - **Yggdrasil** - a lightweight IPv6 overlay network, not designed
-  primarily for anonymity but useful as a fast overlay [citation:16].
+  primarily for anonymity but useful as a fast overlay.
 
 ---
 
@@ -73,24 +73,24 @@ Key architectural differences from Tor and I2P:
   a significant share of service nodes.
 - **Small anonymity set** - Lokinet has fewer than 1,000 service
   nodes, compared to Tor's millions of daily users and I2P's ~55,000
-  routers [citation:2]. A smaller anonymity set means a higher chance
+  routers. A smaller anonymity set means a higher chance
   of a single adversary controlling a relevant fraction of nodes.
 
 **Nym defends against:**
 
 - **Global passive adversary** - Nym's mixnet design (random delays,
   cover traffic, Poisson sending) is specifically built to resist
-  traffic correlation [citation:4][citation:14].
+  traffic correlation.
 - **Timing analysis** - packets are reordered and delayed at each
-  mix layer, destroying the timing signal [citation:9].
+  mix layer, destroying the timing signal.
 
 **Nym does NOT defend against:**
 
 - **Latency-sensitive use cases** - the mixing delay makes Nym
-  unsuitable for video calls or interactive browsing [citation:14].
+  unsuitable for video calls or interactive browsing.
 - **Destination-side observation** - against the destination, Nym
   behaves like a VPN: the destination sees the exit gateway's IP and
-  the full content of the connection [citation:14].
+  the full content of the connection.
 
 **Yggdrasil does NOT defend against:**
 
@@ -112,10 +112,10 @@ No single node knows the full path.
 
 LLARP is a Layer 3 protocol: it creates a virtual tunnel interface
 (`tun0` on Linux) and routes IP packets through the network. Because it
-operates at Layer 3, it can carry any IP protocol [citation:12].
+operates at Layer 3, it can carry any IP protocol.
 
 Service nodes are staked Oxen nodes. The Oxen blockchain maintains the
-list of active service nodes and their public keys [citation:2].
+list of active service nodes and their public keys.
 
 **Nym (mixnet):**
 
@@ -132,17 +132,17 @@ Cover traffic flows continuously, independent of real traffic.
 
 Nym uses the Loopix design: random delays at each mix layer, constant
 cover traffic, and Poisson sending from clients. This breaks the
-timing correlation that onion routers are vulnerable to [citation:4][citation:19].
+timing correlation that onion routers are vulnerable to.
 
 The cost is latency: a 5-hop mixnet round-trip is on the order of
-1.5-2 seconds, compared to Tor's 200-500 ms [citation:2][citation:4].
+1.5-2 seconds, compared to Tor's 200-500 ms.
 
 **Freenet/Hyphanet:**
 
 Freenet is a distributed data store. Content is encrypted and stored
 across many nodes; routing is key-based. Latency is high (minutes for
 cold requests), but the network is designed for censorship-resistant
-publishing rather than interactive browsing [citation:2].
+publishing rather than interactive browsing.
 
 **GNUnet:**
 
@@ -150,7 +150,7 @@ GNUnet is a modular P2P framework with 45+ subsystems. It provides a
 DHT (R5N), a file-sharing layer (ECRS), a name system (GNS), and an
 anonymous routing layer with user-controllable anonymity levels. It is
 primarily a research platform, and the version packaged in Debian
-stable is often too old to connect to the live network [citation:5].
+stable is often too old to connect to the live network.
 
 **Yggdrasil:**
 
@@ -158,7 +158,7 @@ Yggdrasil is an IPv6 overlay network. It assigns each node a public
 IPv6 address in a reserved range and routes traffic over encrypted
 links. It is fast and easy to set up, but it is **not** an anonymity
 network: traffic is encrypted in transit, but the topology is not
-designed to hide source-destination relationships [citation:16].
+designed to hide source-destination relationships.
 
 ---
 
@@ -179,7 +179,7 @@ sudo systemctl enable --now lokinet
 
 **Lokinet (macOS/Windows):**
 
-Download the installer from https://lokinet.org/ [citation:6].
+Download the installer from https://lokinet.org/.
 
 **Lokinet usage:**
 
@@ -196,7 +196,7 @@ lokinet -r -g
 **Nym (via NymVPN):**
 
 Download from https://nym.com/ or use the Nym SDK for applications.
-Nym requires acquiring and spending NYM tokens for mixnet access [citation:15].
+Nym requires acquiring and spending NYM tokens for mixnet access.
 
 **Yggdrasil:**
 
@@ -215,9 +215,9 @@ sudo systemctl enable --now yggdrasil
 **Lokinet client hardening:**
 
 - **Do not run as root on Linux.** The binary uses `setcap` for the
-  necessary privileges. Running as root is unnecessary and risky [citation:1].
+  necessary privileges. Running as root is unnecessary and risky.
 - **Run as a normal user.** On Windows, do not run the batch file as
-  an elevated user [citation:1].
+  an elevated user.
 - **Use the exit node only when needed.** Like a VPN exit, the exit
   node sees your clearnet traffic.
 - **Keep the client updated.** Lokinet is actively developed; security
@@ -226,7 +226,7 @@ sudo systemctl enable --now yggdrasil
 **Nym operational notes:**
 
 - **Use cover traffic.** Nym clients send cover traffic by default;
-  do not disable it. Cover traffic is what provides unobservability [citation:14].
+  do not disable it. Cover traffic is what provides unobservability.
 - **Accept the latency.** Nym is not for real-time applications.
   Use it for messaging, file transfers, and API calls where a few
   seconds of latency is acceptable.
@@ -236,7 +236,7 @@ sudo systemctl enable --now yggdrasil
 **GNUnet:**
 
 - **Use a recent version.** The Debian stable package is often too
-  old to connect. Build from source or use a recent release [citation:5].
+  old to connect. Build from source or use a recent release.
 - **Configure anonymity level.** GNUnet allows user-controllable
   anonymity levels; set them based on your threat model.
 
@@ -268,7 +268,7 @@ curl --interface lokinet0 https://check.torproject.org/
 
 SNApps are services hosted on Lokinet. They are accessed through the
 Lokinet tunnel interface, similar to how I2P eepsites are accessed
-through the I2P proxy [citation:12].
+through the I2P proxy.
 
 **Nym - sending a message (SDK):**
 
@@ -279,7 +279,7 @@ Nym provides SDKs for Rust and other languages. The general flow:
 3. Packets traverse three mix layers, each adding delay.
 4. Exit Gateway delivers the message to the destination.
 
-For clearnet destinations, the Exit Gateway acts as a proxy [citation:9].
+For clearnet destinations, the Exit Gateway acts as a proxy.
 
 **Yggdrasil - accessing the network:**
 
@@ -299,19 +299,19 @@ Other Yggdrasil nodes are reachable via their IPv6 addresses in the
 
 - **Assuming Lokinet is as anonymous as Tor.** Lokinet has a much
   smaller anonymity set (<1,000 service nodes vs Tor's millions of
-  users) [citation:2].
+  users).
 - **Using Lokinet for high-threat anonymity.** The small network and
   token-based relay model mean a well-funded adversary can acquire a
   significant share of nodes.
 - **Using Nym for real-time applications.** The mixnet latency
   (1.5-2 seconds) makes video calls and interactive browsing
-  impractical [citation:14].
+  impractical.
 - **Disabling cover traffic in Nym.** Cover traffic is what provides
-  unobservability; disabling it breaks the threat model [citation:14].
+  unobservability; disabling it breaks the threat model.
 - **Treating Yggdrasil as an anonymity network.** Yggdrasil is an
   overlay network, not an anonymity network.
 - **Running GNUnet from Debian stable.** The packaged version is
-  often too old to connect to the live network [citation:5].
+  often too old to connect to the live network.
 - **Using the wrong network for the threat model.** Tor for clearnet
   browsing, I2P for in-network hosting, Lokinet for UDP/real-time
   over onion routing, Nym for high-latency strong anonymity.
@@ -329,16 +329,16 @@ Other Yggdrasil nodes are reachable via their IPv6 addresses in the
 - **Exit node snooping** - a malicious exit sees clearnet traffic.
 - **Small anonymity set** - with fewer than 1,000 nodes, the chance
   of an adversary controlling a relevant fraction is higher than
-  in Tor [citation:2].
+  in Tor.
 
 **Nym attacks:**
 
 - **Mix node compromise** - if multiple mix layers are compromised,
   correlation becomes possible. Nym's design assumes some mix nodes
-  may be malicious [citation:19].
+  may be malicious.
 - **Entry gateway compromise** - a user's long-term entry gateway is
   a point of attack. Discovering a user's gateway is consequential
-  for deanonymization [citation:19].
+  for deanonymization.
 - **Timing analysis with reduced cover traffic** - if cover traffic
   is insufficient, statistical timing attacks become possible over
   many messages.
@@ -367,7 +367,7 @@ Other Yggdrasil nodes are reachable via their IPv6 addresses in the
 
 - **Process** - Nym client processes (SDK-dependent).
 - **Traffic pattern** - constant-rate traffic, Sphinx packet sizes
-  (fixed 2413 B per packet) [citation:4].
+  (fixed 2413 B per packet).
 - **Latency** - unusually high round-trip times to destinations,
   consistent with mixnet delays.
 
@@ -397,14 +397,14 @@ design ties anonymity to a token economy: service nodes stake OXEN
 model aims to solve the "volunteer relay" problem of Tor (where
 relays are run by volunteers and may be under-resourced), but it
 also ties network participation to cryptocurrency ownership and
-regulatory considerations [citation:12].
+regulatory considerations.
 
 **Nym and the Loopix design.** Nym implements the Loopix mixnet
 design from the academic literature. Loopix showed that a mixnet
 with random delays, cover traffic, and Poisson sending could
 provide strong resistance to global passive adversaries at the
 cost of latency. Nym is one of the few production deployments of
-this design [citation:4][citation:19].
+this design.
 
 **Freenet and censorship-resistant publishing.** Freenet (now
 Hyphanet) has been used for censorship-resistant publishing for
@@ -417,7 +417,7 @@ low-latency routing.
 influenced many subsequent designs. Its modular architecture and
 strong adversary-resistance assumptions make it a useful reference
 for understanding the design space, even though it is not widely
-deployed as a production anonymity network [citation:5].
+deployed as a production anonymity network.
 
 ---
 
