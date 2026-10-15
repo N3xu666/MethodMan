@@ -40,7 +40,7 @@ This subcategory covers:
 ## Related
 
 - [01 Anonymous Networks](../01%20Anonymous%20Networks/README.md) - Tor, I2P, Lokinet, VPN chains (transport layer).
-- [03 Operating Systems and Hygiene](../03%20Operating%20Systems%20and%20Hygiene/README.md) - Tails, Qubes, metadata (planned).
+- Operating Systems and Hygiene - Tails, Qubes, metadata (planned, no dedicated file yet).
 
 ## Legal and Ethical Notes
 
