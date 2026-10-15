@@ -37,10 +37,10 @@ This subcategory does **NOT** cover:
 
 | # | File | Format | Focus |
 |---|------|--------|-------|
-| 01 | Tor | Hands-on | Onion routing, relay types, bridges, hidden services |
-| 02 | I2P | Hands-on | Garlic routing, eepsites, threat model |
-| 03 | Lokinet and Alternatives | Hands-on | LLARP, mixnets, Nym |
-| 04 | VPN and Multi-hop Chains | Hands-on | VPN types, Tor+VPN chains, common mistakes |
+| 01 | [Tor](./01%20Tor.md) | Hands-on | Onion routing, relay types, bridges, hidden services |
+| 02 | [I2P](./02%20I2P.md) | Hands-on | Garlic routing, eepsites, threat model |
+| 03 | [Lokinet and Alternatives](./03%20Lokinet%20and%20Alternatives.md) | Hands-on | LLARP, mixnets, Nym |
+| 04 | [VPN and Multi-hop Chains](./04%20VPN%20and%20Multi-hop%20Chains.md) | Hands-on | VPN types, Tor+VPN chains, common mistakes |
 
 All files use **Format 4 (Hands-on)** - see `_WORKFLOW.md` section 6.7
 for the template.
