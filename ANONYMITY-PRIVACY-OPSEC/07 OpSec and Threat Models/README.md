@@ -51,10 +51,10 @@ about reasoning.
 
 | # | File | Focus |
 |---|------|-------|
-| 01 | Threat Modeling | Adversary capabilities, STRIDE, attack trees, data-flow analysis |
-| 02 | Compartmentalization | Identity, device, and network separation; isolation models |
-| 03 | Attribution | Traffic analysis, stylometry, behavioral fingerprinting, mistakes |
-| 04 | Case Studies | Real anonymity failures as post-mortems |
+| 01 | [Threat Modeling](./01%20Threat%20Modeling.md) | Adversary capabilities, STRIDE, attack trees, data-flow analysis |
+| 02 | [Compartmentalization](./02%20Compartmentalization.md) | Identity, device, and network separation; isolation models |
+| 03 | [Attribution](./03%20Attribution.md) | Traffic analysis, stylometry, behavioral fingerprinting, mistakes |
+| 04 | [Case Studies](./04%20Case%20Studies.md) | Real anonymity failures as post-mortems |
 
 ## Related
 

@@ -86,13 +86,13 @@ ANONYMITY-PRIVACY-OPSEC/
 
 | # | Subcategory | Format | Status |
 |---|-------------|--------|--------|
-| 01 | Anonymous Networks | Hands-on | done |
-| 02 | Secure Communications | Hands-on | done |
-| 03 | Operating Systems and Hygiene | Hands-on | done |
-| 04 | Dark Web | Hands-on | done |
-| 05 | Anonymous Hosting | Hands-on | done |
-| 06 | Anonymous Crypto Operations and AML | Hands-on | done |
-| 07 | OpSec and Threat Models | Conceptual | planned |
+| 01 | [Anonymous Networks](./01%20Anonymous%20Networks/) | Hands-on | done |
+| 02 | [Secure Communications](./02%20Secure%20Communications/) | Hands-on | done |
+| 03 | [Operating Systems and Hygiene](./03%20Operating%20Systems%20and%20Hygiene/) | Hands-on | done |
+| 04 | [Dark Web](./04%20Dark%20Web/) | Hands-on | done |
+| 05 | [Anonymous Hosting](./05%20Anonymous%20Hosting/) | Hands-on | done |
+| 06 | [Anonymous Crypto Operations and AML](./06%20Anonymous%20Crypto%20Operations%20and%20AML/) | Hands-on | done |
+| 07 | [OpSec and Threat Models](./07%20OpSec%20and%20Threat%20Models/) | Conceptual | done |
 | 08 | Attacks and Detection | Conceptual | planned |
 
 Status legend:
