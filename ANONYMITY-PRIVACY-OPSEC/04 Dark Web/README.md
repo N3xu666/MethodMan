@@ -38,10 +38,10 @@ Any use of the techniques in this subcategory for illegal activity is prohibited
 
 | # | File | Focus | Status |
 |---|------|-------|--------|
-| 01 | Hidden Services | Run and harden a Tor onion service | planned |
-| 02 | OnionShare | Anonymous file sharing, hosting, chat | planned |
-| 03 | SecureDrop | Whistleblowing platform for journalists | planned |
-| 04 | Pastebins and Dead Drops | Anonymous text and covert data retrieval | planned |
+| 01 | [Hidden Services](./01%20Hidden%20Services.md) | Run and harden a Tor onion service | done |
+| 02 | [OnionShare](./02%20OnionShare.md) | Anonymous file sharing, hosting, chat | done |
+| 03 | [SecureDrop](./03%20SecureDrop.md) | Whistleblowing platform for journalists | done |
+| 04 | [Pastebins and Dead Drops](./04%20Pastebins%20and%20Dead%20Drops.md) | Anonymous text and covert data retrieval | done |
 
 ## Related
 
