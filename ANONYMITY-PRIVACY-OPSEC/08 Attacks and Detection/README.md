@@ -50,10 +50,10 @@ steps and no hardening checklists here.
 
 | # | File | Focus |
 |---|------|-------|
-| 01 | De-anonymization | Traffic correlation, fingerprinting, stylometry, statistical linking |
-| 02 | Hidden Service Attacks | Guard discovery, rendezvous attacks, relay-level attacks |
-| 03 | Corporate Detection | Behavioral analytics, account correlation, abuse detection |
-| 04 | LE Takedowns | Legal process, infrastructure seizure, infiltration, mistakes |
+| 01 | [De-anonymization](./01%20De-anonymization.md) | Traffic correlation, fingerprinting, stylometry, statistical linking |
+| 02 | [Hidden Service Attacks](./02%20Hidden%20Service%20Attacks.md) | Guard discovery, rendezvous attacks, relay-level attacks |
+| 03 | [Corporate Detection](./03%20Corporate%20Detection.md) | Behavioral analytics, account correlation, abuse detection |
+| 04 | [LE Takedowns](./04%20LE%20Takedowns.md) | Legal process, infrastructure seizure, infiltration, mistakes |
 
 ## Related
 

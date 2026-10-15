@@ -93,7 +93,7 @@ ANONYMITY-PRIVACY-OPSEC/
 | 05 | [Anonymous Hosting](./05%20Anonymous%20Hosting/) | Hands-on | done |
 | 06 | [Anonymous Crypto Operations and AML](./06%20Anonymous%20Crypto%20Operations%20and%20AML/) | Hands-on | done |
 | 07 | [OpSec and Threat Models](./07%20OpSec%20and%20Threat%20Models/) | Conceptual | done |
-| 08 | Attacks and Detection | Conceptual | planned |
+| 08 | [Attacks and Detection](./08%20Attacks%20and%20Detection/) | Conceptual | done |
 
 Status legend:
 
