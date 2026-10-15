@@ -672,22 +672,22 @@ python3 -c 'import pickle, os; print(pickle.dumps(type("E",(),{"__reduce__":lamb
 
 ## 14. References
 
-- OWASP Deserialization Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html
-- PortSwigger Insecure Deserialization: https://portswigger.net/web-security/deserialization
-- HackTricks Java Deserialization: https://book.hacktricks.xyz/pentesting-web/deserialization
-- ysoserial (Java): https://github.com/frohoff/ysoserial
-- ysoserial.net: https://github.com/pwntester/ysoserial.net
-- phpggc: https://github.com/ambionics/phpggc
-- marshalsec: https://github.com/mbechler/marshalsec
-- JNDIExploit: https://github.com/feihong-cs/JNDIExploit
-- ViewGen: https://github.com/0xacb/viewgen
-- CVE-2015-4852 (WebLogic T3 deserialization): https://nvd.nist.gov/vuln/detail/CVE-2015-4852
-- CVE-2015-7501 (Commons Collections RCE): https://nvd.nist.gov/vuln/detail/CVE-2015-7501
-- CVE-2021-44228 (Log4Shell): https://nvd.nist.gov/vuln/detail/CVE-2021-44228
-- CVE-2020-14882 (WebLogic Console RCE): https://nvd.nist.gov/vuln/detail/CVE-2020-14882
-- CVE-2019-2725 (WebLogic wls9-async): https://nvd.nist.gov/vuln/detail/CVE-2019-2725
-- CVE-2020-7660 (serialize-javascript RCE): https://nvd.nist.gov/vuln/detail/CVE-2020-7660
-- CVE-2013-0156 (Rails YAML deserialization): https://nvd.nist.gov/vuln/detail/CVE-2013-0156
+- OWASP Deserialization Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html
+- PortSwigger Insecure Deserialization - https://portswigger.net/web-security/deserialization
+- HackTricks Java Deserialization - https://book.hacktricks.xyz/pentesting-web/deserialization
+- ysoserial (Java) - https://github.com/frohoff/ysoserial
+- ysoserial.net - https://github.com/pwntester/ysoserial.net
+- phpggc - https://github.com/ambionics/phpggc
+- marshalsec - https://github.com/mbechler/marshalsec
+- JNDIExploit - https://github.com/feihong-cs/JNDIExploit
+- ViewGen - https://github.com/0xacb/viewgen
+- CVE-2015-4852 (WebLogic T3 deserialization) - https://nvd.nist.gov/vuln/detail/CVE-2015-4852
+- CVE-2015-7501 (Commons Collections RCE) - https://nvd.nist.gov/vuln/detail/CVE-2015-7501
+- CVE-2021-44228 (Log4Shell) - https://nvd.nist.gov/vuln/detail/CVE-2021-44228
+- CVE-2020-14882 (WebLogic Console RCE) - https://nvd.nist.gov/vuln/detail/CVE-2020-14882
+- CVE-2019-2725 (WebLogic wls9-async) - https://nvd.nist.gov/vuln/detail/CVE-2019-2725
+- CVE-2020-7660 (serialize-javascript RCE) - https://nvd.nist.gov/vuln/detail/CVE-2020-7660
+- CVE-2013-0156 (Rails YAML deserialization) - https://nvd.nist.gov/vuln/detail/CVE-2013-0156
 
 ---
 

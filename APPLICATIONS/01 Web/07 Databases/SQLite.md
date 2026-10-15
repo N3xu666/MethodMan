@@ -254,9 +254,9 @@ sqlmap -u "http://<TARGET>/page?id=1" --dbms=SQLite --sql-query="SELECT * FROM u
 
 ## 7. References
 
-- SQLite official docs: https://www.sqlite.org/docs.html
-- HackTricks - SQLite injection: https://book.hacktricks.xyz/pentesting-web/sql-injection/sqlite-injection
-- PayloadsAllTheThings - SQLite: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
-- sqlmap SQLite: https://github.com/sqlmapproject/sqlmap/wiki/Usage
+- SQLite official docs - https://www.sqlite.org/docs.html
+- HackTricks - SQLite injection - https://book.hacktricks.xyz/pentesting-web/sql-injection/sqlite-injection
+- PayloadsAllTheThings - SQLite - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md
+- sqlmap SQLite - https://github.com/sqlmapproject/sqlmap/wiki/Usage
 
 ---

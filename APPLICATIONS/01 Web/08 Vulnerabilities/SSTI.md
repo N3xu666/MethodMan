@@ -785,20 +785,20 @@ Polyglot:         ${{<%[%'"}}%\
 
 ## 13. References
 
-- PortSwigger SSTI: https://portswigger.net/web-security/server-side-template-injection
-- HackTricks SSTI: https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection
-- PayloadsAllTheThings SSTI: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
-- Jinja2 sandbox docs: https://jinja.palletsprojects.com/en/3.1.x/sandbox/
-- Twig security: https://twig.symfony.com/doc/3.x/api.html
-- Freemarker security: https://freemarker.apache.org/docs/api/freemarker/core/Configurable.html
-- Velocity security: https://velocity.apache.org/engine/2.3/user-guide.html
-- Thymeleaf expression injection: https://github.com/thymeleaf/thymeleaf/issues/395
-- tplmap: https://github.com/epinna/tplmap
-- SSTImap: https://github.com/vladko312/SSTImap
-- CVE-2022-22963 (Spring Cloud Function SpEL RCE): https://nvd.nist.gov/vuln/detail/CVE-2022-22963
-- CVE-2022-22965 (Spring4Shell): https://nvd.nist.gov/vuln/detail/CVE-2022-22965
-- CVE-2019-11043 (PHP-FPM underflow, used with template RCE): https://nvd.nist.gov/vuln/detail/CVE-2019-11043
-- CVE-2021-41773 (Apache path traversal, sometimes chained): https://nvd.nist.gov/vuln/detail/CVE-2021-41773
+- PortSwigger SSTI - https://portswigger.net/web-security/server-side-template-injection
+- HackTricks SSTI - https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection
+- PayloadsAllTheThings SSTI - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
+- Jinja2 sandbox docs - https://jinja.palletsprojects.com/en/3.1.x/sandbox/
+- Twig security - https://twig.symfony.com/doc/3.x/api.html
+- Freemarker security - https://freemarker.apache.org/docs/api/freemarker/core/Configurable.html
+- Velocity security - https://velocity.apache.org/engine/2.3/user-guide.html
+- Thymeleaf expression injection - https://github.com/thymeleaf/thymeleaf/issues/395
+- tplmap - https://github.com/epinna/tplmap
+- SSTImap - https://github.com/vladko312/SSTImap
+- CVE-2022-22963 (Spring Cloud Function SpEL RCE) - https://nvd.nist.gov/vuln/detail/CVE-2022-22963
+- CVE-2022-22965 (Spring4Shell) - https://nvd.nist.gov/vuln/detail/CVE-2022-22965
+- CVE-2019-11043 (PHP-FPM underflow, used with template RCE) - https://nvd.nist.gov/vuln/detail/CVE-2019-11043
+- CVE-2021-41773 (Apache path traversal, sometimes chained) - https://nvd.nist.gov/vuln/detail/CVE-2021-41773
 
 ---
 

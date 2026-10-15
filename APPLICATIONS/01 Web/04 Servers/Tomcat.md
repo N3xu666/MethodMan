@@ -441,13 +441,13 @@ strings core.* | grep -iE 'password|secret|key'
 
 ## 8. References
 
-- Tomcat official docs: https://tomcat.apache.org/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=tomcat
-- Ghostcat writeup: https://www.chaitin.cn/en/ghostcat
-- CVE-2017-12615 PoC: https://github.com/cyberheartmi9/CVE-2017-12617
-- CVE-2020-9484 writeup: https://www.redtimmy.com/apache-tomcat-rce-by-deserialization-cve-2020-9484-write-up-and-exploit/
-- HackTricks - Tomcat: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/tomcat
-- ysoserial: https://github.com/frohoff/ysoserial
+- Tomcat official docs - https://tomcat.apache.org/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=tomcat
+- Ghostcat writeup - https://www.chaitin.cn/en/ghostcat
+- CVE-2017-12615 PoC - https://github.com/cyberheartmi9/CVE-2017-12617
+- CVE-2020-9484 writeup - https://www.redtimmy.com/apache-tomcat-rce-by-deserialization-cve-2020-9484-write-up-and-exploit/
+- HackTricks - Tomcat - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/tomcat
+- ysoserial - https://github.com/frohoff/ysoserial
 
 ---
 

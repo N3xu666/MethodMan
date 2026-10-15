@@ -859,16 +859,16 @@ Or use DB-level RCE to write a shell, then standard Linux privesc.
 
 ## 8. References
 
-- Adminer official site: https://www.adminer.org/
-- Adminer GitHub: https://github.com/vrana/adminer
-- Adminer security advisories: https://github.com/vrana/adminer/security/advisories
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=adminer
-- CVE-2021-43008 writeup: https://patalin0.com/posts/adminer-cve-2021-43008/
-- CVE-2018-7667 writeup: https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer
-- Rogue MySQL Server: https://github.com/Gifts/Rogue-MySql-Server
-- MySQL UDF: https://github.com/mysqludf/lib_mysqludf_sys
-- HackTricks - Adminer: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/adminer
-- PHPGGC: https://github.com/ambionics/phpggc
+- Adminer official site - https://www.adminer.org/
+- Adminer GitHub - https://github.com/vrana/adminer
+- Adminer security advisories - https://github.com/vrana/adminer/security/advisories
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=adminer
+- CVE-2021-43008 writeup - https://patalin0.com/posts/adminer-cve-2021-43008/
+- CVE-2018-7667 writeup - https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer
+- Rogue MySQL Server - https://github.com/Gifts/Rogue-MySql-Server
+- MySQL UDF - https://github.com/mysqludf/lib_mysqludf_sys
+- HackTricks - Adminer - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/adminer
+- PHPGGC - https://github.com/ambionics/phpggc
 
 ---
 

@@ -251,12 +251,12 @@ SELECT pg_read_file('/etc/shadow');
 
 ## 8. References
 
-- PostgreSQL official docs: https://www.postgresql.org/docs/
-- HackTricks - PostgreSQL: https://book.hacktricks.xyz/network-services-pentesting/pentesting-postgresql
-- PayloadsAllTheThings - PostgreSQL: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/PostgreSQL%20Injection.md
-- CVE-2019-9193: https://nvd.nist.gov/vuln/detail/CVE-2019-9193
-- CVE-2018-1058: https://nvd.nist.gov/vuln/detail/CVE-2018-1058
-- CVE-2024-10977: https://nvd.nist.gov/vuln/detail/CVE-2024-10977
-- CVE-2024-4317: https://nvd.nist.gov/vuln/detail/CVE-2024-4317
+- PostgreSQL official docs - https://www.postgresql.org/docs/
+- HackTricks - PostgreSQL - https://book.hacktricks.xyz/network-services-pentesting/pentesting-postgresql
+- PayloadsAllTheThings - PostgreSQL - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/PostgreSQL%20Injection.md
+- CVE-2019-9193 - https://nvd.nist.gov/vuln/detail/CVE-2019-9193
+- CVE-2018-1058 - https://nvd.nist.gov/vuln/detail/CVE-2018-1058
+- CVE-2024-10977 - https://nvd.nist.gov/vuln/detail/CVE-2024-10977
+- CVE-2024-4317 - https://nvd.nist.gov/vuln/detail/CVE-2024-4317
 
 ---

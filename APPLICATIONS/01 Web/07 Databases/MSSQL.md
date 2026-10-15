@@ -300,13 +300,13 @@ Capture with `Responder`, crack with hashcat mode `5600`.
 
 ## 8. References
 
-- Microsoft SQL Server docs: https://learn.microsoft.com/en-us/sql/sql-server/
-- HackTricks - MSSQL: https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server
-- PayloadsAllTheThings - MSSQL: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/MSSQL%20Injection.md
-- CVE-2012-1882: https://nvd.nist.gov/vuln/detail/CVE-2012-1882
-- CVE-2020-0618: https://nvd.nist.gov/vuln/detail/CVE-2020-0618
-- CVE-2021-1636: https://nvd.nist.gov/vuln/detail/CVE-2021-1636
-- CVE-2023-23396: https://nvd.nist.gov/vuln/detail/CVE-2023-23396
-- CVE-2024-28956: https://nvd.nist.gov/vuln/detail/CVE-2024-28956
+- Microsoft SQL Server docs - https://learn.microsoft.com/en-us/sql/sql-server/
+- HackTricks - MSSQL - https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server
+- PayloadsAllTheThings - MSSQL - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/MSSQL%20Injection.md
+- CVE-2012-1882 - https://nvd.nist.gov/vuln/detail/CVE-2012-1882
+- CVE-2020-0618 - https://nvd.nist.gov/vuln/detail/CVE-2020-0618
+- CVE-2021-1636 - https://nvd.nist.gov/vuln/detail/CVE-2021-1636
+- CVE-2023-23396 - https://nvd.nist.gov/vuln/detail/CVE-2023-23396
+- CVE-2024-28956 - https://nvd.nist.gov/vuln/detail/CVE-2024-28956
 
 ---

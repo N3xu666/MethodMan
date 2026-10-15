@@ -382,13 +382,13 @@ Look for freshly-created files (attacker persistence) - timestamps near compromi
 
 ## 8. References
 
-- IIS official docs: https://learn.microsoft.com/en-us/iis/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=iis
-- CVE-2017-7269 writeup: https://blog.0patch.com/2017/03/0day-for-iis-was-not-in-windows-server.html
-- ysoserial.net: https://github.com/pwntester/ysoserial.net
-- shortscan: https://github.com/bitquark/shortscan
-- HackTricks - IIS: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/iis-internet-information-services
-- PayloadsAllTheThings - IIS: https://github.com/swisskyrepo/PayloadsAllTheThings
+- IIS official docs - https://learn.microsoft.com/en-us/iis/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=iis
+- CVE-2017-7269 writeup - https://blog.0patch.com/2017/03/0day-for-iis-was-not-in-windows-server.html
+- ysoserial.net - https://github.com/pwntester/ysoserial.net
+- shortscan - https://github.com/bitquark/shortscan
+- HackTricks - IIS - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/iis-internet-information-services
+- PayloadsAllTheThings - IIS - https://github.com/swisskyrepo/PayloadsAllTheThings
 
 ---
 

@@ -428,7 +428,7 @@ KRBTGT is rotated twice.
 
 **Microsoft documentation:**
 
-- [Group Policy Preferences (deprecated)](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn581922(v=ws.11))
+- Group Policy Preferences (deprecated) - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn581922(v=ws.11)
 - Windows LAPS overview - https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview
 - MS14-025: Vulnerability in Group Policy Preferences - https://learn.microsoft.com/en-us/security-updates/securitybulletins/2014/ms14-025
 - AdminSDHolder, Protected Admin Groups - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory

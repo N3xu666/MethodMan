@@ -406,11 +406,11 @@ curl 'http://target/api/xml' -H 'Content-Type: application/xml' --data @payload.
 
 ## 10. References
 
-- OWASP XXE: https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing
-- PortSwigger XXE: https://portswigger.net/web-security/xxe
-- PayloadsAllTheThings XXE: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection
-- XXEinjector: https://github.com/enjoiz/XXEinjector
-- oxml_xxe: https://github.com/BuffaloWill/oxml_xxe
+- OWASP XXE - https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing
+- PortSwigger XXE - https://portswigger.net/web-security/xxe
+- PayloadsAllTheThings XXE - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection
+- XXEinjector - https://github.com/enjoiz/XXEinjector
+- oxml_xxe - https://github.com/BuffaloWill/oxml_xxe
 
 > See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [SSRF.md](./SSRF.md), [LFI-RFI.md](./LFI-RFI.md)
 

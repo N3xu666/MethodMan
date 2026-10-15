@@ -366,12 +366,12 @@ cat /etc/apache2/.htpasswd
 
 ## 8. References
 
-- Apache HTTP Server official docs: https://httpd.apache.org/docs/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=apache+http+server
-- CVE-2021-41773 writeup: https://blog.qualys.com/vulnerabilities-threat-research/2021/10/27/apache-http-server-path-traversal-remote-code-execution-cve-2021-41773
-- CVE-2019-0211 exploit: https://github.com/cfreal/exploits/tree/master/CVE-2019-0211-apache
-- GTFOBins: https://gtfobins.github.io/
-- HackTricks - Apache: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/apache
+- Apache HTTP Server official docs - https://httpd.apache.org/docs/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=apache+http+server
+- CVE-2021-41773 writeup - https://blog.qualys.com/vulnerabilities-threat-research/2021/10/27/apache-http-server-path-traversal-remote-code-execution-cve-2021-41773
+- CVE-2019-0211 exploit - https://github.com/cfreal/exploits/tree/master/CVE-2019-0211-apache
+- GTFOBins - https://gtfobins.github.io/
+- HackTricks - Apache - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/apache
 
 ---
 

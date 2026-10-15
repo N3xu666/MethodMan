@@ -863,14 +863,14 @@ standard privesc path.
 
 ## 8. References
 
-- phpMyAdmin official docs: https://docs.phpmyadmin.net/
-- phpMyAdmin security advisories: https://www.phpmyadmin.net/security/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=phpmyadmin
-- CVE-2018-12613 writeup: https://www.exploit-db.com/exploits/44924
-- CVE-2016-5734 writeup: https://www.exploit-db.com/exploits/40185
-- HackTricks - phpMyAdmin: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/phpmyadmin
-- MySQL UDF: https://github.com/mysqludf/lib_mysqludf_sys
-- Rogue MySQL: https://github.com/Gifts/Rogue-MySql-Server
+- phpMyAdmin official docs - https://docs.phpmyadmin.net/
+- phpMyAdmin security advisories - https://www.phpmyadmin.net/security/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=phpmyadmin
+- CVE-2018-12613 writeup - https://www.exploit-db.com/exploits/44924
+- CVE-2016-5734 writeup - https://www.exploit-db.com/exploits/40185
+- HackTricks - phpMyAdmin - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/phpmyadmin
+- MySQL UDF - https://github.com/mysqludf/lib_mysqludf_sys
+- Rogue MySQL - https://github.com/Gifts/Rogue-MySql-Server
 
 ---
 

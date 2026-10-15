@@ -703,20 +703,20 @@ Key patterns for OSCP:
 
 **OWASP:**
 
-- [OWASP Top 10:2021 - A06](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
-- [OWASP Top 10:2025 - A03 (Software Supply Chain Failures)](https://owasp.org/Top10/2025/)
-- [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/)
-- [OWASP CycloneDX](https://cyclonedx.org/)
-- [OWASP Software Component Verification Standard](https://owasp.org/www-project-software-component-verification-standard/)
-- [OWASP Cheat Sheet - Vulnerable Dependency Management](https://cheatsheetseries.owasp.org/cheatsheets/Vulnerable_Dependency_Management_Cheat_Sheet.html)
+- OWASP Top 10:2021 - A06 - https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/
+- OWASP Top 10:2025 - A03 (Software Supply Chain Failures) - https://owasp.org/Top10/2025/
+- OWASP Dependency-Check - https://owasp.org/www-project-dependency-check/
+- OWASP CycloneDX - https://cyclonedx.org/
+- OWASP Software Component Verification Standard - https://owasp.org/www-project-software-component-verification-standard/
+- OWASP Cheat Sheet - Vulnerable Dependency Management - https://cheatsheetseries.owasp.org/cheatsheets/Vulnerable_Dependency_Management_Cheat_Sheet.html
 
 **Supply chain standards and tools:**
 
-- SLSA (Supply-chain Levels for Software Artifacts): https://slsa.dev/
-- sigstore (artifact signing): https://www.sigstore.dev/
-- GitHub Advisory Database: https://github.com/advisories
-- NVD: https://nvd.nist.gov/
-- Exploit-DB: https://www.exploit-db.com/
+- SLSA (Supply-chain Levels for Software Artifacts) - https://slsa.dev/
+- sigstore (artifact signing) - https://www.sigstore.dev/
+- GitHub Advisory Database - https://github.com/advisories
+- NVD - https://nvd.nist.gov/
+- Exploit-DB - https://www.exploit-db.com/
 
 **Notable incidents (for context):**
 

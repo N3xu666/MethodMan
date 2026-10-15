@@ -334,19 +334,19 @@ Upload to web-accessible directory and access via browser.
 
 ## 8. References
 
-- Java official docs: https://docs.oracle.com/en/java/
-- HackTricks - Java: https://book.hacktricks.xyz/pentesting-web/deserialization
-- ysoserial: https://github.com/frohoff/ysoserial
-- marshalsec: https://github.com/mbechler/marshalsec
-- PayloadsAllTheThings - Java: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Java%20Deserialization
-- CVE-2017-5638: https://nvd.nist.gov/vuln/detail/CVE-2017-5638
-- CVE-2018-11776: https://nvd.nist.gov/vuln/detail/CVE-2018-11776
-- CVE-2020-1938: https://nvd.nist.gov/vuln/detail/CVE-2020-1938
-- CVE-2020-9484: https://nvd.nist.gov/vuln/detail/CVE-2020-9484
-- CVE-2022-22965: https://nvd.nist.gov/vuln/detail/CVE-2022-22965
-- CVE-2022-22947: https://nvd.nist.gov/vuln/detail/CVE-2022-22947
-- CVE-2022-22963: https://nvd.nist.gov/vuln/detail/CVE-2022-22963
-- CVE-2021-44228: https://nvd.nist.gov/vuln/detail/CVE-2021-44228
-- CVE-2021-45046: https://nvd.nist.gov/vuln/detail/CVE-2021-45046
+- Java official docs - https://docs.oracle.com/en/java/
+- HackTricks - Java - https://book.hacktricks.xyz/pentesting-web/deserialization
+- ysoserial - https://github.com/frohoff/ysoserial
+- marshalsec - https://github.com/mbechler/marshalsec
+- PayloadsAllTheThings - Java - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Java%20Deserialization
+- CVE-2017-5638 - https://nvd.nist.gov/vuln/detail/CVE-2017-5638
+- CVE-2018-11776 - https://nvd.nist.gov/vuln/detail/CVE-2018-11776
+- CVE-2020-1938 - https://nvd.nist.gov/vuln/detail/CVE-2020-1938
+- CVE-2020-9484 - https://nvd.nist.gov/vuln/detail/CVE-2020-9484
+- CVE-2022-22965 - https://nvd.nist.gov/vuln/detail/CVE-2022-22965
+- CVE-2022-22947 - https://nvd.nist.gov/vuln/detail/CVE-2022-22947
+- CVE-2022-22963 - https://nvd.nist.gov/vuln/detail/CVE-2022-22963
+- CVE-2021-44228 - https://nvd.nist.gov/vuln/detail/CVE-2021-44228
+- CVE-2021-45046 - https://nvd.nist.gov/vuln/detail/CVE-2021-45046
 
 ---

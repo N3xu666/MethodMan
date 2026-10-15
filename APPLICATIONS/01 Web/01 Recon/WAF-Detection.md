@@ -339,12 +339,12 @@ sqlmap -u "http://target/?id=1" --batch --tamper=space2comment,randomcase,charen
 
 ## 11. References
 
-- wafw00f: https://github.com/EnableSecurity/wafw00f
-- Nuclei: https://github.com/projectdiscovery/nuclei
-- sqlmap tampers: https://github.com/sqlmapproject/sqlmap/wiki/Tamper-scripts
-- ja3: https://github.com/salesforce/ja3
-- curl-impersonate: https://github.com/lwthiker/curl-impersonate
-- PayloadsAllTheThings - WAF bypass: https://github.com/swisskyrepo/PayloadsAllTheThings
+- wafw00f - https://github.com/EnableSecurity/wafw00f
+- Nuclei - https://github.com/projectdiscovery/nuclei
+- sqlmap tampers - https://github.com/sqlmapproject/sqlmap/wiki/Tamper-scripts
+- ja3 - https://github.com/salesforce/ja3
+- curl-impersonate - https://github.com/lwthiker/curl-impersonate
+- PayloadsAllTheThings - WAF bypass - https://github.com/swisskyrepo/PayloadsAllTheThings
 
 > See also: [Fingerprinting.md](./Fingerprinting.md), [VHosts-Subdomains.md](./VHosts-Subdomains.md), [Ports-Services.md](./Ports-Services.md)
 

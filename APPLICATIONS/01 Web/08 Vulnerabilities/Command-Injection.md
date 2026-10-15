@@ -391,11 +391,11 @@ echo Y2F0IC9ldGMvcGFzc3dk|base64 -d|bash
 
 ## 9. References
 
-- OWASP Command Injection: https://owasp.org/www-community/attacks/Command_Injection
-- PortSwigger OS command injection: https://portswigger.net/web-security/os-command-injection
-- PayloadsAllTheThings Command Injection: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection
-- commix: https://github.com/commixproject/commix
-- RevShells: https://www.revshells.com/
+- OWASP Command Injection - https://owasp.org/www-community/attacks/Command_Injection
+- PortSwigger OS command injection - https://portswigger.net/web-security/os-command-injection
+- PayloadsAllTheThings Command Injection - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection
+- commix - https://github.com/commixproject/commix
+- RevShells - https://www.revshells.com/
 
 > See also: [../01 Recon/Ports-Services.md](../01%20Recon/Ports-Services.md), [LFI-RFI.md](./LFI-RFI.md), [File-Upload.md](./File-Upload.md)
 

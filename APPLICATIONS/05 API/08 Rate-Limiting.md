@@ -612,18 +612,18 @@ Rate limiting is a supporting finding on OSCP, not usually the main one, but it 
 
 ## 15. References
 
-- OWASP API Security Top 10:2023 API4 Unrestricted Resource Consumption: https://owasp.org/API-Security/editions/2023/en/0x11-t10/
-- OWASP API Security Top 10:2023 API6 Unrestricted Access to Sensitive Business Flows: https://owasp.org/API-Security/editions/2023/en/0x11-t10/
-- OWASP Top 10:2021 A04 Insecure Design: https://owasp.org/Top10/A04_2021-Insecure_Design/
-- OWASP Top 10:2021 A07 Identification and Authentication Failures: https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
-- OWASP ASVS 4.0: https://owasp.org/www-project-application-security-verification-standard/
-- OWASP Credential Stuffing Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html
-- OWASP Authorization Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html
-- RFC 6585 - 429 Too Many Requests: https://datatracker.ietf.org/doc/html/rfc6585
-- CWE-307 Improper Restriction of Excessive Authentication Attempts: https://cwe.mitre.org/data/definitions/307.html
-- CWE-348 Use of Less Trusted Source: https://cwe.mitre.org/data/definitions/348.html
-- CWE-362 Concurrent Execution: https://cwe.mitre.org/data/definitions/362.html
-- CWE-770 Allocation of Resources Without Limits: https://cwe.mitre.org/data/definitions/770.html
-- CWE-436 Interpretation Conflict: https://cwe.mitre.org/data/definitions/436.html
-- CWE-645 Overly Restrictive Account Lockout Mechanism: https://cwe.mitre.org/data/definitions/645.html
-- CWE-640 Weak Password Recovery: https://cwe.mitre.org/data/definitions/640.html
+- OWASP API Security Top 10:2023 API4 Unrestricted Resource Consumption - https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+- OWASP API Security Top 10:2023 API6 Unrestricted Access to Sensitive Business Flows - https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+- OWASP Top 10:2021 A04 Insecure Design - https://owasp.org/Top10/A04_2021-Insecure_Design/
+- OWASP Top 10:2021 A07 Identification and Authentication Failures - https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
+- OWASP ASVS 4.0 - https://owasp.org/www-project-application-security-verification-standard/
+- OWASP Credential Stuffing Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html
+- OWASP Authorization Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html
+- RFC 6585 - 429 Too Many Requests - https://datatracker.ietf.org/doc/html/rfc6585
+- CWE-307 Improper Restriction of Excessive Authentication Attempts - https://cwe.mitre.org/data/definitions/307.html
+- CWE-348 Use of Less Trusted Source - https://cwe.mitre.org/data/definitions/348.html
+- CWE-362 Concurrent Execution - https://cwe.mitre.org/data/definitions/362.html
+- CWE-770 Allocation of Resources Without Limits - https://cwe.mitre.org/data/definitions/770.html
+- CWE-436 Interpretation Conflict - https://cwe.mitre.org/data/definitions/436.html
+- CWE-645 Overly Restrictive Account Lockout Mechanism - https://cwe.mitre.org/data/definitions/645.html
+- CWE-640 Weak Password Recovery - https://cwe.mitre.org/data/definitions/640.html

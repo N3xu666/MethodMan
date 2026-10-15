@@ -669,23 +669,23 @@ API gateways appear on HTB boxes with microservice architectures:
 
 ## 15. References
 
-- Kong Gateway documentation: https://docs.konghq.com/gateway/latest/
-- Kong admin API: https://docs.konghq.com/gateway/latest/admin-api/
-- Apache APISIX: https://apisix.apache.org/docs/apisix/getting-started/
-- Traefik: https://doc.traefik.io/traefik/
-- Envoy Gateway: https://gateway.envoyproxy.io/
-- AWS API Gateway security: https://docs.aws.amazon.com/apigateway/latest/developerguide/security.html
-- Azure API Management security: https://learn.microsoft.com/en-us/azure/api-management/security-baseline
-- OWASP API Security Top 10:2023 API8 Security Misconfiguration: https://owasp.org/API-Security/editions/2023/en/0x11-t10/
-- OWASP Top 10:2021 A05 Security Misconfiguration: https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
-- OWASP ASVS 4.0: https://owasp.org/www-project-application-security-verification-standard/
-- CWE-306 Missing Authentication for Critical Function: https://cwe.mitre.org/data/definitions/306.html
-- CWE-436 Interpretation Conflict: https://cwe.mitre.org/data/definitions/436.html
-- CWE-441 Unintended Proxy or Intermediary: https://cwe.mitre.org/data/definitions/441.html
-- CWE-290 Authentication Bypass by Spoofing: https://cwe.mitre.org/data/definitions/290.html
-- CWE-200 Exposure of Sensitive Information: https://cwe.mitre.org/data/definitions/200.html
-- CWE-918 SSRF: https://cwe.mitre.org/data/definitions/918.html
-- CWE-444 Inconsistent Interpretation of HTTP Requests: https://cwe.mitre.org/data/definitions/444.html
-- CWE-319 Cleartext Transmission: https://cwe.mitre.org/data/definitions/319.html
-- CWE-798 Hard-coded Credentials: https://cwe.mitre.org/data/definitions/798.html
-- CWE-113 HTTP Response Splitting: https://cwe.mitre.org/data/definitions/113.html
+- Kong Gateway documentation - https://docs.konghq.com/gateway/latest/
+- Kong admin API - https://docs.konghq.com/gateway/latest/admin-api/
+- Apache APISIX - https://apisix.apache.org/docs/apisix/getting-started/
+- Traefik - https://doc.traefik.io/traefik/
+- Envoy Gateway - https://gateway.envoyproxy.io/
+- AWS API Gateway security - https://docs.aws.amazon.com/apigateway/latest/developerguide/security.html
+- Azure API Management security - https://learn.microsoft.com/en-us/azure/api-management/security-baseline
+- OWASP API Security Top 10:2023 API8 Security Misconfiguration - https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+- OWASP Top 10:2021 A05 Security Misconfiguration - https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
+- OWASP ASVS 4.0 - https://owasp.org/www-project-application-security-verification-standard/
+- CWE-306 Missing Authentication for Critical Function - https://cwe.mitre.org/data/definitions/306.html
+- CWE-436 Interpretation Conflict - https://cwe.mitre.org/data/definitions/436.html
+- CWE-441 Unintended Proxy or Intermediary - https://cwe.mitre.org/data/definitions/441.html
+- CWE-290 Authentication Bypass by Spoofing - https://cwe.mitre.org/data/definitions/290.html
+- CWE-200 Exposure of Sensitive Information - https://cwe.mitre.org/data/definitions/200.html
+- CWE-918 SSRF - https://cwe.mitre.org/data/definitions/918.html
+- CWE-444 Inconsistent Interpretation of HTTP Requests - https://cwe.mitre.org/data/definitions/444.html
+- CWE-319 Cleartext Transmission - https://cwe.mitre.org/data/definitions/319.html
+- CWE-798 Hard-coded Credentials - https://cwe.mitre.org/data/definitions/798.html
+- CWE-113 HTTP Response Splitting - https://cwe.mitre.org/data/definitions/113.html

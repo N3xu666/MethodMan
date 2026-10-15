@@ -527,13 +527,13 @@ interactsh-client
 
 ## 13. References
 
-- OWASP XSS: https://owasp.org/www-community/attacks/xss/
-- PortSwigger XSS: https://portswigger.net/web-security/cross-site-scripting
-- PayloadsAllTheThings XSS: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection
-- XSStrike: https://github.com/s0md3v/XSStrike
-- dalfox: https://github.com/hahwul/dalfox
-- XSS Hunter: https://xsshunter.com/
-- interactsh: https://github.com/projectdiscovery/interactsh
+- OWASP XSS - https://owasp.org/www-community/attacks/xss/
+- PortSwigger XSS - https://portswigger.net/web-security/cross-site-scripting
+- PayloadsAllTheThings XSS - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection
+- XSStrike - https://github.com/s0md3v/XSStrike
+- dalfox - https://github.com/hahwul/dalfox
+- XSS Hunter - https://xsshunter.com/
+- interactsh - https://github.com/projectdiscovery/interactsh
 
 > See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../../05 API/02 REST.md](../../05%20API/02%20REST.md), [CSRF.md](./CSRF.md)
 

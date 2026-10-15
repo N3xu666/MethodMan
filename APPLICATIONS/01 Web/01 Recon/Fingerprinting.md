@@ -567,13 +567,13 @@ nmap -sV -T4 -p- --script http-title,http-headers,http-enum target
 
 ## 13. References
 
-- WhatWeb: https://github.com/urbanadventurer/WhatWeb
-- httpx: https://github.com/projectdiscovery/httpx
-- Shodan favicon hash: https://help.shodan.io/mastery/favicon-hash
-- crt.sh: https://crt.sh/
-- NVD: https://nvd.nist.gov/
-- MITRE CVE: https://cve.mitre.org/
-- PayloadsAllTheThings: https://github.com/swisskyrepo/PayloadsAllTheThings
+- WhatWeb - https://github.com/urbanadventurer/WhatWeb
+- httpx - https://github.com/projectdiscovery/httpx
+- Shodan favicon hash - https://help.shodan.io/mastery/favicon-hash
+- crt.sh - https://crt.sh/
+- NVD - https://nvd.nist.gov/
+- MITRE CVE - https://cve.mitre.org/
+- PayloadsAllTheThings - https://github.com/swisskyrepo/PayloadsAllTheThings
 
 > See also: [WAF-Detection.md](./WAF-Detection.md), [VHosts-Subdomains.md](./VHosts-Subdomains.md), [Ports-Services.md](./Ports-Services.md)
 

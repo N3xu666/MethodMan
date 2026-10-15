@@ -231,13 +231,13 @@ Redis supports `SAVE` and `BGSAVE` to write the current dataset to disk. The dbf
 
 ## 8. References
 
-- Redis official docs: https://redis.io/docs/
-- HackTricks - Redis: https://book.hacktricks.xyz/network-services-pentesting/6379-pentesting-redis
-- PayloadsAllTheThings - Redis: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Network%20Pivoting%20Techniques.md
-- redis-rogue-server: https://github.com/n0b0dyCN/redis-rogue-server
-- CVE-2022-24735: https://nvd.nist.gov/vuln/detail/CVE-2022-24735
-- CVE-2022-24736: https://nvd.nist.gov/vuln/detail/CVE-2022-24736
-- CVE-2022-36021: https://nvd.nist.gov/vuln/detail/CVE-2022-36021
-- CVE-2023-25155: https://nvd.nist.gov/vuln/detail/CVE-2023-25155
+- Redis official docs - https://redis.io/docs/
+- HackTricks - Redis - https://book.hacktricks.xyz/network-services-pentesting/6379-pentesting-redis
+- PayloadsAllTheThings - Redis - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Network%20Pivoting%20Techniques.md
+- redis-rogue-server - https://github.com/n0b0dyCN/redis-rogue-server
+- CVE-2022-24735 - https://nvd.nist.gov/vuln/detail/CVE-2022-24735
+- CVE-2022-24736 - https://nvd.nist.gov/vuln/detail/CVE-2022-24736
+- CVE-2022-36021 - https://nvd.nist.gov/vuln/detail/CVE-2022-36021
+- CVE-2023-25155 - https://nvd.nist.gov/vuln/detail/CVE-2023-25155
 
 ---

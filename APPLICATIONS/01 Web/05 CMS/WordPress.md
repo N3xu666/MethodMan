@@ -902,16 +902,16 @@ ls -la /var/www/html/wp-config.php
 
 ## 8. References
 
-- WordPress official docs: https://wordpress.org/documentation/
-- WordPress security releases: https://wordpress.org/news/category/security/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=wordpress
-- WPScan vulnerability database: https://wpscan.com/
-- WPScan CLI: https://github.com/wpscanteam/wpscan
-- WordPress Exploit Framework: https://github.com/rastating/wordpress-exploit-framework
-- CVE-2020-25213 writeup: https://github.com/0xtn/CVE-2020-25213
-- CVE-2023-28121 writeup: https://www.rcesecurity.com/2023/07/patch-diffing-cve-2023-28121-to-compromise-a-woocommerce/
-- HackTricks - WordPress: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/wordpress
-- PHPGGC: https://github.com/ambionics/phpggc
+- WordPress official docs - https://wordpress.org/documentation/
+- WordPress security releases - https://wordpress.org/news/category/security/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=wordpress
+- WPScan vulnerability database - https://wpscan.com/
+- WPScan CLI - https://github.com/wpscanteam/wpscan
+- WordPress Exploit Framework - https://github.com/rastating/wordpress-exploit-framework
+- CVE-2020-25213 writeup - https://github.com/0xtn/CVE-2020-25213
+- CVE-2023-28121 writeup - https://www.rcesecurity.com/2023/07/patch-diffing-cve-2023-28121-to-compromise-a-woocommerce/
+- HackTricks - WordPress - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/wordpress
+- PHPGGC - https://github.com/ambionics/phpggc
 
 ---
 

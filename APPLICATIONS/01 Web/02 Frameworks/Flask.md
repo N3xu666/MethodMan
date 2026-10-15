@@ -522,13 +522,13 @@ cat /app/templates/*.html | grep -E 'admin|is_admin|role'
 
 ## 8. References
 
-- Flask official docs: https://flask.palletsprojects.com/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=flask
-- Werkzeug docs: https://werkzeug.palletsprojects.com/
-- Jinja2 SSTI: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
-- flask-unsign: https://github.com/Paradoxis/Flask-Unsign
-- Werkzeug PIN crack: https://github.com/pberba/werkzeug-pin
-- HackTricks - Flask: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/flask
+- Flask official docs - https://flask.palletsprojects.com/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=flask
+- Werkzeug docs - https://werkzeug.palletsprojects.com/
+- Jinja2 SSTI - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
+- flask-unsign - https://github.com/Paradoxis/Flask-Unsign
+- Werkzeug PIN crack - https://github.com/pberba/werkzeug-pin
+- HackTricks - Flask - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/flask
 
 ---
 

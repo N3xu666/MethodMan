@@ -908,15 +908,15 @@ cat /etc/os-release
 
 ## 8. References
 
-- Drupal official docs: https://www.drupal.org/documentation
-- Drupal security advisories: https://www.drupal.org/security
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=drupal
-- droopescan: https://github.com/SamJoan/droopescan
-- Drupalgeddon 2 writeup: https://www.exploit-db.com/exploits/44449
-- Drupalgeddon 2 script: https://github.com/dreadlocked/Drupalgeddon2
-- CVE-2019-6340 writeup: https://github.com/knqyf263/CVE-2019-6340
-- HackTricks - Drupal: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/drupal
-- PHPGGC: https://github.com/ambionics/phpggc
+- Drupal official docs - https://www.drupal.org/documentation
+- Drupal security advisories - https://www.drupal.org/security
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=drupal
+- droopescan - https://github.com/SamJoan/droopescan
+- Drupalgeddon 2 writeup - https://www.exploit-db.com/exploits/44449
+- Drupalgeddon 2 script - https://github.com/dreadlocked/Drupalgeddon2
+- CVE-2019-6340 writeup - https://github.com/knqyf263/CVE-2019-6340
+- HackTricks - Drupal - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/drupal
+- PHPGGC - https://github.com/ambionics/phpggc
 
 ---
 

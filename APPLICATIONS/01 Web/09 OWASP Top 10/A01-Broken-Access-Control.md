@@ -611,20 +611,20 @@ Key patterns for OSCP:
 
 **OWASP:**
 
-- [OWASP Top 10:2021 - A01](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
-- [OWASP Top 10:2025](https://owasp.org/Top10/2025/)
-- [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/)
-- [OWASP WSTG](https://owasp.org/www-project-web-security-testing-guide/)
-- [OWASP Cheat Sheet - Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
-- [OWASP Cheat Sheet - Access Control](https://cheatsheetseries.owasp.org/cheatsheets/Access_Control_Cheat_Sheet.html)
-- [OWASP Cheat Sheet - CORS](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Origin_Resource_Sharing_Cheat_Sheet.html)
+- OWASP Top 10:2021 - A01 - https://owasp.org/Top10/A01_2021-Broken_Access_Control/
+- OWASP Top 10:2025 - https://owasp.org/Top10/2025/
+- OWASP ASVS - https://owasp.org/www-project-application-security-verification-standard/
+- OWASP WSTG - https://owasp.org/www-project-web-security-testing-guide/
+- OWASP Cheat Sheet - Authorization - https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html
+- OWASP Cheat Sheet - Access Control - https://cheatsheetseries.owasp.org/cheatsheets/Access_Control_Cheat_Sheet.html
+- OWASP Cheat Sheet - CORS - https://cheatsheetseries.owasp.org/cheatsheets/Cross-Origin_Resource_Sharing_Cheat_Sheet.html
 
 **PortSwigger Web Security Academy:**
 
-- [Access Control](https://portswigger.net/web-security/access-control)
-- [Path Traversal](https://portswigger.net/web-security/file-path-traversal)
-- [CORS](https://portswigger.net/web-security/cors)
-- [SSRF](https://portswigger.net/web-security/ssrf)
+- Access Control - https://portswigger.net/web-security/access-control
+- Path Traversal - https://portswigger.net/web-security/file-path-traversal
+- CORS - https://portswigger.net/web-security/cors
+- SSRF - https://portswigger.net/web-security/ssrf
 
 **Internal cross-references:**
 

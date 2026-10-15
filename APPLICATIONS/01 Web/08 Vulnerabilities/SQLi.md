@@ -656,11 +656,11 @@ sqlmap -r req.txt --tamper=space2comment,randomcase --random-agent
 
 ## 11. References
 
-- PayloadsAllTheThings - SQLi: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
-- PortSwigger SQLi: https://portswigger.net/web-security/sql-injection
-- sqlmap wiki: https://github.com/sqlmapproject/sqlmap/wiki
-- sqlmap tamper scripts: https://github.com/sqlmapproject/sqlmap/wiki/Tamper-scripts
-- OWASP WSTG - SQLi: https://owasp.org/www-project-web-security-testing-guide/
+- PayloadsAllTheThings - SQLi - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
+- PortSwigger SQLi - https://portswigger.net/web-security/sql-injection
+- sqlmap wiki - https://github.com/sqlmapproject/sqlmap/wiki
+- sqlmap tamper scripts - https://github.com/sqlmapproject/sqlmap/wiki/Tamper-scripts
+- OWASP WSTG - SQLi - https://owasp.org/www-project-web-security-testing-guide/
 
 > See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../07 Databases.md](../07%20Databases/README.md), [../../05 API/02 REST.md](../../05%20API/02%20REST.md)
 

@@ -569,15 +569,15 @@ done
 
 ## 10. References
 
-- RFC 6749 (OAuth 2.0): https://datatracker.ietf.org/doc/html/rfc6749
-- RFC 6750 (Bearer Token): https://datatracker.ietf.org/doc/html/rfc6750
-- RFC 7636 (PKCE): https://datatracker.ietf.org/doc/html/rfc7636
-- RFC 8252 (OAuth for Native Apps): https://datatracker.ietf.org/doc/html/rfc8252
-- RFC 9700 (OAuth 2.0 Security BCP): https://datatracker.ietf.org/doc/html/rfc9700
-- OpenID Connect Core: https://openid.net/specs/openid-connect-core-1_0.html
-- OWASP OAuth Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html
-- PortSwigger OAuth: https://portswigger.net/web-security/oauth
-- HackTricks OAuth: https://book.hacktricks.xyz/pentesting-web/oauth-to-account-takeover
-- CVE-2022-24753 (OAuth redirect_uri bypass, various libs): https://nvd.nist.gov/vuln/detail/CVE-2022-24753
-- CVE-2021-27582 (OAuth redirect bypass, MITREid Connect): https://nvd.nist.gov/vuln/detail/CVE-2021-27582
-- CVE-2023-25815 (OAuth scope confusion): https://nvd.nist.gov/vuln/detail/CVE-2023-25815
+- RFC 6749 (OAuth 2.0) - https://datatracker.ietf.org/doc/html/rfc6749
+- RFC 6750 (Bearer Token) - https://datatracker.ietf.org/doc/html/rfc6750
+- RFC 7636 (PKCE) - https://datatracker.ietf.org/doc/html/rfc7636
+- RFC 8252 (OAuth for Native Apps) - https://datatracker.ietf.org/doc/html/rfc8252
+- RFC 9700 (OAuth 2.0 Security BCP) - https://datatracker.ietf.org/doc/html/rfc9700
+- OpenID Connect Core - https://openid.net/specs/openid-connect-core-1_0.html
+- OWASP OAuth Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html
+- PortSwigger OAuth - https://portswigger.net/web-security/oauth
+- HackTricks OAuth - https://book.hacktricks.xyz/pentesting-web/oauth-to-account-takeover
+- CVE-2022-24753 (OAuth redirect_uri bypass, various libs) - https://nvd.nist.gov/vuln/detail/CVE-2022-24753
+- CVE-2021-27582 (OAuth redirect bypass, MITREid Connect) - https://nvd.nist.gov/vuln/detail/CVE-2021-27582
+- CVE-2023-25815 (OAuth scope confusion) - https://nvd.nist.gov/vuln/detail/CVE-2023-25815

@@ -774,14 +774,14 @@ Node holds decrypted secrets in memory.
 
 ## 8. References
 
-- Express official docs: https://expressjs.com/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=express
-- CVE-2024-29041 writeup: https://github.com/expressjs/express/security/advisories/GHSA-rv95-896h-c2vc
-- JWT attacks: https://portswigger.net/web-security/jwt
-- jwt_tool: https://github.com/ticarpi/jwt_tool
-- NoSQL injection: https://book.hacktricks.xyz/pentesting-web/nosql-injection
-- Prototype pollution: https://github.com/KindredGroup/prototype-pollution
-- HackTricks - Express: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/nodejs-express
+- Express official docs - https://expressjs.com/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=express
+- CVE-2024-29041 writeup - https://github.com/expressjs/express/security/advisories/GHSA-rv95-896h-c2vc
+- JWT attacks - https://portswigger.net/web-security/jwt
+- jwt_tool - https://github.com/ticarpi/jwt_tool
+- NoSQL injection - https://book.hacktricks.xyz/pentesting-web/nosql-injection
+- Prototype pollution - https://github.com/KindredGroup/prototype-pollution
+- HackTricks - Express - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/nodejs-express
 
 ---
 

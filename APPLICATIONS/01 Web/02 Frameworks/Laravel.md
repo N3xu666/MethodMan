@@ -756,13 +756,13 @@ Telescope requests contain headers (`Authorization`, cookies).
 
 ## 8. References
 
-- Laravel official docs: https://laravel.com/docs
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=laravel
-- Ignition RCE writeup: https://www.ambionics.io/blog/laravel-debug-rce
-- CVE-2018-15133 writeup: https://github.com/kozmic/laravel-poc-CVE-2018-15133
-- Ambionics laravel-exploits: https://github.com/ambionics/laravel-exploits
-- phpggc (PHP gadget chains): https://github.com/ambionics/phpggc
-- HackTricks - Laravel: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/laravel
+- Laravel official docs - https://laravel.com/docs
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=laravel
+- Ignition RCE writeup - https://www.ambionics.io/blog/laravel-debug-rce
+- CVE-2018-15133 writeup - https://github.com/kozmic/laravel-poc-CVE-2018-15133
+- Ambionics laravel-exploits - https://github.com/ambionics/laravel-exploits
+- phpggc (PHP gadget chains) - https://github.com/ambionics/phpggc
+- HackTricks - Laravel - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/laravel
 
 ---
 

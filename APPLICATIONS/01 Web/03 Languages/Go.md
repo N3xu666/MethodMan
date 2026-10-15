@@ -304,17 +304,17 @@ Or use `msfvenom -p linux/x64/shell_reverse_tcp` (compiles to ELF, not Go).
 
 ## 8. References
 
-- Go official docs: https://go.dev/doc/
-- HackTricks - Go: https://book.hacktricks.xyz/pentesting-web
-- Gin: https://gin-gonic.com/docs/
-- Echo: https://echo.labstack.com/docs
-- Fiber: https://docs.gofiber.io/
-- CVE-2022-41723: https://nvd.nist.gov/vuln/detail/CVE-2022-41723
-- CVE-2023-24538: https://nvd.nist.gov/vuln/detail/CVE-2023-24538
-- CVE-2023-24540: https://nvd.nist.gov/vuln/detail/CVE-2023-24540
-- CVE-2023-29402: https://nvd.nist.gov/vuln/detail/CVE-2023-29402
-- CVE-2024-24790: https://nvd.nist.gov/vuln/detail/CVE-2024-24790
-- CVE-2025-22870: https://nvd.nist.gov/vuln/detail/CVE-2025-22870
-- CVE-2025-22872: https://nvd.nist.gov/vuln/detail/CVE-2025-22872
+- Go official docs - https://go.dev/doc/
+- HackTricks - Go - https://book.hacktricks.xyz/pentesting-web
+- Gin - https://gin-gonic.com/docs/
+- Echo - https://echo.labstack.com/docs
+- Fiber - https://docs.gofiber.io/
+- CVE-2022-41723 - https://nvd.nist.gov/vuln/detail/CVE-2022-41723
+- CVE-2023-24538 - https://nvd.nist.gov/vuln/detail/CVE-2023-24538
+- CVE-2023-24540 - https://nvd.nist.gov/vuln/detail/CVE-2023-24540
+- CVE-2023-29402 - https://nvd.nist.gov/vuln/detail/CVE-2023-29402
+- CVE-2024-24790 - https://nvd.nist.gov/vuln/detail/CVE-2024-24790
+- CVE-2025-22870 - https://nvd.nist.gov/vuln/detail/CVE-2025-22870
+- CVE-2025-22872 - https://nvd.nist.gov/vuln/detail/CVE-2025-22872
 
 ---

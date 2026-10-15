@@ -530,14 +530,14 @@ done
 
 ## 9. References
 
-- RFC 7519 (JWT): https://datatracker.ietf.org/doc/html/rfc7519
-- RFC 7515 (JWS): https://datatracker.ietf.org/doc/html/rfc7515
-- RFC 7517 (JWK): https://datatracker.ietf.org/doc/html/rfc7517
-- OWASP JWT Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html
-- PortSwigger JWT attacks: https://portswigger.net/web-security/jwt
-- jwt_tool: https://github.com/ticarpi/jwt_tool
-- hashcat mode 16500: https://hashcat.net/wiki/doku.php?id=example_hashes
-- CVE-2015-9235 (jsonwebtoken alg bypass): https://nvd.nist.gov/vuln/detail/CVE-2015-9235
-- CVE-2016-10555 (jsonwebtoken key confusion): https://nvd.nist.gov/vuln/detail/CVE-2016-10555
-- CVE-2018-0114 (node-jose key confusion): https://nvd.nist.gov/vuln/detail/CVE-2018-0114
-- CVE-2022-21449 (Java ECDSA Psychic Signatures): https://nvd.nist.gov/vuln/detail/CVE-2022-21449
+- RFC 7519 (JWT) - https://datatracker.ietf.org/doc/html/rfc7519
+- RFC 7515 (JWS) - https://datatracker.ietf.org/doc/html/rfc7515
+- RFC 7517 (JWK) - https://datatracker.ietf.org/doc/html/rfc7517
+- OWASP JWT Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html
+- PortSwigger JWT attacks - https://portswigger.net/web-security/jwt
+- jwt_tool - https://github.com/ticarpi/jwt_tool
+- hashcat mode 16500 - https://hashcat.net/wiki/doku.php?id=example_hashes
+- CVE-2015-9235 (jsonwebtoken alg bypass) - https://nvd.nist.gov/vuln/detail/CVE-2015-9235
+- CVE-2016-10555 (jsonwebtoken key confusion) - https://nvd.nist.gov/vuln/detail/CVE-2016-10555
+- CVE-2018-0114 (node-jose key confusion) - https://nvd.nist.gov/vuln/detail/CVE-2018-0114
+- CVE-2022-21449 (Java ECDSA Psychic Signatures) - https://nvd.nist.gov/vuln/detail/CVE-2022-21449

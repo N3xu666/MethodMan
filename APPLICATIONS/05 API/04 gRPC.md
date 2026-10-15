@@ -567,22 +567,22 @@ gRPC is uncommon on OSCP but appears on HTB boxes with microservice architecture
 
 ## 15. References
 
-- gRPC official documentation: https://grpc.io/docs/
-- Protocol Buffers language guide: https://protobuf.dev/programming-guides/proto3/
-- gRPC security documentation: https://grpc.io/docs/guides/auth/
-- OWASP API Security Top 10:2023: https://owasp.org/API-Security/editions/2023/en/0x11-t10/
-- OWASP Top 10:2021: https://owasp.org/Top10/
-- OWASP ASVS 4.0: https://owasp.org/www-project-application-security-verification-standard/
-- RFC 9113 HTTP/2: https://datatracker.ietf.org/doc/html/rfc9113
-- grpcurl: https://github.com/fullstorydev/grpcurl
-- grpcui: https://github.com/fullstorydev/grpcui
-- CWE-862 Missing Authorization: https://cwe.mitre.org/data/definitions/862.html
-- CWE-290 Authentication Bypass by Spoofing: https://cwe.mitre.org/data/definitions/290.html
-- CWE-200 Exposure of Sensitive Information: https://cwe.mitre.org/data/definitions/200.html
-- CWE-125 Out-of-bounds Read: https://cwe.mitre.org/data/definitions/125.html
-- CWE-190 Integer Overflow: https://cwe.mitre.org/data/definitions/190.html
-- CWE-915 Mass Assignment: https://cwe.mitre.org/data/definitions/915.html
-- CWE-942 Permissive Cross-domain Policy: https://cwe.mitre.org/data/definitions/942.html
-- CWE-319 Cleartext Transmission: https://cwe.mitre.org/data/definitions/319.html
-- CWE-444 Inconsistent Interpretation of HTTP Requests: https://cwe.mitre.org/data/definitions/444.html
-- CWE-863 Incorrect Authorization: https://cwe.mitre.org/data/definitions/863.html
+- gRPC official documentation - https://grpc.io/docs/
+- Protocol Buffers language guide - https://protobuf.dev/programming-guides/proto3/
+- gRPC security documentation - https://grpc.io/docs/guides/auth/
+- OWASP API Security Top 10:2023 - https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+- OWASP Top 10:2021 - https://owasp.org/Top10/
+- OWASP ASVS 4.0 - https://owasp.org/www-project-application-security-verification-standard/
+- RFC 9113 HTTP/2 - https://datatracker.ietf.org/doc/html/rfc9113
+- grpcurl - https://github.com/fullstorydev/grpcurl
+- grpcui - https://github.com/fullstorydev/grpcui
+- CWE-862 Missing Authorization - https://cwe.mitre.org/data/definitions/862.html
+- CWE-290 Authentication Bypass by Spoofing - https://cwe.mitre.org/data/definitions/290.html
+- CWE-200 Exposure of Sensitive Information - https://cwe.mitre.org/data/definitions/200.html
+- CWE-125 Out-of-bounds Read - https://cwe.mitre.org/data/definitions/125.html
+- CWE-190 Integer Overflow - https://cwe.mitre.org/data/definitions/190.html
+- CWE-915 Mass Assignment - https://cwe.mitre.org/data/definitions/915.html
+- CWE-942 Permissive Cross-domain Policy - https://cwe.mitre.org/data/definitions/942.html
+- CWE-319 Cleartext Transmission - https://cwe.mitre.org/data/definitions/319.html
+- CWE-444 Inconsistent Interpretation of HTTP Requests - https://cwe.mitre.org/data/definitions/444.html
+- CWE-863 Incorrect Authorization - https://cwe.mitre.org/data/definitions/863.html

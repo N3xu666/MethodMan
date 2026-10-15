@@ -470,13 +470,13 @@ Use for MITM or certificate impersonation if pivoting.
 
 ## 8. References
 
-- Jetty official docs: https://eclipse.dev/jetty/documentation/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=jetty
-- CVE-2021-28169 writeup: https://github.com/v3n0m21/CVE-2021-28169
-- CVE-2021-34429 writeup: https://github.com/4nth0nyCL/jetty-CVE-2021-34429
-- Confluence CVE-2021-26084 (uses Jetty URI bypass): https://nvd.nist.gov/vuln/detail/CVE-2021-26084
-- HackTricks - Jetty: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/jetty
-- jadx: https://github.com/skylot/jadx
+- Jetty official docs - https://eclipse.dev/jetty/documentation/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=jetty
+- CVE-2021-28169 writeup - https://github.com/v3n0m21/CVE-2021-28169
+- CVE-2021-34429 writeup - https://github.com/4nth0nyCL/jetty-CVE-2021-34429
+- Confluence CVE-2021-26084 (uses Jetty URI bypass) - https://nvd.nist.gov/vuln/detail/CVE-2021-26084
+- HackTricks - Jetty - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/jetty
+- jadx - https://github.com/skylot/jadx
 
 ---
 

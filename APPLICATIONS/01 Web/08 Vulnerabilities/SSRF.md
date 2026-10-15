@@ -443,12 +443,12 @@ curl 'http://target/fetch?url=http://[::1]/'
 
 ## 11. References
 
-- OWASP SSRF: https://owasp.org/www-community/attacks/Server_Side_Request_Forgery
-- PortSwigger SSRF: https://portswigger.net/web-security/ssrf
-- PayloadsAllTheThings SSRF: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery
-- SSRFmap: https://github.com/swisskyrepo/SSRFmap
-- Gopherus: https://github.com/tarunkant/Gopherus
-- interactsh: https://github.com/projectdiscovery/interactsh
+- OWASP SSRF - https://owasp.org/www-community/attacks/Server_Side_Request_Forgery
+- PortSwigger SSRF - https://portswigger.net/web-security/ssrf
+- PayloadsAllTheThings SSRF - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery
+- SSRFmap - https://github.com/swisskyrepo/SSRFmap
+- Gopherus - https://github.com/tarunkant/Gopherus
+- interactsh - https://github.com/projectdiscovery/interactsh
 
 > See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../07 Databases.md](../07%20Databases/README.md), [../../05 API/02 REST.md](../../05%20API/02%20REST.md)
 

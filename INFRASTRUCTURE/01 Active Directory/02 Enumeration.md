@@ -351,7 +351,7 @@ because of accumulated misconfigurations.
 **Microsoft documentation:**
 
 - Active Directory Schema - https://learn.microsoft.com/en-us/windows/win32/adschema/active-directory-schema
-- [Group Policy Preferences](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn581922(v=ws.11))
+- Group Policy Preferences - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn581922(v=ws.11)
 - Kerberos Delegation - https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-constrained-delegation-overview
 
 **MITRE ATT&CK:**

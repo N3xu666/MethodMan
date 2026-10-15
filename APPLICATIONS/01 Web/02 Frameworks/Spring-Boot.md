@@ -761,14 +761,14 @@ authorization tokens, session IDs.
 
 ## 8. References
 
-- Spring Boot official docs: https://spring.io/projects/spring-boot
-- Spring Security advisories: https://spring.io/security
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=spring+boot
-- Spring4Shell writeup: https://spring.io/blog/2022/03/31/spring-framework-rce-early-announcement
-- Spring Cloud Gateway RCE: https://wya.pl/2022/02/26/cve-2022-22947-spel-cve/
-- Actuator security: https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html
-- HackTricks - Spring: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/spring-actuators
-- CFRS (JAR decompiler): https://www.benf.org/other/cfr/
+- Spring Boot official docs - https://spring.io/projects/spring-boot
+- Spring Security advisories - https://spring.io/security
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=spring+boot
+- Spring4Shell writeup - https://spring.io/blog/2022/03/31/spring-framework-rce-early-announcement
+- Spring Cloud Gateway RCE - https://wya.pl/2022/02/26/cve-2022-22947-spel-cve/
+- Actuator security - https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html
+- HackTricks - Spring - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/spring-actuators
+- CFRS (JAR decompiler) - https://www.benf.org/other/cfr/
 
 ---
 

@@ -232,12 +232,12 @@ Credentials from `db.system.users` or app configs often work for SSH / other ser
 
 ## 8. References
 
-- MongoDB official docs: https://www.mongodb.com/docs/
-- HackTricks - MongoDB: https://book.hacktricks.xyz/network-services-pentesting/27017-27018-mongodb
-- PayloadsAllTheThings - NoSQL: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/NoSQL%20Injection
-- CVE-2017-15535: https://nvd.nist.gov/vuln/detail/CVE-2017-15535
-- CVE-2019-2386: https://nvd.nist.gov/vuln/detail/CVE-2019-2386
-- CVE-2021-20329: https://nvd.nist.gov/vuln/detail/CVE-2021-20329
-- CVE-2023-3102: https://nvd.nist.gov/vuln/detail/CVE-2023-3102
+- MongoDB official docs - https://www.mongodb.com/docs/
+- HackTricks - MongoDB - https://book.hacktricks.xyz/network-services-pentesting/27017-27018-mongodb
+- PayloadsAllTheThings - NoSQL - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/NoSQL%20Injection
+- CVE-2017-15535 - https://nvd.nist.gov/vuln/detail/CVE-2017-15535
+- CVE-2019-2386 - https://nvd.nist.gov/vuln/detail/CVE-2019-2386
+- CVE-2021-20329 - https://nvd.nist.gov/vuln/detail/CVE-2021-20329
+- CVE-2023-3102 - https://nvd.nist.gov/vuln/detail/CVE-2023-3102
 
 ---

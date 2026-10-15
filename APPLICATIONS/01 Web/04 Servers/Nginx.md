@@ -364,12 +364,12 @@ grep -rE 'unix:|127%2e0%2e0%2e1' /etc/nginx/
 
 ## 8. References
 
-- Nginx official docs: https://nginx.org/en/docs/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=nginx
-- CVE-2017-7529 PoC: https://github.com/3ndG4me/nginx-1.13.2-CVE-2017-7529
-- Request smuggling: https://portswigger.net/web-security/request-smuggling
-- HackTricks - Nginx: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/nginx
-- GTFOBins: https://gtfobins.github.io/
+- Nginx official docs - https://nginx.org/en/docs/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=nginx
+- CVE-2017-7529 PoC - https://github.com/3ndG4me/nginx-1.13.2-CVE-2017-7529
+- Request smuggling - https://portswigger.net/web-security/request-smuggling
+- HackTricks - Nginx - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/nginx
+- GTFOBins - https://gtfobins.github.io/
 
 ---
 

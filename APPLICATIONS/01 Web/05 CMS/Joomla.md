@@ -823,14 +823,14 @@ Standard Linux privesc applies once you have a shell.
 
 ## 8. References
 
-- Joomla official docs: https://docs.joomla.org/
-- Joomla security center: https://developer.joomla.org/security-centre.html
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=joomla
-- JoomScan (OWASP): https://github.com/OWASP/joomscan
-- CVE-2023-23752 writeup: https://vulncheck.com/blog/joomla-for-rce
-- CVE-2015-8562 writeup: https://www.exploit-db.com/exploits/38977
-- HackTricks - Joomla: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/joomla
-- PHPGGC: https://github.com/ambionics/phpggc
+- Joomla official docs - https://docs.joomla.org/
+- Joomla security center - https://developer.joomla.org/security-centre.html
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=joomla
+- JoomScan (OWASP) - https://github.com/OWASP/joomscan
+- CVE-2023-23752 writeup - https://vulncheck.com/blog/joomla-for-rce
+- CVE-2015-8562 writeup - https://www.exploit-db.com/exploits/38977
+- HackTricks - Joomla - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/joomla
+- PHPGGC - https://github.com/ambionics/phpggc
 
 ---
 

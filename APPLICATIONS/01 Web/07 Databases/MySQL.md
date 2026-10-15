@@ -308,17 +308,17 @@ ssh <USER>@<TARGET>
 
 ## 8. References
 
-- MySQL official docs: https://dev.mysql.com/doc/
-- MariaDB official docs: https://mariadb.com/kb/en/documentation/
-- NVD MySQL: https://nvd.nist.gov/products/cpe/detail/3A4A5E6F-... (search: cpe:2.3:a:oracle:mysql)
-- PayloadsAllTheThings - MySQL: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/MySQL%20Injection.md
-- HackTricks - MySQL: https://book.hacktricks.xyz/network-services-pentesting/pentesting-mysql
-- CVE-2012-2122: https://nvd.nist.gov/vuln/detail/CVE-2012-2122
-- CVE-2016-6662: https://nvd.nist.gov/vuln/detail/CVE-2016-6662
-- CVE-2016-6663: https://nvd.nist.gov/vuln/detail/CVE-2016-6663
-- CVE-2016-6664: https://nvd.nist.gov/vuln/detail/CVE-2016-6664
-- CVE-2019-3822: https://nvd.nist.gov/vuln/detail/CVE-2019-3822
-- CVE-2021-27928: https://nvd.nist.gov/vuln/detail/CVE-2021-27928
-- CVE-2023-21980: https://nvd.nist.gov/vuln/detail/CVE-2023-21980
+- MySQL official docs - https://dev.mysql.com/doc/
+- MariaDB official docs - https://mariadb.com/kb/en/documentation/
+- NVD MySQL - https://nvd.nist.gov/products/cpe/detail/3A4A5E6F-... (search: cpe:2.3:a:oracle:mysql)
+- PayloadsAllTheThings - MySQL - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/MySQL%20Injection.md
+- HackTricks - MySQL - https://book.hacktricks.xyz/network-services-pentesting/pentesting-mysql
+- CVE-2012-2122 - https://nvd.nist.gov/vuln/detail/CVE-2012-2122
+- CVE-2016-6662 - https://nvd.nist.gov/vuln/detail/CVE-2016-6662
+- CVE-2016-6663 - https://nvd.nist.gov/vuln/detail/CVE-2016-6663
+- CVE-2016-6664 - https://nvd.nist.gov/vuln/detail/CVE-2016-6664
+- CVE-2019-3822 - https://nvd.nist.gov/vuln/detail/CVE-2019-3822
+- CVE-2021-27928 - https://nvd.nist.gov/vuln/detail/CVE-2021-27928
+- CVE-2023-21980 - https://nvd.nist.gov/vuln/detail/CVE-2023-21980
 
 ---

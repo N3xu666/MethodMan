@@ -747,14 +747,14 @@ But `/api/*` serverless functions may leak env if they return `process.env`.
 
 ## 8. References
 
-- Next.js official docs: https://nextjs.org/docs
-- Next.js security advisories: https://github.com/vercel/next.js/security/advisories
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=next.js
-- CVE-2025-29927 writeup: https://zhero-web-sec.github.io/research-and-things/nextjs-and-the-corrupt-middleware
-- CVE-2024-34351 writeup: https://www.assetnote.io/resources/research/diving-into-next-js-a-deep-dive-into-server-action-vulnerabilities
-- NextAuth.js security: https://next-auth.js.org/security
-- HackTricks - Next.js: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/nextjs
-- Source map explorer: https://github.com/danvk/source-map-explorer
+- Next.js official docs - https://nextjs.org/docs
+- Next.js security advisories - https://github.com/vercel/next.js/security/advisories
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=next.js
+- CVE-2025-29927 writeup - https://zhero-web-sec.github.io/research-and-things/nextjs-and-the-corrupt-middleware
+- CVE-2024-34351 writeup - https://www.assetnote.io/resources/research/diving-into-next-js-a-deep-dive-into-server-action-vulnerabilities
+- NextAuth.js security - https://next-auth.js.org/security
+- HackTricks - Next.js - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/nextjs
+- Source map explorer - https://github.com/danvk/source-map-explorer
 
 ---
 

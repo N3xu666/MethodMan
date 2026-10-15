@@ -954,15 +954,15 @@ via SUID, sudo, cron, or kernel exploit.
 
 ## 8. References
 
-- Magento official docs: https://developer.adobe.com/commerce/docs/
-- Magento security bulletins: https://helpx.adobe.com/security/products/magento.html
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=magento
-- magescan: https://github.com/steverobbins/magescan
-- CVE-2022-24086 writeup: https://helpx.adobe.com/security/products/magento/apsb22-12.html
-- CVE-2024-34102 CosmicSting: https://github.com/spacewasp/public_docs/blob/main/CVE-2024-34102.md
-- Sansec CosmicSting analysis: https://sansec.io/research/cosmicsting
-- HackTricks - Magento: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/magento
-- PHPGGC: https://github.com/ambionics/phpggc
+- Magento official docs - https://developer.adobe.com/commerce/docs/
+- Magento security bulletins - https://helpx.adobe.com/security/products/magento.html
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=magento
+- magescan - https://github.com/steverobbins/magescan
+- CVE-2022-24086 writeup - https://helpx.adobe.com/security/products/magento/apsb22-12.html
+- CVE-2024-34102 CosmicSting - https://github.com/spacewasp/public_docs/blob/main/CVE-2024-34102.md
+- Sansec CosmicSting analysis - https://sansec.io/research/cosmicsting
+- HackTricks - Magento - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/magento
+- PHPGGC - https://github.com/ambionics/phpggc
 
 ---
 

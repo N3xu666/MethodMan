@@ -877,13 +877,13 @@ Key patterns for OSCP:
 
 **OWASP:**
 
-- [OWASP Top 10:2021 - A04](https://owasp.org/Top10/A04_2021-Insecure_Design/)
-- [OWASP Top 10:2025 - A06 (renumbered)](https://owasp.org/Top10/2025/)
-- [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/)
-- [OWASP WSTG - Business Logic Testing](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/)
-- [OWASP Cheat Sheet - Business Logic Security](https://cheatsheetseries.owasp.org/cheatsheets/Business_Logic_Security_Cheat_Sheet.html)
-- [OWASP Threat Modeling](https://owasp.org/www-community/Threat_Modeling)
-- [OWASP Cheat Sheet - Threat Modeling](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html)
+- OWASP Top 10:2021 - A04 - https://owasp.org/Top10/A04_2021-Insecure_Design/
+- OWASP Top 10:2025 - A06 (renumbered) - https://owasp.org/Top10/2025/
+- OWASP ASVS - https://owasp.org/www-project-application-security-verification-standard/
+- OWASP WSTG - Business Logic Testing - https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/
+- OWASP Cheat Sheet - Business Logic Security - https://cheatsheetseries.owasp.org/cheatsheets/Business_Logic_Security_Cheat_Sheet.html
+- OWASP Threat Modeling - https://owasp.org/www-community/Threat_Modeling
+- OWASP Cheat Sheet - Threat Modeling - https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html
 
 **Books and papers:**
 

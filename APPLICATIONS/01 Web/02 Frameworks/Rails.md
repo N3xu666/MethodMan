@@ -692,14 +692,14 @@ curl http://<TARGET>/users/1.yaml
 
 ## 8. References
 
-- Rails official docs: https://guides.rubyonrails.org/
-- Rails security guide: https://guides.rubyonrails.org/security.html
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=rails
-- CVE-2019-5418 writeup: https://github.com/mpgn/CVE-2019-5418
-- CVE-2019-5420 writeup: https://github.com/mpgn/Rails-doubletap-RCE
-- Rails session cookie decode: https://github.com/marcelsavegnago/rails-secret-key-base-session-cookie-decoder
-- HackTricks - Rails: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/ruby-on-rails
-- universal_gadget_chain: https://github.com/Coalfire-Research/universal-gadget-chain
+- Rails official docs - https://guides.rubyonrails.org/
+- Rails security guide - https://guides.rubyonrails.org/security.html
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=rails
+- CVE-2019-5418 writeup - https://github.com/mpgn/CVE-2019-5418
+- CVE-2019-5420 writeup - https://github.com/mpgn/Rails-doubletap-RCE
+- Rails session cookie decode - https://github.com/marcelsavegnago/rails-secret-key-base-session-cookie-decoder
+- HackTricks - Rails - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/ruby-on-rails
+- universal_gadget_chain - https://github.com/Coalfire-Research/universal-gadget-chain
 
 ---
 

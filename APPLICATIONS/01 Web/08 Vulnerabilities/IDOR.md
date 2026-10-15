@@ -357,10 +357,10 @@ ffuf -u 'http://target/api/user/FUZZ' -w ids.txt -H 'Cookie: session=USER' -mc 2
 
 ## 10. References
 
-- OWASP IDOR: https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References
-- PortSwigger access control: https://portswigger.net/web-security/access-control
-- Burp Autorize: https://github.com/Quitten/Autorize
-- PayloadsAllTheThings IDOR: https://github.com/swisskyrepo/PayloadsAllTheThings
+- OWASP IDOR - https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References
+- PortSwigger access control - https://portswigger.net/web-security/access-control
+- Burp Autorize - https://github.com/Quitten/Autorize
+- PayloadsAllTheThings IDOR - https://github.com/swisskyrepo/PayloadsAllTheThings
 
 > See also: [../06 Technologies/JWT.md](../06%20Technologies/JWT.md), [../../05 API/03 GraphQL.md](../../05%20API/03%20GraphQL.md), [../../05 API/02 REST.md](../../05%20API/02%20REST.md)
 

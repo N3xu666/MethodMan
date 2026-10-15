@@ -877,13 +877,13 @@ MySQL may host other apps' data (WordPress, Joomla, etc.).
 
 ## 8. References
 
-- PrestaShop official docs: https://devdocs.prestashop-project.org/
-- PrestaShop security advisories: https://security.prestashop.com/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=prestashop
-- CVE-2022-31101 writeup: https://github.com/PrestaShop/PrestaShop/security/advisories/GHSA-m9wp-qmpc-p9x5
-- CVE-2024-36678 writeup: https://blog.leakix.net/2024/06/prestashop-sql-injection/
-- HackTricks - PrestaShop: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/prestashop
-- PHPGGC: https://github.com/ambionics/phpggc
+- PrestaShop official docs - https://devdocs.prestashop-project.org/
+- PrestaShop security advisories - https://security.prestashop.com/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=prestashop
+- CVE-2022-31101 writeup - https://github.com/PrestaShop/PrestaShop/security/advisories/GHSA-m9wp-qmpc-p9x5
+- CVE-2024-36678 writeup - https://blog.leakix.net/2024/06/prestashop-sql-injection/
+- HackTricks - PrestaShop - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/prestashop
+- PHPGGC - https://github.com/ambionics/phpggc
 
 ---
 

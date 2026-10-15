@@ -292,15 +292,15 @@ Oracle `dba_users` + app configs often share passwords with SSH / web admin pane
 
 ## 8. References
 
-- Oracle official docs: https://docs.oracle.com/en/database/
-- HackTricks - Oracle: https://book.hacktricks.xyz/network-services-pentesting/1521-1522-1529-pentesting-oracle-listener
-- ODAT: https://github.com/quentinhardy/odat
-- tnscmd10g: https://github.com/quentinhardy/tnscmd10g
-- CVE-2006-0586: https://nvd.nist.gov/vuln/detail/CVE-2006-0586
-- CVE-2012-1675: https://nvd.nist.gov/vuln/detail/CVE-2012-1675
-- CVE-2018-2874: https://nvd.nist.gov/vuln/detail/CVE-2018-2874
-- CVE-2018-2875: https://nvd.nist.gov/vuln/detail/CVE-2018-2875
-- CVE-2021-2294: https://nvd.nist.gov/vuln/detail/CVE-2021-2294
-- CVE-2022-21416: https://nvd.nist.gov/vuln/detail/CVE-2022-21416
+- Oracle official docs - https://docs.oracle.com/en/database/
+- HackTricks - Oracle - https://book.hacktricks.xyz/network-services-pentesting/1521-1522-1529-pentesting-oracle-listener
+- ODAT - https://github.com/quentinhardy/odat
+- tnscmd10g - https://github.com/quentinhardy/tnscmd10g
+- CVE-2006-0586 - https://nvd.nist.gov/vuln/detail/CVE-2006-0586
+- CVE-2012-1675 - https://nvd.nist.gov/vuln/detail/CVE-2012-1675
+- CVE-2018-2874 - https://nvd.nist.gov/vuln/detail/CVE-2018-2874
+- CVE-2018-2875 - https://nvd.nist.gov/vuln/detail/CVE-2018-2875
+- CVE-2021-2294 - https://nvd.nist.gov/vuln/detail/CVE-2021-2294
+- CVE-2022-21416 - https://nvd.nist.gov/vuln/detail/CVE-2022-21416
 
 ---

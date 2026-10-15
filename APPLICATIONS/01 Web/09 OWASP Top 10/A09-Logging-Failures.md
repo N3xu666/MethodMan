@@ -761,26 +761,26 @@ Key patterns for OSCP:
 
 **OWASP:**
 
-- [OWASP Top 10:2021 - A09](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/)
-- [OWASP Top 10:2025 - A09 (unchanged)](https://owasp.org/Top10/2025/)
-- [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/)
-- [OWASP Cheat Sheet - Logging](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
-- [OWASP Cheat Sheet - Logging Vocabulary](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html)
-- [OWASP Cheat Sheet - Application Logging Vocabulary](https://cheatsheetseries.owasp.org/cheatsheets/Application_Logging_Vocabulary_Cheat_Sheet.html)
+- OWASP Top 10:2021 - A09 - https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/
+- OWASP Top 10:2025 - A09 (unchanged) - https://owasp.org/Top10/2025/
+- OWASP ASVS - https://owasp.org/www-project-application-security-verification-standard/
+- OWASP Cheat Sheet - Logging - https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html
+- OWASP Cheat Sheet - Logging Vocabulary - https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html
+- OWASP Cheat Sheet - Application Logging Vocabulary - https://cheatsheetseries.owasp.org/cheatsheets/Application_Logging_Vocabulary_Cheat_Sheet.html
 
 **Standards and frameworks:**
 
 - NIST SP 800-92 - Guide to Computer Security Log Management.
 - NIST SP 800-61 - Computer Security Incident Handling Guide.
-- SIGMA - generic signature format for SIEM rules: https://github.com/SigmaHQ/sigma
+- SIGMA - generic signature format for SIEM rules - https://github.com/SigmaHQ/sigma
 - MITRE ATT&CK - adversary tactics and techniques (useful for
   detection mapping): https://attack.mitre.org/
 
 **Blind-exploitation tools referenced in this file:**
 
-- interactsh: https://github.com/projectdiscovery/interactsh
+- interactsh - https://github.com/projectdiscovery/interactsh
 - Burp Collaborator: built into Burp Suite Professional.
-- Canarytokens: https://canarytokens.org/
+- Canarytokens - https://canarytokens.org/
 
 **Internal cross-references:**
 

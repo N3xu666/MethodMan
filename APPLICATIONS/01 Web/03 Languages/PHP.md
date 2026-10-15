@@ -319,14 +319,14 @@ Extracted creds from configs often work for MySQL, SSH, other web apps.
 
 ## 7. References
 
-- PHP official docs: https://www.php.net/manual/en/
-- HackTricks - PHP: https://book.hacktricks.xyz/pentesting-web/php-tricks-esp
-- PayloadsAllTheThings - PHP: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
-- phpggc: https://github.com/ambionics/phpggc
-- CVE-2019-11043: https://nvd.nist.gov/vuln/detail/CVE-2019-11043
-- CVE-2024-4577: https://nvd.nist.gov/vuln/detail/CVE-2024-4577
-- CVE-2021-21707: https://nvd.nist.gov/vuln/detail/CVE-2021-21707
-- CVE-2020-7066: https://nvd.nist.gov/vuln/detail/CVE-2020-7066
-- CVE-2019-6340: https://nvd.nist.gov/vuln/detail/CVE-2019-6340
+- PHP official docs - https://www.php.net/manual/en/
+- HackTricks - PHP - https://book.hacktricks.xyz/pentesting-web/php-tricks-esp
+- PayloadsAllTheThings - PHP - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
+- phpggc - https://github.com/ambionics/phpggc
+- CVE-2019-11043 - https://nvd.nist.gov/vuln/detail/CVE-2019-11043
+- CVE-2024-4577 - https://nvd.nist.gov/vuln/detail/CVE-2024-4577
+- CVE-2021-21707 - https://nvd.nist.gov/vuln/detail/CVE-2021-21707
+- CVE-2020-7066 - https://nvd.nist.gov/vuln/detail/CVE-2020-7066
+- CVE-2019-6340 - https://nvd.nist.gov/vuln/detail/CVE-2019-6340
 
 ---

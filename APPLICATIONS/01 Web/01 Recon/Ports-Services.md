@@ -368,10 +368,10 @@ curl -s http://target:8888/
 
 ## 12. References
 
-- nmap NSE: https://nmap.org/nsedoc/
-- SecLists: https://github.com/danielmiessler/SecLists
-- HackTricks - 8080 Pentesting: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web
-- PayloadsAllTheThings: https://github.com/swisskyrepo/PayloadsAllTheThings
+- nmap NSE - https://nmap.org/nsedoc/
+- SecLists - https://github.com/danielmiessler/SecLists
+- HackTricks - 8080 Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web
+- PayloadsAllTheThings - https://github.com/swisskyrepo/PayloadsAllTheThings
 
 > See also: [Fingerprinting.md](./Fingerprinting.md), [WAF-Detection.md](./WAF-Detection.md), [VHosts-Subdomains.md](./VHosts-Subdomains.md)
 

@@ -253,10 +253,10 @@ fetch('http://target/api/action', {
 
 ## 9. References
 
-- OWASP CSRF: https://owasp.org/www-community/attacks/csrf
-- PortSwigger CSRF: https://portswigger.net/web-security/csrf
-- PayloadsAllTheThings CSRF: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSRF%20Injection
-- SameSite cookies: https://web.dev/samesite-cookies-explained/
+- OWASP CSRF - https://owasp.org/www-community/attacks/csrf
+- PortSwigger CSRF - https://portswigger.net/web-security/csrf
+- PayloadsAllTheThings CSRF - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/CSRF%20Injection
+- SameSite cookies - https://web.dev/samesite-cookies-explained/
 
 > See also: [XSS.md](./XSS.md), [../06 Technologies/JWT.md](../06%20Technologies/JWT.md)
 

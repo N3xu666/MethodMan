@@ -653,22 +653,22 @@ SOAP rarely appears on OSCP, but when it does, the playbook is simple:
 
 ## 15. References
 
-- W3C SOAP 1.1 specification: https://www.w3.org/TR/2000/NOTE-SOAP-20000508/
-- W3C SOAP 1.2 specification: https://www.w3.org/TR/soap12/
-- W3C WSDL 1.1: https://www.w3.org/TR/wsdl
-- OASIS WS-Security 1.1: https://docs.oasis-open.org/wss/v1.1/
-- OASIS WS-Addressing 1.0: https://www.w3.org/TR/ws-addr-core/
-- OWASP Web Security Testing Guide - Testing for XML Injection: https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/07-Testing_for_XML_Injection
-- OWASP Top 10:2021: https://owasp.org/Top10/
-- OWASP API Security Top 10:2023: https://owasp.org/API-Security/editions/2023/en/0x11-t10/
-- OWASP ASVS 4.0: https://owasp.org/www-project-application-security-verification-standard/
-- CVE-2019-9670 (Zimbra XXE): https://nvd.nist.gov/vuln/detail/CVE-2019-9670
-- CVE-2021-44228 (Log4Shell): https://nvd.nist.gov/vuln/detail/CVE-2021-44228
-- CWE-611 Improper Restriction of XXE: https://cwe.mitre.org/data/definitions/611.html
-- CWE-436 Interpretation Conflict: https://cwe.mitre.org/data/definitions/436.html
-- CWE-643 XPath Injection: https://cwe.mitre.org/data/definitions/643.html
-- CWE-294 Authentication Bypass by Capture-replay: https://cwe.mitre.org/data/definitions/294.html
-- CWE-287 Improper Authentication: https://cwe.mitre.org/data/definitions/287.html
-- CWE-91 XML Injection: https://cwe.mitre.org/data/definitions/91.html
-- CWE-200 Exposure of Sensitive Information: https://cwe.mitre.org/data/definitions/200.html
-- CWE-918 SSRF: https://cwe.mitre.org/data/definitions/918.html
+- W3C SOAP 1.1 specification - https://www.w3.org/TR/2000/NOTE-SOAP-20000508/
+- W3C SOAP 1.2 specification - https://www.w3.org/TR/soap12/
+- W3C WSDL 1.1 - https://www.w3.org/TR/wsdl
+- OASIS WS-Security 1.1 - https://docs.oasis-open.org/wss/v1.1/
+- OASIS WS-Addressing 1.0 - https://www.w3.org/TR/ws-addr-core/
+- OWASP Web Security Testing Guide - Testing for XML Injection - https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/07-Testing_for_XML_Injection
+- OWASP Top 10:2021 - https://owasp.org/Top10/
+- OWASP API Security Top 10:2023 - https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+- OWASP ASVS 4.0 - https://owasp.org/www-project-application-security-verification-standard/
+- CVE-2019-9670 (Zimbra XXE) - https://nvd.nist.gov/vuln/detail/CVE-2019-9670
+- CVE-2021-44228 (Log4Shell) - https://nvd.nist.gov/vuln/detail/CVE-2021-44228
+- CWE-611 Improper Restriction of XXE - https://cwe.mitre.org/data/definitions/611.html
+- CWE-436 Interpretation Conflict - https://cwe.mitre.org/data/definitions/436.html
+- CWE-643 XPath Injection - https://cwe.mitre.org/data/definitions/643.html
+- CWE-294 Authentication Bypass by Capture-replay - https://cwe.mitre.org/data/definitions/294.html
+- CWE-287 Improper Authentication - https://cwe.mitre.org/data/definitions/287.html
+- CWE-91 XML Injection - https://cwe.mitre.org/data/definitions/91.html
+- CWE-200 Exposure of Sensitive Information - https://cwe.mitre.org/data/definitions/200.html
+- CWE-918 SSRF - https://cwe.mitre.org/data/definitions/918.html

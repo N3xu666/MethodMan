@@ -480,12 +480,12 @@ echo "10.10.10.10  admin.target.htb" | sudo tee -a /etc/hosts
 
 ## 12. References
 
-- SecLists: https://github.com/danielmiessler/SecLists
-- subfinder: https://github.com/projectdiscovery/subfinder
-- dnsx: https://github.com/projectdiscovery/dnsx
-- amass: https://github.com/owasp-amass/amass
-- theHarvester: https://github.com/laramies/theHarvester
-- crt.sh: https://crt.sh/
+- SecLists - https://github.com/danielmiessler/SecLists
+- subfinder - https://github.com/projectdiscovery/subfinder
+- dnsx - https://github.com/projectdiscovery/dnsx
+- amass - https://github.com/owasp-amass/amass
+- theHarvester - https://github.com/laramies/theHarvester
+- crt.sh - https://crt.sh/
 
 > See also: [Fingerprinting.md](./Fingerprinting.md), [WAF-Detection.md](./WAF-Detection.md), [Ports-Services.md](./Ports-Services.md)
 

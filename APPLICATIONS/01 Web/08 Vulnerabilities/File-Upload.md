@@ -400,11 +400,11 @@ Magic bytes: JPEG=FFD8FFE0  PNG=89504E47  GIF=47494638 (GIF89a)  PDF=25504446 (%
 
 ## 10. References
 
-- OWASP File Upload Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html
-- PortSwigger file upload: https://portswigger.net/web-security/file-upload
-- PayloadsAllTheThings File Upload: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecure%20Files
-- p0wny-shell: https://github.com/flozz/p0wny-shell
-- weevely: https://github.com/epinna/weevely3
+- OWASP File Upload Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html
+- PortSwigger file upload - https://portswigger.net/web-security/file-upload
+- PayloadsAllTheThings File Upload - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecure%20Files
+- p0wny-shell - https://github.com/flozz/p0wny-shell
+- weevely - https://github.com/epinna/weevely3
 
 > See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [LFI-RFI.md](./LFI-RFI.md), [Command-Injection.md](./Command-Injection.md)
 

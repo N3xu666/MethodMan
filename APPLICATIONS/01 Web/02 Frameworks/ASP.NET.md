@@ -847,15 +847,15 @@ impersonate_token "NT AUTHORITY\SYSTEM"
 
 ## 8. References
 
-- ASP.NET official docs: https://learn.microsoft.com/en-us/aspnet/
-- ASP.NET Core docs: https://learn.microsoft.com/en-us/aspnet/core/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=asp.net
-- ysoserial.net: https://github.com/pwntester/ysoserial.net
-- Badsecrets: https://github.com/blacklanternsecurity/badsecrets
-- CVE-2020-0688 writeup: https://github.com/Ridter/cve-2020-0688
-- CVE-2019-18935 writeup: https://github.com/noperator/CVE-2019-18935
-- HackTricks - ASP.NET: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/iis-internet-information-services
-- PayloadsAllTheThings - .NET: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/.NET%20Deserialization
+- ASP.NET official docs - https://learn.microsoft.com/en-us/aspnet/
+- ASP.NET Core docs - https://learn.microsoft.com/en-us/aspnet/core/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=asp.net
+- ysoserial.net - https://github.com/pwntester/ysoserial.net
+- Badsecrets - https://github.com/blacklanternsecurity/badsecrets
+- CVE-2020-0688 writeup - https://github.com/Ridter/cve-2020-0688
+- CVE-2019-18935 writeup - https://github.com/noperator/CVE-2019-18935
+- HackTricks - ASP.NET - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/iis-internet-information-services
+- PayloadsAllTheThings - .NET - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/.NET%20Deserialization
 
 ---
 

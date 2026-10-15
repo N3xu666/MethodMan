@@ -638,17 +638,17 @@ Safe and unsafe practices:
 
 ## 15. References
 
-- RFC 6455 - The WebSocket Protocol: https://datatracker.ietf.org/doc/html/rfc6455
-- OWASP Web Security Testing Guide - Testing WebSockets: https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/10-Testing_WebSockets
-- OWASP Top 10:2021: https://owasp.org/Top10/
-- OWASP API Security Top 10:2023: https://owasp.org/API-Security/editions/2023/en/0x11-t10/
-- OWASP ASVS 4.0: https://owasp.org/www-project-application-security-verification-standard/
-- PortSwigger Web Security Academy - WebSocket labs: https://portswigger.net/web-security/websockets
-- Bishop Fox - H2C Smuggling: https://bishopfox.com/blog/h2c-smuggling-request
-- CWE-346 Origin Validation Error: https://cwe.mitre.org/data/definitions/346.html
-- CWE-306 Missing Authentication for Critical Function: https://cwe.mitre.org/data/definitions/306.html
-- CWE-639 Authorization Bypass Through User-Controlled Key: https://cwe.mitre.org/data/definitions/639.html
-- CWE-502 Deserialization of Untrusted Data: https://cwe.mitre.org/data/definitions/502.html
-- CWE-770 Allocation of Resources Without Limits: https://cwe.mitre.org/data/definitions/770.html
-- CWE-444 Inconsistent Interpretation of HTTP Requests: https://cwe.mitre.org/data/definitions/444.html
-- CWE-598 Use of GET Request Method With Sensitive Query Strings: https://cwe.mitre.org/data/definitions/598.html
+- RFC 6455 - The WebSocket Protocol - https://datatracker.ietf.org/doc/html/rfc6455
+- OWASP Web Security Testing Guide - Testing WebSockets - https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/10-Testing_WebSockets
+- OWASP Top 10:2021 - https://owasp.org/Top10/
+- OWASP API Security Top 10:2023 - https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+- OWASP ASVS 4.0 - https://owasp.org/www-project-application-security-verification-standard/
+- PortSwigger Web Security Academy - WebSocket labs - https://portswigger.net/web-security/websockets
+- Bishop Fox - H2C Smuggling - https://bishopfox.com/blog/h2c-smuggling-request
+- CWE-346 Origin Validation Error - https://cwe.mitre.org/data/definitions/346.html
+- CWE-306 Missing Authentication for Critical Function - https://cwe.mitre.org/data/definitions/306.html
+- CWE-639 Authorization Bypass Through User-Controlled Key - https://cwe.mitre.org/data/definitions/639.html
+- CWE-502 Deserialization of Untrusted Data - https://cwe.mitre.org/data/definitions/502.html
+- CWE-770 Allocation of Resources Without Limits - https://cwe.mitre.org/data/definitions/770.html
+- CWE-444 Inconsistent Interpretation of HTTP Requests - https://cwe.mitre.org/data/definitions/444.html
+- CWE-598 Use of GET Request Method With Sensitive Query Strings - https://cwe.mitre.org/data/definitions/598.html

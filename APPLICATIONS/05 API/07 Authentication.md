@@ -778,27 +778,27 @@ Authentication is present on almost every OSCP box and HTB machine:
 
 ## 15. References
 
-- RFC 7519 - JSON Web Token (JWT): https://datatracker.ietf.org/doc/html/rfc7519
-- RFC 7518 - JSON Web Algorithms (JWA): https://datatracker.ietf.org/doc/html/rfc7518
-- RFC 7517 - JSON Web Key (JWK): https://datatracker.ietf.org/doc/html/rfc7517
-- RFC 6749 - OAuth 2.0 Authorization Framework: https://datatracker.ietf.org/doc/html/rfc6749
-- RFC 9700 - Best Current Practice for OAuth 2.0 Security: https://datatracker.ietf.org/doc/html/rfc9700
-- OpenID Connect Core 1.0: https://openid.net/specs/openid-connect-core-1_0.html
-- OWASP Authentication Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
-- OWASP Session Management Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html
-- OWASP JWT Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html
-- OWASP Top 10:2021: https://owasp.org/Top10/
-- OWASP API Security Top 10:2023: https://owasp.org/API-Security/editions/2023/en/0x11-t10/
-- OWASP ASVS 4.0: https://owasp.org/www-project-application-security-verification-standard/
-- PortSwigger Web Security Academy - JWT attacks: https://portswigger.net/web-security/jwt
-- PortSwigger Web Security Academy - OAuth: https://portswigger.net/web-security/oauth
-- jwt_tool: https://github.com/ticarpi/jwt_tool
-- CWE-347 Improper Verification of Cryptographic Signature: https://cwe.mitre.org/data/definitions/347.html
-- CWE-384 Session Fixation: https://cwe.mitre.org/data/definitions/384.html
-- CWE-601 Open Redirect: https://cwe.mitre.org/data/definitions/601.html
-- CWE-352 CSRF: https://cwe.mitre.org/data/definitions/352.html
-- CWE-598 Sensitive Query String: https://cwe.mitre.org/data/definitions/598.html
-- CWE-798 Hard-coded Credentials: https://cwe.mitre.org/data/definitions/798.html
-- CWE-294 Authentication Bypass by Capture-replay: https://cwe.mitre.org/data/definitions/294.html
-- CWE-208 Observable Timing Discrepancy: https://cwe.mitre.org/data/definitions/208.html
-- CWE-319 Cleartext Transmission: https://cwe.mitre.org/data/definitions/319.html
+- RFC 7519 - JSON Web Token (JWT) - https://datatracker.ietf.org/doc/html/rfc7519
+- RFC 7518 - JSON Web Algorithms (JWA) - https://datatracker.ietf.org/doc/html/rfc7518
+- RFC 7517 - JSON Web Key (JWK) - https://datatracker.ietf.org/doc/html/rfc7517
+- RFC 6749 - OAuth 2.0 Authorization Framework - https://datatracker.ietf.org/doc/html/rfc6749
+- RFC 9700 - Best Current Practice for OAuth 2.0 Security - https://datatracker.ietf.org/doc/html/rfc9700
+- OpenID Connect Core 1.0 - https://openid.net/specs/openid-connect-core-1_0.html
+- OWASP Authentication Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
+- OWASP Session Management Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html
+- OWASP JWT Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html
+- OWASP Top 10:2021 - https://owasp.org/Top10/
+- OWASP API Security Top 10:2023 - https://owasp.org/API-Security/editions/2023/en/0x11-t10/
+- OWASP ASVS 4.0 - https://owasp.org/www-project-application-security-verification-standard/
+- PortSwigger Web Security Academy - JWT attacks - https://portswigger.net/web-security/jwt
+- PortSwigger Web Security Academy - OAuth - https://portswigger.net/web-security/oauth
+- jwt_tool - https://github.com/ticarpi/jwt_tool
+- CWE-347 Improper Verification of Cryptographic Signature - https://cwe.mitre.org/data/definitions/347.html
+- CWE-384 Session Fixation - https://cwe.mitre.org/data/definitions/384.html
+- CWE-601 Open Redirect - https://cwe.mitre.org/data/definitions/601.html
+- CWE-352 CSRF - https://cwe.mitre.org/data/definitions/352.html
+- CWE-598 Sensitive Query String - https://cwe.mitre.org/data/definitions/598.html
+- CWE-798 Hard-coded Credentials - https://cwe.mitre.org/data/definitions/798.html
+- CWE-294 Authentication Bypass by Capture-replay - https://cwe.mitre.org/data/definitions/294.html
+- CWE-208 Observable Timing Discrepancy - https://cwe.mitre.org/data/definitions/208.html
+- CWE-319 Cleartext Transmission - https://cwe.mitre.org/data/definitions/319.html

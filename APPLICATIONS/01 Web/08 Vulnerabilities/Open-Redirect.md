@@ -122,7 +122,8 @@ http://target/go?url=https://attacker.tld
 
 ### 4.2 OAuth redirect_uri manipulation
 
-In OAuth, edirect_uri decides where the authorization code is sent.
+In OAuth, 
+redirect_uri decides where the authorization code is sent.
 If not strictly validated, an attacker can steal the code.
 
 ```text
@@ -196,7 +197,8 @@ http://target/go?url=https://allowed.com/redirect?to=https://attacker.tld
 
 ### 6.1 OAuth code theft
 
-1. Discover open redirect on edirect_uri or on a whitelisted domain.
+1. Discover open redirect on 
+redirect_uri or on a whitelisted domain.
 2. Send a crafted authorize URL to the victim.
 3. Victim logs in, code is sent to attacker.
 4. Attacker exchanges code for token.
@@ -262,10 +264,10 @@ https:%5c%5cattacker.tld
 
 ## 9. References
 
-- OWASP Unvalidated Redirects: https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html
-- PortSwigger Open Redirect: https://portswigger.net/kb/issues/00500100_open-redirection-reflected
-- PayloadsAllTheThings Open Redirect: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Open%20Redirect
-- OAuth redirect_uri: https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2
+- OWASP Unvalidated Redirects - https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html
+- PortSwigger Open Redirect - https://portswigger.net/kb/issues/00500100_open-redirection-reflected
+- PayloadsAllTheThings Open Redirect - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Open%20Redirect
+- OAuth redirect_uri - https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2
 
 > See also: [SSRF.md](./SSRF.md), [../06 Technologies/OAuth.md](../06%20Technologies/OAuth.md)
 

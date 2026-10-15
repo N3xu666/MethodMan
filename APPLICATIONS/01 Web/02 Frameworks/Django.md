@@ -548,13 +548,13 @@ python manage.py runserver
 
 ## 8. References
 
-- Django official docs: https://docs.djangoproject.com/
-- Django security releases: https://www.djangoproject.com/weblog/
-- NVD search: https://nvd.nist.gov/vuln/search/results?query=django
-- CVE-2021-35042 writeup: https://github.com/YouGina/CVE-2021-35042
-- Django session forging: https://hackernoon.com/exploiting-djangos-secret-key
-- HackTricks - Django: https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/django
-- django-hashcat: https://github.com/witblack/django-hashcat
+- Django official docs - https://docs.djangoproject.com/
+- Django security releases - https://www.djangoproject.com/weblog/
+- NVD search - https://nvd.nist.gov/vuln/search/results?query=django
+- CVE-2021-35042 writeup - https://github.com/YouGina/CVE-2021-35042
+- Django session forging - https://hackernoon.com/exploiting-djangos-secret-key
+- HackTricks - Django - https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/django
+- django-hashcat - https://github.com/witblack/django-hashcat
 
 ---
 
