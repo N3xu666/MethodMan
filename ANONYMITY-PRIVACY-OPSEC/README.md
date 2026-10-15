@@ -50,14 +50,13 @@ This category does **NOT** cover:
 
 ## Format
 
-Every file in this category uses one of two formats (see `_WORKFLOW.md`
-section 6.7 for the full templates):
+Every file in this category follows one of two document formats:
 
-- **Format 4 - Hands-on** (subcategories 01-06). Installation, hardening,
+- **Hands-on** (subcategories 01-06). Installation, hardening,
   operational usage, common mistakes, attacks, detection, case studies,
   legal and ethical notes.
-- **Format 5 - Conceptual** (subcategories 07-08). Threat modeling,
-  practical frameworks, real-world examples, risk context - no install steps.
+- **Conceptual** (subcategories 07-08). Threat modeling, practical
+  frameworks, real-world examples, risk context - no install steps.
 
 Both formats replace the usual `## OSCP Notes` section with
 `## Legal and Ethical Notes`. OSCP does not cover anonymity or privacy
@@ -71,14 +70,14 @@ boundaries that apply to the technique.
 ```text
 ANONYMITY-PRIVACY-OPSEC/
 +-- README.md                                  (this file)
-+-- 01 Anonymous Networks/                      Format 4
-+-- 02 Secure Communications/                   Format 4
-+-- 03 Operating Systems and Hygiene/           Format 4
-+-- 04 Dark Web/                                Format 4
-+-- 05 Anonymous Hosting/                       Format 4
-+-- 06 Anonymous Crypto Operations and AML/     Format 4
-+-- 07 OpSec and Threat Models/                 Format 5
-+-- 08 Attacks and Detection/                   Format 5
++-- 01 Anonymous Networks/                      Hands-on
++-- 02 Secure Communications/                   Hands-on
++-- 03 Operating Systems and Hygiene/           Hands-on
++-- 04 Dark Web/                                Hands-on
++-- 05 Anonymous Hosting/                       Hands-on
++-- 06 Anonymous Crypto Operations and AML/     Hands-on
++-- 07 OpSec and Threat Models/                 Conceptual
++-- 08 Attacks and Detection/                   Conceptual
 ```
 
 ---
@@ -108,7 +107,6 @@ Status legend:
 
 - `SECURITY.md` (repository root) - authorized use policy.
 - `METHODOLOGY.md` - engagement methodology (where anonymity fits in a red team op).
-- `_WORKFLOW.md` section 6.7 - document format templates (Format 4, Format 5).
 - `APPLICATIONS/` - web application attacks (out of scope here).
 - `INFRASTRUCTURE/` - infrastructure attacks (out of scope here).
 

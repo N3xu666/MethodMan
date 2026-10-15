@@ -42,8 +42,9 @@ This subcategory does **NOT** cover:
 | 03 | [Lokinet and Alternatives](./03%20Lokinet%20and%20Alternatives.md) | Hands-on | LLARP, mixnets, Nym |
 | 04 | [VPN and Multi-hop Chains](./04%20VPN%20and%20Multi-hop%20Chains.md) | Hands-on | VPN types, Tor+VPN chains, common mistakes |
 
-All files use **Format 4 (Hands-on)** - see `_WORKFLOW.md` section 6.7
-for the template.
+All files use the **Hands-on** format: Installation, hardening,
+operational usage, common mistakes, attacks, detection, case studies,
+legal and ethical notes.
 
 ---
 
