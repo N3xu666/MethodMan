@@ -26,7 +26,7 @@ web application security.
 
 | # | Subcategory | Files | Status |
 |---|-------------|-------|--------|
-| 01 | [OWASP-LLM-Top-10-2026](./01%20OWASP-LLM-Top-10-2026/) | 10 | in progress |
+| 01 | [OWASP-LLM-Top-10-2026](./01%20OWASP-LLM-Top-10-2026/) | 10 | done |
 | 02 | RAG-and-Embeddings | ~4 | planned |
 | 03 | Agents-and-MCP | ~4 | planned |
 | 04 | AI-Supply-Chain | ~4 | planned |
