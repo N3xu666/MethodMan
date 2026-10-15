@@ -494,31 +494,31 @@ privileges.
 
 **RFCs and documentation:**
 
-- [RFC 4511 - LDAP: Protocol](https://www.rfc-editor.org/rfc/rfc4511)
-- [RFC 4120 - Kerberos V5](https://www.rfc-editor.org/rfc/rfc4120)
-- [OpenLDAP documentation](https://www.openldap.org/doc/)
-- [MIT Kerberos documentation](https://web.mit.edu/kerberos/)
-- [Microsoft Kerberos documentation](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview)
+- RFC 4511 - LDAP: Protocol - https://www.rfc-editor.org/rfc/rfc4511
+- RFC 4120 - Kerberos V5 - https://www.rfc-editor.org/rfc/rfc4120
+- OpenLDAP documentation - https://www.openldap.org/doc/
+- MIT Kerberos documentation - https://web.mit.edu/kerberos/
+- Microsoft Kerberos documentation - https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview
 
 **MITRE ATT&CK:**
 
-- [Credential Access - Steal or Forge Kerberos Tickets (T1558)](https://attack.mitre.org/techniques/T1558/)
-- [Credential Access - Kerberoasting (T1558.003)](https://attack.mitre.org/techniques/T1558/003/)
-- [Credential Access - AS-REP Roasting (T1558.004)](https://attack.mitre.org/techniques/T1558/004/)
-- [Lateral Movement - Use Alternate Authentication Material (T1550)](https://attack.mitre.org/techniques/T1550/)
+- Credential Access - Steal or Forge Kerberos Tickets (T1558) - https://attack.mitre.org/techniques/T1558/
+- Credential Access - Kerberoasting (T1558.003) - https://attack.mitre.org/techniques/T1558/003/
+- Credential Access - AS-REP Roasting (T1558.004) - https://attack.mitre.org/techniques/T1558/004/
+- Lateral Movement - Use Alternate Authentication Material (T1550) - https://attack.mitre.org/techniques/T1550/
 
 **Tools:**
 
-- [ldapsearch](https://linux.die.net/man/1/ldapsearch)
-- [windapsearch](https://github.com/ropnop/windapsearch)
-- [kerbrute](https://github.com/ropnop/kerbrute)
-- [GetUserSPNs.py / GetNPUsers.py (Impacket)](https://github.com/fortra/impacket)
-- [Rubeus](https://github.com/GhostPack/Rubeus)
-- [klist](https://linux.die.net/man/1/klist)
+- ldapsearch - https://linux.die.net/man/1/ldapsearch
+- windapsearch - https://github.com/ropnop/windapsearch
+- kerbrute - https://github.com/ropnop/kerbrute
+- GetUserSPNs.py / GetNPUsers.py (Impacket) - https://github.com/fortra/impacket
+- Rubeus - https://github.com/GhostPack/Rubeus
+- klist - https://linux.die.net/man/1/klist
 
 **Research:**
 
-- [HackTricks - LDAP Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-ldap)
-- [HackTricks - Kerberos Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-kerberos-88)
-- [ADSecurity.org - Kerberoasting](https://adsecurity.org/?p=2293)
-- [ADSecurity.org - AS-REP Roasting](https://adsecurity.org/?p=1098)
+- HackTricks - LDAP Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-ldap
+- HackTricks - Kerberos Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-kerberos-88
+- ADSecurity.org - Kerberoasting - https://adsecurity.org/?p=2293
+- ADSecurity.org - AS-REP Roasting - https://adsecurity.org/?p=1098

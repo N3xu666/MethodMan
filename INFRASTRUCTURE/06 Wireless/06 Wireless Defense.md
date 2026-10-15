@@ -422,15 +422,15 @@ For the report, focus on:
 
 ## 13. References
 
-- [Kismet](https://www.kismetwireless.net/) - open-source WIDS
-- [Ekahau](https://www.ekahau.com/) - site survey and WIPS
-- [Cisco DNA Center](https://www.cisco.com/c/en/us/products/cloud-systems-management/dna-center/index.html)
-- [Aruba AirWave / ClearPass](https://www.arubanetworks.com/)
-- [Netscout (Aerohive)](https://www.netscout.com/)
-- [WatchGuard WIPS](https://www.watchguard.com/)
-- [WPA3 Specification (Wi-Fi Alliance)](https://www.wi-fi.org/discover-wi-fi/security)
+- Kismet - https://www.kismetwireless.net/ - open-source WIDS
+- Ekahau - https://www.ekahau.com/ - site survey and WIPS
+- Cisco DNA Center - https://www.cisco.com/c/en/us/products/cloud-systems-management/dna-center/index.html
+- Aruba AirWave / ClearPass - https://www.arubanetworks.com/
+- Netscout (Aerohive) - https://www.netscout.com/
+- WatchGuard WIPS - https://www.watchguard.com/
+- WPA3 Specification (Wi-Fi Alliance) - https://www.wi-fi.org/discover-wi-fi/security
 - IEEE 802.11w-2009 - Protected Management Frames
 - NIST SP 800-153 - Guidelines for Securing Wireless Local Area Networks
 - NIST SP 800-97 - Establishing Wireless Robust Security Networks
 - CIS Controls v8 - 12.6 (Network Infrastructure Management)
-- [MITRE ATT&CK T1557 - Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557/)
+- MITRE ATT&CK T1557 - Adversary-in-the-Middle - https://attack.mitre.org/techniques/T1557/

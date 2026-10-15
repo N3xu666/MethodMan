@@ -408,29 +408,29 @@ often unlocks the entire domain.
 
 **Microsoft documentation:**
 
-- [Kerberos authentication overview](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview)
-- [Group Managed Service Accounts overview](https://learn.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview)
-- [Network security: Restrict NTLM](https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/network-security-restrict-ntlm)
-- [SMB signing overview](https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-signing-overview)
+- Kerberos authentication overview - https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview
+- Group Managed Service Accounts overview - https://learn.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview
+- Network security: Restrict NTLM - https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/network-security-restrict-ntlm
+- SMB signing overview - https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-signing-overview
 
 **MITRE ATT&CK:**
 
-- [Credential Access - Kerberoasting (T1558.003)](https://attack.mitre.org/techniques/T1558/003/)
-- [Credential Access - AS-REP Roasting (T1558.004)](https://attack.mitre.org/techniques/T1558/004/)
-- [Lateral Movement - Use Alternate Authentication Material (T1550)](https://attack.mitre.org/techniques/T1550/)
-- [Credential Access - Forced Authentication (T1187)](https://attack.mitre.org/techniques/T1187/)
+- Credential Access - Kerberoasting (T1558.003) - https://attack.mitre.org/techniques/T1558/003/
+- Credential Access - AS-REP Roasting (T1558.004) - https://attack.mitre.org/techniques/T1558/004/
+- Lateral Movement - Use Alternate Authentication Material (T1550) - https://attack.mitre.org/techniques/T1550/
+- Credential Access - Forced Authentication (T1187) - https://attack.mitre.org/techniques/T1187/
 
 **Tools:**
 
-- [Impacket](https://github.com/fortra/impacket) - GetUserSPNs, GetNPUsers, secretsdump, psexec, getTGT, ticketer
-- [netexec](https://github.com/Pennyw0rth/NetExec) - SMB/LDAP/WinRM enumeration and exploitation
-- [Responder](https://github.com/lgandx/Responder) - LLMNR/NBT-NS/mDNS poisoning
-- [ntlmrelayx](https://github.com/fortra/impacket/blob/master/examples/ntlmrelayx.py) - NTLM relay
-- [Rubeus](https://github.com/GhostPack/Rubeus) - Kerberos attack toolkit
-- [Mimikatz](https://github.com/gentilkiwi/mimikatz) - Pass-the-Hash, Pass-the-Ticket, DCSync
+- Impacket - https://github.com/fortra/impacket - GetUserSPNs, GetNPUsers, secretsdump, psexec, getTGT, ticketer
+- netexec - https://github.com/Pennyw0rth/NetExec - SMB/LDAP/WinRM enumeration and exploitation
+- Responder - https://github.com/lgandx/Responder - LLMNR/NBT-NS/mDNS poisoning
+- ntlmrelayx - https://github.com/fortra/impacket/blob/master/examples/ntlmrelayx.py - NTLM relay
+- Rubeus - https://github.com/GhostPack/Rubeus - Kerberos attack toolkit
+- Mimikatz - https://github.com/gentilkiwi/mimikatz - Pass-the-Hash, Pass-the-Ticket, DCSync
 
 **Research:**
 
-- [ADSecurity.org - Kerberoasting](https://adsecurity.org/?p=2293)
-- [SpecterOps - NTLM relay](https://posts.specterops.io/)
-- [The Hacker Recipes - Kerberos](https://www.thehacker.recipes/ad/movement/kerberos)
+- ADSecurity.org - Kerberoasting - https://adsecurity.org/?p=2293
+- SpecterOps - NTLM relay - https://posts.specterops.io/
+- The Hacker Recipes - Kerberos - https://www.thehacker.recipes/ad/movement/kerberos

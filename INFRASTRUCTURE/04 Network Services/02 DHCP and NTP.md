@@ -427,30 +427,30 @@ spoofing affects every time-dependent protocol (Kerberos, TLS, TOTP).
 
 **RFCs and documentation:**
 
-- [RFC 2131 - Dynamic Host Configuration Protocol](https://www.rfc-editor.org/rfc/rfc2131)
-- [RFC 8415 - DHCPv6](https://www.rfc-editor.org/rfc/rfc8415)
-- [RFC 5905 - NTPv4](https://www.rfc-editor.org/rfc/rfc5905)
-- [RFC 8915 - Network Time Security](https://www.rfc-editor.org/rfc/rfc8915)
-- [ISC DHCP documentation](https://kb.isc.org/docs/isc-dhcp-44-manual-pages)
-- [chrony documentation](https://chrony.tuxfamily.org/documentation.html)
+- RFC 2131 - Dynamic Host Configuration Protocol - https://www.rfc-editor.org/rfc/rfc2131
+- RFC 8415 - DHCPv6 - https://www.rfc-editor.org/rfc/rfc8415
+- RFC 5905 - NTPv4 - https://www.rfc-editor.org/rfc/rfc5905
+- RFC 8915 - Network Time Security - https://www.rfc-editor.org/rfc/rfc8915
+- ISC DHCP documentation - https://kb.isc.org/docs/isc-dhcp-44-manual-pages
+- chrony documentation - https://chrony.tuxfamily.org/documentation.html
 
 **MITRE ATT&CK:**
 
-- [Discovery - System Network Configuration Discovery (T1016)](https://attack.mitre.org/techniques/T1016/)
-- [Collection - Adversary-in-the-Middle (T1557)](https://attack.mitre.org/techniques/T1557/)
-- [Impact - Network Denial of Service (T1498)](https://attack.mitre.org/techniques/T1498/)
-- [Credential Access - Forced Authentication (T1187)](https://attack.mitre.org/techniques/T1187/)
+- Discovery - System Network Configuration Discovery (T1016) - https://attack.mitre.org/techniques/T1016/
+- Collection - Adversary-in-the-Middle (T1557) - https://attack.mitre.org/techniques/T1557/
+- Impact - Network Denial of Service (T1498) - https://attack.mitre.org/techniques/T1498/
+- Credential Access - Forced Authentication (T1187) - https://attack.mitre.org/techniques/T1187/
 
 **Tools:**
 
-- [Yersinia](https://github.com/tomac/yersinia)
-- [bettercap](https://github.com/bettercap/bettercap)
-- [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html)
-- [ntpq](https://linux.die.net/man/8/ntpq) / [ntpdc](https://linux.die.net/man/8/ntpdc)
-- [chrony](https://chrony.tuxfamily.org/)
+- Yersinia - https://github.com/tomac/yersinia
+- bettercap - https://github.com/bettercap/bettercap
+- dnsmasq - https://thekelleys.org.uk/dnsmasq/doc.html
+- ntpq - https://linux.die.net/man/8/ntpq / [ntpdc](https://linux.die.net/man/8/ntpdc)
+- chrony - https://chrony.tuxfamily.org/
 
 **Research:**
 
-- [HackTricks - DHCP Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-dhcp)
-- [HackTricks - NTP Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-ntp)
-- [US-CERT - NTP Amplification](https://www.cisa.gov/news-events/alerts/2014/01/13/ntp-amplification-attacks)
+- HackTricks - DHCP Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-dhcp
+- HackTricks - NTP Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-ntp
+- US-CERT - NTP Amplification - https://www.cisa.gov/news-events/alerts/2014/01/13/ntp-amplification-attacks

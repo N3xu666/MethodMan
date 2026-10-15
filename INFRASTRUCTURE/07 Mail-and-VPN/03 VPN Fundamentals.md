@@ -513,11 +513,11 @@ For the report, document:
 - RFC 7296 - Internet Key Exchange Protocol Version 2 (IKEv2)
 - RFC 5996 - IKEv2 (superseded by 7296)
 - OpenVPN Protocol documentation
-- [WireGuard whitepaper](https://www.wireguard.com/papers/wireguard.pdf)
-- [ike-scan](https://github.com/royhills/ike-scan) - IKE scanner
-- [StrongSwan](https://www.strongswan.org/) - open-source IPsec/IKEv2
-- [OpenVPN](https://openvpn.net/) - open-source SSL VPN
-- [MITRE ATT&CK T1133 - External Remote Services](https://attack.mitre.org/techniques/T1133/)
+- WireGuard whitepaper - https://www.wireguard.com/papers/wireguard.pdf
+- ike-scan - https://github.com/royhills/ike-scan - IKE scanner
+- StrongSwan - https://www.strongswan.org/ - open-source IPsec/IKEv2
+- OpenVPN - https://openvpn.net/ - open-source SSL VPN
+- MITRE ATT&CK T1133 - External Remote Services - https://attack.mitre.org/techniques/T1133/
 - NIST SP 800-77 - Guide to IPsec VPNs
 - NIST SP 800-113 - Guide to SSL VPNs
 - NSA - "Selecting and Hardening Remote Access VPNs"

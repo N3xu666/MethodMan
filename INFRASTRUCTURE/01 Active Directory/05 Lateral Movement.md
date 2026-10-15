@@ -513,30 +513,30 @@ across the fleet is equivalent to a fleet compromise.
 
 **Microsoft documentation:**
 
-- [Windows Remote Management (WinRM)](https://learn.microsoft.com/en-us/windows/win32/winrm/portal)
-- [Remote Desktop Services](https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/welcome-to-rds)
-- [SMB signing overview](https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-signing-overview)
-- [Tiered administration model](https://learn.microsoft.com/en-us/security/compass/privileged-access-access-model)
+- Windows Remote Management (WinRM) - https://learn.microsoft.com/en-us/windows/win32/winrm/portal
+- Remote Desktop Services - https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/welcome-to-rds
+- SMB signing overview - https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-signing-overview
+- Tiered administration model - https://learn.microsoft.com/en-us/security/compass/privileged-access-access-model
 
 **MITRE ATT&CK:**
 
-- [Lateral Movement - Remote Services (T1021)](https://attack.mitre.org/techniques/T1021/)
-- [Lateral Movement - SMB/Windows Admin Shares (T1021.002)](https://attack.mitre.org/techniques/T1021/002/)
-- [Lateral Movement - Windows Remote Management (T1021.006)](https://attack.mitre.org/techniques/T1021/006/)
-- [Execution - Scheduled Task/Job (T1053)](https://attack.mitre.org/techniques/T1053/)
+- Lateral Movement - Remote Services (T1021) - https://attack.mitre.org/techniques/T1021/
+- Lateral Movement - SMB/Windows Admin Shares (T1021.002) - https://attack.mitre.org/techniques/T1021/002/
+- Lateral Movement - Windows Remote Management (T1021.006) - https://attack.mitre.org/techniques/T1021/006/
+- Execution - Scheduled Task/Job (T1053) - https://attack.mitre.org/techniques/T1053/
 
 **Tools:**
 
-- [Impacket](https://github.com/fortra/impacket) - psexec, wmiexec, smbexec, atexec, dcomexec, secretsdump
-- [netexec](https://github.com/Pennyw0rth/NetExec) - SMB/WinRM/LDAP/MSSQL
-- [evil-winrm](https://github.com/Hackplayers/evil-winrm) - WinRM shell
-- [Responder](https://github.com/lgandx/Responder) - LLMNR/NBT-NS/mDNS poisoning
-- [ntlmrelayx](https://github.com/fortra/impacket/blob/master/examples/ntlmrelayx.py) - NTLM relay
-- [PetitPotam](https://github.com/topotam/PetitPotam) - coercion
-- [Rubeus](https://github.com/GhostPack/Rubeus) - Kerberos toolkit
+- Impacket - https://github.com/fortra/impacket - psexec, wmiexec, smbexec, atexec, dcomexec, secretsdump
+- netexec - https://github.com/Pennyw0rth/NetExec - SMB/WinRM/LDAP/MSSQL
+- evil-winrm - https://github.com/Hackplayers/evil-winrm - WinRM shell
+- Responder - https://github.com/lgandx/Responder - LLMNR/NBT-NS/mDNS poisoning
+- ntlmrelayx - https://github.com/fortra/impacket/blob/master/examples/ntlmrelayx.py - NTLM relay
+- PetitPotam - https://github.com/topotam/PetitPotam - coercion
+- Rubeus - https://github.com/GhostPack/Rubeus - Kerberos toolkit
 
 **Research:**
 
-- [ADSecurity.org - PsExec detection](https://adsecurity.org/?p=177)
-- [SpecterOps - lateral movement](https://posts.specterops.io/)
-- [The Hacker Recipes - lateral movement](https://www.thehacker.recipes/ad/movement/lateral-movement)
+- ADSecurity.org - PsExec detection - https://adsecurity.org/?p=177
+- SpecterOps - lateral movement - https://posts.specterops.io/
+- The Hacker Recipes - lateral movement - https://www.thehacker.recipes/ad/movement/lateral-movement

@@ -350,28 +350,28 @@ because of accumulated misconfigurations.
 
 **Microsoft documentation:**
 
-- [Active Directory Schema](https://learn.microsoft.com/en-us/windows/win32/adschema/active-directory-schema)
+- Active Directory Schema - https://learn.microsoft.com/en-us/windows/win32/adschema/active-directory-schema
 - [Group Policy Preferences](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn581922(v=ws.11))
-- [Kerberos Delegation](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-constrained-delegation-overview)
+- Kerberos Delegation - https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-constrained-delegation-overview
 
 **MITRE ATT&CK:**
 
-- [Discovery - Account Discovery (T1087)](https://attack.mitre.org/techniques/T1087/)
-- [Discovery - Domain Trust Discovery (T1482)](https://attack.mitre.org/techniques/T1482/)
-- [Discovery - Permission Groups Discovery (T1069)](https://attack.mitre.org/techniques/T1069/)
+- Discovery - Account Discovery (T1087) - https://attack.mitre.org/techniques/T1087/
+- Discovery - Domain Trust Discovery (T1482) - https://attack.mitre.org/techniques/T1482/
+- Discovery - Permission Groups Discovery (T1069) - https://attack.mitre.org/techniques/T1069/
 
 **Tools:**
 
-- [BloodHound](https://github.com/BloodHoundAD/BloodHound)
-- [bloodhound-python](https://github.com/dirkjanm/BloodHound.py)
-- [SharpHound](https://github.com/BloodHoundAD/SharpHound)
-- [PowerView](https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1)
-- [netexec](https://github.com/Pennyw0rth/NetExec)
-- [Certipy](https://github.com/ly4k/Certipy)
-- [ADCSKiller](https://github.com/g0ldencybersec/ADCSKiller)
+- BloodHound - https://github.com/BloodHoundAD/BloodHound
+- bloodhound-python - https://github.com/dirkjanm/BloodHound.py
+- SharpHound - https://github.com/BloodHoundAD/SharpHound
+- PowerView - https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1
+- netexec - https://github.com/Pennyw0rth/NetExec
+- Certipy - https://github.com/ly4k/Certipy
+- ADCSKiller - https://github.com/g0ldencybersec/ADCSKiller
 
 **Research:**
 
-- [SpecterOps - BloodHound documentation](https://bloodhound.readthedocs.io/)
-- [ADSecurity.org - Sean Metcalf](https://adsecurity.org/)
-- [The Hacker Recipes - AD Enumeration](https://www.thehacker.recipes/ad/recon)
+- SpecterOps - BloodHound documentation - https://bloodhound.readthedocs.io/
+- ADSecurity.org - Sean Metcalf - https://adsecurity.org/
+- The Hacker Recipes - AD Enumeration - https://www.thehacker.recipes/ad/recon

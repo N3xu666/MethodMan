@@ -552,8 +552,8 @@ For the report, document:
 - RFC 7489 - Domain-based Message Authentication (DMARC)
 - RFC 8461 - SMTP MTA Strict Transport Security (MTA-STS)
 - RFC 8460 - SMTP TLS Reporting
-- [MITRE ATT&CK T1071.003 - Mail Protocols](https://attack.mitre.org/techniques/T1071/003/)
-- [MITRE ATT&CK T1114 - Email Collection](https://attack.mitre.org/techniques/T1114/)
+- MITRE ATT&CK T1071.003 - Mail Protocols - https://attack.mitre.org/techniques/T1071/003/
+- MITRE ATT&CK T1114 - Email Collection - https://attack.mitre.org/techniques/T1114/
 - NIST SP 800-45 - Guidelines on Electronic Mail Security
 - Microsoft Docs - Exchange Extended Protection (EPA)
 - `man smtp-user-enum`, `man dig`, `man openssl`

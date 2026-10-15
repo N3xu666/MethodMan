@@ -483,27 +483,27 @@ rotation.
 
 **Microsoft documentation:**
 
-- [Active Directory Certificate Services](https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/active-directory-certificate-services-overview)
-- [Kerberos constrained delegation](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-constrained-delegation-overview)
-- [How Domain Controllers Are Supported in a Forest](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/forest-design-models)
+- Active Directory Certificate Services - https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/active-directory-certificate-services-overview
+- Kerberos constrained delegation - https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-constrained-delegation-overview
+- How Domain Controllers Are Supported in a Forest - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/forest-design-models
 
 **MITRE ATT&CK:**
 
-- [Privilege Escalation - Domain Policy Modification (T1484)](https://attack.mitre.org/techniques/T1484/)
-- [Credential Access - Steal or Forge Authentication Certificates (T1649)](https://attack.mitre.org/techniques/T1649/)
-- [Defense Evasion - Use Alternate Authentication Material (T1550)](https://attack.mitre.org/techniques/T1550/)
+- Privilege Escalation - Domain Policy Modification (T1484) - https://attack.mitre.org/techniques/T1484/
+- Credential Access - Steal or Forge Authentication Certificates (T1649) - https://attack.mitre.org/techniques/T1649/
+- Defense Evasion - Use Alternate Authentication Material (T1550) - https://attack.mitre.org/techniques/T1550/
 
 **Tools:**
 
-- [Certipy](https://github.com/ly4k/Certipy) - ADCS enumeration and exploitation
-- [Certify](https://github.com/GhostPack/Certify) - Windows ADCS enumeration
-- [Rubeus](https://github.com/GhostPack/Rubeus) - Kerberos toolkit
-- [Impacket](https://github.com/fortra/impacket) - getST, rbcd, addcomputer, ticketer
-- [Mimikatz](https://github.com/gentilkiwi/mimikatz) - delegation, SID history
+- Certipy - https://github.com/ly4k/Certipy - ADCS enumeration and exploitation
+- Certify - https://github.com/GhostPack/Certify - Windows ADCS enumeration
+- Rubeus - https://github.com/GhostPack/Rubeus - Kerberos toolkit
+- Impacket - https://github.com/fortra/impacket - getST, rbcd, addcomputer, ticketer
+- Mimikatz - https://github.com/gentilkiwi/mimikatz - delegation, SID history
 
 **Research:**
 
-- [SpecterOps - Certified Pre-Owned](https://specterops.io/assets/resources/Certified_Pre-Owned.pdf)
-- [ADSecurity.org - Unconstrained delegation](https://adsecurity.org/?p=1667)
-- [The Hacker Recipes - ADCS](https://www.thehacker.recipes/ad/movement/adcs)
-- [The Hacker Recipes - Delegation](https://www.thehacker.recipes/ad/movement/kerberos/delegations)
+- SpecterOps - Certified Pre-Owned - https://specterops.io/assets/resources/Certified_Pre-Owned.pdf
+- ADSecurity.org - Unconstrained delegation - https://adsecurity.org/?p=1667
+- The Hacker Recipes - ADCS - https://www.thehacker.recipes/ad/movement/adcs
+- The Hacker Recipes - Delegation - https://www.thehacker.recipes/ad/movement/kerberos/delegations

@@ -429,26 +429,26 @@ KRBTGT is rotated twice.
 **Microsoft documentation:**
 
 - [Group Policy Preferences (deprecated)](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn581922(v=ws.11))
-- [Windows LAPS overview](https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview)
-- [MS14-025: Vulnerability in Group Policy Preferences](https://learn.microsoft.com/en-us/security-updates/securitybulletins/2014/ms14-025)
-- [AdminSDHolder, Protected Admin Groups](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory)
+- Windows LAPS overview - https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview
+- MS14-025: Vulnerability in Group Policy Preferences - https://learn.microsoft.com/en-us/security-updates/securitybulletins/2014/ms14-025
+- AdminSDHolder, Protected Admin Groups - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory
 
 **MITRE ATT&CK:**
 
-- [Credential Access - OS Credential Dumping (T1003)](https://attack.mitre.org/techniques/T1003/)
-- [Credential Access - Steal or Forge Kerberos Tickets (T1558)](https://attack.mitre.org/techniques/T1558/)
-- [Privilege Escalation - Domain Policy Modification (T1484)](https://attack.mitre.org/techniques/T1484/)
+- Credential Access - OS Credential Dumping (T1003) - https://attack.mitre.org/techniques/T1003/
+- Credential Access - Steal or Forge Kerberos Tickets (T1558) - https://attack.mitre.org/techniques/T1558/
+- Privilege Escalation - Domain Policy Modification (T1484) - https://attack.mitre.org/techniques/T1484/
 
 **Tools:**
 
-- [Impacket](https://github.com/fortra/impacket) - secretsdump, psexec, getTGT
-- [netexec](https://github.com/Pennyw0rth/NetExec) - LAPS module
-- [PowerView](https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1) - ACL enumeration
-- [BloodHound](https://github.com/BloodHoundAD/BloodHound) - ACL path analysis
-- [gpp-decrypt](https://github.com/t0thkr1s/gpp-decrypt) - GPP cpassword decryption
+- Impacket - https://github.com/fortra/impacket - secretsdump, psexec, getTGT
+- netexec - https://github.com/Pennyw0rth/NetExec - LAPS module
+- PowerView - https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1 - ACL enumeration
+- BloodHound - https://github.com/BloodHoundAD/BloodHound - ACL path analysis
+- gpp-decrypt - https://github.com/t0thkr1s/gpp-decrypt - GPP cpassword decryption
 
 **Research:**
 
-- [ADSecurity.org - DCSync](https://adsecurity.org/?p=1729)
-- [ADSecurity.org - GPP cpassword](https://adsecurity.org/?p=63)
-- [The Hacker Recipes - ACL abuse](https://www.thehacker.recipes/ad/movement/dacl)
+- ADSecurity.org - DCSync - https://adsecurity.org/?p=1729
+- ADSecurity.org - GPP cpassword - https://adsecurity.org/?p=63
+- The Hacker Recipes - ACL abuse - https://www.thehacker.recipes/ad/movement/dacl

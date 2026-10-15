@@ -531,8 +531,8 @@ awareness beyond the standard OSCP scope.
 - RFC 792 - Internet Control Message Protocol
 - RFC 4861 - Neighbor Discovery for IP version 6 (IPv6)
 - RFC 6480 - An Infrastructure to Support Secure Internet Routing (RPKI)
-- [MITRE ATT&CK T1557 - Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557/)
-- [MITRE ATT&CK T1498 - Network Denial of Service](https://attack.mitre.org/techniques/T1498/)
+- MITRE ATT&CK T1557 - Adversary-in-the-Middle - https://attack.mitre.org/techniques/T1557/
+- MITRE ATT&CK T1498 - Network Denial of Service - https://attack.mitre.org/techniques/T1498/
 - MANRS - Mutually Agreed Norms for Routing Security (https://manrs.org/)
 - NIST SP 800-115 - Technical Guide to Information Security Testing
 - Loki - OSPF attack tool (https://github.com/r3nhatt/loki)

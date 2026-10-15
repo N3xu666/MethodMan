@@ -462,9 +462,9 @@ For the report, focus on:
 - Microsoft Docs - Conditional Access
 - Microsoft Docs - Exchange Extended Protection (EPA)
 - Microsoft Docs - Defender for Identity
-- [MITRE ATT&CK T1133 - External Remote Services](https://attack.mitre.org/techniques/T1133/)
-- [MITRE ATT&CK T1078 - Valid Accounts](https://attack.mitre.org/techniques/T1078/)
-- [MITRE ATT&CK T1621 - Multi-Factor Authentication Request Generation](https://attack.mitre.org/techniques/T1621/)
+- MITRE ATT&CK T1133 - External Remote Services - https://attack.mitre.org/techniques/T1133/
+- MITRE ATT&CK T1078 - Valid Accounts - https://attack.mitre.org/techniques/T1078/
+- MITRE ATT&CK T1621 - Multi-Factor Authentication Request Generation - https://attack.mitre.org/techniques/T1621/
 - CIS Controls v8 - 4 (Secure Configuration), 6 (Access Control),
   12 (Network Infrastructure Management), 13 (Network Monitoring)
 - CIS Benchmarks - Microsoft Exchange, Cisco ASA, Palo Alto,

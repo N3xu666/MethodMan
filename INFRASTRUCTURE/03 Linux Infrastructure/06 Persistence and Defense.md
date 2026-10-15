@@ -704,33 +704,33 @@ even after remediation of the original vector.
 
 **Linux documentation:**
 
-- [cron manual](https://man7.org/linux/man-pages/man5/crontab.5.html)
-- [systemd.service](https://www.freedesktop.org/software/systemd/man/systemd.service.html)
-- [systemd.timer](https://www.freedesktop.org/software/systemd/man/systemd.timer.html)
-- [PAM documentation](http://www.linux-pam.org/Linux-PAM-html/)
-- [ld.so manual](https://man7.org/linux/man-pages/man8/ld.so.8.html)
+- cron manual - https://man7.org/linux/man-pages/man5/crontab.5.html
+- systemd.service - https://www.freedesktop.org/software/systemd/man/systemd.service.html
+- systemd.timer - https://www.freedesktop.org/software/systemd/man/systemd.timer.html
+- PAM documentation - http://www.linux-pam.org/Linux-PAM-html/
+- ld.so manual - https://man7.org/linux/man-pages/man8/ld.so.8.html
 
 **MITRE ATT&CK:**
 
-- [Persistence - Scheduled Task/Job: Cron (T1053.003)](https://attack.mitre.org/techniques/T1053/003/)
-- [Persistence - Create or Modify System Process: Systemd Service (T1543.002)](https://attack.mitre.org/techniques/T1543/002/)
-- [Persistence - Account Manipulation: SSH Authorized Keys (T1098.004)](https://attack.mitre.org/techniques/T1098/004/)
-- [Persistence - Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)](https://attack.mitre.org/techniques/T1546/004/)
-- [Persistence - Hijack Execution Flow: Dynamic Linker Hijacking (T1574.006)](https://attack.mitre.org/techniques/T1574/006/)
-- [Persistence - Create or Modify System Process: Kernel Modules and Extensions (T1547.006)](https://attack.mitre.org/techniques/T1547/006/)
+- Persistence - Scheduled Task/Job: Cron (T1053.003) - https://attack.mitre.org/techniques/T1053/003/
+- Persistence - Create or Modify System Process: Systemd Service (T1543.002) - https://attack.mitre.org/techniques/T1543/002/
+- Persistence - Account Manipulation: SSH Authorized Keys (T1098.004) - https://attack.mitre.org/techniques/T1098/004/
+- Persistence - Event Triggered Execution: Unix Shell Configuration Modification (T1546.004) - https://attack.mitre.org/techniques/T1546/004/
+- Persistence - Hijack Execution Flow: Dynamic Linker Hijacking (T1574.006) - https://attack.mitre.org/techniques/T1574/006/
+- Persistence - Create or Modify System Process: Kernel Modules and Extensions (T1547.006) - https://attack.mitre.org/techniques/T1547/006/
 
 **Tools:**
 
-- [AIDE](https://aide.github.io/)
-- [Tripwire](https://github.com/Tripwire/tripwire-open-source)
-- [chkrootkit](http://www.chkrootkit.org/)
-- [rkhunter](http://rkhunter.sourceforge.net/)
-- [Falco](https://falco.org/)
-- [Wazuh](https://wazuh.com/)
-- [Sysmon for Linux](https://github.com/Sysinternals/SysmonForLinux)
+- AIDE - https://aide.github.io/
+- Tripwire - https://github.com/Tripwire/tripwire-open-source
+- chkrootkit - http://www.chkrootkit.org/
+- rkhunter - http://rkhunter.sourceforge.net/
+- Falco - https://falco.org/
+- Wazuh - https://wazuh.com/
+- Sysmon for Linux - https://github.com/Sysinternals/SysmonForLinux
 
 **Research:**
 
-- [HackTricks - Linux Persistence](https://book.hacktricks.xyz/linux-hardening/privilege-escalation)
-- [SANS - Linux Persistence](https://www.sans.org/blog/linux-persistence-techniques/)
-- [Persistence Mechanisms on Linux](https://github.com/Karneades/awesome-linux-persistence)
+- HackTricks - Linux Persistence - https://book.hacktricks.xyz/linux-hardening/privilege-escalation
+- SANS - Linux Persistence - https://www.sans.org/blog/linux-persistence-techniques/
+- Persistence Mechanisms on Linux - https://github.com/Karneades/awesome-linux-persistence

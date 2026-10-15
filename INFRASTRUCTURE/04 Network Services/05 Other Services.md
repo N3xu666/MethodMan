@@ -513,32 +513,32 @@ target; an open SMTP relay grants mass phishing.
 
 **RFCs and documentation:**
 
-- [RFC 5321 - SMTP](https://www.rfc-editor.org/rfc/rfc5321)
-- [RFC 1094 - NFS v2](https://www.rfc-editor.org/rfc/rfc1094) / [RFC 7530 - NFS v4](https://www.rfc-editor.org/rfc/rfc7530)
-- [MS-SMB2 - SMB Protocol](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/)
-- [Rsync documentation](https://rsync.samba.org/documentation.html)
-- [RFC 959 - FTP](https://www.rfc-editor.org/rfc/rfc959)
+- RFC 5321 - SMTP - https://www.rfc-editor.org/rfc/rfc5321
+- RFC 1094 - NFS v2 - https://www.rfc-editor.org/rfc/rfc1094 / [RFC 7530 - NFS v4](https://www.rfc-editor.org/rfc/rfc7530)
+- MS-SMB2 - SMB Protocol - https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/
+- Rsync documentation - https://rsync.samba.org/documentation.html
+- RFC 959 - FTP - https://www.rfc-editor.org/rfc/rfc959
 
 **MITRE ATT&CK:**
 
-- [Discovery - Network Service Scanning (T1046)](https://attack.mitre.org/techniques/T1046/)
-- [Collection - Data from Network Shared Drive (T1039)](https://attack.mitre.org/techniques/T1039/)
-- [Exfiltration Over Alternative Protocol (T1048)](https://attack.mitre.org/techniques/T1048/)
-- [Initial Access - Phishing (T1566)](https://attack.mitre.org/techniques/T1566/)
+- Discovery - Network Service Scanning (T1046) - https://attack.mitre.org/techniques/T1046/
+- Collection - Data from Network Shared Drive (T1039) - https://attack.mitre.org/techniques/T1039/
+- Exfiltration Over Alternative Protocol (T1048) - https://attack.mitre.org/techniques/T1048/
+- Initial Access - Phishing (T1566) - https://attack.mitre.org/techniques/T1566/
 
 **Tools:**
 
-- [enum4linux](https://github.com/CiscoCXSecurity/enum4linux)
-- [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html)
-- [rpcclient](https://www.samba.org/samba/docs/current/man-html/rpcclient.1.html)
-- [showmount](https://linux.die.net/man/8/showmount)
-- [rsync](https://rsync.samba.org/)
-- [ftp](https://linux.die.net/man/1/ftp)
+- enum4linux - https://github.com/CiscoCXSecurity/enum4linux
+- smbclient - https://www.samba.org/samba/docs/current/man-html/smbclient.1.html
+- rpcclient - https://www.samba.org/samba/docs/current/man-html/rpcclient.1.html
+- showmount - https://linux.die.net/man/8/showmount
+- rsync - https://rsync.samba.org/
+- ftp - https://linux.die.net/man/1/ftp
 
 **Research:**
 
-- [HackTricks - SMTP Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-smtp)
-- [HackTricks - NFS Pentesting](https://book.hacktricks.xyz/network-services-pentesting/nfs-service-pentesting)
-- [HackTricks - SMB Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb)
-- [HackTricks - Rsync Pentesting](https://book.hacktricks.xyz/network-services-pentesting/873-pentesting-rsync)
-- [HackTricks - FTP Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-ftp)
+- HackTricks - SMTP Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-smtp
+- HackTricks - NFS Pentesting - https://book.hacktricks.xyz/network-services-pentesting/nfs-service-pentesting
+- HackTricks - SMB Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb
+- HackTricks - Rsync Pentesting - https://book.hacktricks.xyz/network-services-pentesting/873-pentesting-rsync
+- HackTricks - FTP Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-ftp

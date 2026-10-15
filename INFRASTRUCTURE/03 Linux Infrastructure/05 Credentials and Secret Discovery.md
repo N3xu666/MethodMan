@@ -679,27 +679,27 @@ hosts or services.
 
 **Linux documentation:**
 
-- [SSH manual](https://man.openbsd.org/ssh)
-- [AWS IMDS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
-- [Kubernetes service accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
+- SSH manual - https://man.openbsd.org/ssh
+- AWS IMDS documentation - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+- Kubernetes service accounts - https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 
 **MITRE ATT&CK:**
 
-- [Credential Access - Unsecured Credentials (T1552)](https://attack.mitre.org/techniques/T1552/)
-- [Credential Access - Credentials from Password Stores (T1555)](https://attack.mitre.org/techniques/T1555/)
-- [Credential Access - Steal or Forge Authentication Certificates (T1649)](https://attack.mitre.org/techniques/T1649/)
-- [Lateral Movement - Use Alternate Authentication Material (T1550)](https://attack.mitre.org/techniques/T1550/)
+- Credential Access - Unsecured Credentials (T1552) - https://attack.mitre.org/techniques/T1552/
+- Credential Access - Credentials from Password Stores (T1555) - https://attack.mitre.org/techniques/T1555/
+- Credential Access - Steal or Forge Authentication Certificates (T1649) - https://attack.mitre.org/techniques/T1649/
+- Lateral Movement - Use Alternate Authentication Material (T1550) - https://attack.mitre.org/techniques/T1550/
 
 **Tools:**
 
-- [LinPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS)
-- [laZagne](https://github.com/AlessandroZ/LaZagne)
-- [Mimipenguin](https://github.com/huntergregal/mimipenguin)
-- [trufflehog](https://github.com/trufflesecurity/trufflehog)
-- [gitleaks](https://github.com/gitleaks/gitleaks)
+- LinPEAS - https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS
+- laZagne - https://github.com/AlessandroZ/LaZagne
+- Mimipenguin - https://github.com/huntergregal/mimipenguin
+- trufflehog - https://github.com/trufflesecurity/trufflehog
+- gitleaks - https://github.com/gitleaks/gitleaks
 
 **Research:**
 
-- [HackTricks - Linux Privilege Escalation](https://book.hacktricks.xyz/linux-hardening/privilege-escalation)
-- [AWS IMDSv2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html)
-- [Kubernetes RBAC Good Practices](https://kubernetes.io/docs/concepts/security/rbac-good-practices/)
+- HackTricks - Linux Privilege Escalation - https://book.hacktricks.xyz/linux-hardening/privilege-escalation
+- AWS IMDSv2 - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html
+- Kubernetes RBAC Good Practices - https://kubernetes.io/docs/concepts/security/rbac-good-practices/

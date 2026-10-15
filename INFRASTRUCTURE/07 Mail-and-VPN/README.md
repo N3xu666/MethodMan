@@ -64,8 +64,8 @@ then return to the specific attack or defense file.
 - RFC 4301 - Security Architecture for the Internet Protocol (IPsec)
 - OpenVPN Protocol documentation
 - WireGuard whitepaper
-- [MITRE ATT&CK T1071.003 - Mail Protocols](https://attack.mitre.org/techniques/T1071/003/)
-- [MITRE ATT&CK T1133 - External Remote Services](https://attack.mitre.org/techniques/T1133/)
+- MITRE ATT&CK T1071.003 - Mail Protocols - https://attack.mitre.org/techniques/T1071/003/
+- MITRE ATT&CK T1133 - External Remote Services - https://attack.mitre.org/techniques/T1133/
 - NIST SP 800-77 - Guide to IPsec VPNs
 - NIST SP 800-113 - Guide to SSL VPNs
 

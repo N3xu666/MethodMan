@@ -525,15 +525,15 @@ See `methodology/OSCP-Reporting.md` for the report structure.
 
 ## 13. References
 
-- [Responder - LLMNR/NBT-NS/mDNS poisoner](https://github.com/lgandx/Responder)
-- [impacket - ntlmrelayx, secretsdump, etc.](https://github.com/fortra/impacket)
-- [mitm6 - IPv6-based relay](https://github.com/dirkjanm/mitm6)
-- [netexec - SMB/LDAP/MSSQL enumeration and relay](https://github.com/Pennyw0rth/NetExec)
-- [kerbrute - Kerberos password spraying](https://github.com/ropnop/kerbrute)
-- [hashcat - mode 5600 (NetNTLMv2)](https://hashcat.net/hashcat/)
-- [MITRE ATT&CK T1557.001 - LLMNR/NBT-NS Poisoning](https://attack.mitre.org/techniques/T1557/001/)
-- [MITRE ATT&CK T1557.002 - ARP Cache Poisoning](https://attack.mitre.org/techniques/T1557/002/)
-- [MITRE ATT&CK T1110 - Brute Force](https://attack.mitre.org/techniques/T1110/)
+- Responder - LLMNR/NBT-NS/mDNS poisoner - https://github.com/lgandx/Responder
+- impacket - ntlmrelayx, secretsdump, etc. - https://github.com/fortra/impacket
+- mitm6 - IPv6-based relay - https://github.com/dirkjanm/mitm6
+- netexec - SMB/LDAP/MSSQL enumeration and relay - https://github.com/Pennyw0rth/NetExec
+- kerbrute - Kerberos password spraying - https://github.com/ropnop/kerbrute
+- hashcat - mode 5600 (NetNTLMv2) - https://hashcat.net/hashcat/
+- MITRE ATT&CK T1557.001 - LLMNR/NBT-NS Poisoning - https://attack.mitre.org/techniques/T1557/001/
+- MITRE ATT&CK T1557.002 - ARP Cache Poisoning - https://attack.mitre.org/techniques/T1557/002/
+- MITRE ATT&CK T1110 - Brute Force - https://attack.mitre.org/techniques/T1110/
 - NIST SP 800-115 - Technical Guide to Information Security Testing
 - Microsoft Docs - "Mitigating Pass-the-Hash and Other Credential Theft"
 - ADSecurity.org - ADCS ESC8, NTLM relay guides

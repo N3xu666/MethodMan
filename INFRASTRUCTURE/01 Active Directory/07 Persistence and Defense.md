@@ -560,30 +560,30 @@ return at will - often unnoticed.
 
 **Microsoft documentation:**
 
-- [KRBTGT account password reset](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/ad-forest-recovery-reset-the-krbtgt-password)
-- [AdminSDHolder, Protected Admin Groups](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory)
-- [Active Directory Certificate Services](https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/active-directory-certificate-services-overview)
+- KRBTGT account password reset - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/ad-forest-recovery-reset-the-krbtgt-password
+- AdminSDHolder, Protected Admin Groups - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory
+- Active Directory Certificate Services - https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/active-directory-certificate-services-overview
 
 **MITRE ATT&CK:**
 
-- [Persistence - Account Manipulation (T1098)](https://attack.mitre.org/techniques/T1098/)
-- [Persistence - Create Account (T1136)](https://attack.mitre.org/techniques/T1136/)
-- [Persistence - Domain Policy Modification (T1484)](https://attack.mitre.org/techniques/T1484/)
-- [Credential Access - Steal or Forge Kerberos Tickets (T1558)](https://attack.mitre.org/techniques/T1558/)
-- [Defense Evasion - Rogue Domain Controller (T1207)](https://attack.mitre.org/techniques/T1207/)
+- Persistence - Account Manipulation (T1098) - https://attack.mitre.org/techniques/T1098/
+- Persistence - Create Account (T1136) - https://attack.mitre.org/techniques/T1136/
+- Persistence - Domain Policy Modification (T1484) - https://attack.mitre.org/techniques/T1484/
+- Credential Access - Steal or Forge Kerberos Tickets (T1558) - https://attack.mitre.org/techniques/T1558/
+- Defense Evasion - Rogue Domain Controller (T1207) - https://attack.mitre.org/techniques/T1207/
 
 **Tools:**
 
-- [Mimikatz](https://github.com/gentilkiwi/mimikatz) - Golden/Silver Ticket, DCShadow, Skeleton Key, SID History
-- [Rubeus](https://github.com/GhostPack/Rubeus) - Diamond Ticket, Sapphire Ticket
-- [Impacket](https://github.com/fortra/impacket) - ticketer, secretsdump, getST
-- [Certipy](https://github.com/ly4k/Certipy) - ADCS persistence
-- [SharpGPOAbuse](https://github.com/FSecureLABS/SharpGPOAbuse) - GPO persistence
-- [BloodHound](https://github.com/BloodHoundAD/BloodHound) - attack-path analysis
+- Mimikatz - https://github.com/gentilkiwi/mimikatz - Golden/Silver Ticket, DCShadow, Skeleton Key, SID History
+- Rubeus - https://github.com/GhostPack/Rubeus - Diamond Ticket, Sapphire Ticket
+- Impacket - https://github.com/fortra/impacket - ticketer, secretsdump, getST
+- Certipy - https://github.com/ly4k/Certipy - ADCS persistence
+- SharpGPOAbuse - https://github.com/FSecureLABS/SharpGPOAbuse - GPO persistence
+- BloodHound - https://github.com/BloodHoundAD/BloodHound - attack-path analysis
 
 **Research:**
 
-- [ADSecurity.org - Golden Ticket](https://adsecurity.org/?p=1640)
-- [ADSecurity.org - DCShadow](https://adsecurity.org/?p=1729)
-- [SpecterOps - Diamond and Sapphire Tickets](https://posts.specterops.io/)
-- [The Hacker Recipes - Persistence](https://www.thehacker.recipes/ad/persistence)
+- ADSecurity.org - Golden Ticket - https://adsecurity.org/?p=1640
+- ADSecurity.org - DCShadow - https://adsecurity.org/?p=1729
+- SpecterOps - Diamond and Sapphire Tickets - https://posts.specterops.io/
+- The Hacker Recipes - Persistence - https://www.thehacker.recipes/ad/persistence

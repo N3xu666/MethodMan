@@ -484,14 +484,14 @@ client behavior). Screenshots of airodump-ng output are useful.
 
 ## 13. References
 
-- [Aircrack-ng suite](https://www.aircrack-ng.org/) - airodump-ng,
+- Aircrack-ng suite - https://www.aircrack-ng.org/ - airodump-ng,
   aireplay-ng, airmon-ng
-- [Kismet](https://www.kismetwireless.net/) - wireless IDS and survey
-- [hcxdumptool](https://github.com/ZerBea/hcxdumptool) - modern
+- Kismet - https://www.kismetwireless.net/ - wireless IDS and survey
+- hcxdumptool - https://github.com/ZerBea/hcxdumptool - modern
   PMKID capture
-- [Wireshark](https://www.wireshark.org/) - frame analysis
-- [Wash](https://github.com/t6x/reaver-wps-fork-t6x) - WPS scan
-- [MACVendors API](https://macvendors.com/) - OUI lookup
+- Wireshark - https://www.wireshark.org/ - frame analysis
+- Wash - https://github.com/t6x/reaver-wps-fork-t6x - WPS scan
+- MACVendors API - https://macvendors.com/ - OUI lookup
 - IEEE 802.11-2020 - Wireless LAN Medium Access Control
 - NIST SP 800-153 - Guidelines for Securing Wireless Local Area Networks
 - Kali Linux documentation - Wireless Attacks

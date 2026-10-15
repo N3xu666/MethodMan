@@ -494,33 +494,33 @@ transfer leaks the entire internal namespace.
 
 **RFCs and documentation:**
 
-- [RFC 1035 - Domain Names - Implementation and Specification](https://www.rfc-editor.org/rfc/rfc1035)
-- [RFC 4033-4035 - DNSSEC](https://www.rfc-editor.org/rfc/rfc4033)
-- [BIND 9 Administrator Reference Manual](https://bind9.readthedocs.io/)
-- [Microsoft DNS Server documentation](https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-top)
+- RFC 1035 - Domain Names - Implementation and Specification - https://www.rfc-editor.org/rfc/rfc1035
+- RFC 4033-4035 - DNSSEC - https://www.rfc-editor.org/rfc/rfc4033
+- BIND 9 Administrator Reference Manual - https://bind9.readthedocs.io/
+- Microsoft DNS Server documentation - https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-top
 
 **MITRE ATT&CK:**
 
-- [Discovery - DNS (T1016.001)](https://attack.mitre.org/techniques/T1016/001/)
-- [Command and Control - Application Layer Protocol: DNS (T1071.004)](https://attack.mitre.org/techniques/T1071/004/)
-- [Exfiltration Over Alternative Protocol (T1048)](https://attack.mitre.org/techniques/T1048/)
-- [Impact - Network Denial of Service (T1498)](https://attack.mitre.org/techniques/T1498/)
+- Discovery - DNS (T1016.001) - https://attack.mitre.org/techniques/T1016/001/
+- Command and Control - Application Layer Protocol: DNS (T1071.004) - https://attack.mitre.org/techniques/T1071/004/
+- Exfiltration Over Alternative Protocol (T1048) - https://attack.mitre.org/techniques/T1048/
+- Impact - Network Denial of Service (T1498) - https://attack.mitre.org/techniques/T1498/
 
 **Tools:**
 
-- [dig](https://linux.die.net/man/1/dig) / [nslookup](https://linux.die.net/man/1/nslookup) / [host](https://linux.die.net/man/1/host)
-- [dnsrecon](https://github.com/darkoperator/dnsrecon)
-- [dnsenum](https://github.com/fwaeytens/dnsenum)
-- [fierce](https://github.com/mschwager/fierce)
-- [subfinder](https://github.com/projectdiscovery/subfinder)
-- [amass](https://github.com/owasp-amass/amass)
-- [iodine](https://github.com/yarrick/iodine)
-- [dnscat2](https://github.com/iagox86/dnscat2)
-- [bettercap](https://github.com/bettercap/bettercap)
+- dig - https://linux.die.net/man/1/dig / [nslookup](https://linux.die.net/man/1/nslookup) / [host](https://linux.die.net/man/1/host)
+- dnsrecon - https://github.com/darkoperator/dnsrecon
+- dnsenum - https://github.com/fwaeytens/dnsenum
+- fierce - https://github.com/mschwager/fierce
+- subfinder - https://github.com/projectdiscovery/subfinder
+- amass - https://github.com/owasp-amass/amass
+- iodine - https://github.com/yarrick/iodine
+- dnscat2 - https://github.com/iagox86/dnscat2
+- bettercap - https://github.com/bettercap/bettercap
 
 **Research:**
 
-- [HackTricks - DNS Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-dns)
-- [SANS - DNS Security](https://www.sans.org/white-papers/)
-- [CVE-2020-1350 (SIGRed)](https://nvd.nist.gov/vuln/detail/CVE-2020-1350)
-- [CVE-2020-25705 (SAD DNS)](https://nvd.nist.gov/vuln/detail/CVE-2020-25705)
+- HackTricks - DNS Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-dns
+- SANS - DNS Security - https://www.sans.org/white-papers/
+- CVE-2020-1350 (SIGRed) - https://nvd.nist.gov/vuln/detail/CVE-2020-1350
+- CVE-2020-25705 (SAD DNS) - https://nvd.nist.gov/vuln/detail/CVE-2020-25705

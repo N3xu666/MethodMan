@@ -677,28 +677,28 @@ all credentials, all SSH keys, and often the entire network segment
 
 **Linux documentation:**
 
-- [Linux man pages](https://man7.org/linux/man-pages/)
-- [Linux capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html)
-- [sudoers manual](https://www.sudo.ws/docs/man/sudoers.man/)
-- [systemd.exec hardening options](https://www.freedesktop.org/software/systemd/man/systemd.exec.html)
+- Linux man pages - https://man7.org/linux/man-pages/
+- Linux capabilities - https://man7.org/linux/man-pages/man7/capabilities.7.html
+- sudoers manual - https://www.sudo.ws/docs/man/sudoers.man/
+- systemd.exec hardening options - https://www.freedesktop.org/software/systemd/man/systemd.exec.html
 
 **MITRE ATT&CK:**
 
-- [Privilege Escalation - Exploitation for Privilege Escalation (T1068)](https://attack.mitre.org/techniques/T1068/)
-- [Privilege Escalation - Abuse Elevation Control Mechanism: Sudo and Sudo Caching (T1548.003)](https://attack.mitre.org/techniques/T1548/003/)
-- [Privilege Escalation - Abuse Elevation Control Mechanism: Setuid and Setgid (T1548.001)](https://attack.mitre.org/techniques/T1548/001/)
-- [Execution - Command and Scripting Interpreter: Unix Shell (T1059.004)](https://attack.mitre.org/techniques/T1059/004/)
+- Privilege Escalation - Exploitation for Privilege Escalation (T1068) - https://attack.mitre.org/techniques/T1068/
+- Privilege Escalation - Abuse Elevation Control Mechanism: Sudo and Sudo Caching (T1548.003) - https://attack.mitre.org/techniques/T1548/003/
+- Privilege Escalation - Abuse Elevation Control Mechanism: Setuid and Setgid (T1548.001) - https://attack.mitre.org/techniques/T1548/001/
+- Execution - Command and Scripting Interpreter: Unix Shell (T1059.004) - https://attack.mitre.org/techniques/T1059/004/
 
 **Tools:**
 
-- [linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS)
-- [LinEnum](https://github.com/rebootuser/LinEnum)
-- [pspy](https://github.com/DominicBreuker/pspy)
-- [linux-exploit-suggester](https://github.com/mzet-/linux-exploit-suggester)
-- [GTFOBins](https://gtfobins.github.io/)
+- linPEAS - https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS
+- LinEnum - https://github.com/rebootuser/LinEnum
+- pspy - https://github.com/DominicBreuker/pspy
+- linux-exploit-suggester - https://github.com/mzet-/linux-exploit-suggester
+- GTFOBins - https://gtfobins.github.io/
 
 **Research:**
 
-- [HackTricks - Linux Privilege Escalation](https://book.hacktricks.xyz/linux-hardening/privilege-escalation)
-- [PayloadsAllTheThings - Linux Privilege Escalation](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md)
-- [GTFOBins](https://gtfobins.github.io/)
+- HackTricks - Linux Privilege Escalation - https://book.hacktricks.xyz/linux-hardening/privilege-escalation
+- PayloadsAllTheThings - Linux Privilege Escalation - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md
+- GTFOBins - https://gtfobins.github.io/

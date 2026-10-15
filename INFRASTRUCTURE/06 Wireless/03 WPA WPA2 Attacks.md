@@ -484,15 +484,15 @@ For the report, document:
 
 ## 13. References
 
-- [Aircrack-ng suite](https://www.aircrack-ng.org/) - airodump-ng,
+- Aircrack-ng suite - https://www.aircrack-ng.org/ - airodump-ng,
   aireplay-ng, aircrack-ng
-- [hcxdumptool](https://github.com/ZerBea/hcxdumptool) - PMKID capture
-- [hcxtools](https://github.com/ZerBea/hcxtools) - conversion and
+- hcxdumptool - https://github.com/ZerBea/hcxdumptool - PMKID capture
+- hcxtools - https://github.com/ZerBea/hcxtools - conversion and
   handshake tools
-- [hashcat](https://hashcat.net/hashcat/) - mode 22000 (PMKID/handshake)
-- [WPA3 Specification (Wi-Fi Alliance)](https://www.wi-fi.org/discover-wi-fi/security)
-- [MITRE ATT&CK T1557 - Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557/)
-- [MITRE ATT&CK T1040 - Network Sniffing](https://attack.mitre.org/techniques/T1040/)
+- hashcat - https://hashcat.net/hashcat/ - mode 22000 (PMKID/handshake)
+- WPA3 Specification (Wi-Fi Alliance) - https://www.wi-fi.org/discover-wi-fi/security
+- MITRE ATT&CK T1557 - Adversary-in-the-Middle - https://attack.mitre.org/techniques/T1557/
+- MITRE ATT&CK T1040 - Network Sniffing - https://attack.mitre.org/techniques/T1040/
 - IEEE 802.11i-2004 - Medium Access Control Security Enhancements
 - NIST SP 800-153 - Guidelines for Securing Wireless Local Area Networks
 - Kali Linux documentation - Wireless Attacks

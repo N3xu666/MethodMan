@@ -465,8 +465,8 @@ exam focuses on TCP-based attacks.
 - RFC 1035 - Domain Names - Implementation and Specification
 - RFC 4033 - DNS Security Introduction and Requirements
 - RFC 2132 - DHCP Options and BOOTP Vendor Extensions
-- [MITRE ATT&CK T1557 - Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557/)
-- [MITRE ATT&CK T1071.004 - DNS](https://attack.mitre.org/techniques/T1071/004/)
+- MITRE ATT&CK T1557 - Adversary-in-the-Middle - https://attack.mitre.org/techniques/T1557/
+- MITRE ATT&CK T1071.004 - DNS - https://attack.mitre.org/techniques/T1071/004/
 - NIST SP 800-115 - Technical Guide to Information Security Testing
 - dnsmasq manual (https://thekelleys.org.uk/dnsmasq/doc.html)
 - iodine project (https://code.kryo.se/iodine/)

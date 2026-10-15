@@ -419,26 +419,26 @@ specific agents) code execution.
 
 **RFCs and documentation:**
 
-- [RFC 1157 - SNMPv1](https://www.rfc-editor.org/rfc/rfc1157)
-- [RFC 3411-3418 - SNMPv3](https://www.rfc-editor.org/rfc/rfc3411)
-- [Net-SNMP documentation](http://www.net-snmp.org/docs/)
-- [Cisco SNMP documentation](https://www.cisco.com/c/en/us/support/docs/ip/simple-network-management-protocol-snmp/4686-snmp-intro.html)
+- RFC 1157 - SNMPv1 - https://www.rfc-editor.org/rfc/rfc1157
+- RFC 3411-3418 - SNMPv3 - https://www.rfc-editor.org/rfc/rfc3411
+- Net-SNMP documentation - http://www.net-snmp.org/docs/
+- Cisco SNMP documentation - https://www.cisco.com/c/en/us/support/docs/ip/simple-network-management-protocol-snmp/4686-snmp-intro.html
 
 **MITRE ATT&CK:**
 
-- [Discovery - Network Service Scanning (T1046)](https://attack.mitre.org/techniques/T1046/)
-- [Discovery - System Network Configuration Discovery (T1016)](https://attack.mitre.org/techniques/T1016/)
-- [Impact - Network Denial of Service (T1498)](https://attack.mitre.org/techniques/T1498/)
+- Discovery - Network Service Scanning (T1046) - https://attack.mitre.org/techniques/T1046/
+- Discovery - System Network Configuration Discovery (T1016) - https://attack.mitre.org/techniques/T1016/
+- Impact - Network Denial of Service (T1498) - https://attack.mitre.org/techniques/T1498/
 
 **Tools:**
 
-- [onesixtyone](https://github.com/trailofbits/onesixtyone)
-- [snmpwalk / snmpget / snmpset / snmpbulkget](http://www.net-snmp.org/)
-- [snmp-check](https://github.com/dheiland-r7/snmpcheck)
-- [snmp-brute](https://nmap.org/nsedoc/scripts/snmp-brute.html) (NSE)
+- onesixtyone - https://github.com/trailofbits/onesixtyone
+- snmpwalk / snmpget / snmpset / snmpbulkget - http://www.net-snmp.org/
+- snmp-check - https://github.com/dheiland-r7/snmpcheck
+- snmp-brute - https://nmap.org/nsedoc/scripts/snmp-brute.html (NSE)
 
 **Research:**
 
-- [HackTricks - SNMP Pentesting](https://book.hacktricks.xyz/network-services-pentesting/pentesting-snmp)
-- [CISA - SNMP Best Practices](https://www.cisa.gov/news-events/alerts)
-- [Cisco SNMP RCE](https://www.cisco.com/c/en/us/support/docs/security/)
+- HackTricks - SNMP Pentesting - https://book.hacktricks.xyz/network-services-pentesting/pentesting-snmp
+- CISA - SNMP Best Practices - https://www.cisa.gov/news-events/alerts
+- Cisco SNMP RCE - https://www.cisco.com/c/en/us/support/docs/security/

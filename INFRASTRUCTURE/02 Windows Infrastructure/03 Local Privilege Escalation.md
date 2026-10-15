@@ -517,31 +517,31 @@ workstation often grants access to user data and pivot points.
 
 **Microsoft documentation:**
 
-- [Windows Security Documentation](https://learn.microsoft.com/en-us/windows/security/)
-- [Service Control Manager](https://learn.microsoft.com/en-us/windows/win32/services/service-control-manager)
-- [Access Tokens](https://learn.microsoft.com/en-us/windows/win32/secauthz/access-tokens)
+- Windows Security Documentation - https://learn.microsoft.com/en-us/windows/security/
+- Service Control Manager - https://learn.microsoft.com/en-us/windows/win32/services/service-control-manager
+- Access Tokens - https://learn.microsoft.com/en-us/windows/win32/secauthz/access-tokens
 
 **MITRE ATT&CK:**
 
-- [Privilege Escalation - Exploitation for Privilege Escalation (T1068)](https://attack.mitre.org/techniques/T1068/)
-- [Privilege Escalation - Access Token Manipulation (T1134)](https://attack.mitre.org/techniques/T1134/)
-- [Privilege Escalation - Hijack Execution Flow (T1574)](https://attack.mitre.org/techniques/T1574/)
-- [Privilege Escalation - Boot or Logon Autostart Execution (T1547)](https://attack.mitre.org/techniques/T1547/)
+- Privilege Escalation - Exploitation for Privilege Escalation (T1068) - https://attack.mitre.org/techniques/T1068/
+- Privilege Escalation - Access Token Manipulation (T1134) - https://attack.mitre.org/techniques/T1134/
+- Privilege Escalation - Hijack Execution Flow (T1574) - https://attack.mitre.org/techniques/T1574/
+- Privilege Escalation - Boot or Logon Autostart Execution (T1547) - https://attack.mitre.org/techniques/T1547/
 
 **Tools:**
 
-- [GodPotato](https://github.com/BeichenDream/GodPotato)
-- [PrintSpoofer](https://github.com/itm4n/PrintSpoofer)
-- [JuicyPotato](https://github.com/ohpe/juicy-potato)
-- [winPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS)
-- [PowerUp](https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1)
-- [SharpUp](https://github.com/GhostPack/SharpUp)
-- [accesschk](https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk)
-- [pypykatz](https://github.com/skelsec/pypykatz)
+- GodPotato - https://github.com/BeichenDream/GodPotato
+- PrintSpoofer - https://github.com/itm4n/PrintSpoofer
+- JuicyPotato - https://github.com/ohpe/juicy-potato
+- winPEAS - https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS
+- PowerUp - https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1
+- SharpUp - https://github.com/GhostPack/SharpUp
+- accesschk - https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk
+- pypykatz - https://github.com/skelsec/pypykatz
 
 **Research:**
 
-- [HackTricks - Windows Local Privilege Escalation](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
-- [PayloadsAllTheThings - Windows Privilege Escalation](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md)
-- [FuzzySecurity - Windows Privilege Escalation Fundamentals](https://fuzzysecurity.com/tutorials/16.html)
-- [itm4n - Windows Privilege Escalation](https://itm4n.github.io/)
+- HackTricks - Windows Local Privilege Escalation - https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation
+- PayloadsAllTheThings - Windows Privilege Escalation - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+- FuzzySecurity - Windows Privilege Escalation Fundamentals - https://fuzzysecurity.com/tutorials/16.html
+- itm4n - Windows Privilege Escalation - https://itm4n.github.io/

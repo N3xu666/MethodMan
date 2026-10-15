@@ -465,13 +465,13 @@ See `methodology/OSCP-Reporting.md` for the report structure.
 ## 13. References
 
 - OpenSSH manual - `man ssh` (LocalForward, RemoteForward, DynamicForward)
-- [Chisel - TCP/UDP tunnel over HTTP](https://github.com/jpillora/chisel)
-- [ligolo-ng - TUN-based tunneling](https://github.com/nicocha30/ligolo-ng)
-- [iodine - DNS tunneling](https://code.kryo.se/iodine/)
-- [ptunnel-ng - ICMP tunneling](https://github.com/utoni/ptunnel-ng)
-- [proxychains-ng](https://github.com/rofl0r/proxychains-ng)
-- [MITRE ATT&CK T1572 - Protocol Tunneling](https://attack.mitre.org/techniques/T1572/)
-- [MITRE ATT&CK T1090 - Proxy](https://attack.mitre.org/techniques/T1090/)
+- Chisel - TCP/UDP tunnel over HTTP - https://github.com/jpillora/chisel
+- ligolo-ng - TUN-based tunneling - https://github.com/nicocha30/ligolo-ng
+- iodine - DNS tunneling - https://code.kryo.se/iodine/
+- ptunnel-ng - ICMP tunneling - https://github.com/utoni/ptunnel-ng
+- proxychains-ng - https://github.com/rofl0r/proxychains-ng
+- MITRE ATT&CK T1572 - Protocol Tunneling - https://attack.mitre.org/techniques/T1572/
+- MITRE ATT&CK T1090 - Proxy - https://attack.mitre.org/techniques/T1090/
 - NIST SP 800-115 - Technical Guide to Information Security Testing
 - HackTricks - Pivoting and Port Forwarding
 - `methodology/OSCP-Reporting.md` - OSCP pivot documentation

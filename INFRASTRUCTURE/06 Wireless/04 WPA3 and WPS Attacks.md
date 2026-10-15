@@ -490,17 +490,17 @@ For the report, document:
 
 ## 13. References
 
-- [Dragonblood paper](https://wpa3.mathyvanhoef.com/) - Vanhoef &
+- Dragonblood paper - https://wpa3.mathyvanhoef.com/ - Vanhoef &
   Ronen, 2019
-- [dragonslayer](https://github.com/vanhoefm/dragonslayer) - research
+- dragonslayer - https://github.com/vanhoefm/dragonslayer - research
   tool for Dragonblood
-- [reaver-wps-fork-t6x](https://github.com/t6x/reaver-wps-fork-t6x) -
+- reaver-wps-fork-t6x - https://github.com/t6x/reaver-wps-fork-t6x -
   reaver with pixie dust
-- [bully](https://github.com/aanarchyy/bully) - WPS brute force
-- [hashcat](https://hashcat.net/hashcat/) - mode 22000
-- [WPA3 Specification (Wi-Fi Alliance)](https://www.wi-fi.org/discover-wi-fi/security)
+- bully - https://github.com/aanarchyy/bully - WPS brute force
+- hashcat - https://hashcat.net/hashcat/ - mode 22000
+- WPA3 Specification (Wi-Fi Alliance) - https://www.wi-fi.org/discover-wi-fi/security
 - RFC 7664 - Dragonfly Key Exchange
-- [MITRE ATT&CK T1557 - Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557/)
+- MITRE ATT&CK T1557 - Adversary-in-the-Middle - https://attack.mitre.org/techniques/T1557/
 - IEEE 802.11-2020 - Wireless LAN Medium Access Control
 - NIST SP 800-153 - Guidelines for Securing Wireless Local Area Networks
 - `man reaver`, `man wash`, `man bully`

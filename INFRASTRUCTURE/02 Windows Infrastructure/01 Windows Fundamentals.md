@@ -532,31 +532,31 @@ service account is equivalent to that service's scope.
 
 **Microsoft documentation:**
 
-- [Windows Security Documentation](https://learn.microsoft.com/en-us/windows/security/)
-- [Access Control Lists (ACLs)](https://learn.microsoft.com/en-us/windows/win32/secauthz/access-control-lists)
-- [Access Tokens](https://learn.microsoft.com/en-us/windows/win32/secauthz/access-tokens)
-- [User Account Control](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/)
-- [Service Control Manager](https://learn.microsoft.com/en-us/windows/win32/services/service-control-manager)
+- Windows Security Documentation - https://learn.microsoft.com/en-us/windows/security/
+- Access Control Lists (ACLs) - https://learn.microsoft.com/en-us/windows/win32/secauthz/access-control-lists
+- Access Tokens - https://learn.microsoft.com/en-us/windows/win32/secauthz/access-tokens
+- User Account Control - https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/
+- Service Control Manager - https://learn.microsoft.com/en-us/windows/win32/services/service-control-manager
 
 **MITRE ATT&CK:**
 
-- [Privilege Escalation - Exploitation for Privilege Escalation (T1068)](https://attack.mitre.org/techniques/T1068/)
-- [Privilege Escalation - Access Token Manipulation (T1134)](https://attack.mitre.org/techniques/T1134/)
-- [Privilege Escalation - Hijack Execution Flow (T1574)](https://attack.mitre.org/techniques/T1574/)
-- [Credential Access - OS Credential Dumping (T1003)](https://attack.mitre.org/techniques/T1003/)
+- Privilege Escalation - Exploitation for Privilege Escalation (T1068) - https://attack.mitre.org/techniques/T1068/
+- Privilege Escalation - Access Token Manipulation (T1134) - https://attack.mitre.org/techniques/T1134/
+- Privilege Escalation - Hijack Execution Flow (T1574) - https://attack.mitre.org/techniques/T1574/
+- Credential Access - OS Credential Dumping (T1003) - https://attack.mitre.org/techniques/T1003/
 
 **Tools:**
 
-- [winPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS)
-- [Seatbelt](https://github.com/GhostPack/Seatbelt)
-- [PowerUp](https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1)
-- [GodPotato](https://github.com/BeichenDream/GodPotato)
-- [PrintSpoofer](https://github.com/itm4n/PrintSpoofer)
-- [accesschk](https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk)
+- winPEAS - https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS
+- Seatbelt - https://github.com/GhostPack/Seatbelt
+- PowerUp - https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1
+- GodPotato - https://github.com/BeichenDream/GodPotato
+- PrintSpoofer - https://github.com/itm4n/PrintSpoofer
+- accesschk - https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk
 
 **Research:**
 
-- [HackTricks - Windows Local Privilege Escalation](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
-- [PayloadsAllTheThings - Windows Privilege Escalation](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md)
-- [FuzzySecurity - Windows Privilege Escalation Fundamentals](https://fuzzysecurity.com/tutorials/16.html)
-- [MITRE ATT&CK - Windows](https://attack.mitre.org/matrices/enterprise/windows/)
+- HackTricks - Windows Local Privilege Escalation - https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation
+- PayloadsAllTheThings - Windows Privilege Escalation - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+- FuzzySecurity - Windows Privilege Escalation Fundamentals - https://fuzzysecurity.com/tutorials/16.html
+- MITRE ATT&CK - Windows - https://attack.mitre.org/matrices/enterprise/windows/

@@ -566,19 +566,19 @@ For the report, document:
 
 ## 13. References
 
-- [smtp-user-enum](https://github.com/pentestmonkey/smtp-user-enum) -
+- smtp-user-enum - https://github.com/pentestmonkey/smtp-user-enum -
   SMTP user enumeration
-- [hydra](https://github.com/vanhauser-thc/thc-hydra) - IMAP/POP3
+- hydra - https://github.com/vanhauser-thc/thc-hydra - IMAP/POP3
   brute force
-- [Ruler](https://github.com/sensepost/ruler) - Exchange mailbox
+- Ruler - https://github.com/sensepost/ruler - Exchange mailbox
   rule exploitation
-- [MailSniper](https://github.com/dafthack/MailSniper) - OWA/EWS
+- MailSniper - https://github.com/dafthack/MailSniper - OWA/EWS
   password spray and mailbox search
-- [impacket ntlmrelayx](https://github.com/fortra/impacket) -
+- impacket ntlmrelayx - https://github.com/fortra/impacket -
   NTLM relay
-- [ProxyShell exploitation](https://github.com/horizon3ai/proxyshell)
-- [MITRE ATT&CK T1114 - Email Collection](https://attack.mitre.org/techniques/T1114/)
-- [MITRE ATT&CK T1114.002 - Remote Email Collection](https://attack.mitre.org/techniques/T1114/002/)
+- ProxyShell exploitation - https://github.com/horizon3ai/proxyshell
+- MITRE ATT&CK T1114 - Email Collection - https://attack.mitre.org/techniques/T1114/
+- MITRE ATT&CK T1114.002 - Remote Email Collection - https://attack.mitre.org/techniques/T1114/002/
 - Microsoft Docs - Exchange Extended Protection (EPA)
 - NIST SP 800-45 - Guidelines on Electronic Mail Security
 - `man smtp-user-enum`, `man hydra`

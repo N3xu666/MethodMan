@@ -485,26 +485,26 @@ subsequent phase.
 
 **Microsoft documentation:**
 
-- [Windows Security Documentation](https://learn.microsoft.com/en-us/windows/security/)
-- [Service Control Manager](https://learn.microsoft.com/en-us/windows/win32/services/service-control-manager)
-- [Registry documentation](https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry)
+- Windows Security Documentation - https://learn.microsoft.com/en-us/windows/security/
+- Service Control Manager - https://learn.microsoft.com/en-us/windows/win32/services/service-control-manager
+- Registry documentation - https://learn.microsoft.com/en-us/windows/win32/sysinfo/registry
 
 **MITRE ATT&CK:**
 
-- [Discovery - System Information Discovery (T1082)](https://attack.mitre.org/techniques/T1082/)
-- [Discovery - File and Directory Discovery (T1083)](https://attack.mitre.org/techniques/T1083/)
-- [Discovery - Software Discovery (T1518)](https://attack.mitre.org/techniques/T1518/)
+- Discovery - System Information Discovery (T1082) - https://attack.mitre.org/techniques/T1082/
+- Discovery - File and Directory Discovery (T1083) - https://attack.mitre.org/techniques/T1083/
+- Discovery - Software Discovery (T1518) - https://attack.mitre.org/techniques/T1518/
 
 **Tools:**
 
-- [winPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS)
-- [Seatbelt](https://github.com/GhostPack/Seatbelt)
-- [PowerUp](https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1)
-- [SharpUp](https://github.com/GhostPack/SharpUp)
-- [accesschk](https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk)
+- winPEAS - https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS
+- Seatbelt - https://github.com/GhostPack/Seatbelt
+- PowerUp - https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1
+- SharpUp - https://github.com/GhostPack/SharpUp
+- accesschk - https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk
 
 **Research:**
 
-- [HackTricks - Windows Local Privilege Escalation](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
-- [PayloadsAllTheThings - Windows Privilege Escalation](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md)
-- [FuzzySecurity - Windows Privilege Escalation Fundamentals](https://fuzzysecurity.com/tutorials/16.html)
+- HackTricks - Windows Local Privilege Escalation - https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation
+- PayloadsAllTheThings - Windows Privilege Escalation - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+- FuzzySecurity - Windows Privilege Escalation Fundamentals - https://fuzzysecurity.com/tutorials/16.html

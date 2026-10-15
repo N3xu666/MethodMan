@@ -349,7 +349,7 @@ The technique itself is simple. The value in the exam report is the
 
 - RFC 826 - An Ethernet Address Resolution Protocol
 - RFC 4861 - Neighbor Discovery for IPv6
-- [MITRE ATT&CK T1557.002 - ARP Cache Poisoning](https://attack.mitre.org/techniques/T1557/002/)
-- [CIS Controls v8 - 12.6 (Network Infrastructure Management)](https://www.cisecurity.org/controls)
+- MITRE ATT&CK T1557.002 - ARP Cache Poisoning - https://attack.mitre.org/techniques/T1557/002/
+- CIS Controls v8 - 12.6 (Network Infrastructure Management) - https://www.cisecurity.org/controls
 - NIST SP 800-115 - Technical Guide to Information Security Testing
 - `man arpspoof`, `man bettercap`, `mitm6` project documentation

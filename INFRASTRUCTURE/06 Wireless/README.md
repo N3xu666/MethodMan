@@ -59,8 +59,8 @@ attack or defense file.
 - IEEE 802.11w - Protected Management Frames (PMF)
 - IEEE 802.11ax - Wi-Fi 6
 - WPA3 Specification (Wi-Fi Alliance)
-- [MITRE ATT&CK T1557 - Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557/)
-- [MITRE ATT&CK T1200 - Hardware Additions](https://attack.mitre.org/techniques/T1200/)
+- MITRE ATT&CK T1557 - Adversary-in-the-Middle - https://attack.mitre.org/techniques/T1557/
+- MITRE ATT&CK T1200 - Hardware Additions - https://attack.mitre.org/techniques/T1200/
 - NIST SP 800-153 - Guidelines for Securing Wireless Local Area Networks
 
 ---

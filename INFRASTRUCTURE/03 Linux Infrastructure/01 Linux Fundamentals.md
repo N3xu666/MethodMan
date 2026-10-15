@@ -656,29 +656,29 @@ unlocks the entire cluster.
 
 **Linux documentation:**
 
-- [Linux man pages](https://man7.org/linux/man-pages/)
-- [systemd documentation](https://www.freedesktop.org/software/systemd/man/)
-- [Linux capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html)
-- [Namespaces](https://man7.org/linux/man-pages/man7/namespaces.7.html)
+- Linux man pages - https://man7.org/linux/man-pages/
+- systemd documentation - https://www.freedesktop.org/software/systemd/man/
+- Linux capabilities - https://man7.org/linux/man-pages/man7/capabilities.7.html
+- Namespaces - https://man7.org/linux/man-pages/man7/namespaces.7.html
 
 **MITRE ATT&CK:**
 
-- [Privilege Escalation - Exploitation for Privilege Escalation (T1068)](https://attack.mitre.org/techniques/T1068/)
-- [Privilege Escalation - Abuse Elevation Control Mechanism (T1548)](https://attack.mitre.org/techniques/T1548/)
-- [Persistence - Scheduled Task/Job: Cron (T1053.003)](https://attack.mitre.org/techniques/T1053/003/)
-- [Persistence - Create or Modify System Process: Systemd Service (T1543.002)](https://attack.mitre.org/techniques/T1543/002/)
+- Privilege Escalation - Exploitation for Privilege Escalation (T1068) - https://attack.mitre.org/techniques/T1068/
+- Privilege Escalation - Abuse Elevation Control Mechanism (T1548) - https://attack.mitre.org/techniques/T1548/
+- Persistence - Scheduled Task/Job: Cron (T1053.003) - https://attack.mitre.org/techniques/T1053/003/
+- Persistence - Create or Modify System Process: Systemd Service (T1543.002) - https://attack.mitre.org/techniques/T1543/002/
 
 **Tools:**
 
-- [linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS)
-- [LinEnum](https://github.com/rebootuser/LinEnum)
-- [pspy](https://github.com/DominicBreuker/pspy)
-- [GTFOBins](https://gtfobins.github.io/)
-- [linux-exploit-suggester](https://github.com/mzet-/linux-exploit-suggester)
+- linPEAS - https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS
+- LinEnum - https://github.com/rebootuser/LinEnum
+- pspy - https://github.com/DominicBreuker/pspy
+- GTFOBins - https://gtfobins.github.io/
+- linux-exploit-suggester - https://github.com/mzet-/linux-exploit-suggester
 
 **Research:**
 
-- [HackTricks - Linux Privilege Escalation](https://book.hacktricks.xyz/linux-hardening/privilege-escalation)
-- [PayloadsAllTheThings - Linux Privilege Escalation](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md)
-- [GTFOBins](https://gtfobins.github.io/)
-- [Linux Capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html)
+- HackTricks - Linux Privilege Escalation - https://book.hacktricks.xyz/linux-hardening/privilege-escalation
+- PayloadsAllTheThings - Linux Privilege Escalation - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md
+- GTFOBins - https://gtfobins.github.io/
+- Linux Capabilities - https://man7.org/linux/man-pages/man7/capabilities.7.html

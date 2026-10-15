@@ -429,7 +429,7 @@ OSCP graders want to see that you understand the risk and the mitigation.
 - IEEE 802.1D - Spanning Tree Protocol
 - IEEE 802.1X - Port-based Network Access Control
 - Cisco - "VLAN Security White Paper"
-- [MITRE ATT&CK T1599 - Network Boundary Bridging](https://attack.mitre.org/techniques/T1599/)
+- MITRE ATT&CK T1599 - Network Boundary Bridging - https://attack.mitre.org/techniques/T1599/
 - NIST SP 800-115 - Technical Guide to Information Security Testing
 - yersinia manual (https://github.com/tomac/yersinia)
 - dsniff suite (`macof`, `arpspoof`)

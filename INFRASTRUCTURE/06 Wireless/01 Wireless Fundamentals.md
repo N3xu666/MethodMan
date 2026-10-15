@@ -439,8 +439,8 @@ EAP-TLS, WIPS. These show awareness beyond the standard OSCP scope.
 - IEEE 802.11w-2009 - Protected Management Frames
 - IEEE 802.11ax-2021 - Wi-Fi 6
 - Wi-Fi Alliance - WPA3 Specification
-- [MITRE ATT&CK T1557 - Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557/)
-- [MITRE ATT&CK T1200 - Hardware Additions](https://attack.mitre.org/techniques/T1200/)
+- MITRE ATT&CK T1557 - Adversary-in-the-Middle - https://attack.mitre.org/techniques/T1557/
+- MITRE ATT&CK T1200 - Hardware Additions - https://attack.mitre.org/techniques/T1200/
 - NIST SP 800-153 - Guidelines for Securing Wireless Local Area Networks
 - Kali Linux documentation - Wireless Attacks
 - `man iw`, `man tcpdump`, `man airmon-ng`

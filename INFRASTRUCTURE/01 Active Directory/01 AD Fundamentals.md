@@ -360,27 +360,27 @@ domain in a forest usually implies compromise of all domains that trust it
 
 **Microsoft documentation:**
 
-- [Active Directory Domain Services overview](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview)
-- [Kerberos authentication overview](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview)
-- [Group Managed Service Accounts overview](https://learn.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview)
+- Active Directory Domain Services overview - https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
+- Kerberos authentication overview - https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview
+- Group Managed Service Accounts overview - https://learn.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview
 
 **MITRE ATT&CK:**
 
-- [Credential Access - OS Credential Dumping (T1003)](https://attack.mitre.org/techniques/T1003/)
-- [Credential Access - Steal or Forge Kerberos Tickets (T1558)](https://attack.mitre.org/techniques/T1558/)
-- [Lateral Movement - Remote Services (T1021)](https://attack.mitre.org/techniques/T1021/)
+- Credential Access - OS Credential Dumping (T1003) - https://attack.mitre.org/techniques/T1003/
+- Credential Access - Steal or Forge Kerberos Tickets (T1558) - https://attack.mitre.org/techniques/T1558/
+- Lateral Movement - Remote Services (T1021) - https://attack.mitre.org/techniques/T1021/
 
 **Tools:**
 
-- [Impacket](https://github.com/fortra/impacket) - GetUserSPNs, GetNPUsers, secretsdump, psexec, wmiexec, ticketer
-- [netexec](https://github.com/Pennyw0rth/NetExec) - SMB/LDAP/WinRM enumeration
-- [BloodHound](https://github.com/BloodHoundAD/BloodHound) - AD attack path mapping
-- [PowerView](https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1) - PowerShell AD enumeration
-- [Rubeus](https://github.com/GhostPack/Rubeus) - Kerberos attack toolkit
+- Impacket - https://github.com/fortra/impacket - GetUserSPNs, GetNPUsers, secretsdump, psexec, wmiexec, ticketer
+- netexec - https://github.com/Pennyw0rth/NetExec - SMB/LDAP/WinRM enumeration
+- BloodHound - https://github.com/BloodHoundAD/BloodHound - AD attack path mapping
+- PowerView - https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1 - PowerShell AD enumeration
+- Rubeus - https://github.com/GhostPack/Rubeus - Kerberos attack toolkit
 
 **Research:**
 
-- [ADSecurity.org](https://adsecurity.org/) - Sean Metcalf's AD security research
-- [The Hacker Recipes - Active Directory](https://www.thehacker.recipes/ad)
-- [SpecterOps blog](https://posts.specterops.io/)
-- [Certified Pre-Owned (ADCS research)](https://specterops.io/assets/resources/Certified_Pre-Owned.pdf)
+- ADSecurity.org - https://adsecurity.org/ - Sean Metcalf's AD security research
+- The Hacker Recipes - Active Directory - https://www.thehacker.recipes/ad
+- SpecterOps blog - https://posts.specterops.io/
+- Certified Pre-Owned (ADCS research) - https://specterops.io/assets/resources/Certified_Pre-Owned.pdf

@@ -615,28 +615,28 @@ subsequent phase.
 
 **Linux documentation:**
 
-- [Linux man pages](https://man7.org/linux/man-pages/)
-- [systemd documentation](https://www.freedesktop.org/software/systemd/man/)
-- [auditd documentation](https://man7.org/linux/man-pages/man8/auditd.8.html)
+- Linux man pages - https://man7.org/linux/man-pages/
+- systemd documentation - https://www.freedesktop.org/software/systemd/man/
+- auditd documentation - https://man7.org/linux/man-pages/man8/auditd.8.html
 
 **MITRE ATT&CK:**
 
-- [Discovery - System Information Discovery (T1082)](https://attack.mitre.org/techniques/T1082/)
-- [Discovery - File and Directory Discovery (T1083)](https://attack.mitre.org/techniques/T1083/)
-- [Discovery - Software Discovery (T1518)](https://attack.mitre.org/techniques/T1518/)
-- [Discovery - Account Discovery (T1087)](https://attack.mitre.org/techniques/T1087/)
+- Discovery - System Information Discovery (T1082) - https://attack.mitre.org/techniques/T1082/
+- Discovery - File and Directory Discovery (T1083) - https://attack.mitre.org/techniques/T1083/
+- Discovery - Software Discovery (T1518) - https://attack.mitre.org/techniques/T1518/
+- Discovery - Account Discovery (T1087) - https://attack.mitre.org/techniques/T1087/
 
 **Tools:**
 
-- [linPEAS](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS)
-- [LinEnum](https://github.com/rebootuser/LinEnum)
-- [pspy](https://github.com/DominicBreuker/pspy)
-- [linux-exploit-suggester](https://github.com/mzet-/linux-exploit-suggester)
-- [linux-smart-enumeration](https://github.com/diego-treitos/linux-smart-enumeration)
-- [GTFOBins](https://gtfobins.github.io/)
+- linPEAS - https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS
+- LinEnum - https://github.com/rebootuser/LinEnum
+- pspy - https://github.com/DominicBreuker/pspy
+- linux-exploit-suggester - https://github.com/mzet-/linux-exploit-suggester
+- linux-smart-enumeration - https://github.com/diego-treitos/linux-smart-enumeration
+- GTFOBins - https://gtfobins.github.io/
 
 **Research:**
 
-- [HackTricks - Linux Privilege Escalation](https://book.hacktricks.xyz/linux-hardening/privilege-escalation)
-- [PayloadsAllTheThings - Linux Privilege Escalation](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md)
-- [GTFOBins](https://gtfobins.github.io/)
+- HackTricks - Linux Privilege Escalation - https://book.hacktricks.xyz/linux-hardening/privilege-escalation
+- PayloadsAllTheThings - Linux Privilege Escalation - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md
+- GTFOBins - https://gtfobins.github.io/

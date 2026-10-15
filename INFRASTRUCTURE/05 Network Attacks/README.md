@@ -54,9 +54,9 @@ return here for the abuse and the control.
 
 ## References
 
-- [MITRE ATT&CK - Enterprise](https://attack.mitre.org/matrices/enterprise/)
-- [NIST SP 800-115 - Technical Guide to Information Security Testing](https://csrc.nist.gov/publications/detail/sp/800-115/final)
-- [CIS Controls v8](https://www.cisecurity.org/controls)
+- MITRE ATT&CK - Enterprise - https://attack.mitre.org/matrices/enterprise/
+- NIST SP 800-115 - Technical Guide to Information Security Testing - https://csrc.nist.gov/publications/detail/sp/800-115/final
+- CIS Controls v8 - https://www.cisecurity.org/controls
 - RFC 826 (ARP), RFC 2131 (DHCP), RFC 1035 (DNS), RFC 4271 (BGP)
 
 ---

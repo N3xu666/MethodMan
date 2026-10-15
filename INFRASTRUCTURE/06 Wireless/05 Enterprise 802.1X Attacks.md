@@ -526,15 +526,15 @@ For the report, document:
 
 ## 13. References
 
-- [hostapd-mana](https://github.com/sensepost/hostapd-mana) -
+- hostapd-mana - https://github.com/sensepost/hostapd-mana -
   evil twin with credential capture
-- [FreeRADIUS](https://freeradius.org/) - RADIUS server
-- [hashcat](https://hashcat.net/hashcat/) - mode 5500 (MSCHAPv2)
-- [impacket ntlmrelayx](https://github.com/fortra/impacket) - relay
+- FreeRADIUS - https://freeradius.org/ - RADIUS server
+- hashcat - https://hashcat.net/hashcat/ - mode 5500 (MSCHAPv2)
+- impacket ntlmrelayx - https://github.com/fortra/impacket - relay
   to ADCS
-- [WPA3 Specification (Wi-Fi Alliance)](https://www.wi-fi.org/discover-wi-fi/security)
+- WPA3 Specification (Wi-Fi Alliance) - https://www.wi-fi.org/discover-wi-fi/security
 - RFC 5216 - The EAP-TLS Authentication Protocol
 - RFC 2759 - Microsoft PPP CHAP Extensions, Version 2 (MSCHAPv2)
-- [MITRE ATT&CK T1557 - Adversary-in-the-Middle](https://attack.mitre.org/techniques/T1557/)
+- MITRE ATT&CK T1557 - Adversary-in-the-Middle - https://attack.mitre.org/techniques/T1557/
 - NIST SP 800-153 - Guidelines for Securing Wireless Local Area Networks
 - `man hostapd`, `man wpa_supplicant`, `man eapol_test`

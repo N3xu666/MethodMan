@@ -507,28 +507,28 @@ even after remediation of the original vector.
 
 **Microsoft documentation:**
 
-- [Run and RunOnce Registry Keys](https://learn.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys)
-- [Task Scheduler](https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page)
-- [WMI Event Subscription](https://learn.microsoft.com/en-us/windows/win32/wmisdk/monitoring-events)
-- [COM Hijacking Mitigation](https://learn.microsoft.com/en-us/windows/win32/com/com-hijacking)
+- Run and RunOnce Registry Keys - https://learn.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys
+- Task Scheduler - https://learn.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page
+- WMI Event Subscription - https://learn.microsoft.com/en-us/windows/win32/wmisdk/monitoring-events
+- COM Hijacking Mitigation - https://learn.microsoft.com/en-us/windows/win32/com/com-hijacking
 
 **MITRE ATT&CK:**
 
-- [Persistence - Registry Run Keys / Startup Folder (T1547.001)](https://attack.mitre.org/techniques/T1547/001/)
-- [Persistence - Scheduled Task/Job (T1053)](https://attack.mitre.org/techniques/T1053/)
-- [Persistence - Create or Modify System Process: Windows Service (T1543.003)](https://attack.mitre.org/techniques/T1543/003/)
-- [Persistence - Event Triggered Execution: WMI Event Subscription (T1546.003)](https://attack.mitre.org/techniques/T1546/003/)
-- [Persistence - Hijack Execution Flow: COM Hijacking (T1546.015)](https://attack.mitre.org/techniques/T1546/015/)
+- Persistence - Registry Run Keys / Startup Folder (T1547.001) - https://attack.mitre.org/techniques/T1547/001/
+- Persistence - Scheduled Task/Job (T1053) - https://attack.mitre.org/techniques/T1053/
+- Persistence - Create or Modify System Process: Windows Service (T1543.003) - https://attack.mitre.org/techniques/T1543/003/
+- Persistence - Event Triggered Execution: WMI Event Subscription (T1546.003) - https://attack.mitre.org/techniques/T1546/003/
+- Persistence - Hijack Execution Flow: COM Hijacking (T1546.015) - https://attack.mitre.org/techniques/T1546/015/
 
 **Tools:**
 
-- [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns)
-- [Sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
-- [PowerUp](https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1)
-- [SharpUp](https://github.com/GhostPack/SharpUp)
+- Autoruns - https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns
+- Sysmon - https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
+- PowerUp - https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1
+- SharpUp - https://github.com/GhostPack/SharpUp
 
 **Research:**
 
-- [HackTricks - Windows Persistence](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
-- [MITRE ATT&CK - Windows Persistence](https://attack.mitre.org/tactics/TA0003/)
-- [SwiftOnSecurity Sysmon Config](https://github.com/SwiftOnSecurity/sysmon-config)
+- HackTricks - Windows Persistence - https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation
+- MITRE ATT&CK - Windows Persistence - https://attack.mitre.org/tactics/TA0003/
+- SwiftOnSecurity Sysmon Config - https://github.com/SwiftOnSecurity/sysmon-config

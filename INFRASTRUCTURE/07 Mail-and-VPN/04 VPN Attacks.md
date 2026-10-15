@@ -599,15 +599,15 @@ For the report, document:
 
 ## 13. References
 
-- [ike-scan](https://github.com/royhills/ike-scan) - IKE scanner
-- [hashcat](https://hashcat.net/hashcat/) - mode 5300 (IKEv1 PSK)
-- [Cisco Security Advisories](https://sec.cloudapps.cisco.com/security/center/publicationListing.x)
-- [Palo Alto Security Advisories](https://security.paloaltonetworks.com/)
-- [Fortinet PSIRT](https://www.fortiguard.com/psirt)
-- [Citrix Security Bulletins](https://support.citrix.com/security-bulletins)
-- [Ivanti Security Advisories](https://forums.ivanti.com/s/global-search/security-advisories)
-- [MITRE ATT&CK T1133 - External Remote Services](https://attack.mitre.org/techniques/T1133/)
-- [MITRE ATT&CK T1078 - Valid Accounts](https://attack.mitre.org/techniques/T1078/)
+- ike-scan - https://github.com/royhills/ike-scan - IKE scanner
+- hashcat - https://hashcat.net/hashcat/ - mode 5300 (IKEv1 PSK)
+- Cisco Security Advisories - https://sec.cloudapps.cisco.com/security/center/publicationListing.x
+- Palo Alto Security Advisories - https://security.paloaltonetworks.com/
+- Fortinet PSIRT - https://www.fortiguard.com/psirt
+- Citrix Security Bulletins - https://support.citrix.com/security-bulletins
+- Ivanti Security Advisories - https://forums.ivanti.com/s/global-search/security-advisories
+- MITRE ATT&CK T1133 - External Remote Services - https://attack.mitre.org/techniques/T1133/
+- MITRE ATT&CK T1078 - Valid Accounts - https://attack.mitre.org/techniques/T1078/
 - NIST SP 800-77 - Guide to IPsec VPNs
 - NSA - "Selecting and Hardening Remote Access VPNs"
 - `man ike-scan`, `man psk-crack`

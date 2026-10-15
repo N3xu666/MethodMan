@@ -541,29 +541,29 @@ service), and the entire cluster.
 
 **Linux documentation:**
 
-- [Linux namespaces](https://man7.org/linux/man-pages/man7/namespaces.7.html)
-- [Linux cgroups](https://man7.org/linux/man-pages/man7/cgroups.7.html)
-- [Docker security](https://docs.docker.com/engine/security/)
-- [Kubernetes security](https://kubernetes.io/docs/concepts/security/)
+- Linux namespaces - https://man7.org/linux/man-pages/man7/namespaces.7.html
+- Linux cgroups - https://man7.org/linux/man-pages/man7/cgroups.7.html
+- Docker security - https://docs.docker.com/engine/security/
+- Kubernetes security - https://kubernetes.io/docs/concepts/security/
 
 **MITRE ATT&CK:**
 
-- [Privilege Escalation - Escape to Host (T1611)](https://attack.mitre.org/techniques/T1611/)
-- [Discovery - Container and Resource Discovery (T1613)](https://attack.mitre.org/techniques/T1613/)
-- [Execution - Deploy Container (T1610)](https://attack.mitre.org/techniques/T1610/)
+- Privilege Escalation - Escape to Host (T1611) - https://attack.mitre.org/techniques/T1611/
+- Discovery - Container and Resource Discovery (T1613) - https://attack.mitre.org/techniques/T1613/
+- Execution - Deploy Container (T1610) - https://attack.mitre.org/techniques/T1610/
 
 **Tools:**
 
-- [peirates](https://github.com/inguardians/peirates)
-- [kube-hunter](https://github.com/aquasecurity/kube-hunter)
-- [kube-bench](https://github.com/aquasecurity/kube-bench)
-- [CDK](https://github.com/cdk-team/CDK)
-- [deepce](https://github.com/stealthcopter/deepce)
-- [Falco](https://falco.org/)
+- peirates - https://github.com/inguardians/peirates
+- kube-hunter - https://github.com/aquasecurity/kube-hunter
+- kube-bench - https://github.com/aquasecurity/kube-bench
+- CDK - https://github.com/cdk-team/CDK
+- deepce - https://github.com/stealthcopter/deepce
+- Falco - https://falco.org/
 
 **Research:**
 
-- [HackTricks - Container Security](https://book.hacktricks.xyz/linux-hardening/container-security)
-- [Kubernetes Goat](https://madhuakula.com/kubernetes-goat/)
-- [Container Escape Techniques](https://blog.trailofbits.com/2019/07/19/understanding-docker-container-escapes/)
-- [Kubernetes RBAC Good Practices](https://kubernetes.io/docs/concepts/security/rbac-good-practices/)
+- HackTricks - Container Security - https://book.hacktricks.xyz/linux-hardening/container-security
+- Kubernetes Goat - https://madhuakula.com/kubernetes-goat/
+- Container Escape Techniques - https://blog.trailofbits.com/2019/07/19/understanding-docker-container-escapes/
+- Kubernetes RBAC Good Practices - https://kubernetes.io/docs/concepts/security/rbac-good-practices/
