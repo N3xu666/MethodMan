@@ -29,10 +29,10 @@ This subcategory covers:
 
 | # | File | Focus | Status |
 |---|------|-------|--------|
-| 01 | Tails | Amnesic live OS with Tor by default | planned |
-| 02 | Qubes / Whonix | Compartmentalization and Tor gateway | planned |
-| 03 | Data Destruction | Secure wipe and SSD caveats | planned |
-| 04 | Metadata | File metadata stripping and hygiene | planned |
+| 01 | [Tails](./01%20Tails.md) | Amnesic live OS with Tor by default | done |
+| 02 | [Qubes / Whonix](./02%20Qubes-Whonix.md) | Compartmentalization and Tor gateway | done |
+| 03 | [Data Destruction](./03%20Data%20Destruction.md) | Secure wipe and SSD caveats | done |
+| 04 | [Metadata](./04%20Metadata.md) | File metadata stripping and hygiene | done |
 
 ## Related
 

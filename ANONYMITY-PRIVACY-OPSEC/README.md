@@ -88,7 +88,7 @@ ANONYMITY-PRIVACY-OPSEC/
 |---|-------------|--------|--------|
 | 01 | Anonymous Networks | Hands-on | done |
 | 02 | Secure Communications | Hands-on | done |
-| 03 | Operating Systems and Hygiene | Hands-on | planned |
+| 03 | Operating Systems and Hygiene | Hands-on | done |
 | 04 | Dark Web | Hands-on | planned |
 | 05 | Anonymous Hosting | Hands-on | planned |
 | 06 | Anonymous Crypto Operations and AML | Hands-on | planned |
