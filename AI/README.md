@@ -30,7 +30,7 @@ web application security.
 | 02 | [RAG-and-Embeddings](./02%20RAG-and-Embeddings/) | ~4 | done |
 | 03 | [Agents-and-MCP](./03%20Agents-and-MCP/) | ~4 | done |
 | 04 | [AI-Supply-Chain](./04%20AI-Supply-Chain/) | ~4 | done |
-| 05 | OSAI-Prep | ~3 | planned |
+| 05 | [OSAI-Prep](./05%20OSAI-Prep/) | ~3 | done |
 
 ## Related Categories
 
