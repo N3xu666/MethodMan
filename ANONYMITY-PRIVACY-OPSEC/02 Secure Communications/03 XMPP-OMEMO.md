@@ -300,13 +300,13 @@ If you are deploying XMPP/OMEMO for a small group:
 
 ## 13. References
 
-- [XMPP Standards Foundation](https://xmpp.org/)
-- [XEP-0384: OMEMO Encryption](https://xmpp.org/extensions/xep-0384.html)
-- [XEP-0450: Automatic Trust Management (ATM)](https://xmpp.org/extensions/xep-0450.html)
-- [Conversations (Android)](https://conversations.im/)
-- [Gajim (desktop)](https://gajim.org/)
-- [Dino (Linux)](https://dino.im/)
-- [Prosody XMPP server](https://prosody.im/)
-- [Signal Protocol specification](https://signal.org/docs/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Real-Time Communication](https://www.privacyguides.org/en/real-time-communication/)
+- XMPP Standards Foundation - https://xmpp.org/
+- XEP-0384: OMEMO Encryption - https://xmpp.org/extensions/xep-0384.html
+- XEP-0450: Automatic Trust Management (ATM) - https://xmpp.org/extensions/xep-0450.html
+- Conversations (Android) - https://conversations.im/
+- Gajim (desktop) - https://gajim.org/
+- Dino (Linux) - https://dino.im/
+- Prosody XMPP server - https://prosody.im/
+- Signal Protocol specification - https://signal.org/docs/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Real-Time Communication - https://www.privacyguides.org/en/real-time-communication/

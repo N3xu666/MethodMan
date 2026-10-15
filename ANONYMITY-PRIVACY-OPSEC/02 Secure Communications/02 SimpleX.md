@@ -298,10 +298,10 @@ If you are deploying SimpleX for a small group:
 
 ## 13. References
 
-- [SimpleX official site](https://simplex.chat/)
-- [SimpleX documentation](https://github.com/simplex-chat/simplex-chat/tree/stable/docs)
-- [SimpleX whitepaper](https://github.com/simplex-chat/simplex-chat/blob/stable/docs/SIMPLEX.md)
-- [SimpleX source code (GitHub)](https://github.com/simplex-chat/simplex-chat)
-- [Signal Protocol specification](https://signal.org/docs/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Real-Time Communication](https://www.privacyguides.org/en/real-time-communication/)
+- SimpleX official site - https://simplex.chat/
+- SimpleX documentation - https://github.com/simplex-chat/simplex-chat/tree/stable/docs
+- SimpleX whitepaper - https://github.com/simplex-chat/simplex-chat/blob/stable/docs/SIMPLEX.md
+- SimpleX source code (GitHub) - https://github.com/simplex-chat/simplex-chat
+- Signal Protocol specification - https://signal.org/docs/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Real-Time Communication - https://www.privacyguides.org/en/real-time-communication/

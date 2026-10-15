@@ -329,12 +329,12 @@ If you are deploying metadata hygiene for a small group:
 
 ## 13. References
 
-- [ExifTool](https://exiftool.org/)
-- [mat2 (Metadata Anonymisation Toolkit 2)](https://0xacab.org/jvoisin/mat2)
-- [qpdf](https://qpdf.readthedocs.io/)
-- [Ghostscript](https://www.ghostscript.com/)
-- [ffmpeg](https://ffmpeg.org/)
-- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - File Metadata](https://www.privacyguides.org/en/metadata/)
-- [NIST SP 800-101 Rev. 1: Guidelines on Mobile Device Forensics](https://csrc.nist.gov/publications/detail/sp/800-101/rev-1/final)
+- ExifTool - https://exiftool.org/
+- mat2 (Metadata Anonymisation Toolkit 2) - https://0xacab.org/jvoisin/mat2
+- qpdf - https://qpdf.readthedocs.io/
+- Ghostscript - https://www.ghostscript.com/
+- ffmpeg - https://ffmpeg.org/
+- Tesseract OCR - https://github.com/tesseract-ocr/tesseract
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - File Metadata - https://www.privacyguides.org/en/metadata/
+- NIST SP 800-101 Rev. 1: Guidelines on Mobile Device Forensics - https://csrc.nist.gov/publications/detail/sp/800-101/rev-1/final

@@ -352,11 +352,11 @@ If you are deploying an onion service for a small group (journalists, activists,
 
 ## 13. References
 
-- [Tor Project - Onion Services](https://community.torproject.org/onion-services/)
-- [Tor Project - Onion Service Setup](https://community.torproject.org/onion-services/setup/)
-- [Tor Project - Onion Service Best Practices](https://community.torproject.org/onion-services/advanced/)
-- [Tor Project - v3 Onion Services](https://support.torproject.org/onionservices/v3-onion-services/)
-- [OnionShare](https://onionshare.org/)
-- [SecureDrop](https://securedrop.org/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Tor](https://www.privacyguides.org/en/tor/)
+- Tor Project - Onion Services - https://community.torproject.org/onion-services/
+- Tor Project - Onion Service Setup - https://community.torproject.org/onion-services/setup/
+- Tor Project - Onion Service Best Practices - https://community.torproject.org/onion-services/advanced/
+- Tor Project - v3 Onion Services - https://support.torproject.org/onionservices/v3-onion-services/
+- OnionShare - https://onionshare.org/
+- SecureDrop - https://securedrop.org/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Tor - https://www.privacyguides.org/en/tor/

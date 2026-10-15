@@ -308,10 +308,10 @@ If you are deploying Tails for a small group (journalists, activists, a security
 
 ## 13. References
 
-- [Tails official site](https://tails.net/)
-- [Tails documentation](https://tails.net/doc/)
-- [Tails signing key](https://tails.net/torrents/files/tails-signing.key)
-- [SecureDrop](https://securedrop.org/)
-- [Tor Project](https://www.torproject.org/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Operating Systems](https://www.privacyguides.org/en/os/)
+- Tails official site - https://tails.net/
+- Tails documentation - https://tails.net/doc/
+- Tails signing key - https://tails.net/torrents/files/tails-signing.key
+- SecureDrop - https://securedrop.org/
+- Tor Project - https://www.torproject.org/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Operating Systems - https://www.privacyguides.org/en/os/

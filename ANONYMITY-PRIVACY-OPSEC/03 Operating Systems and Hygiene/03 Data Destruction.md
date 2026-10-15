@@ -322,13 +322,13 @@ If you are deploying data destruction for a small group:
 
 ## 13. References
 
-- [NIST SP 800-88 Rev. 1: Guidelines for Media Sanitization](https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final)
-- [ATA Secure Erase (hdparm)](https://ata.wiki.kernel.org/index.php/ATA_Secure_Erase)
-- [NVMe Specification (Sanitize)](https://nvmexpress.org/)
-- [LUKS / cryptsetup](https://gitlab.com/cryptsetup/cryptsetup)
-- [GnuPG - shred documentation](https://www.gnu.org/software/coreutils/manual/html_node/shred-invocation.html)
-- [DBAN (HDD-only)](https://dban.org/)
-- [nwipe](https://github.com/martijnvanbrummelen/nwipe)
-- [Eraser (Windows)](https://eraser.heidi.ie/)
-- [Cold boot attacks (Princeton, 2008)](https://citp.princeton.edu/our-work/memory/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
+- NIST SP 800-88 Rev. 1: Guidelines for Media Sanitization - https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final
+- ATA Secure Erase (hdparm) - https://ata.wiki.kernel.org/index.php/ATA_Secure_Erase
+- NVMe Specification (Sanitize) - https://nvmexpress.org/
+- LUKS / cryptsetup - https://gitlab.com/cryptsetup/cryptsetup
+- GnuPG - shred documentation - https://www.gnu.org/software/coreutils/manual/html_node/shred-invocation.html
+- DBAN (HDD-only) - https://dban.org/
+- nwipe - https://github.com/martijnvanbrummelen/nwipe
+- Eraser (Windows) - https://eraser.heidi.ie/
+- Cold boot attacks (Princeton, 2008) - https://citp.princeton.edu/our-work/memory/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/

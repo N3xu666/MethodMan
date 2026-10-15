@@ -254,10 +254,10 @@ If you are deploying Session for a small group (journalists, activists, a securi
 
 ## 13. References
 
-- [Session official site](https://getsession.org/)
-- [Session documentation](https://docs.getsession.org/)
-- [Oxen Privacy Tech Foundation](https://oxen.io/)
-- [Session source code (GitHub)](https://github.com/oxen-io/session-desktop)
-- [Signal Protocol specification](https://signal.org/docs/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Real-Time Communication](https://www.privacyguides.org/en/real-time-communication/)
+- Session official site - https://getsession.org/
+- Session documentation - https://docs.getsession.org/
+- Oxen Privacy Tech Foundation - https://oxen.io/
+- Session source code (GitHub) - https://github.com/oxen-io/session-desktop
+- Signal Protocol specification - https://signal.org/docs/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Real-Time Communication - https://www.privacyguides.org/en/real-time-communication/

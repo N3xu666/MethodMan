@@ -297,13 +297,13 @@ If you are deploying anonymous email for a small group:
 
 ## 13. References
 
-- [Proton Mail](https://proton.me/mail)
-- [Tutanota](https://tutanota.com/)
-- [Mailfence](https://mailfence.com/)
-- [Proton Mail onion service](https://protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion/)
-- [SimpleLogin](https://simplelogin.io/)
-- [AnonAddy](https://anonaddy.com/)
-- [Mail-in-a-Box](https://mailinabox.email/)
-- [OpenPGP Best Practices](https://riseup.net/en/security/message-security/openpgp/best-practices)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Email Services](https://www.privacyguides.org/en/email/)
+- Proton Mail - https://proton.me/mail
+- Tutanota - https://tutanota.com/
+- Mailfence - https://mailfence.com/
+- Proton Mail onion service - https://protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion/
+- SimpleLogin - https://simplelogin.io/
+- AnonAddy - https://anonaddy.com/
+- Mail-in-a-Box - https://mailinabox.email/
+- OpenPGP Best Practices - https://riseup.net/en/security/message-security/openpgp/best-practices
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Email Services - https://www.privacyguides.org/en/email/

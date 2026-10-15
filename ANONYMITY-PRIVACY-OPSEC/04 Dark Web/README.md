@@ -62,8 +62,8 @@ Hidden services, OnionShare, and SecureDrop are legal to use in most jurisdictio
 
 ## References
 
-- [Tor Project - Onion Services](https://community.torproject.org/onion-services/)
-- [OnionShare](https://onionshare.org/)
-- [SecureDrop](https://securedrop.org/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Tor](https://www.privacyguides.org/en/tor/)
+- Tor Project - Onion Services - https://community.torproject.org/onion-services/
+- OnionShare - https://onionshare.org/
+- SecureDrop - https://securedrop.org/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Tor - https://www.privacyguides.org/en/tor/

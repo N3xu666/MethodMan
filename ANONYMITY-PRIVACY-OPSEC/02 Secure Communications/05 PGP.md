@@ -373,14 +373,14 @@ If you are deploying PGP for a small group:
 
 ## 13. References
 
-- [GnuPG](https://gnupg.org/)
-- [GnuPG documentation](https://gnupg.org/documentation/)
-- [OpenPGP RFC 4880](https://datatracker.ietf.org/doc/html/rfc4880)
-- [OpenPGP RFC 9580 (2024)](https://datatracker.ietf.org/doc/html/rfc9580)
-- [keys.openpgp.org](https://keys.openpgp.org/)
-- [Gpg4win (Windows)](https://www.gpg4win.org/)
-- [GPG Suite (macOS)](https://gpgtools.org/)
-- [Thunderbird OpenPGP](https://support.mozilla.org/en-US/kb/openpgp-thunderbird-howto-and-faq)
-- [Riseup OpenPGP Best Practices](https://riseup.net/en/security/message-security/openpgp/best-practices)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Encrypted Email](https://www.privacyguides.org/en/email-encryption/)
+- GnuPG - https://gnupg.org/
+- GnuPG documentation - https://gnupg.org/documentation/
+- OpenPGP RFC 4880 - https://datatracker.ietf.org/doc/html/rfc4880
+- OpenPGP RFC 9580 (2024) - https://datatracker.ietf.org/doc/html/rfc9580
+- keys.openpgp.org - https://keys.openpgp.org/
+- Gpg4win (Windows) - https://www.gpg4win.org/
+- GPG Suite (macOS) - https://gpgtools.org/
+- Thunderbird OpenPGP - https://support.mozilla.org/en-US/kb/openpgp-thunderbird-howto-and-faq
+- Riseup OpenPGP Best Practices - https://riseup.net/en/security/message-security/openpgp/best-practices
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Encrypted Email - https://www.privacyguides.org/en/email-encryption/

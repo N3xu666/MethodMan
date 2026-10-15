@@ -51,8 +51,8 @@ Privacy-focused operating systems are legal to use in most jurisdictions. Howeve
 
 ## References
 
-- [Tails](https://tails.net/)
-- [Qubes OS](https://www.qubes-os.org/)
-- [Whonix](https://www.whonix.org/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Operating Systems](https://www.privacyguides.org/en/os/)
+- Tails - https://tails.net/
+- Qubes OS - https://www.qubes-os.org/
+- Whonix - https://www.whonix.org/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Operating Systems - https://www.privacyguides.org/en/os/

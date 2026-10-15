@@ -361,10 +361,10 @@ If you are deploying OnionShare for a small group (journalists, activists, a sec
 
 ## 13. References
 
-- [OnionShare official site](https://onionshare.org/)
-- [OnionShare documentation](https://docs.onionshare.org/)
-- [OnionShare source code (GitHub)](https://github.com/onionshare/onionshare)
-- [Freedom of the Press Foundation](https://freedom.press/)
-- [Tor Project - Onion Services](https://community.torproject.org/onion-services/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - File Sharing](https://www.privacyguides.org/en/file-sharing/)
+- OnionShare official site - https://onionshare.org/
+- OnionShare documentation - https://docs.onionshare.org/
+- OnionShare source code (GitHub) - https://github.com/onionshare/onionshare
+- Freedom of the Press Foundation - https://freedom.press/
+- Tor Project - Onion Services - https://community.torproject.org/onion-services/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - File Sharing - https://www.privacyguides.org/en/file-sharing/

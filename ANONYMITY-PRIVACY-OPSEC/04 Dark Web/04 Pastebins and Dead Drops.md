@@ -372,12 +372,12 @@ If you are deploying pastebin / dead drop workflows for a small group:
 
 ## 13. References
 
-- [PrivateBin](https://privatebin.info/)
-- [PrivateBin demo instance](https://privatebin.net/)
-- [MicroBin](https://github.com/szabodanika/microbin)
+- PrivateBin - https://privatebin.info/
+- PrivateBin demo instance - https://privatebin.net/
+- MicroBin - https://github.com/szabodanika/microbin
 - [Pastebin.com](https://pastebin.com/) (public; not recommended for sensitive content)
 - [0x0.st](https://0x0.st/) (file paste, not text-only)
-- [OnionShare](https://onionshare.org/)
-- [Tor Project - Onion Services](https://community.torproject.org/onion-services/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - File Sharing](https://www.privacyguides.org/en/file-sharing/)
+- OnionShare - https://onionshare.org/
+- Tor Project - Onion Services - https://community.torproject.org/onion-services/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - File Sharing - https://www.privacyguides.org/en/file-sharing/

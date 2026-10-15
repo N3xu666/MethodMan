@@ -316,13 +316,13 @@ If you are deploying Qubes/Whonix for a small group:
 
 ## 13. References
 
-- [Qubes OS](https://www.qubes-os.org/)
-- [Qubes documentation](https://www.qubes-os.org/doc/)
-- [Qubes HCL (supported hardware)](https://www.qubes-os.org/hcl/)
-- [Whonix](https://www.whonix.org/)
-- [Whonix documentation](https://www.whonix.org/wiki/Documentation)
-- [Qubes-Whonix](https://www.whonix.org/wiki/Qubes)
-- [Xen Project](https://xenproject.org/)
-- [Tor Project](https://www.torproject.org/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Operating Systems](https://www.privacyguides.org/en/os/)
+- Qubes OS - https://www.qubes-os.org/
+- Qubes documentation - https://www.qubes-os.org/doc/
+- Qubes HCL (supported hardware) - https://www.qubes-os.org/hcl/
+- Whonix - https://www.whonix.org/
+- Whonix documentation - https://www.whonix.org/wiki/Documentation
+- Qubes-Whonix - https://www.whonix.org/wiki/Qubes
+- Xen Project - https://xenproject.org/
+- Tor Project - https://www.torproject.org/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Operating Systems - https://www.privacyguides.org/en/os/

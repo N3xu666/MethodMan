@@ -55,6 +55,6 @@ If you are a security professional, use these tools only within the scope of an 
 
 ## References
 
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
-- [Privacy Guides - Communication](https://www.privacyguides.org/en/real-time-communication/)
-- [Freedom of the Press Foundation](https://freedom.press/)
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
+- Privacy Guides - Communication - https://www.privacyguides.org/en/real-time-communication/
+- Freedom of the Press Foundation - https://freedom.press/

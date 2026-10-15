@@ -328,10 +328,10 @@ If you are deploying SecureDrop for a newsroom:
 
 ## 13. References
 
-- [SecureDrop official site](https://securedrop.org/)
-- [SecureDrop documentation](https://docs.securedrop.org/)
-- [Freedom of the Press Foundation](https://freedom.press/)
-- [SecureDrop source code (GitHub)](https://github.com/freedomofpress/securedrop)
-- [SecureDrop audits](https://securedrop.org/security-audits/)
-- [Tor Project - Onion Services](https://community.torproject.org/onion-services/)
-- [Electronic Frontier Foundation - Surveillance Self-Defense](https://ssd.eff.org/)
+- SecureDrop official site - https://securedrop.org/
+- SecureDrop documentation - https://docs.securedrop.org/
+- Freedom of the Press Foundation - https://freedom.press/
+- SecureDrop source code (GitHub) - https://github.com/freedomofpress/securedrop
+- SecureDrop audits - https://securedrop.org/security-audits/
+- Tor Project - Onion Services - https://community.torproject.org/onion-services/
+- Electronic Frontier Foundation - Surveillance Self-Defense - https://ssd.eff.org/
