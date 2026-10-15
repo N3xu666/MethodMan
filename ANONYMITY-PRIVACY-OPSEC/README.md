@@ -87,7 +87,7 @@ ANONYMITY-PRIVACY-OPSEC/
 | # | Subcategory | Format | Status |
 |---|-------------|--------|--------|
 | 01 | Anonymous Networks | Hands-on | done |
-| 02 | Secure Communications | Hands-on | planned |
+| 02 | Secure Communications | Hands-on | done |
 | 03 | Operating Systems and Hygiene | Hands-on | planned |
 | 04 | Dark Web | Hands-on | planned |
 | 05 | Anonymous Hosting | Hands-on | planned |
