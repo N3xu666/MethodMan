@@ -31,18 +31,18 @@ Every file uses the two-track structure:
 
 ## Files
 
-| # | Risk | File | Status |
-|---|------|------|--------|
-| 01 | LLM01: Prompt Injection | [LLM01.md](./LLM01.md) | done |
-| 02 | LLM02: Insecure Output Handling | [LLM02.md](./LLM02.md) | done |
-| 03 | LLM03: Training Data Poisoning | [LLM03.md](./LLM03.md) | done |
-| 04 | LLM04: Model Denial of Service | [LLM04.md](./LLM04.md) | done |
-| 05 | LLM05: Supply Chain Vulnerabilities | [LLM05.md](./LLM05.md) | done |
-| 06 | LLM06: Sensitive Information Disclosure | [LLM06.md](./LLM06.md) | done |
-| 07 | LLM07: Insecure Plugin Design | [LLM07.md](./LLM07.md) | done |
-| 08 | LLM08: Excessive Agency | [LLM08.md](./LLM08.md) | done |
-| 09 | LLM09: Overreliance | [LLM09.md](./LLM09.md) | done |
-| 10 | LLM10: Model Theft | [LLM10.md](./LLM10.md) | done |
+| # | Risk | File |
+|---|---|---|
+| 01 | LLM01: Prompt Injection | [LLM01.md](./LLM01.md) |
+| 02 | LLM02: Insecure Output Handling | [LLM02.md](./LLM02.md) |
+| 03 | LLM03: Training Data Poisoning | [LLM03.md](./LLM03.md) |
+| 04 | LLM04: Model Denial of Service | [LLM04.md](./LLM04.md) |
+| 05 | LLM05: Supply Chain Vulnerabilities | [LLM05.md](./LLM05.md) |
+| 06 | LLM06: Sensitive Information Disclosure | [LLM06.md](./LLM06.md) |
+| 07 | LLM07: Insecure Plugin Design | [LLM07.md](./LLM07.md) |
+| 08 | LLM08: Excessive Agency | [LLM08.md](./LLM08.md) |
+| 09 | LLM09: Overreliance | [LLM09.md](./LLM09.md) |
+| 10 | LLM10: Model Theft | [LLM10.md](./LLM10.md) |
 
 > **Note:** risk numbers and titles follow the OWASP LLM Top 10 2025
 > edition. If the 2026 edition renumbers or renames a risk, the file

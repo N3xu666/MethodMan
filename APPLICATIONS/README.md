@@ -9,10 +9,10 @@ verification) sides.
 
 ## Categories
 
-| # | Category | Description | Status |
-|---|----------|-------------|--------|
-| 1 | [Web](./01%20Web/) | Web application security reference (recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10) | active |
-| 2 | [API](./05%20API/) | API security reference (REST, GraphQL, gRPC, WebSocket, SOAP, authentication, rate limiting, API gateways, OWASP API Top 10) | active |
+| # | Category | Description |
+|---|---|---|
+| 1 | [Web](./01%20Web/) | Web application security reference (recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10) |
+| 2 | [API](./05%20API/) | API security reference (REST, GraphQL, gRPC, WebSocket, SOAP, authentication, rate limiting, API gateways, OWASP API Top 10) |
 
 ## Format
 

@@ -45,11 +45,11 @@ All files in this subcategory use the **Hands-on** format:
 
 ## Files
 
-| # | File | Status |
-|---|------|--------|
-| 01 | [Bulletproof Hosting](./01%20Bulletproof%20Hosting.md) | done |
-| 02 | [Offshore VPS and Domains](./02%20Offshore%20VPS%20and%20Domains.md) | done |
-| 03 | [CDN Fronting](./03%20CDN%20Fronting.md) | done |
+| # | File |
+|---|---|
+| 01 | [Bulletproof Hosting](./01%20Bulletproof%20Hosting.md) |
+| 02 | [Offshore VPS and Domains](./02%20Offshore%20VPS%20and%20Domains.md) |
+| 03 | [CDN Fronting](./03%20CDN%20Fronting.md) |
 
 ## Related
 

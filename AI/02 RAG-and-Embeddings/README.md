@@ -34,12 +34,12 @@ Every file uses the two-track structure:
 
 ## Files
 
-| # | Topic | File | Status |
-|---|-------|------|--------|
-| 01 | RAG Fundamentals | [01 RAG-Fundamentals.md](./01%20RAG-Fundamentals.md) | done |
-| 02 | Embedding Attacks | [02 Embedding-Attacks.md](./02%20Embedding-Attacks.md) | done |
-| 03 | RAG Injection | [03 RAG-Injection.md](./03%20RAG-Injection.md) | done |
-| 04 | RAG Defense | [04 RAG-Defense.md](./04%20RAG-Defense.md) | done |
+| # | Topic | File |
+|---|---|---|
+| 01 | RAG Fundamentals | [01 RAG-Fundamentals.md](./01%20RAG-Fundamentals.md) |
+| 02 | Embedding Attacks | [02 Embedding-Attacks.md](./02%20Embedding-Attacks.md) |
+| 03 | RAG Injection | [03 RAG-Injection.md](./03%20RAG-Injection.md) |
+| 04 | RAG Defense | [04 RAG-Defense.md](./04%20RAG-Defense.md) |
 
 ## Scope
 

@@ -82,24 +82,18 @@ ANONYMITY-PRIVACY-OPSEC/
 
 ---
 
-## Subcategory Status
+## Subcategories
 
-| # | Subcategory | Format | Status |
-|---|-------------|--------|--------|
-| 01 | [Anonymous Networks](./01%20Anonymous%20Networks/) | Hands-on | done |
-| 02 | [Secure Communications](./02%20Secure%20Communications/) | Hands-on | done |
-| 03 | [Operating Systems and Hygiene](./03%20Operating%20Systems%20and%20Hygiene/) | Hands-on | done |
-| 04 | [Dark Web](./04%20Dark%20Web/) | Hands-on | done |
-| 05 | [Anonymous Hosting](./05%20Anonymous%20Hosting/) | Hands-on | done |
-| 06 | [Anonymous Crypto Operations and AML](./06%20Anonymous%20Crypto%20Operations%20and%20AML/) | Hands-on | done |
-| 07 | [OpSec and Threat Models](./07%20OpSec%20and%20Threat%20Models/) | Conceptual | done |
-| 08 | [Attacks and Detection](./08%20Attacks%20and%20Detection/) | Conceptual | done |
-
-Status legend:
-
-- **in progress** - at least one file written, subcategory not complete.
-- **planned** - index README exists, no content files yet.
-- **done** - all files written and reviewed.
+| # | Subcategory | Format |
+|---|---|---|
+| 01 | [Anonymous Networks](./01%20Anonymous%20Networks/) | Hands-on |
+| 02 | [Secure Communications](./02%20Secure%20Communications/) | Hands-on |
+| 03 | [Operating Systems and Hygiene](./03%20Operating%20Systems%20and%20Hygiene/) | Hands-on |
+| 04 | [Dark Web](./04%20Dark%20Web/) | Hands-on |
+| 05 | [Anonymous Hosting](./05%20Anonymous%20Hosting/) | Hands-on |
+| 06 | [Anonymous Crypto Operations and AML](./06%20Anonymous%20Crypto%20Operations%20and%20AML/) | Hands-on |
+| 07 | [OpSec and Threat Models](./07%20OpSec%20and%20Threat%20Models/) | Conceptual |
+| 08 | [Attacks and Detection](./08%20Attacks%20and%20Detection/) | Conceptual |
 
 ---
 

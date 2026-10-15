@@ -21,9 +21,9 @@ exam, client engagement with written permission).
 
 ## Tools
 
-| Tool | Purpose | Status |
-|------|---------|--------|
-| [`Session_Report.py`](./Session_Report.md) | Terminal session recorder that produces a walkthrough draft (Linux-only, uses `script(1)`). | active |
+| Tool | Purpose |
+|---|---|
+| [`Session_Report.py`](./Session_Report.md) | Terminal session recorder that produces a walkthrough draft (Linux-only, uses `script(1)`). |
 
 ## Conventions
 

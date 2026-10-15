@@ -1,4 +1,4 @@
-# Go Tools
+﻿# Go Tools
 
 > **Status:** scaffolding only. No runnable tools yet.
 
@@ -21,9 +21,9 @@ exam, client engagement with written permission).
 
 ## Tools
 
-| Tool | Purpose | Status |
-|------|---------|--------|
-| _(none yet)_ | | |
+| Tool | Purpose |
+|---|---|
+| _(none yet)_ | |
 
 ## Conventions
 

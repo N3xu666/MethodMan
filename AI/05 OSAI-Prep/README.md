@@ -18,11 +18,11 @@ The exam is hands-on and lab-based, in the same spirit as OSCP: a time-boxed env
 
 ## Files
 
-| # | File | Status |
-|---|------|--------|
-| 01 | [OSAI Exam Overview](./01%20OSAI-Exam-Overview.md) | done |
-| 02 | [OSAI Attack Scenarios](./02%20OSAI-Attack-Scenarios.md) | done |
-| 03 | [OSAI Defense and Reporting](./03%20OSAI-Defense-and-Reporting.md) | done |
+| # | File |
+|---|---|
+| 01 | [OSAI Exam Overview](./01%20OSAI-Exam-Overview.md) |
+| 02 | [OSAI Attack Scenarios](./02%20OSAI-Attack-Scenarios.md) |
+| 03 | [OSAI Defense and Reporting](./03%20OSAI-Defense-and-Reporting.md) |
 
 ## Format
 

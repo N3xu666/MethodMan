@@ -29,13 +29,13 @@ This subcategory covers:
 
 ## Files
 
-| # | File | Focus | Status |
-|---|------|-------|--------|
-| 01 | [Session](./01%20Session.md) | Onion-routed decentralized messenger | done |
-| 02 | [SimpleX](./02%20SimpleX.md) | Identifier-free messenger | done |
-| 03 | [XMPP / OMEMO](./03%20XMPP-OMEMO.md) | Federated E2EE messaging | done |
-| 04 | [Anonymous Email](./04%20Anonymous%20Email.md) | Privacy-focused email providers | done |
-| 05 | [PGP](./05%20PGP.md) | Key management and signing | done |
+| # | File | Focus |
+|---|---|---|
+| 01 | [Session](./01%20Session.md) | Onion-routed decentralized messenger |
+| 02 | [SimpleX](./02%20SimpleX.md) | Identifier-free messenger |
+| 03 | [XMPP / OMEMO](./03%20XMPP-OMEMO.md) | Federated E2EE messaging |
+| 04 | [Anonymous Email](./04%20Anonymous%20Email.md) | Privacy-focused email providers |
+| 05 | [PGP](./05%20PGP.md) | Key management and signing |
 
 ## Related
 

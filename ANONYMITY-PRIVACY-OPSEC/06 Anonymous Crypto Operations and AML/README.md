@@ -54,16 +54,16 @@ All files in this subcategory use the **Hands-on** format:
 
 ## Files
 
-| # | File | Status |
-|---|------|--------|
-| 01 | [Monero](./01%20Monero.md) | done |
-| 02 | [Bitcoin](./02%20Bitcoin.md) | done |
-| 03 | [Physical and Prepaid](./03%20Physical%20and%20Prepaid.md) | done |
-| 04 | [Mixers and Tumblers](./04%20Mixers%20and%20Tumblers.md) | done |
-| 05 | [Chain-Hopping and DEX](./05%20Chain-Hopping%20and%20DEX.md) | done |
-| 06 | [Transaction OpSec](./06%20Transaction%20OpSec.md) | done |
-| 07 | [AML and Chain Analysis](./07%20AML%20and%20Chain%20Analysis.md) | done |
-| 08 | [Cashing Out](./08%20Cashing%20Out.md) | done |
+| # | File |
+|---|---|
+| 01 | [Monero](./01%20Monero.md) |
+| 02 | [Bitcoin](./02%20Bitcoin.md) |
+| 03 | [Physical and Prepaid](./03%20Physical%20and%20Prepaid.md) |
+| 04 | [Mixers and Tumblers](./04%20Mixers%20and%20Tumblers.md) |
+| 05 | [Chain-Hopping and DEX](./05%20Chain-Hopping%20and%20DEX.md) |
+| 06 | [Transaction OpSec](./06%20Transaction%20OpSec.md) |
+| 07 | [AML and Chain Analysis](./07%20AML%20and%20Chain%20Analysis.md) |
+| 08 | [Cashing Out](./08%20Cashing%20Out.md) |
 
 ## Related
 
