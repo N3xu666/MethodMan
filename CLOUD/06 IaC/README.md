@@ -18,11 +18,11 @@ It does NOT repeat cloud service attacks (covered in 01 AWS, 02 Azure, 03 GCP) o
 
 | # | File | Format |
 |---|------|--------|
-| 01 | IaC Fundamentals | Two-track |
-| 02 | State Files and Plan Artifacts | Two-track |
-| 03 | Modules and Supply Chain | Two-track |
-| 04 | CI/CD and Provider Trust | Two-track |
-| 05 | Misconfiguration Patterns and Policy as Code | Two-track |
+| 01 | [IaC Fundamentals](./01%20IaC%20Fundamentals.md) | Two-track |
+| 02 | [State Files and Plan Artifacts](./02%20State%20Files%20and%20Plan%20Artifacts.md) | Two-track |
+| 03 | [Modules and Supply Chain](./03%20Modules%20and%20Supply%20Chain.md) | Two-track |
+| 04 | [CI/CD and Provider Trust](./04%20CI-CD%20and%20Provider%20Trust.md) | Two-track |
+| 05 | [Misconfiguration Patterns and Policy as Code](./05%20Misconfiguration%20Patterns%20and%20Policy%20as%20Code.md) | Two-track |
 
 ## Format
 

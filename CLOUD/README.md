@@ -13,7 +13,7 @@ This category follows the two-track format: each file covers both the offensive 
 | 03 | [GCP](./03%20GCP/) | 5 (done) | done |
 | 04 | [Kubernetes-Cloud](./04%20Kubernetes-Cloud/) | 5 (done) | done |
 | 05 | [Serverless](./05%20Serverless/) | 4 (done) | done |
-| 06 | IaC | planned | planned |
+| 06 | [IaC](./06%20IaC/) | 5 (done) | done |
 
 ## Format
 
