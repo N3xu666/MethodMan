@@ -10,11 +10,11 @@ This subcategory covers AWS-specific security: identity and access, storage, com
 
 | # | File | Format |
 |---|------|--------|
-| 01 | [AWS Fundamentals](./01%20AWS%20Fundamentals.md) | two-track |
-| 02 | [IAM and Credential Attacks](./02%20IAM%20and%20Credential%20Attacks.md) | two-track |
-| 03 | [S3 and Storage Attacks](./03%20S3%20and%20Storage%20Attacks.md) | two-track |
-| 04 | [EC2 and Compute Attacks](./04%20EC2%20and%20Compute%20Attacks.md) | two-track |
-| 05 | [AWS Defense and Detection](./05%20AWS%20Defense%20and%20Detection.md) | two-track |
+| 01 | [AWS Fundamentals](./01%20AWS%20Fundamentals.md) | done |
+| 02 | [IAM and Credential Attacks](./02%20IAM%20and%20Credential%20Attacks.md) | done |
+| 03 | [S3 and Storage Attacks](./03%20S3%20and%20Storage%20Attacks.md) | done |
+| 04 | [EC2 and Compute Attacks](./04%20EC2%20and%20Compute%20Attacks.md) | done |
+| 05 | [AWS Defense and Detection](./05%20AWS%20Defense%20and%20Detection.md) | done |
 
 ## Format
 
