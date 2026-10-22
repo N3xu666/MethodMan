@@ -34,11 +34,11 @@ Each file uses the two-track format:
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Orchestration Fundamentals | Two-track |
-| 02 | Kubernetes Orchestration Security | Two-track |
-| 03 | Docker Swarm and Nomad Security | Two-track |
-| 04 | Service Mesh Security | Two-track |
-| 05 | CI-CD Orchestration Security | Two-track |
+| 01 | [Orchestration Fundamentals](./01%20Orchestration%20Fundamentals.md) | Two-track |
+| 02 | [Kubernetes Orchestration Security](./02%20Kubernetes%20Orchestration%20Security.md) | Two-track |
+| 03 | [Docker Swarm and Nomad Security](./03%20Docker%20Swarm%20and%20Nomad%20Security.md) | Two-track |
+| 04 | [Service Mesh Security](./04%20Service%20Mesh%20Security.md) | Two-track |
+| 05 | [CI-CD Orchestration Security](./05%20CI-CD%20Orchestration%20Security.md) | Two-track |
 
 ## Related
 
