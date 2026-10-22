@@ -8,7 +8,7 @@
 
 ![MethodMan - trilingual HTB writeups, web application security reference, methodology and tools](./social-preview.png)
 
-New HTB machines are added as they are completed (retired only - see the stub scheme below for active machines). Reference material grows in parallel: the Application Security Reference (`APPLICATIONS/`), the Infrastructure Security Reference (`INFRASTRUCTURE/`), the AI Security Reference (`AI/`), the Anonymity, Privacy and OpSec Reference (`ANONYMITY-PRIVACY-OPSEC/`), methodology notes, cheatsheets, and custom tooling (`tools/`).
+New HTB machines are added as they are completed (retired only - see the stub scheme below for active machines). Reference material grows in parallel: the Application Security Reference (`APPLICATIONS/`), the Infrastructure Security Reference (`INFRASTRUCTURE/`), the AI Security Reference (`AI/`), the Anonymity, Privacy and OpSec Reference (`ANONYMITY-PRIVACY-OPSEC/`), the Network Security Reference (`NETWORKS/`), methodology notes, cheatsheets, and custom tooling (`tools/`).
 
 Writeups available in Az/En/Ru. Currently: **17 published (retired) + 3 active stubs** = **20 completed machines**.
 
@@ -72,6 +72,14 @@ MethodMan/
 |   +-- 04 AI-Supply-Chain/
 |   +-- 05 OSAI-Prep/
 |
++-- NETWORKS/                                   # network security reference
+|   +-- 01 Network Fundamentals/
+|   +-- 02 Routing and Switching/
+|   +-- 03 Network Devices/
+|   +-- 04 Network Protocols/
+|   +-- 05 Traffic Analysis and Forensics/
+|   +-- 06 SDN and Modern Networks/
+|
 +-- ANONYMITY-PRIVACY-OPSEC/                    # anonymity, privacy and OpSec reference
 |   +-- 01 Anonymous Networks/
 |   +-- 02 Secure Communications/
@@ -102,6 +110,7 @@ MethodMan/
 | [Infrastructure Security Reference](./INFRASTRUCTURE/) | Active Directory, Windows, Linux, network services and attacks, wireless, mail and VPN (47 files) | - | [En](./INFRASTRUCTURE/) | - |
 | [AI Security Reference](./AI/) | OWASP LLM Top 10, RAG and embeddings, agents and MCP, AI supply chain, OSAI prep (31 files) | - | [En](./AI/) | - |
 | [Anonymity, Privacy and OpSec Reference](./ANONYMITY-PRIVACY-OPSEC/) | Tor, I2P, secure communications, Tails/Qubes, dark web, anonymous hosting, crypto/AML, OpSec, attacks and detection (45 files) | - | [En](./ANONYMITY-PRIVACY-OPSEC/) | - |
+| [Network Security Reference](./NETWORKS/) | Network fundamentals, routing and switching, network devices, protocols, traffic analysis and forensics, SDN and modern networks (28 files) | - | [En](./NETWORKS/) | - |
 
 ### Other Resources
 
@@ -113,6 +122,7 @@ Reference material and tooling, independent of any single HTB machine:
 | [Infrastructure Security Reference](./INFRASTRUCTURE/) | Active Directory, Windows, Linux, network services and attacks, wireless, mail and VPN. Two-track format (offensive + defensive) across 7 subcategories (47 files). |
 | [AI Security Reference](./AI/) | OWASP LLM Top 10 (2026), RAG and embeddings, agents and MCP, AI supply chain, OSAI prep. Two-track format (offensive + defensive) across 5 subcategories (31 files). |
 | [Anonymity, Privacy and OpSec Reference](./ANONYMITY-PRIVACY-OPSEC/) | Tor, I2P, secure communications, Tails/Qubes, dark web, anonymous hosting, crypto and AML, OpSec and threat models, attacks and detection. 8 subcategories (45 files). |
+| [Network Security Reference](./NETWORKS/) | Network fundamentals, routing and switching, network devices, network protocols, traffic analysis and forensics, SDN and modern networks. Two-track format (offensive + defensive) across 6 subcategories (28 files). |
 | [METHODOLOGY.md](./METHODOLOGY.md) | Engagement phases, intensity profiles, checklists. |
 | [CHEATSHEET.md](./CHEATSHEET.md) | Quick command reference for common tools and techniques. |
 | [methodology/OSCP-Reporting.md](./methodology/OSCP-Reporting.md) | OSCP exam reporting rules (evidence, screenshots, structure). |
@@ -174,7 +184,7 @@ The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known se
 
 This repository uses a **dual-license model**:
 
-- **Documentation** (walkthroughs, `APPLICATIONS/`, `INFRASTRUCTURE/`, `AI/`, `ANONYMITY-PRIVACY-OPSEC/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
+- **Documentation** (walkthroughs, `APPLICATIONS/`, `INFRASTRUCTURE/`, `AI/`, `ANONYMITY-PRIVACY-OPSEC/`, `NETWORKS/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
 - **Source code** (`.py`, `.go`, `.sh`, `.ps1`, `.yml`) - MIT License, applies to `tools/` and to the root scripts (`check.ps1`, `mask.ps1`, `audit.ps1`, `tests/run-tests.ps1`). Full text: [tools/LICENSE](./tools/LICENSE).
 
 See [LICENSE](./LICENSE) for the full text and the file-type rules.
