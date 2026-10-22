@@ -15,11 +15,11 @@ Containers orchestrated by Kubernetes across managed cloud services (EKS, GKE, A
 
 | # | File | Track |
 |---|------|-------|
-| 01 | Kubernetes Fundamentals | Two-track |
-| 02 | Kubernetes Attack Surface | Two-track |
-| 03 | Container Escape | Two-track |
-| 04 | GKE and EKS Attack Paths | Two-track |
-| 05 | Kubernetes Defense and Detection | Two-track |
+| 01 | [Kubernetes Fundamentals](./01%20Kubernetes%20Fundamentals.md) | Two-track |
+| 02 | [Kubernetes Attack Surface](./02%20Kubernetes%20Attack%20Surface.md) | Two-track |
+| 03 | [Container Escape](./03%20Container%20Escape.md) | Two-track |
+| 04 | [GKE and EKS Attack Paths](./04%20GKE%20and%20EKS%20Attack%20Paths.md) | Two-track |
+| 05 | [Kubernetes Defense and Detection](./05%20Kubernetes%20Defense%20and%20Detection.md) | Two-track |
 
 ## Format
 
