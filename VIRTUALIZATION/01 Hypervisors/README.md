@@ -14,15 +14,15 @@ Hypervisor security reference. Covers ESXi, vSphere, Hyper-V, Proxmox, and the m
 
 |---|---|---|
 
-| 1 | Hypervisor Fundamentals | Two-track |
+| 1 | [Hypervisor Fundamentals](./01%20Hypervisor%20Fundamentals.md) | Two-track |
 
-| 2 | ESXi and vSphere Attacks | Two-track |
+| 2 | [ESXi and vSphere Attacks](./02%20ESXi%20and%20vSphere%20Attacks.md) | Two-track |
 
-| 3 | Hyper-V and Proxmox Attacks | Two-track |
+| 3 | [Hyper-V and Proxmox Attacks](./03%20Hyper-V%20and%20Proxmox%20Attacks.md) | Two-track |
 
-| 4 | Hypervisor Defense and Detection | Two-track |
+| 4 | [Hypervisor Defense and Detection](./04%20Hypervisor%20Defense%20and%20Detection.md) | Two-track |
 
-| 5 | Management Plane Security | Two-track |
+| 5 | [Management Plane Security](./05%20Management%20Plane%20Security.md) | Two-track |
 
 
 
