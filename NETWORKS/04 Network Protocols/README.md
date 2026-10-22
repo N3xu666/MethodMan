@@ -8,11 +8,11 @@ Format: two-track (Offensive / Defensive), 11 sections. See the category README 
 
 | # | File | Focus |
 |---|------|-------|
-| 01 | ARP and Neighbor Discovery | Layer 2 address resolution, spoofing, poisoning |
-| 02 | ICMP and Traceroute | Control messages, tunneling, recon |
-| 03 | TCP and UDP | Transport semantics, scanning, floods |
-| 04 | DNS and DHCP | Name resolution, dynamic addressing, poisoning |
-| 05 | HTTP and TLS | Web transport, downgrade, interception |
+| 01 | [ARP and Neighbor Discovery](./01%20ARP-and-Neighbor-Discovery.md) | Layer 2 address resolution, spoofing, poisoning |
+| 02 | [ICMP and Traceroute](./02%20ICMP-and-Traceroute.md) | Control messages, tunneling, recon |
+| 03 | [TCP and UDP](./03%20TCP-and-UDP.md) | Transport semantics, scanning, floods |
+| 04 | [DNS and DHCP](./04%20DNS-and-DHCP.md) | Name resolution, dynamic addressing, poisoning |
+| 05 | [HTTP and TLS](./05%20HTTP-and-TLS.md) | Web transport, downgrade, interception |
 
 ## Certification Alignment
 
