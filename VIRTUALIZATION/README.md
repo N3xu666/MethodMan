@@ -18,7 +18,7 @@ Virtualization and container security reference. Covers hypervisors, VM escape, 
 
 | 02 | [VM Escape](./02%20VM%20Escape/) | 5 (done) |
 
-| 03 | Containers | 0 | Planned |
+| 03 | [Containers](./03%20Containers/) | 5 (done) |
 
 | 04 | Sandboxes | 0 | Planned |
 
