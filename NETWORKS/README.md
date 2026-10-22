@@ -27,7 +27,7 @@ technology and how a defender hardens it.
 |---|-------------|-------|----------------|
 | 01 | [Network Fundamentals](./01%20Network%20Fundamentals/) | 4 (done) | Network+, CCNA |
 | 02 | [Routing and Switching](./02%20Routing%20and%20Switching/) | 5 (done) | Network+, CCNA, CCNP |
-| 03 | Network Devices | planned | CCNA, CCNP, JNCIA |
+| 03 | [Network Devices](./03%20Network%20Devices/) | 4 (done) | CCNA, CCNP, JNCIA |
 | 04 | Network Protocols | planned | Network+, CCNA |
 | 05 | Traffic Analysis and Forensics | planned | CyberOps, CySA+ |
 | 06 | SDN and Modern Networks | planned | (cross-ref CLOUD) |

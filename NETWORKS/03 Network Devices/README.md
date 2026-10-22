@@ -19,12 +19,12 @@ switches, firewalls, load balancers, proxies, IDS/IPS.
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Router and Switch Fundamentals (planned) | Two-track |
-| 02 | Firewalls (planned) | Two-track |
-| 03 | Load Balancers and Proxies (planned) | Two-track |
-| 04 | IDS IPS and Monitoring (planned) | Two-track |
+| 01 | [Router and Switch Fundamentals](./01%20Router-and-Switch-Fundamentals.md) | Two-track |
+| 02 | [Firewalls](./02%20Firewalls.md) | Two-track |
+| 03 | [Load Balancers and Proxies](./03%20Load%20Balancers%20and%20Proxies.md) | Two-track |
+| 04 | [IDS IPS and Monitoring](./04%20IDS%20IPS%20and%20Monitoring.md) | Two-track |
 
-All four files are planned for this subcategory.
+All four files are published.
 
 ## Format
 
