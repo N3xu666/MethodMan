@@ -36,15 +36,15 @@ This subcategory supports preparation for:
 - Google Cloud Professional Cloud Architect
 - CompTIA Security+
 
-See [CERTIFICATIONS.md](../../CERTIFICATIONS.md) for the full mapping across the CLOUD category.
+See CERTIFICATIONS.md in the CLOUD category root for the full mapping across the CLOUD category.
 
 ## Related
 
 - [01 AWS](../01%20AWS/)
 - [02 Azure](../02%20Azure/)
-- [04 Kubernetes-Cloud](../04%20Kubernetes-Cloud/) (planned)
-- [05 Serverless](../05%20Serverless/) (planned)
-- [06 IaC](../06%20IaC/) (planned)
+- 04 Kubernetes-Cloud (planned)
+- 05 Serverless (planned)
+- 06 IaC (planned)
 
 ## Authorized Use Only
 

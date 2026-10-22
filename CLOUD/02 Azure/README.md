@@ -45,8 +45,8 @@ See [../CERTIFICATIONS.md](../CERTIFICATIONS.md) for the full mapping.
 
 - [01 AWS](../01%20AWS/) - Amazon Web Services attack and defense
 - [03 GCP](../03%20GCP/) - Google Cloud attack and defense
-- [04 Kubernetes-Cloud](../04%20Kubernetes-Cloud/) - Kubernetes in managed cloud
-- [06 IaC](../06%20IaC/) - Infrastructure as Code security
+- 04 Kubernetes-Cloud - Kubernetes in managed cloud
+- 06 IaC - Infrastructure as Code security
 - [INFRASTRUCTURE](../../INFRASTRUCTURE/) - on-premises infrastructure attack and defense
 
 ## Authorized Use Only

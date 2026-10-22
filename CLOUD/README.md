@@ -30,7 +30,7 @@ See [CERTIFICATIONS.md](./CERTIFICATIONS.md) for the mapping between subcategori
 - [INFRASTRUCTURE](../INFRASTRUCTURE/) - on-premises infrastructure attack and defense
 - [NETWORKS](../NETWORKS/) - network fundamentals, protocols, devices
 - [AI](../AI/) - AI and LLM security
-- [DEVSECOPS](../DEVSECOPS/) - CI/CD, supply chain, secrets (planned)
+- DEVSECOPS - CI/CD, supply chain, secrets (planned)
 
 ## Authorized Use Only
 
