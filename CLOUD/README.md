@@ -9,7 +9,7 @@ This category follows the two-track format: each file covers both the offensive 
 | # | Subcategory | Files | Status |
 |---|-------------|-------|--------|
 | 01 | [AWS](./01%20AWS/) | 5 (done) | done |
-| 02 | [Azure](./02%20Azure/) | planned | planned |
+| 02 | [Azure](./02%20Azure/) | 5 (done) | done |
 | 03 | [GCP](./03%20GCP/) | planned | planned |
 | 04 | [Kubernetes-Cloud](./04%20Kubernetes-Cloud/) | planned | planned |
 | 05 | [Serverless](./05%20Serverless/) | planned | planned |
