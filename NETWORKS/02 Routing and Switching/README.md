@@ -37,7 +37,7 @@ Two-track (Offensive / Defensive). See the category
 - [01 Network Fundamentals](../01%20Network%20Fundamentals/) - the
   OSI/TCP-IP, Ethernet, IP addressing and topology basics this
   subcategory builds on.
-- [04 Network Protocols](../04%20Network%20Protocols/) - the
+- 04 Network Protocols - the
   transport and application protocols that ride on these routes.
 
 ## Certification Alignment
