@@ -8,11 +8,11 @@ Writeups and reference material in this subcategory follow the two-track format:
 
 | # | File | Format |
 |---|------|--------|
-| 01 | SDN Fundamentals | planned |
-| 02 | SDN Controllers and APIs | planned |
-| 03 | Network Automation and Infrastructure as Code | planned |
-| 04 | Cloud Networking and Overlays | planned |
-| 05 | Zero Trust and Modern Network Architecture | planned |
+| 01 | [SDN Fundamentals](./01%20SDN%20Fundamentals.md) | done |
+| 02 | [SDN Controllers and APIs](./02%20SDN%20Controllers%20and%20APIs.md) | done |
+| 03 | [Network Automation and Infrastructure as Code](./03%20Network%20Automation%20and%20Infrastructure%20as%20Code.md) | done |
+| 04 | [Cloud Networking and Overlays](./04%20Cloud%20Networking%20and%20Overlays.md) | done |
+| 05 | [Zero Trust and Modern Network Architecture](./05%20Zero%20Trust%20and%20Modern%20Network%20Architecture.md) | done |
 
 ## Certification Alignment
 

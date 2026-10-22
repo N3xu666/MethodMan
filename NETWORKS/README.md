@@ -30,7 +30,7 @@ technology and how a defender hardens it.
 | 03 | [Network Devices](./03%20Network%20Devices/) | 4 (done) | CCNA, CCNP, JNCIA |
 | 04 | [Network Protocols](./04%20Network%20Protocols/) | 5 (done) | Network+, CCNA |
 | 05 | [Traffic Analysis and Forensics](./05%20Traffic%20Analysis%20and%20Forensics/) | 5 (done) | CyberOps, CySA+ |
-| 06 | SDN and Modern Networks | planned | (cross-ref CLOUD) |
+| 06 | [SDN and Modern Networks](./06%20SDN%20and%20Modern%20Networks/) | 5 (done) | (cross-ref CLOUD) |
 
 ## Format
 
