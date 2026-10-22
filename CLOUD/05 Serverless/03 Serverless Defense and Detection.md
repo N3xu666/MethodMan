@@ -91,7 +91,7 @@ Post-exploitation in serverless is short-lived. The function runs for seconds to
 
 - **New event source mapping.** Any `lambda:CreateEventSourceMapping` outside deployment windows is suspicious.
 - **Alias swap.** Any `lambda:UpdateAlias` to a new version outside CI/CD is suspicious.
-- **New scheduled job.** CloudWatch Events, Azure Timer, Cloud Scheduler — all can invoke a function on a schedule.
+- **New scheduled job.** CloudWatch Events, Azure Timer, Cloud Scheduler - all can invoke a function on a schedule.
 - **New subscription.** Pub/Sub subscription, SNS subscription, EventBridge rule.
 - **New IAM role or attached policy.** Any `iam:AttachRolePolicy`, `iam:PutRolePolicy`, `iam:CreateRole` outside deployment windows.
 - **New service account key.** Any `iam.serviceAccountKeys.create` outside deployment windows.

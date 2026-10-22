@@ -161,7 +161,7 @@ Publish a public package with the same name as an internal dependency. On the ne
 - **Least-privilege execution roles.** Function role must not have `*` actions, no `iam:*`, no `sts:AssumeRole` on `*`.
 - **No long-lived credentials in code or env vars.** Use Secrets Manager, Key Vault, Secret Manager.
 - **Input validation.** Treat event payloads as untrusted. Use typed schemas, not raw dicts.
-- **Disable IMDS access from user-supplied fetchers.** For Lambda, IMDSv2 is the default but SSRF to IMDS still works if the function's network path allows it — restrict egress via VPC.
+- **Disable IMDS access from user-supplied fetchers.** For Lambda, IMDSv2 is the default but SSRF to IMDS still works if the function's network path allows it - restrict egress via VPC.
 - **Container and layer immutability.** Deploy layers by digest, sign with AWS Signer.
 - **Function keys in a secret store.** Do not commit function keys to source. Rotate on schedule.
 - **Service account key creation blocked.** Organization policy to deny `iam.serviceAccountKeys.create` for default compute and appengine accounts.
