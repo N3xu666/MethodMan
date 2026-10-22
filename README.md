@@ -35,27 +35,8 @@ MethodMan/
 |
 +-- APPLICATIONS/                               # application security reference
 |   +-- 01 Web/
-|   |   +-- 01 Recon/
-|   |   +-- 02 Frameworks/
-|   |   +-- 03 Languages/
-|   |   +-- 04 Servers/
-|   |   +-- 05 CMS/
-|   |   +-- 06 Technologies/
-|   |   +-- 07 Databases/
-|   |   +-- 08 Vulnerabilities/
-|   |   +-- 09 OWASP Top 10/
 |   +-- 02 Mobile/
 |   +-- 03 API/
-|       +-- README.md
-|       +-- 01 OWASP-API-Top-10.md
-|       +-- 02 REST.md
-|       +-- 03 GraphQL.md
-|       +-- 04 gRPC.md
-|       +-- 05 WebSocket.md
-|       +-- 06 SOAP.md
-|       +-- 07 Authentication.md
-|       +-- 08 Rate-Limiting.md
-|       +-- 09 API-Gateway.md
 |
 +-- INFRASTRUCTURE/                             # infrastructure security reference
 |   +-- 01 Active Directory/
