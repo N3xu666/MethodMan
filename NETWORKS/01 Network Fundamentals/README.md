@@ -17,12 +17,11 @@ every other networking topic builds on.
 | # | File | Format |
 |---|------|--------|
 | 01 | [OSI and TCP-IP](./01%20OSI-and-TCP-IP.md) | Two-track |
-| 02 | Ethernet and Switching (planned) | Two-track |
-| 03 | IP Addressing and Subnetting (planned) | Two-track |
-| 04 | Network Topologies (planned) | Two-track |
+| 02 | [Ethernet and Switching](./02%20Ethernet-and-Switching.md) | Two-track |
+| 03 | [IP Addressing and Subnetting](./03%20IP-Addressing-and-Subnetting.md) | Two-track |
+| 04 | [Network Topologies](./04%20Network%20Topologies.md) | Two-track |
 
-Files marked (planned) will be added in
-subsequent sessions.
+All four files in this subcategory are published.
 
 ## Format
 

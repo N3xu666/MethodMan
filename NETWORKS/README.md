@@ -25,7 +25,7 @@ technology and how a defender hardens it.
 
 | # | Subcategory | Files | Certifications |
 |---|-------------|-------|----------------|
-| 01 | [Network Fundamentals](./01%20Network%20Fundamentals/) | 4 | Network+, CCNA |
+| 01 | [Network Fundamentals](./01%20Network%20Fundamentals/) | 4 (done) | Network+, CCNA |
 | 02 | Routing and Switching | planned | Network+, CCNA, CCNP |
 | 03 | Network Devices | planned | CCNA, CCNP, JNCIA |
 | 04 | Network Protocols | planned | Network+, CCNA |
