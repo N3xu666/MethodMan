@@ -17,13 +17,13 @@ The two tracks are complementary: you cannot reliably detect what you cannot gen
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Packet Capture Fundamentals | Two-track |
-| 02 | Wireshark and tshark | Two-track |
-| 03 | Network Forensics and PCAP Analysis | Two-track |
-| 04 | Traffic Analysis for Incident Response | Two-track |
-| 05 | Covert Channels and Traffic Obfuscation | Two-track |
+| 01 | [Packet Capture Fundamentals](./01%20Packet%20Capture%20Fundamentals.md) | Two-track |
+| 02 | [Wireshark and tshark](./02%20Wireshark%20and%20tshark.md) | Two-track |
+| 03 | [Network Forensics and PCAP Analysis](./03%20Network%20Forensics%20and%20PCAP%20Analysis.md) | Two-track |
+| 04 | [Traffic Analysis for Incident Response](./04%20Traffic%20Analysis%20for%20Incident%20Response.md) | Two-track |
+| 05 | [Covert Channels and Traffic Obfuscation](./05%20Covert%20Channels%20and%20Traffic%20Obfuscation.md) | Two-track |
 
-Status: 5 files planned.
+Status: 5 files done.
 
 ## Certification Alignment
 

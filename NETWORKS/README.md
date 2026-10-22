@@ -29,7 +29,7 @@ technology and how a defender hardens it.
 | 02 | [Routing and Switching](./02%20Routing%20and%20Switching/) | 5 (done) | Network+, CCNA, CCNP |
 | 03 | [Network Devices](./03%20Network%20Devices/) | 4 (done) | CCNA, CCNP, JNCIA |
 | 04 | [Network Protocols](./04%20Network%20Protocols/) | 5 (done) | Network+, CCNA |
-| 05 | Traffic Analysis and Forensics | planned | CyberOps, CySA+ |
+| 05 | [Traffic Analysis and Forensics](./05%20Traffic%20Analysis%20and%20Forensics/) | 5 (done) | CyberOps, CySA+ |
 | 06 | SDN and Modern Networks | planned | (cross-ref CLOUD) |
 
 ## Format
