@@ -224,9 +224,9 @@ Protocols, auth, and cross-cutting technologies.
 |------|-------|
 | [JWT.md](./06%20Technologies/JWT.md) | alg=none, kid injection, JWK, weak secret |
 | [OAuth.md](./06%20Technologies/OAuth.md) | redirect_uri, state, PKCE |
-| [GraphQL.md](../05%20API/03%20GraphQL.md) | introspection, batching, IDOR |
-| [REST.md](../05%20API/02%20REST.md) | mass assignment, IDOR, verb tampering |
-| [WebSocket.md](../05%20API/05%20WebSocket.md) | CSWSH, injection |
+| [GraphQL.md](../03%20API/03%20GraphQL.md) | introspection, batching, IDOR |
+| [REST.md](../03%20API/02%20REST.md) | mass assignment, IDOR, verb tampering |
+| [WebSocket.md](../03%20API/05%20WebSocket.md) | CSWSH, injection |
 | [SSTI.md](./08%20Vulnerabilities/SSTI.md) | Jinja2, Twig, Freemarker, ERB |
 | [Deserialization.md](./08%20Vulnerabilities/Deserialization.md) | PHP, Java, Python, .NET, Ruby |
 

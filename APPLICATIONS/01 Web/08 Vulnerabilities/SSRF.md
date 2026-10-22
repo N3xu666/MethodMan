@@ -450,7 +450,7 @@ curl 'http://target/fetch?url=http://[::1]/'
 - Gopherus - https://github.com/tarunkant/Gopherus
 - interactsh - https://github.com/projectdiscovery/interactsh
 
-> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../07 Databases.md](../07%20Databases/README.md), [../../05 API/02 REST.md](../../05%20API/02%20REST.md)
+> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../07 Databases.md](../07%20Databases/README.md), [../../03 API/02 REST.md](../../03%20API/02%20REST.md)
 
 ---
 

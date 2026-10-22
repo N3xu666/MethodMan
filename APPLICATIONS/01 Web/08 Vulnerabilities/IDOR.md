@@ -208,7 +208,7 @@ Send via POST with Content-Type: application/json:
 curl 'http://target/graphql' -H 'Content-Type: application/json' -d '{"query":"{ user(id: 1002) { email role } }"}'
 ```
 
-> See also: [../../05 API/03 GraphQL.md](../../05%20API/03%20GraphQL.md) (once published).
+> See also: [../../03 API/03 GraphQL.md](../../03%20API/03%20GraphQL.md) (once published).
 
 ### 4.5 Mass assignment through IDOR
 
@@ -227,7 +227,7 @@ curl -X PUT 'http://target/api/user/1001' -H 'Content-Type: application/json' \\
 
 If the response includes role:admin, mass assignment worked.
 
-> See also: [../../05 API/02 REST.md](../../05%20API/02%20REST.md) (once published).
+> See also: [../../03 API/02 REST.md](../../03%20API/02%20REST.md) (once published).
 
 ---
 
@@ -362,7 +362,7 @@ ffuf -u 'http://target/api/user/FUZZ' -w ids.txt -H 'Cookie: session=USER' -mc 2
 - Burp Autorize - https://github.com/Quitten/Autorize
 - PayloadsAllTheThings IDOR - https://github.com/swisskyrepo/PayloadsAllTheThings
 
-> See also: [../06 Technologies/JWT.md](../06%20Technologies/JWT.md), [../../05 API/03 GraphQL.md](../../05%20API/03%20GraphQL.md), [../../05 API/02 REST.md](../../05%20API/02%20REST.md)
+> See also: [../06 Technologies/JWT.md](../06%20Technologies/JWT.md), [../../03 API/03 GraphQL.md](../../03%20API/03%20GraphQL.md), [../../03 API/02 REST.md](../../03%20API/02%20REST.md)
 
 ---
 

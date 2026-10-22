@@ -12,11 +12,12 @@ verification) sides.
 | # | Category | Description |
 |---|---|---|
 | 1 | [Web](./01%20Web/) | Web application security reference (recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10) |
-| 2 | [API](./05%20API/) | API security reference (REST, GraphQL, gRPC, WebSocket, SOAP, authentication, rate limiting, API gateways, OWASP API Top 10) |
+| 2 | [Mobile](./02%20Mobile/) | Mobile application security reference (Android, iOS, MASVS, OWASP Mobile Top 10) |
+| 3 | [API](./03%20API/) | API security reference (REST, GraphQL, gRPC, WebSocket, SOAP, authentication, rate limiting, API gateways, OWASP API Top 10) |
 
 ## Format
 
-Two-track format (see `_WORKFLOW.md` section 6.7):
+Two-track format:
 
 - **Pentest track** - detection, enumeration, exploitation recipes, OSCP notes.
 - **AppSec track** - risk context, root causes, preventive controls,
@@ -38,7 +39,9 @@ APPLICATIONS/
 |   +-- 07 Databases/
 |   +-- 08 Vulnerabilities/
 |   +-- 09 OWASP Top 10/
-+-- 05 API/
++-- 02 Mobile/
+|   +-- README.md
++-- 03 API/
 |   +-- 01 OWASP-API-Top-10.md
 |   +-- 02 REST.md
 |   +-- 03 GraphQL.md
@@ -49,16 +52,3 @@ APPLICATIONS/
 |   +-- 08 Rate-Limiting.md
 |   +-- 09 API-Gateway.md
 ```
-
-## Roadmap
-
-- `02 Mobile/` - Android, iOS (planned).
-- `03 Desktop/` - Windows, macOS, Linux desktop apps (planned).
-- `04 Embedded/` - firmware, IoT (planned).
-
-## Related
-
-- [Methodology](../METHODOLOGY.md) - engagement phases and checklists.
-- [Cheatsheet](../CHEATSHEET.md) - quick command reference.
-- [OSCP Reporting](../methodology/OSCP-Reporting.md) - exam reporting rules.
-

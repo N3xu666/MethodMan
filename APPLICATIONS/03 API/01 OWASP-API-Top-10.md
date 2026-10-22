@@ -14,11 +14,11 @@ This file is the coverage map for the API category. Every category below links t
 | API2 | Broken Authentication | 07 Authentication.md | 02 REST.md, 09 API-Gateway.md |
 | API3 | Broken Object Property Level Authorization | 02 REST.md | 08 Vulnerabilities/Mass-Assignment.md |
 | API4 | Unrestricted Resource Consumption | 08 Rate-Limiting.md | 03 GraphQL.md (batching, depth) |
-| API5 | Broken Function Level Authorization | 02 REST.md | 05 API-Gateway.md |
+| API5 | Broken Function Level Authorization | 02 REST.md | 03 API-Gateway.md |
 | API6 | Unrestricted Access to Sensitive Business Flows | 08 Rate-Limiting.md | 02 REST.md |
 | API7 | Server Side Request Forgery | 08 Vulnerabilities/SSRF.md | 02 REST.md, 06 SOAP.md |
-| API8 | Security Misconfiguration | 05 API-Gateway.md | 03 GraphQL.md (introspection), 04 gRPC.md (reflection) |
-| API9 | Improper Inventory Management | 05 API-Gateway.md | 04 gRPC.md |
+| API8 | Security Misconfiguration | 03 API-Gateway.md | 03 GraphQL.md (introspection), 04 gRPC.md (reflection) |
+| API9 | Improper Inventory Management | 03 API-Gateway.md | 04 gRPC.md |
 | API10 | Unsafe Consumption of APIs | 02 REST.md | 06 SOAP.md |
 
 ---
@@ -63,7 +63,7 @@ Covered in: `08 Rate-Limiting.md` (bypass techniques), `03 GraphQL.md` (batching
 
 The endpoint is hidden from the UI (admin panel, internal route) but reachable directly. Verb tampering (GET -> POST -> DELETE) can expose methods the developer forgot to protect.
 
-Covered in: `02 REST.md` (verb tampering), `05 API-Gateway.md` (route protection).
+Covered in: `02 REST.md` (verb tampering), `03 API-Gateway.md` (route protection).
 
 ---
 
@@ -87,7 +87,7 @@ Covered in: `08 Vulnerabilities/SSRF.md` (general technique), `02 REST.md` (API-
 
 CORS wildcard, missing HTTPS enforcement, verbose error messages, debug endpoints, introspection enabled in production, gRPC reflection enabled in production.
 
-Covered in: `05 API-Gateway.md`, `03 GraphQL.md`, `04 gRPC.md`.
+Covered in: `03 API-Gateway.md`, `03 GraphQL.md`, `04 gRPC.md`.
 
 ---
 
@@ -97,7 +97,7 @@ Old API versions still reachable (/v1/ when /v3/ is current), undocumented endpo
 
 Detection: fuzz version prefixes, check the OpenAPI/Swagger spec for endpoints not linked from the UI.
 
-Covered in: `05 API-Gateway.md`, `04 gRPC.md`.
+Covered in: `03 API-Gateway.md`, `04 gRPC.md`.
 
 ---
 

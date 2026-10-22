@@ -44,7 +44,8 @@ MethodMan/
 |   |   +-- 07 Databases/
 |   |   +-- 08 Vulnerabilities/
 |   |   +-- 09 OWASP Top 10/
-|   +-- 05 API/
+|   +-- 02 Mobile/
+|   +-- 03 API/
 |       +-- README.md
 |       +-- 01 OWASP-API-Top-10.md
 |       +-- 02 REST.md
@@ -120,7 +121,8 @@ MethodMan/
 | [HTB / OSCP / Windows](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/02%20Windows/) | Windows machines for OSCP prep | [Az](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/02%20Windows/01%20Az/) | [En](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/02%20Windows/02%20En/) | [Ru](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/02%20Windows/03%20Ru/) |
 | [HTB / OSCP / Active Directory and Networks](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/03%20Active%20Directory%20and%20Networks/) | AD and networks | [Az](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/03%20Active%20Directory%20and%20Networks/01%20Az/) | [En](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/03%20Active%20Directory%20and%20Networks/02%20En/) | [Ru](./WRITEUPS/01%20Hack%20The%20Box/02%20OSCP/03%20Active%20Directory%20and%20Networks/03%20Ru/) |
 | [Web Application Security Reference](./APPLICATIONS/01%20Web/) | Stack-organized web testing reference (recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10) | - | [En](./APPLICATIONS/01%20Web/) | - |
-| [API Security Reference](./APPLICATIONS/05%20API/) | API Top 10, REST, GraphQL, gRPC, WebSocket, SOAP, auth, rate-limiting, API gateway (10 files) | - | [En](./APPLICATIONS/05%20API/) | - |
+| [Mobile Application Security Reference](./APPLICATIONS/02%20Mobile/) | Mobile app security reference (Android, iOS, MASVS, OWASP Mobile Top 10) | - | [En](./APPLICATIONS/02%20Mobile/) | - |
+| [API Security Reference](./APPLICATIONS/03%20API/) | API Top 10, REST, GraphQL, gRPC, WebSocket, SOAP, auth, rate-limiting, API gateway (10 files) | - | [En](./APPLICATIONS/03%20API/) | - |
 | [Infrastructure Security Reference](./INFRASTRUCTURE/) | Active Directory, Windows, Linux, network services and attacks, wireless, mail and VPN (47 files) | - | [En](./INFRASTRUCTURE/) | - |
 | [AI Security Reference](./AI/) | OWASP LLM Top 10, RAG and embeddings, agents and MCP, AI supply chain, OSAI prep (31 files) | - | [En](./AI/) | - |
 | [Anonymity, Privacy and OpSec Reference](./ANONYMITY-PRIVACY-OPSEC/) | Tor, I2P, secure communications, Tails/Qubes, dark web, anonymous hosting, crypto/AML, OpSec, attacks and detection (45 files) | - | [En](./ANONYMITY-PRIVACY-OPSEC/) | - |
@@ -133,7 +135,7 @@ Reference material and tooling, independent of any single HTB machine:
 
 | Resource | Description |
 |----------|-------------|
-| [Application Security Reference](./APPLICATIONS/01%20Web/) | Web and API testing reference: recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10 (61 files); plus API Top 10, REST, GraphQL, gRPC, WebSocket, SOAP, auth, rate-limiting, API gateway (9 files). |
+| [Application Security Reference](./APPLICATIONS/01%20Web/) | Web, Mobile and API testing reference: recon, frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, OWASP Top 10 (61 files); plus Mobile app security (Android, iOS, MASVS) and API Top 10, REST, GraphQL, gRPC, WebSocket, SOAP, auth, rate-limiting, API gateway (10 files). |
 | [Infrastructure Security Reference](./INFRASTRUCTURE/) | Active Directory, Windows, Linux, network services and attacks, wireless, mail and VPN. Two-track format (offensive + defensive) across 7 subcategories (47 files). |
 | [AI Security Reference](./AI/) | OWASP LLM Top 10 (2026), RAG and embeddings, agents and MCP, AI supply chain, OSAI prep. Two-track format (offensive + defensive) across 5 subcategories (31 files). |
 | [Anonymity, Privacy and OpSec Reference](./ANONYMITY-PRIVACY-OPSEC/) | Tor, I2P, secure communications, Tails/Qubes, dark web, anonymous hosting, crypto and AML, OpSec and threat models, attacks and detection. 8 subcategories (45 files). |

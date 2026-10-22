@@ -26,7 +26,7 @@ Writeups and references in this category are written in English only. The trilin
 
 ## Relationship to 01 Web
 
-The `01 Web/` category covers the browser-facing layer: HTML forms, cookies, CSRF, XSS, CMS, servers, frameworks. `05 API/` covers the machine-facing layer: no browser, tokens instead of cookies, JSON/Protobuf instead of HTML.
+The `01 Web/` category covers the browser-facing layer: HTML forms, cookies, CSRF, XSS, CMS, servers, frameworks. `03 API/` covers the machine-facing layer: no browser, tokens instead of cookies, JSON/Protobuf instead of HTML.
 
 Overlap exists in the underlying primitives (injection, authn, authz) but the detection and exploitation techniques are different enough to warrant a separate track. Cross-references point to `01 Web/` where the primitive is the same.
 

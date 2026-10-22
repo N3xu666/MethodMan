@@ -535,7 +535,7 @@ interactsh-client
 - XSS Hunter - https://xsshunter.com/
 - interactsh - https://github.com/projectdiscovery/interactsh
 
-> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../../05 API/02 REST.md](../../05%20API/02%20REST.md), [CSRF.md](./CSRF.md)
+> See also: [../01 Recon/WAF-Detection.md](../01%20Recon/WAF-Detection.md), [../../03 API/02 REST.md](../../03%20API/02%20REST.md), [CSRF.md](./CSRF.md)
 
 ---
 
