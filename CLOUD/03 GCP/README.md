@@ -17,11 +17,11 @@ Every technique is framed against a GCP primitive (IAM, Service Accounts, Cloud 
 
 | # | File | Format |
 |---|------|--------|
-| 01 | GCP Fundamentals | two-track |
-| 02 | IAM and Service Account Attacks | two-track |
-| 03 | Cloud Storage Attacks | two-track |
-| 04 | GCE and Compute Attacks | two-track |
-| 05 | GCP Defense and Detection | two-track |
+| 01 | GCP Fundamentals | done |
+| 02 | IAM and Service Account Attacks | done |
+| 03 | Cloud Storage Attacks | done |
+| 04 | GCE and Compute Attacks | done |
+| 05 | GCP Defense and Detection | done |
 
 ## Format
 
