@@ -89,6 +89,20 @@ MethodMan/
 |   +-- 06 Anonymous Crypto Operations and AML/
 |   +-- 07 OpSec and Threat Models/
 |   +-- 08 Attacks and Detection/
++-- CLOUD/                                      # cloud security reference
+|   +-- 01 AWS/
+|   +-- 02 Azure/
+|   +-- 03 GCP/
+|   +-- 04 Kubernetes-Cloud/
+|   +-- 05 Serverless/
+|   +-- 06 IaC/
+|   +-- 02 Secure Communications/
+|   +-- 03 Operating Systems and Hygiene/
+|   +-- 04 Dark Web/
+|   +-- 05 Anonymous Hosting/
+|   +-- 06 Anonymous Crypto Operations and AML/
+|   +-- 07 OpSec and Threat Models/
+|   +-- 08 Attacks and Detection/
 |
 +-- methodology/                                # OSCP reporting rules and notes
 +-- tools/                                      # custom pentest tools (Python, Go, Bash)
@@ -111,6 +125,7 @@ MethodMan/
 | [AI Security Reference](./AI/) | OWASP LLM Top 10, RAG and embeddings, agents and MCP, AI supply chain, OSAI prep (31 files) | - | [En](./AI/) | - |
 | [Anonymity, Privacy and OpSec Reference](./ANONYMITY-PRIVACY-OPSEC/) | Tor, I2P, secure communications, Tails/Qubes, dark web, anonymous hosting, crypto/AML, OpSec, attacks and detection (45 files) | - | [En](./ANONYMITY-PRIVACY-OPSEC/) | - |
 | [Network Security Reference](./NETWORKS/) | Network fundamentals, routing and switching, network devices, protocols, traffic analysis and forensics, SDN and modern networks (28 files) | - | [En](./NETWORKS/) | - |
+| [Cloud Security Reference](./CLOUD/) | AWS, Azure, GCP, Kubernetes in the cloud, serverless, IaC (28 files) | - | [En](./CLOUD/) | - |
 
 ### Other Resources
 
@@ -123,6 +138,7 @@ Reference material and tooling, independent of any single HTB machine:
 | [AI Security Reference](./AI/) | OWASP LLM Top 10 (2026), RAG and embeddings, agents and MCP, AI supply chain, OSAI prep. Two-track format (offensive + defensive) across 5 subcategories (31 files). |
 | [Anonymity, Privacy and OpSec Reference](./ANONYMITY-PRIVACY-OPSEC/) | Tor, I2P, secure communications, Tails/Qubes, dark web, anonymous hosting, crypto and AML, OpSec and threat models, attacks and detection. 8 subcategories (45 files). |
 | [Network Security Reference](./NETWORKS/) | Network fundamentals, routing and switching, network devices, network protocols, traffic analysis and forensics, SDN and modern networks. Two-track format (offensive + defensive) across 6 subcategories (28 files). |
+| [Cloud Security Reference](./CLOUD/) | AWS, Azure, GCP, Kubernetes in the cloud, serverless, and infrastructure as code. Two-track format (offensive + defensive) across 6 subcategories (28 files). |
 | [METHODOLOGY.md](./METHODOLOGY.md) | Engagement phases, intensity profiles, checklists. |
 | [CHEATSHEET.md](./CHEATSHEET.md) | Quick command reference for common tools and techniques. |
 | [methodology/OSCP-Reporting.md](./methodology/OSCP-Reporting.md) | OSCP exam reporting rules (evidence, screenshots, structure). |
@@ -184,7 +200,7 @@ The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known se
 
 This repository uses a **dual-license model**:
 
-- **Documentation** (walkthroughs, `APPLICATIONS/`, `INFRASTRUCTURE/`, `AI/`, `ANONYMITY-PRIVACY-OPSEC/`, `NETWORKS/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
+- **Documentation** (walkthroughs, `APPLICATIONS/`, `INFRASTRUCTURE/`, `AI/`, `ANONYMITY-PRIVACY-OPSEC/`, `NETWORKS/`, `CLOUD/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
 - **Source code** (`.py`, `.go`, `.sh`, `.ps1`, `.yml`) - MIT License, applies to `tools/` and to the root scripts (`check.ps1`, `mask.ps1`, `audit.ps1`, `tests/run-tests.ps1`). Full text: [tools/LICENSE](./tools/LICENSE).
 
 See [LICENSE](./LICENSE) for the full text and the file-type rules.
