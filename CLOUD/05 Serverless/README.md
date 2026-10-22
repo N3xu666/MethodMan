@@ -18,10 +18,10 @@ It does NOT repeat generic cloud identity attacks (covered in 01 AWS, 02 Azure, 
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Serverless Fundamentals | Two-track |
-| 02 | Lambda and Cloud Functions Attacks | Two-track |
-| 03 | Serverless Defense and Detection | Two-track |
-| 04 | Container-Based Serverless | Two-track |
+| 01 | [Serverless Fundamentals](./01%20Serverless%20Fundamentals.md) | Two-track |
+| 02 | [Lambda and Cloud Functions Attacks](./02%20Lambda%20and%20Cloud%20Functions%20Attacks.md) | Two-track |
+| 03 | [Serverless Defense and Detection](./03%20Serverless%20Defense%20and%20Detection.md) | Two-track |
+| 04 | [Container-Based Serverless](./04%20Container-Based%20Serverless.md) | Two-track |
 
 ## Format
 
