@@ -37,7 +37,7 @@ Two-track (Offensive / Defensive). See the category
   layer 1-3 basics these devices operate on.
 - [02 Routing and Switching](../02%20Routing%20and%20Switching/) -
   the routing and switching protocols these devices run.
-- [05 Traffic Analysis and Forensics](../05%20Traffic%20Analysis%20and%20Forensics/) -
+- 05 Traffic Analysis and Forensics (planned subcategory) -
   how the traffic these devices carry is captured and analyzed.
 
 ## Certification Alignment
