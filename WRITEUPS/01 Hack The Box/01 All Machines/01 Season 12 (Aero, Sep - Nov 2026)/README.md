@@ -20,6 +20,7 @@ while the machines are still active on Hack The Box (per HTB ToS).
 |---|---------|------------|--------|
 | 01 | Layover | Medium | ✅ completed · ⏳ writeup pending |
 | 02 | Touch | Medium | ✅ completed · ⏳ writeup pending |
+| 03 | Stream | Medium | ✅ completed · ⏳ writeup pending |
 
 ## Archive
 
