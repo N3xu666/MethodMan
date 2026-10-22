@@ -19,13 +19,13 @@ fabric that carries the traffic, and the attacks that target both.
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Routing Fundamentals (planned) | Two-track |
-| 02 | Dynamic Routing Protocols (planned) | Two-track |
-| 03 | Switching Advanced (planned) | Two-track |
-| 04 | Routing Attacks (planned) | Two-track |
-| 05 | Routing Defense (planned) | Two-track |
+| 01 | [Routing Fundamentals](./01%20Routing-Fundamentals.md) | Two-track |
+| 02 | [Dynamic Routing Protocols](./02%20Dynamic-Routing-Protocols.md) | Two-track |
+| 03 | [Switching Advanced](./03%20Switching-Advanced.md) | Two-track |
+| 04 | [Routing Attacks](./04%20Routing-Attacks.md) | Two-track |
+| 05 | [Routing Defense](./05%20Routing-Defense.md) | Two-track |
 
-All five files are planned for this subcategory.
+All five files in this subcategory are published.
 
 ## Format
 
