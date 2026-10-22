@@ -46,4 +46,5 @@ paths = [
   '''NETWORKS/03 Network Devices/01 Router-and-Switch-Fundamentals\.md''',
   '''NETWORKS/06 SDN and Modern Networks/02 SDN Controllers and APIs\.md''',
   '''NETWORKS/06 SDN and Modern Networks/.*\.md''',
+  '''VIRTUALIZATION/.*\.md''',
 ]
