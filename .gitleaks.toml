@@ -37,3 +37,11 @@ regexes = [
   '''[a-f0-9]{32}.*example''',
   '''example.*[a-f0-9]{32}''',
 ]
+# Rule-specific allowlist: учебные примеры curl -u в документации NETWORKS
+[[rules.allowlists]]
+description = "Educational curl -u examples in NETWORKS docs (not real credentials)"
+targetRules = ["curl-auth-user"]
+paths = [
+  '''NETWORKS/03 Network Devices/02 Firewalls\.md''',
+  '''NETWORKS/03 Network Devices/01 Router-and-Switch-Fundamentals\.md''',
+]
