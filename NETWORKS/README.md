@@ -25,12 +25,12 @@ technology and how a defender hardens it.
 
 | # | Subcategory | Files | Certifications |
 |---|-------------|-------|----------------|
-| 01 | [Network Fundamentals](./01%20Network%20Fundamentals/) | 4 (done) | Network+, CCNA |
-| 02 | [Routing and Switching](./02%20Routing%20and%20Switching/) | 5 (done) | Network+, CCNA, CCNP |
-| 03 | [Network Devices](./03%20Network%20Devices/) | 4 (done) | CCNA, CCNP, JNCIA |
-| 04 | [Network Protocols](./04%20Network%20Protocols/) | 5 (done) | Network+, CCNA |
-| 05 | [Traffic Analysis and Forensics](./05%20Traffic%20Analysis%20and%20Forensics/) | 5 (done) | CyberOps, CySA+ |
-| 06 | [SDN and Modern Networks](./06%20SDN%20and%20Modern%20Networks/) | 5 (done) | (cross-ref CLOUD) |
+| 01 | [Network Fundamentals](./01%20Network%20Fundamentals/) | 4 | Network+, CCNA |
+| 02 | [Routing and Switching](./02%20Routing%20and%20Switching/) | 5 | Network+, CCNA, CCNP |
+| 03 | [Network Devices](./03%20Network%20Devices/) | 4 | CCNA, CCNP, JNCIA |
+| 04 | [Network Protocols](./04%20Network%20Protocols/) | 5 | Network+, CCNA |
+| 05 | [Traffic Analysis and Forensics](./05%20Traffic%20Analysis%20and%20Forensics/) | 5 | CyberOps, CySA+ |
+| 06 | [SDN and Modern Networks](./06%20SDN%20and%20Modern%20Networks/) | 5 | (cross-ref CLOUD) |
 
 ## Format
 
