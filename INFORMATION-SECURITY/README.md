@@ -25,7 +25,7 @@ Technical depth (exploitation, tooling, detection engineering) lives in the othe
 | # | Subcategory | Files | Focus |
 |---|-------------|-------|-------|
 | 01 | [Governance and Frameworks](./01%20Governance%20and%20Frameworks/) | 5 | ISO 27001, NIST CSF, COBIT, roles, security strategy |
-| 02 | Risk Management | planned | risk assessment, registers, treatment, appetite, third-party risk |
+| 02 | [Risk Management](./02%20Risk%20Management/) | 5 | done |
 | 03 | Compliance and Regulation | planned | GDPR, HIPAA, PCI DSS, SOX, NIS2, DORA |
 | 04 | Security Policies and Standards | planned | policy hierarchy, standards, baselines, exceptions |
 | 05 | Security Awareness and Training | planned | phishing programs, training, metrics, culture |

@@ -24,15 +24,15 @@ reference material, not a walkthrough.
 
 |---|------|--------|
 
-| 01 | Risk Management Fundamentals | Process-based |
+| 01 | [Risk Management Fundamentals](./01%20Risk%20Management%20Fundamentals.md) | Process-based |
 
-| 02 | Risk Assessment Methodologies | Process-based |
+| 02 | [Risk Assessment Methodologies](./02%20Risk%20Assessment%20Methodologies.md) | Process-based |
 
-| 03 | Risk Treatment and Response | Process-based |
+| 03 | [Risk Treatment and Response](./03%20Risk%20Treatment%20and%20Response.md) | Process-based |
 
-| 04 | Third-Party and Supply Chain Risk | Process-based |
+| 04 | [Third-Party and Supply Chain Risk](./04%20Third-Party%20and%20Supply%20Chain%20Risk.md) | Process-based |
 
-| 05 | Risk Monitoring and Reporting | Process-based |
+| 05 | [Risk Monitoring and Reporting](./05%20Risk%20Monitoring%20and%20Reporting.md) | Process-based |
 
 
 
