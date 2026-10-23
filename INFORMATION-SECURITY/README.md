@@ -29,7 +29,7 @@ Technical depth (exploitation, tooling, detection engineering) lives in the othe
 | 03 | [Compliance and Regulation](./03%20Compliance%20and%20Regulation/) | 5 | done |
 | 04 | [Security Policies and Standards](./04%20Security%20Policies%20and%20Standards/) | 5 | done |
 | 05 | [Security Awareness and Training](./05%20Security%20Awareness%20and%20Training/) | 5 (done) | phishing programs, training, metrics, culture |
-| 06 | Incident Response and Business Continuity | planned | IR lifecycle, playbooks, BCP, DR, tabletop exercises |
+| 06 | [Incident Response and Business Continuity](./06%20Incident%20Response%20and%20Business%20Continuity/) | 5 (done) | IR lifecycle, playbooks, BCP, DR, tabletop exercises |
 
 ## Format
 

@@ -24,11 +24,11 @@ Process-based. Each file follows the 9-section skeleton:
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Incident Response Fundamentals | process-based |
-| 02 | Incident Response Lifecycle | process-based |
-| 03 | Business Continuity and Disaster Recovery | process-based |
-| 04 | Crisis Management and Communications | process-based |
-| 05 | Incident Response Metrics and Testing | process-based |
+| 01 | [Incident Response Fundamentals](./01%20Incident%20Response%20Fundamentals.md) | process-based |
+| 02 | [Incident Response Lifecycle](./02%20Incident%20Response%20Lifecycle.md) | process-based |
+| 03 | [Business Continuity and Disaster Recovery](./03%20Business%20Continuity%20and%20Disaster%20Recovery.md) | process-based |
+| 04 | [Crisis Management and Communications](./04%20Crisis%20Management%20and%20Communications.md) | process-based |
+| 05 | [Incident Response Metrics and Testing](./05%20Incident%20Response%20Metrics%20and%20Testing.md) | process-based |
 
 ## Related Subcategories
 
