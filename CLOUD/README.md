@@ -6,14 +6,14 @@ This category follows the two-track format: each file covers both the offensive 
 
 ## Subcategories
 
-| # | Subcategory | Files | Status |
-|---|-------------|-------|--------|
-| 01 | [AWS](./01%20AWS/) | 5 (done) | done |
-| 02 | [Azure](./02%20Azure/) | 5 (done) | done |
-| 03 | [GCP](./03%20GCP/) | 5 (done) | done |
-| 04 | [Kubernetes-Cloud](./04%20Kubernetes-Cloud/) | 5 (done) | done |
-| 05 | [Serverless](./05%20Serverless/) | 4 (done) | done |
-| 06 | [IaC](./06%20IaC/) | 5 (done) | done |
+| # | Subcategory | Files | Focus |
+|---|-------------|-------|-------|
+| 01 | [AWS](./01%20AWS/) | 5 | IAM, S3, EC2, pentesting and defense in AWS |
+| 02 | [Azure](./02%20Azure/) | 5 | Entra ID, Storage, VM security, attack paths |
+| 03 | [GCP](./03%20GCP/) | 5 | IAM, Cloud Storage, GCE, Google Cloud defense |
+| 04 | [Kubernetes-Cloud](./04%20Kubernetes-Cloud/) | 5 | Kubernetes attack surface, container escapes, GKE/EKS |
+| 05 | [Serverless](./05%20Serverless/) | 4 | Lambda, Cloud Functions, container-based serverless |
+| 06 | [IaC](./06%20IaC/) | 5 | Terraform/CloudFormation, state files, CI/CD, policy as code |
 
 ## Format
 
@@ -44,3 +44,4 @@ Raw drafts are not stored. Final files live directly in the numbered subcategory
 ## License
 
 Documentation in this directory is licensed under CC BY-NC 4.0 (see the root [LICENSE](../LICENSE)). Source code (if any) is MIT.
+

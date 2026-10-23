@@ -79,7 +79,7 @@ MethodMan/
 |   +-- 05 Serverless/
 |   +-- 06 IaC/
 |
-+-- VIRTUALIZATION/                              # virtualization and container security reference
++-- VIRTUALIZATION/                             # virtualization and container security reference
 |   +-- 01 Hypervisors/
 |   +-- 02 VM Escape/
 |   +-- 03 Containers/
@@ -203,3 +203,4 @@ See [LICENSE](./LICENSE) for the full text and the file-type rules.
 ---
 
 *Personal project. For educational purposes only.*
+

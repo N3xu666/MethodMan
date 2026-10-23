@@ -16,13 +16,13 @@ This category covers the virtualization and container stack end to end:
 
 ## Subcategories
 
-| # | Subcategory | Files |
-|---|-------------|-------|
-| 01 | [Hypervisors](./01%20Hypervisors/) | 5 |
-| 02 | [VM Escape](./02%20VM%20Escape/) | 5 |
-| 03 | [Containers](./03%20Containers/) | 5 |
-| 04 | [Sandboxes](./04%20Sandboxes/) | 5 |
-| 05 | [Orchestration](./05%20Orchestration/) | 5 |
+| # | Subcategory | Files | Focus |
+|---|-------------|-------|-------|
+| 01 | [Hypervisors](./01%20Hypervisors/) | 5 | ESXi, Hyper-V, KVM, Proxmox, management plane |
+| 02 | [VM Escape](./02%20VM%20Escape/) | 5 | Hypervisor escapes, device passthrough, isolation bypass |
+| 03 | [Containers](./03%20Containers/) | 5 | Docker, OCI, namespace/cgroup escapes, image supply chain |
+| 04 | [Sandboxes](./04%20Sandboxes/) | 5 | Browser, OS-level, mobile and malware analysis sandboxes |
+| 05 | [Orchestration](./05%20Orchestration/) | 5 | Kubernetes, Swarm, Nomad, service mesh, CI/CD orchestration |
 
 ## Format
 
@@ -62,3 +62,4 @@ See [CERTIFICATIONS.md](./CERTIFICATIONS.md) for the full matrix. Core: Security
 - NIST SP 800-125 - Guide to Security for Full Virtualization Technologies - https://csrc.nist.gov/pubs/sp/800/125/final
 - CIS Benchmarks - Docker, Kubernetes, VMware ESXi - https://www.cisecurity.org/cis-benchmarks
 - Kubernetes Security Documentation - https://kubernetes.io/docs/concepts/security/
+

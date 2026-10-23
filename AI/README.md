@@ -24,13 +24,13 @@ web application security.
 
 ## Subcategories
 
-| # | Subcategory | Files |
-|---|---|---|
-| 01 | [OWASP-LLM-Top-10-2026](./01%20OWASP-LLM-Top-10-2026/) | 10 |
-| 02 | [RAG-and-Embeddings](./02%20RAG-and-Embeddings/) | ~4 |
-| 03 | [Agents-and-MCP](./03%20Agents-and-MCP/) | ~4 |
-| 04 | [AI-Supply-Chain](./04%20AI-Supply-Chain/) | ~4 |
-| 05 | [OSAI-Prep](./05%20OSAI-Prep/) | ~3 |
+| # | Subcategory | Files | Focus |
+|---|-------------|-------|-------|
+| 01 | [OWASP-LLM-Top-10-2026](./01%20OWASP-LLM-Top-10-2026/) | 10 | OWASP LLM Top 10 (2026) threats and mitigations |
+| 02 | [RAG-and-Embeddings](./02%20RAG-and-Embeddings/) | 4 | RAG pipelines, vector databases, embedding attacks |
+| 03 | [Agents-and-MCP](./03%20Agents-and-MCP/) | 4 | Autonomous agents, Model Context Protocol (MCP) security |
+| 04 | [AI-Supply-Chain](./04%20AI-Supply-Chain/) | 4 | Model provenance, dataset poisoning, dependency attacks |
+| 05 | [OSAI-Prep](./05%20OSAI-Prep/) | 3 | Offensive Security AI (OSAI) certification preparation |
 
 ## Related Categories
 
@@ -50,3 +50,4 @@ See SECURITY.md in the repository root.
 - OWASP Top 10 for LLM Applications - https://owasp.org/www-project-top-10-for-large-language-model-applications/
 - MITRE ATLAS - https://atlas.mitre.org/
 - NIST AI Risk Management Framework - https://www.nist.gov/itl/ai-risk-management-framework
+
