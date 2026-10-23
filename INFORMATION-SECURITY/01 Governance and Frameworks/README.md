@@ -6,11 +6,11 @@ Security governance is how an organization decides what security it needs, who o
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Governance Fundamentals | process-based |
-| 02 | ISO 27001 and ISMS | process-based |
-| 03 | NIST CSF and CIS Controls | process-based |
-| 04 | Roles and Responsibilities | process-based |
-| 05 | Security Strategy and Metrics | process-based |
+| 01 | [Governance Fundamentals](./01%20Governance%20Fundamentals.md) | process-based |
+| 02 | [ISO 27001 and ISMS](./02%20ISO%2027001%20and%20ISMS.md) | process-based |
+| 03 | [NIST CSF and CIS Controls](./03%20NIST%20CSF%20and%20CIS%20Controls.md) | process-based |
+| 04 | [Roles and Responsibilities](./04%20Roles%20and%20Responsibilities.md) | process-based |
+| 05 | [Security Strategy and Metrics](./05%20Security%20Strategy%20and%20Metrics.md) | process-based |
 
 ## Certification Alignment
 
