@@ -11,11 +11,11 @@ authority. The three work together.
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Policy Fundamentals | Process-based |
-| 02 | Policy Hierarchy and Architecture | Process-based |
-| 03 | Standards and Baselines | Process-based |
-| 04 | Policy Lifecycle and Governance | Process-based |
-| 05 | Policy Enforcement and Exceptions | Process-based |
+| 01 | [Policy Fundamentals](./01%20Policy%20Fundamentals.md) | Process-based |
+| 02 | [Policy Hierarchy and Architecture](./02%20Policy%20Hierarchy%20and%20Architecture.md) | Process-based |
+| 03 | [Standards and Baselines](./03%20Standards%20and%20Baselines.md) | Process-based |
+| 04 | [Policy Lifecycle and Governance](./04%20Policy%20Lifecycle%20and%20Governance.md) | Process-based |
+| 05 | [Policy Enforcement and Exceptions](./05%20Policy%20Enforcement%20and%20Exceptions.md) | Process-based |
 
 ## Certification Alignment
 
