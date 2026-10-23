@@ -22,11 +22,11 @@ Process-based. Each file follows the 9-section skeleton:
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Awareness Program Fundamentals | process-based |
-| 02 | Training Design and Delivery | process-based |
-| 03 | Phishing Simulation and Metrics | process-based |
-| 04 | Security Culture and Behavior | process-based |
-| 05 | Measuring Awareness Effectiveness | process-based |
+| 01 | [Awareness Program Fundamentals](./01%20Awareness%20Program%20Fundamentals.md) | process-based |
+| 02 | [Training Design and Delivery](./02%20Training%20Design%20and%20Delivery.md) | process-based |
+| 03 | [Phishing Simulation and Metrics](./03%20Phishing%20Simulation%20and%20Metrics.md) | process-based |
+| 04 | [Security Culture and Behavior](./04%20Security%20Culture%20and%20Behavior.md) | process-based |
+| 05 | [Measuring Awareness Effectiveness](./05%20Measuring%20Awareness%20Effectiveness.md) | process-based |
 
 ## Related Subcategories
 
