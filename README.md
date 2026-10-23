@@ -78,13 +78,21 @@ MethodMan/
 |   +-- 04 Kubernetes-Cloud/
 |   +-- 05 Serverless/
 |   +-- 06 IaC/
-|   +-- 02 Secure Communications/
-|   +-- 03 Operating Systems and Hygiene/
-|   +-- 04 Dark Web/
-|   +-- 05 Anonymous Hosting/
-|   +-- 06 Anonymous Crypto Operations and AML/
-|   +-- 07 OpSec and Threat Models/
-|   +-- 08 Attacks and Detection/
+|
++-- VIRTUALIZATION/                              # virtualization and container security reference
+|   +-- 01 Hypervisors/
+|   +-- 02 VM Escape/
+|   +-- 03 Containers/
+|   +-- 04 Sandboxes/
+|   +-- 05 Orchestration/
+|
++-- INFORMATION-SECURITY/                       # information security management reference
+|   +-- 01 Governance and Frameworks/
+|   +-- 02 Risk Management/
+|   +-- 03 Compliance and Regulation/
+|   +-- 04 Security Policies and Standards/
+|   +-- 05 Security Awareness and Training/
+|   +-- 06 Incident Response and Business Continuity/
 |
 +-- methodology/                                # OSCP reporting rules and notes
 +-- tools/                                      # custom pentest tools (Python, Go, Bash)
@@ -109,6 +117,8 @@ MethodMan/
 | [Anonymity, Privacy and OpSec Reference](./ANONYMITY-PRIVACY-OPSEC/) | Tor, I2P, secure communications, Tails/Qubes, dark web, anonymous hosting, crypto/AML, OpSec, attacks and detection (45 files) | - | [En](./ANONYMITY-PRIVACY-OPSEC/) | - |
 | [Network Security Reference](./NETWORKS/) | Network fundamentals, routing and switching, network devices, protocols, traffic analysis and forensics, SDN and modern networks (28 files) | - | [En](./NETWORKS/) | - |
 | [Cloud Security Reference](./CLOUD/) | AWS, Azure, GCP, Kubernetes in the cloud, serverless, IaC (28 files) | - | [En](./CLOUD/) | - |
+| [Virtualization Security Reference](./VIRTUALIZATION/) | Hypervisors, VM escape, containers, sandboxes, orchestration (25 files) | - | [En](./VIRTUALIZATION/) | - |
+| [Information Security Management Reference](./INFORMATION-SECURITY/) | Governance, risk, compliance, policies, awareness, incident response and BC (30 files) | - | [En](./INFORMATION-SECURITY/) | - |
 
 ### Other Resources
 
@@ -122,6 +132,8 @@ Reference material and tooling, independent of any single HTB machine:
 | [Anonymity, Privacy and OpSec Reference](./ANONYMITY-PRIVACY-OPSEC/) | Tor, I2P, secure communications, Tails/Qubes, dark web, anonymous hosting, crypto and AML, OpSec and threat models, attacks and detection. 8 subcategories (45 files). |
 | [Network Security Reference](./NETWORKS/) | Network fundamentals, routing and switching, network devices, network protocols, traffic analysis and forensics, SDN and modern networks. Two-track format (offensive + defensive) across 6 subcategories (28 files). |
 | [Cloud Security Reference](./CLOUD/) | AWS, Azure, GCP, Kubernetes in the cloud, serverless, and infrastructure as code. Two-track format (offensive + defensive) across 6 subcategories (28 files). |
+| [Virtualization Security Reference](./VIRTUALIZATION/) | Hypervisors, VM escape, containers, sandboxes, orchestration. Two-track format (offensive + defensive) across 5 subcategories (25 files). |
+| [Information Security Management Reference](./INFORMATION-SECURITY/) | Governance and frameworks, risk management, compliance, policies, awareness, incident response and business continuity. Process-based format across 6 subcategories (30 files). |
 | [METHODOLOGY.md](./METHODOLOGY.md) | Engagement phases, intensity profiles, checklists. |
 | [CHEATSHEET.md](./CHEATSHEET.md) | Quick command reference for common tools and techniques. |
 | [methodology/OSCP-Reporting.md](./methodology/OSCP-Reporting.md) | OSCP exam reporting rules (evidence, screenshots, structure). |
@@ -183,7 +195,7 @@ The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known se
 
 This repository uses a **dual-license model**:
 
-- **Documentation** (walkthroughs, `APPLICATIONS/`, `INFRASTRUCTURE/`, `AI/`, `ANONYMITY-PRIVACY-OPSEC/`, `NETWORKS/`, `CLOUD/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
+- **Documentation** (walkthroughs, `APPLICATIONS/`, `INFRASTRUCTURE/`, `AI/`, `ANONYMITY-PRIVACY-OPSEC/`, `NETWORKS/`, `CLOUD/`, `VIRTUALIZATION/`, `INFORMATION-SECURITY/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
 - **Source code** (`.py`, `.go`, `.sh`, `.ps1`, `.yml`) - MIT License, applies to `tools/` and to the root scripts (`check.ps1`, `mask.ps1`, `audit.ps1`, `tests/run-tests.ps1`). Full text: [tools/LICENSE](./tools/LICENSE).
 
 See [LICENSE](./LICENSE) for the full text and the file-type rules.
