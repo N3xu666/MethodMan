@@ -11,11 +11,11 @@ turning compliance into theatre.
 
 | # | File | Format |
 |---|------|--------|
-| 01 | Compliance Fundamentals | Process-based |
-| 02 | Regulatory Landscape | Process-based |
-| 03 | Control Mapping and Frameworks | Process-based |
-| 04 | Audit and Evidence Management | Process-based |
-| 05 | Compliance Monitoring and Reporting | Process-based |
+| 01 | [Compliance Fundamentals](./01%20Compliance%20Fundamentals.md) | Process-based |
+| 02 | [Regulatory Landscape](./02%20Regulatory%20Landscape.md) | Process-based |
+| 03 | [Control Mapping and Frameworks](./03%20Control%20Mapping%20and%20Frameworks.md) | Process-based |
+| 04 | [Audit and Evidence Management](./04%20Audit%20and%20Evidence%20Management.md) | Process-based |
+| 05 | [Compliance Monitoring and Reporting](./05%20Compliance%20Monitoring%20and%20Reporting.md) | Process-based |
 
 ## Certification Alignment
 
