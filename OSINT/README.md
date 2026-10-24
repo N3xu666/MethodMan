@@ -20,7 +20,7 @@ that ties the technique to authorized offensive engagements.
 
 | # | Subcategory | Files | Focus |
 |---|-------------|-------|-------|
-| 01 | [OSINT Methodology](./01%20OSINT%20Methodology/) | 0 | Collection planning, source evaluation, verification |
+| 01 | [OSINT Methodology](./01%20OSINT%20Methodology/) | 1 | Collection planning, source evaluation, verification |
 | 02 | [People Search](./02%20People%20Search/) | 0 | Identity resolution, social media, public records |
 | 03 | [Infrastructure OSINT](./03%20Infrastructure%20OSINT/) | 0 | Domains, certificates, DNS, cloud assets, Shodan/Censys |
 | 04 | [Social Media and Content](./04%20Social%20Media%20and%20Content/) | 0 | Platform-specific collection, geolocation, media forensics |

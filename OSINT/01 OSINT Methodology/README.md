@@ -22,7 +22,7 @@ subcategory covers the process that every other OSINT topic depends on.
 | 03 | [Source Evaluation](./03%20Source-Evaluation.md) | Two-track |
 | 04 | [Verification and Documentation](./04%20Verification-and-Documentation.md) | Two-track |
 
-Files are added one at a time. A row appears here only when the file exists.
+One file published, three planned. Rows are added as files are completed.
 
 ## Format
 
