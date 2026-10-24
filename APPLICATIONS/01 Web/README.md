@@ -15,18 +15,20 @@
 
 ## Table of Contents
 
-- [Decision Tree](#decision-tree)
-- [Quick Reference](#quick-reference)
-- [01 Recon](#01-recon)
-- [02 Frameworks](#02-frameworks)
-- [03 Languages](#03-languages)
-- [04 Servers](#04-servers)
-- [05 CMS](#05-cms)
-- [06 Technologies](#06-technologies)
-- [07 Databases](#07-databases)
-- [08 Vulnerabilities](#08-vulnerabilities)
-- [09 OWASP Top 10](#09-owasp-top-10)
-- [Workflow](#workflow)
+| # | Section | Description |
+|---|---------|-------------|
+| - | [Decision Tree](#decision-tree) | Choose the right path based on the exposed service |
+| - | [Quick Reference](#quick-reference) | Common ports, tools, and one-liners |
+| 1 | [Recon](./01%20Recon/) | Subdomain enumeration, port scanning, web tech fingerprinting |
+| 2 | [Frameworks](./02%20Frameworks/) | Spring, Django, Rails, Laravel, Express, and their CVEs |
+| 3 | [Languages](./03%20Languages/) | PHP, Python, Java, .NET, Node.js, Ruby specific vulnerabilities |
+| 4 | [Servers](./04%20Servers/) | Apache, Nginx, IIS, Tomcat configuration and CVEs |
+| 5 | [CMS](./05%20CMS/) | WordPress, Joomla, Drupal, and plugin vulnerabilities |
+| 6 | [Technologies](./06%20Technologies/) | REST, GraphQL, WebSocket, JWT, OAuth, SAML |
+| 7 | [Databases](./07%20Databases/) | SQL injection, NoSQL injection, Redis, Elasticsearch |
+| 8 | [Vulnerabilities](./08%20Vulnerabilities/) | OWASP Top 10 deep dives (XSS, SSRF, IDOR, etc.) |
+| 9 | [OWASP Top 10](./09%20OWASP%20Top%2010/) | 2021 categories, mapping to files |
+| - | [Workflow](#workflow) | How to use this reference in a pentest |
 
 ---
 
