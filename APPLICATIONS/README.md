@@ -8,8 +8,7 @@ verification) sides.
 ---
 
 > [!CAUTION]
-> Authorized use only. All material is provided for educational purposes and authorized testing.
-> See [../SECURITY.md](../SECURITY.md) for the full policy.
+> Authorized use only. All material is provided for educational purposes and authorized testing.<br>`n> See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Categories
 
 | # | Category | Description |

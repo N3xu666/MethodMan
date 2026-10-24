@@ -5,8 +5,7 @@ Virtualization and container security - hypervisors, VM escape, containers, sand
 This category follows the two-track format: each file covers both the offensive (attack) and defensive (detection, hardening) side of the topic, with no suffix in the section headers.
 
 > [!CAUTION]
-> Authorized use only. All material is provided for educational purposes and authorized testing.
-> See [../SECURITY.md](../SECURITY.md) for the full policy.
+> Authorized use only. All material is provided for educational purposes and authorized testing.<br>`n> See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Scope
 
 This category covers the virtualization and container stack end to end:
