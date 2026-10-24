@@ -21,3 +21,8 @@ Recon -> Foothold
 ## Foothold
 
 Login with password: <PASSWORD>
+
+## Exploitation
+
+No CVE (custom vulnerability) - test fixture.
+
