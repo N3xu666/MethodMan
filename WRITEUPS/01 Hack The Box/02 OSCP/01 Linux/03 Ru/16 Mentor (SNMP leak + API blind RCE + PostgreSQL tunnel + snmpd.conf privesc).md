@@ -84,6 +84,8 @@ ffuf -u http://10.129.115.144 -H "Host: FUZZ.mentorquotes.htb" -w /usr/share/sec
 
 ## Первичный Доступ (SNMP + API)
 
+No CVE (custom vulnerability) - the SNMP community string leaks API credentials, and the API accepts unsanitized input that reaches a shell (blind RCE).
+
 ### SNMP Enumeration
 
 ```bash

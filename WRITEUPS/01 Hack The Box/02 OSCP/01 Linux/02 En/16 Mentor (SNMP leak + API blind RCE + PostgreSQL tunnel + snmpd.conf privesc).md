@@ -84,6 +84,8 @@ Result: `api` (Status: 404, Size: 22).
 
 ## Foothold (SNMP + API)
 
+No CVE (custom vulnerability) - the SNMP community string leaks API credentials, and the API accepts unsanitized input that reaches a shell (blind RCE).
+
 ### SNMP Enumeration
 
 ```bash
