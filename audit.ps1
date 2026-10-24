@@ -83,7 +83,7 @@ Write-Host "================================================================" -F
 Write-Host "`n[1] Git state" -ForegroundColor Yellow
 $gitBefore = $script:gitErrors
 $status = Invoke-GitSafe -GitArgs @("status", "--short") -Context "status"
-if ($script:gitErrors -gt $gitBefore) { Write-Fail "git status failed - cannot determine working tree state" } elseif (-not $status) { Write-Pass "working tree clean" } else { Write-Warn "working tree has changes (may be expected)" }
+if ($script:gitErrors -gt $gitBefore) { Write-Fail "git status failed - cannot determine working tree state" } elseif (-not $status -or ($status | Out-String).Trim() -eq "") { Write-Pass "working tree clean" } else { Write-Warn "working tree has changes (may be expected)" }
 Write-Info "last 5 commits:"
 git log -5 --oneline | ForEach-Object { Write-Info "    $_" }
 $remote = Invoke-GitSafe -GitArgs @("remote", "get-url", "origin") -Context "remote" -AllowedExitCodes @(0, 2, 128)
