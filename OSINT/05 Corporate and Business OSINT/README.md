@@ -1,4 +1,4 @@
-\# Corporate and Business OSINT
+﻿\# Corporate and Business OSINT
 
 
 
@@ -36,13 +36,13 @@ This subcategory covers business-focused OSINT:
 
 | 01 | \[Corporate OSINT Fundamentals](./01%20Corporate-OSINT-Fundamentals.md) | two-track |
 
-| 02 | Corporate Registries and Filings | two-track |
+| 02 | [Corporate Registries and Filings](./02%20Corporate-Registries-and-Filings.md) | two-track |
 
-| 03 | Financial Intelligence and Sanctions | two-track |
+| 03 | [Financial Intelligence and Sanctions](./03%20Financial-Intelligence-and-Sanctions.md) | two-track |
 
-| 04 | Supply Chain and Vendor Mapping | two-track |
+| 04 | [Supply Chain and Vendor Mapping](./04%20Supply-Chain-and-Vendor-Mapping.md) | two-track |
 
-| 05 | Patents Trademarks and IP | two-track |
+| 05 | [Patents Trademarks and IP](./05%20Patents-Trademarks-and-IP.md) | two-track |
 
 
 
