@@ -5,7 +5,8 @@ Mobile application security reference. Covers Android and iOS attack surfaces, t
 Writeups and references in this category follow the two-track format (Pentest / AppSec) where applicable.
 
 > [!CAUTION]
-> Authorized use only. All material is provided for educational purposes and authorized testing.<br>`n> See [../../SECURITY.md](../../SECURITY.md) for the full policy.
+> Authorized use only. All material is provided for educational purposes and authorized testing.<br>
+> See [../../SECURITY.md](../../SECURITY.md) for the full policy.
 ## Table of Contents
 
 | # | Section | Description |

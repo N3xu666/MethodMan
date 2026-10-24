@@ -4,7 +4,8 @@ Reference material on artificial intelligence and machine learning security:
 offensive techniques against AI systems and defensive controls to protect them.
 
 > [!CAUTION]
-> Authorized use only. All material is provided for educational purposes and authorized testing.<br>`n> See [../SECURITY.md](../SECURITY.md) for the full policy.
+> Authorized use only. All material is provided for educational purposes and authorized testing.<br>
+> See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Scope
 
 This category covers the attack surface introduced by AI and ML systems:

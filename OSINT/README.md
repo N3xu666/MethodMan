@@ -9,7 +9,8 @@ with an additional section `## Pentest and Red Team Application` in every file
 that ties the technique to authorized offensive engagements.
 
 > [!CAUTION]
-> Authorized use only. All material is provided for educational purposes and authorized testing.<br>`n> See [../SECURITY.md](../SECURITY.md) for the full policy.
+> Authorized use only. All material is provided for educational purposes and authorized testing.<br>
+> See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Scope
 
 - OSINT methodology: collection planning, source evaluation, verification.

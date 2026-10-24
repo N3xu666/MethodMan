@@ -9,7 +9,8 @@ Defensive): every file covers both how an attacker abuses a
 technology and how a defender hardens it.
 
 > [!CAUTION]
-> Authorized use only. All material is provided for educational purposes and authorized testing.<br>`n> See [../SECURITY.md](../SECURITY.md) for the full policy.
+> Authorized use only. All material is provided for educational purposes and authorized testing.<br>
+> See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Scope
 
 - OSI and TCP/IP models, encapsulation, addressing.
