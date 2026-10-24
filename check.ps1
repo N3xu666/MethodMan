@@ -200,6 +200,7 @@ if ($val -match '^\.') { continue }
 if ($val -match '\^') { continue }
 # P1.1: skip ALL_CAPS identifiers (env var refs, constants)
 if ($val -match '^[A-Z_]{3,5}$') { continue }
+$val = $val.TrimEnd('"').TrimEnd("'")
 if ($val -match '^(password|null|none|undefined|example|test|changeme|N/A)$') { continue }
         $suspicious += "$($_.Name): $($x.Value)"
     }
