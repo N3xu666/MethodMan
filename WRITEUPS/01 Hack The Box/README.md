@@ -8,7 +8,7 @@ Writeups available in three languages: `01 Az`, `02 En`, `03 Ru`.
 
 | # | Program | Description | Writeups |
 |---|---------|-------------|----------|
-| 1 | [All Machines](./01%20All%20Machines/) | All HTB machines by season | 0 published + 2 pending (× 3 languages) |
+| 1 | [All Machines](./01%20All%20Machines/) | All HTB machines by season | 0 published + 5 pending (× 3 languages) |
 | 2 | [OSCP](./02%20OSCP/) | Machines for OSCP preparation | 18 published + 1 active stub (× 3 languages) |
 
 ## OSCP Categories
