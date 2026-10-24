@@ -110,7 +110,7 @@ Sayt "MegaShopping" brendi altında kiçik e-ticarət tətbiqidir. Açılış s�
 
 ## İlkin Giriş
 
-### Defolt Kredensiallar
+### Standart Giriş Məlumatları
 
 No CVE (custom vulnerability) - the login form accepts the default credential pair `admin:password`.
 
@@ -526,7 +526,7 @@ type C:\Users\Administrator\Desktop\root.txt
 
 ## Əsas Nəticələr
 
-- **Defolt kredensiallar hələ də giriş yoludur.** İctimai login-də `admin:password` - HTB-nin təkrarlanan mövzusudur; kiçik siyahı (`admin`, `administrator` × `admin`, `password`, `123456`) daha mürəkkəb bir şeydən əvvəl sınanmağa dəyər.
+- **Standart giriş məlumatları hələ də giriş yoludur.** İctimai login-də `admin:password` - HTB-nin təkrarlanan mövzusudur; kiçik siyahı (`admin`, `administrator` × `admin`, `password`, `123456`) daha mürəkkəb bir şeydən əvvəl sınanmağa dəyər.
 - **Mənbəni oxu.** HTML şərhi `<!-- Modified by Daniel : UI-Fix-9092-->` `daniel` adlı istifadəçinin mövcudluğuna dair yeganə ipucu idi; onsuz SSH açar yolunu təxmin etmək təmiz şansdır.
 - **XXE fayl oxuma primitividir, sadəcə SSRF qadceti deyil.** Windows-da `file:///c:/...` birbaşa işləyir və açarları, kredensialları, konfiqurasiya fayllarını ekzfiltrasiya edə bilər. İstifadə olunan parseri (`DOMDocument::loadXML()` burada) və xarici entity-lərin söndürülüb-söndürülmədiyini yoxla.
 - **PHP xəbərdarlıqları backend yolunu sızdırır.** `DOMDocument::loadXML(): Empty string supplied as input in C:\xampp\htdocs\process.php on line 11` xəbərdarlığı həm parseri təsdiqlədi, həm də webroot-u açıqladı.
