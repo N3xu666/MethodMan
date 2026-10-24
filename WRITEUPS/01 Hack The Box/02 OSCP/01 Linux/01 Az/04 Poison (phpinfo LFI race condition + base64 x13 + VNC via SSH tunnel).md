@@ -226,7 +226,7 @@ VNC vasitəsilə root-un iş masasına çıxış əldə edirik. `root.txt`-i oxu
 | Bayraq | Dəyər                            |
 |--------|----------------------------------|
 | User   | <USER_FLAG> |
-| Root   | (VNC vasitəsilə `/root/root.txt`-ə bax) |
+| Root | `<ROOT_FLAG>` |
 
 ---
 

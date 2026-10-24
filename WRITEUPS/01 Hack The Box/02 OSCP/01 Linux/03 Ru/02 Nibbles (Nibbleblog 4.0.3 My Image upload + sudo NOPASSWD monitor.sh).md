@@ -243,7 +243,7 @@ cat /root/root.txt
 | Флаг | Значение                       |
 |------|--------------------------------|
 | User | (см. `/home/nibbler/user.txt`) |
-| Root | (см. `/root/root.txt`)         |
+| Root | `<ROOT_FLAG>` |
 
 ---
 

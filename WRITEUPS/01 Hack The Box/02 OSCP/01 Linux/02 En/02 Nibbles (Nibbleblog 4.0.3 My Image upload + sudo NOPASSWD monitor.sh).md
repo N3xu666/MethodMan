@@ -243,7 +243,7 @@ cat /root/root.txt
 | Flag | Value                          |
 |------|--------------------------------|
 | User | (see `/home/nibbler/user.txt`) |
-| Root | (see `/root/root.txt`)         |
+| Root | `<ROOT_FLAG>` |
 
 ---
 

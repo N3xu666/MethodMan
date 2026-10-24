@@ -226,7 +226,7 @@ Via VNC, we access the root desktop. Read `root.txt`.
 | Flag | Value                            |
 |------|----------------------------------|
 | User | <USER_FLAG> |
-| Root | (see `/root/root.txt` via VNC)   |
+| Root | `<ROOT_FLAG>` |
 
 ---
 

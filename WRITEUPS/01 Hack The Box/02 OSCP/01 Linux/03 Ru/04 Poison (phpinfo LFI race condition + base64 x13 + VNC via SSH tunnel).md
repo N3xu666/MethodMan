@@ -226,7 +226,7 @@ vncviewer -passwd secret 127.0.0.1::6901
 | Флаг | Значение                         |
 |------|----------------------------------|
 | User | <USER_FLAG> |
-| Root | (см. `/root/root.txt` через VNC) |
+| Root | `<ROOT_FLAG>` |
 
 ---
 

@@ -243,7 +243,7 @@ cat /root/root.txt
 | Bayraq | Dəyər                          |
 |--------|--------------------------------|
 | User   | (bax `/home/nibbler/user.txt`) |
-| Root   | (bax `/root/root.txt`)         |
+| Root | `<ROOT_FLAG>` |
 
 ---
 
