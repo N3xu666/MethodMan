@@ -8,6 +8,7 @@ available in three languages: `01 Az`, `02 En`, `03 Ru`.
 | # | Machine | Az | En | Ru |
 |---|---------|-----|-----|-----|
 | 01 | Markup | [Az](./01%20Az/01%20Markup%20%28default%20creds%20%2B%20XXE%20to%20SSH%20key%20%2B%20writable%20job.bat%20privesc%29.md) | [En](./02%20En/01%20Markup%20%28default%20creds%20%2B%20XXE%20to%20SSH%20key%20%2B%20writable%20job.bat%20privesc%29.md) | [Ru](./03%20Ru/01%20Markup%20%28default%20creds%20%2B%20XXE%20to%20SSH%20key%20%2B%20writable%20job.bat%20privesc%29.md) |
+| 02 | Jerry | [Az](./01%20Az/02%20Jerry%20%28Tomcat%20default%20creds%20%2B%20WAR%20upload%20to%20SYSTEM%29.md) | [En](./02%20En/02%20Jerry%20%28Tomcat%20default%20creds%20%2B%20WAR%20upload%20to%20SYSTEM%29.md) | [Ru](./03%20Ru/02%20Jerry%20%28Tomcat%20default%20creds%20%2B%20WAR%20upload%20to%20SYSTEM%29.md) |
 
 ## Completed (Writeups Pending)
 
