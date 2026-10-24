@@ -5,14 +5,14 @@ Hands-on walkthroughs organized by platform. All writeups are trilingual
 (Attack Chain, Machine Briefing, Reconnaissance, Foothold, Exploitation,
 Privilege Escalation, Flags, Key Takeaways).
 
-> [!NOTE]
-> All flags, passwords, hashes, and session tokens have been masked for ethical reasons.
-
----
-
 > [!CAUTION]
 > Authorized use only. All material is provided for educational purposes and authorized testing.<br>
 > See [../SECURITY.md](../SECURITY.md) for the full policy.
+
+---
+
+> [!NOTE]
+> All flags, passwords, hashes, and session tokens have been masked for ethical reasons.
 ## Categories
 
 | # | Category | Description | Status |
