@@ -11,6 +11,8 @@ preventive controls, detection controls, verification). Section headers
 carry no suffix - the two tracks are named Offensive and Defensive
 explicitly inside each file.
 
+> [!CAUTION]
+> Authorized use only. All techniques here are for OSCP labs, Hack The Box, and explicitly authorized penetration tests. See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Structure
 
 | # | Subcategory | Focus |

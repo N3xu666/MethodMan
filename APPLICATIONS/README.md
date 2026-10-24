@@ -7,6 +7,8 @@ verification) sides.
 
 ---
 
+> [!CAUTION]
+> Authorized use only. All techniques here are for OSCP labs, Hack The Box, and explicitly authorized penetration tests. See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Categories
 
 | # | Category | Description |

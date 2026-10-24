@@ -8,6 +8,8 @@ This category is written in the **two-track** format (Offensive /
 Defensive): every file covers both how an attacker abuses a
 technology and how a defender hardens it.
 
+> [!CAUTION]
+> Authorized use only. All techniques here are for OSCP labs, Hack The Box, and explicitly authorized penetration tests. See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Scope
 
 - OSI and TCP/IP models, encapsulation, addressing.

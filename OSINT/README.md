@@ -8,6 +8,8 @@ This category is written in the **two-track** format (Offensive / Defensive),
 with an additional section `## Pentest and Red Team Application` in every file
 that ties the technique to authorized offensive engagements.
 
+> [!CAUTION]
+> Authorized use only. All techniques here are for OSCP labs, Hack The Box, and explicitly authorized penetration tests. See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Scope
 
 - OSINT methodology: collection planning, source evaluation, verification.

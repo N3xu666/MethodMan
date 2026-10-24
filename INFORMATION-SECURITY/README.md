@@ -7,6 +7,8 @@ Governance, risk, compliance, policy, awareness and incident response - the mana
 
 ---
 
+> [!CAUTION]
+> Authorized use only. All techniques here are for OSCP labs, Hack The Box, and explicitly authorized penetration tests. See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Scope
 
 This category covers the non-technical (or cross-technical) disciplines that every security program needs:

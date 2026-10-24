@@ -3,6 +3,8 @@
 Reference material on artificial intelligence and machine learning security:
 offensive techniques against AI systems and defensive controls to protect them.
 
+> [!CAUTION]
+> Authorized use only. All techniques here are for OSCP labs, Hack The Box, and explicitly authorized penetration tests. See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Scope
 
 This category covers the attack surface introduced by AI and ML systems:

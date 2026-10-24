@@ -4,6 +4,8 @@ Mobile application security reference. Covers Android and iOS attack surfaces, t
 
 Writeups and references in this category follow the two-track format (Pentest / AppSec) where applicable.
 
+> [!CAUTION]
+> Authorized use only. All techniques here are for OSCP labs, Hack The Box, and explicitly authorized penetration tests. See [../../SECURITY.md](../../SECURITY.md) for the full policy.
 ## Table of Contents
 
 | # | Section | Description |
