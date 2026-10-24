@@ -10,6 +10,7 @@ Writeups available in three languages: `01 Az`, `02 En`, `03 Ru`.
 
 | # | Machine | Az | En | Ru |
 |---|---------|-----|-----|-----|
+| 03 | Stream | - | [En](./02%20En/03%20Stream.md) | - |
 
 ## Completed (Writeups Pending)
 
