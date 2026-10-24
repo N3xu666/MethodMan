@@ -213,10 +213,11 @@ if ($suspicious.Count -eq 0) {
 }
 
 # ============================================================
-# 8. CVE reference in Exploitation (WARN only, does not block)
+# 8. CVE reference in Exploitation/Foothold (FAIL if section missing or no CVE)
 # ============================================================
-Write-Host "`n=== [8/17] CVE reference in Exploitation (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [8/17] Exploitation/Foothold CVE reference (FAIL) ===" -ForegroundColor Cyan
 $missingCve = @()
+$sectionPattern = '^## (Exploitation|Foothold|Эксплуатация|Первичный Доступ|İstismar|İlkin Giriş)'
 $checkedExpl = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION-SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $notWalkthrough } |
@@ -224,26 +225,42 @@ Get-ChildItem -Recurse -Filter *.md |
     if (Test-StubFile $_.FullName) { return }
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $lines2 = $ct -split "`n"
-    $explText = ""
     $inCode = $false
+    $explText = ""
+    $inExpl = $false
+    $hasExpl = $false
     foreach ($ln in $lines2) {
         if ($ln -match '^```') { $inCode = -not $inCode; continue }
-        if (-not $inCode) { $explText += $ln + "`n" }
+        if ($inCode) { continue }
+        if ($ln -match '^## ') {
+            $inExpl = $false
+            if ($ln -match $sectionPattern) {
+                $inExpl = $true
+                $hasExpl = $true
+            }
+        }
+        if ($inExpl) { $explText += $ln + "`n" }
     }
     $script:checkedExpl++
-    $hasCve = ($explText -match 'CVE-\d{4}-\d{4,}')
-    $hasNoCve = ($explText -match 'No CVE \(custom vulnerability\)')
-    if (-not $hasCve -and -not $hasNoCve) {
+    if (-not $hasExpl) {
         $rel = if ($_.FullName.StartsWith($repo)) { $_.FullName.Substring($repo.Length).TrimStart('\') } else { $_.FullName }
-        $script:missingCve += $rel
+        $script:missingCve += "$rel (no Exploitation/Foothold section)"
+    } else {
+        $hasCve = ($explText -match 'CVE-\d{4}-\d{4,}')
+        $hasNoCve = ($explText -match 'No CVE \(custom vulnerability\)')
+        if (-not $hasCve -and -not $hasNoCve) {
+            $rel = if ($_.FullName.StartsWith($repo)) { $_.FullName.Substring($repo.Length).TrimStart('\') } else { $_.FullName }
+            $script:missingCve += "$rel (no CVE/No CVE in Exploitation/Foothold)"
+        }
     }
   }
 if ($missingCve.Count -eq 0) {
-    Write-Host "OK: all Exploitation sections have a CVE reference ($checkedExpl checked)" -ForegroundColor Green
+    Write-Host "OK: all Exploitation/Foothold sections have a CVE reference ($checkedExpl checked)" -ForegroundColor Green
 } else {
-    Write-Host "WARN: $($missingCve.Count) Exploitation section(s) without CVE reference:" -ForegroundColor Yellow
+    Write-Host "FAIL: $($missingCve.Count) walkthrough(s) with missing section or missing CVE:" -ForegroundColor Red
     $missingCve | Select-Object -First 10 | ForEach-Object { Write-Host "  $_" -ForegroundColor Gray }
     if ($missingCve.Count -gt 10) { Write-Host "  ... and $($missingCve.Count - 10) more" -ForegroundColor Gray }
+    $totalIssues += $missingCve.Count
 }
 
 # ============================================================
