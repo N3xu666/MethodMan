@@ -8,8 +8,8 @@
 > Last technical review: 2026-10-12
 
 > [!CAUTION]
-> Authorized use only. All techniques here are for OSCP labs, Hack The Box,
-> and explicitly authorized penetration tests. See [../SECURITY.md](../../SECURITY.md).
+> Authorized use only. All techniques here are for OSCP labs, Hack The Box, and explicitly authorized penetration tests.<br>
+> See [../../SECURITY.md](../../SECURITY.md).
 
 ---
 

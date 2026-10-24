@@ -4,6 +4,9 @@ Cloud platforms, cloud-native architecture, and the attack and defense of manage
 
 This category follows the two-track format: each file covers both the offensive (attack) and defensive (detection, hardening) side of the topic, with no suffix in the section headers.
 
+> [!CAUTION]
+> Authorized use only. All material is provided for educational purposes and authorized testing.<br>
+> See [../SECURITY.md](../SECURITY.md) for the full policy.
 ## Subcategories
 
 | # | Subcategory | Files | Focus |
@@ -31,11 +34,6 @@ See [CERTIFICATIONS.md](./CERTIFICATIONS.md) for the mapping between subcategori
 - [NETWORKS](../NETWORKS/) - network fundamentals, protocols, devices
 - [AI](../AI/) - AI and LLM security
 - DEVSECOPS - CI/CD, supply chain, secrets (planned)
-
-## Authorized Use Only
-
-> [!CAUTION]
-> All content in this category is for authorized penetration testing, cloud security assessment of systems you own or have explicit written permission to test, and educational use. Do not use these techniques against cloud accounts, infrastructure, or services without authorization.
 
 ## Archive
 
