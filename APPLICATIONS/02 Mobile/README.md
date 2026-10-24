@@ -118,7 +118,24 @@ Artifact received (APK / IPA)
 5. **Backend** - test the API directly (auth, IDOR, rate limiting, token lifetime).
 6. **Report** - per MASVS category, with severity and evidence.
 
-## Related
+## References
 
-- [Web](../01%20Web/)
-- [API](../03%20API/)
+- OWASP Mobile Top 10 - https://owasp.org/www-project-mobile-top-10/
+- OWASP MASVS - https://mas.owasp.org/MASVS/
+- OWASP MASTG - https://mas.owasp.org/MASTG/
+- Android Security Documentation - https://source.android.com/docs/security
+- iOS Security Guide - https://support.apple.com/guide/security/welcome/web
+
+---
+
+## Related Sections
+
+- [../01 Web/](../01%20Web/) - browser-facing web application security (CSRF, XSS, SQLi).
+- [../03 API/](../03%20API/) - machine-facing API security (REST, GraphQL, Auth).
+- [../../CHEATSHEET.md](../../CHEATSHEET.md) - general pentest commands.
+- [../../METHODOLOGY.md](../../METHODOLOGY.md) - engagement workflow.
+- [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md) - exam reporting.
+
+---
+
+*Last updated: 2026-10-24. Part of MethodMan. English only by design.*

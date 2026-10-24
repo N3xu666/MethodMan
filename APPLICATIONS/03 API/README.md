@@ -28,6 +28,18 @@ Writeups and references in this category are written in English only. The trilin
 
 The `01 Web/` category covers the browser-facing layer: HTML forms, cookies, CSRF, XSS, CMS, servers, frameworks. `03 API/` covers the machine-facing layer: no browser, tokens instead of cookies, JSON/Protobuf instead of HTML.
 
+## Related Sections
+
+- [../01 Web/](../01%20Web/) - browser-facing web application security.
+- [../02 Mobile/](../02%20Mobile/) - mobile client security (Android, iOS).
+- [../../CHEATSHEET.md](../../CHEATSHEET.md) - general pentest commands.
+- [../../METHODOLOGY.md](../../METHODOLOGY.md) - engagement workflow.
+- [../../methodology/OSCP-Reporting.md](../../methodology/OSCP-Reporting.md) - exam reporting.
+
+---
+
+*Last updated: 2026-10-24. Part of MethodMan. English only by design.*
+
 Overlap exists in the underlying primitives (injection, authn, authz) but the detection and exploitation techniques are different enough to warrant a separate track. Cross-references point to `01 Web/` where the primitive is the same.
 
 ---
