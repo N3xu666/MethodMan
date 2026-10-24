@@ -1,11 +1,6 @@
 ﻿# Web Application Security Reference
 
-> Web application security reference organized by stack: frameworks,
-> languages, servers, CMS, technologies, databases, vulnerabilities, and OWASP Top 10.
-> Covers detection, enumeration, exploitation patterns, and known CVEs
-> (with NVD/MITRE links). Commands are universal; English only.
->
-> Last technical review: 2026-10-12
+Web application security reference organized by stack: frameworks, languages, servers, CMS, technologies, databases, vulnerabilities, and OWASP Top 10. Covers detection, enumeration, exploitation patterns, and known CVEs (with NVD/MITRE links). Commands are universal; English only.
 
 > [!CAUTION]
 > Authorized use only. All techniques here are for OSCP labs, Hack The Box, and explicitly authorized penetration tests.<br>
