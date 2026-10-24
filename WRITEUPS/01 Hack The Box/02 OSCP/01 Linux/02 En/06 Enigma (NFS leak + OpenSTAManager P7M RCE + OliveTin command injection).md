@@ -246,8 +246,8 @@ cat /root/root.txt
 
 | Flag | Value                            |
 |------|----------------------------------|
-| User | (see `~/user.txt` for haris)     |
-| Root | <ROOT_FLAG> |
+| User | `<USER_FLAG>` |
+| Root | `<ROOT_FLAG>` |
 
 ---
 

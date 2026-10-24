@@ -246,8 +246,8 @@ cat /root/root.txt
 
 | Bayraq | Dəyər                            |
 |--------|----------------------------------|
-| User   | (haris üçün `~/user.txt`-ə bax)  |
-| Root   | <ROOT_FLAG> |
+| User | `<USER_FLAG>` |
+| Root | `<ROOT_FLAG>` |
 
 ---
 
