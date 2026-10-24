@@ -21,7 +21,7 @@ that ties the technique to authorized offensive engagements.
 | # | Subcategory | Files | Focus |
 |---|-------------|-------|-------|
 | 01 | [OSINT Methodology](./01%20OSINT%20Methodology/) | 4 | Collection planning, source evaluation, verification |
-| 02 | [People Search](./02%20People%20Search/) | 1 | Identity resolution, social media, public records |
+| 02 | [People Search](./02%20People%20Search/) | 4 | Identity resolution, social media, public records |
 | 03 | [Infrastructure OSINT](./03%20Infrastructure%20OSINT/) | 0 | Domains, certificates, DNS, cloud assets, Shodan/Censys |
 | 04 | [Social Media and Content](./04%20Social%20Media%20and%20Content/) | 0 | Platform-specific collection, geolocation, media forensics |
 | 05 | [Corporate and Business OSINT](./05%20Corporate%20and%20Business%20OSINT/) | 0 | Corporate registries, filings, employee mapping, supply chain |

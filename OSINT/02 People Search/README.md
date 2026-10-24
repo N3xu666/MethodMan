@@ -23,7 +23,7 @@ harm. Done well, it is auditable and proportionate to the requirement.
 | 03 | [Social Media Collection](./03%20Social-Media-Collection.md) | Two-track |
 | 04 | [Public Records](./04%20Public-Records.md) | Two-track |
 
-One file published, three planned. Rows are added as files are completed.
+All four files in this subcategory are published.
 
 ## Format
 
