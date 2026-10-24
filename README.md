@@ -94,7 +94,7 @@ MethodMan/
 |   +-- 05 Security Awareness and Training/
 |   +-- 06 Incident Response and Business Continuity/
 |
-+-- OSINT/                                     # open-source intelligence reference
++-- OSINT/                                       # open-source intelligence reference
 +-- methodology/                                # OSCP reporting rules and notes
 +-- tools/                                      # custom pentest tools (Python, Go, Bash)
 +-- tests/                                      # test runner + fixtures for mask.ps1 / check.ps1
