@@ -8,7 +8,7 @@
 
 ![MethodMan - trilingual HTB writeups, web application security reference, methodology and tools](./social-preview.png)
 
-New HTB machines are added as they are completed (retired only - see the stub scheme below for active machines). Reference material grows in parallel: the Application Security Reference (`APPLICATIONS/`), the Infrastructure Security Reference (`INFRASTRUCTURE/`), the AI Security Reference (`AI/`), the Anonymity, Privacy and OpSec Reference (`ANONYMITY-PRIVACY-OPSEC/`), the Network Security Reference (`NETWORKS/`), the Cloud Security Reference (`CLOUD/`), the Virtualization Security Reference (`VIRTUALIZATION/`), the Information Security Management Reference (`INFORMATION-SECURITY/`), methodology notes, cheatsheets, and custom tooling (`tools/`).
+New HTB machines are added as they are completed (retired only - see the stub scheme below for active machines). Reference material grows in parallel: the Application Security Reference (`APPLICATIONS/`), the Infrastructure Security Reference (`INFRASTRUCTURE/`), the AI Security Reference (`AI/`), the Anonymity, Privacy and OpSec Reference (`ANONYMITY-PRIVACY-OPSEC/`), the Network Security Reference (`NETWORKS/`), the Cloud Security Reference (`CLOUD/`), the Virtualization Security Reference (`VIRTUALIZATION/`), the Open-Source Intelligence Reference (`OSINT/`), the Information Security Management Reference (`INFORMATION-SECURITY/`), methodology notes, cheatsheets, and custom tooling (`tools/`).
 
 Writeups available in Az/En/Ru. Currently: **18 published (retired) + 5 active stubs** = **23 completed machines**.
 
@@ -94,6 +94,7 @@ MethodMan/
 |   +-- 05 Security Awareness and Training/
 |   +-- 06 Incident Response and Business Continuity/
 |
++-- OSINT/                                       # open-source intelligence reference
 +-- methodology/                                # OSCP reporting rules and notes
 +-- tools/                                      # custom pentest tools (Python, Go, Bash)
 +-- tests/                                      # test runner + fixtures for mask.ps1 / check.ps1
@@ -118,6 +119,7 @@ MethodMan/
 | [Network Security Reference](./NETWORKS/) | Network fundamentals, routing and switching, network devices, protocols, traffic analysis and forensics, SDN and modern networks (28 files) | - | [En](./NETWORKS/) | - |
 | [Cloud Security Reference](./CLOUD/) | AWS, Azure, GCP, Kubernetes in the cloud, serverless, IaC (28 files) | - | [En](./CLOUD/) | - |
 | [Virtualization Security Reference](./VIRTUALIZATION/) | Hypervisors, VM escape, containers, sandboxes, orchestration (25 files) | - | [En](./VIRTUALIZATION/) | - |
+| [Open-Source Intelligence Reference](./OSINT/) | OSINT methodology, people search, infrastructure, social media, corporate OSINT (22 files) | - | [En](./OSINT/) | - |
 | [Information Security Management Reference](./INFORMATION-SECURITY/) | Governance, risk, compliance, policies, awareness, incident response and BC (30 files) | - | [En](./INFORMATION-SECURITY/) | - |
 
 ### Other Resources
@@ -134,6 +136,7 @@ Reference material and tooling, independent of any single HTB machine:
 | [Cloud Security Reference](./CLOUD/) | AWS, Azure, GCP, Kubernetes in the cloud, serverless, and infrastructure as code. Two-track format (offensive + defensive) across 6 subcategories (28 files). |
 | [Virtualization Security Reference](./VIRTUALIZATION/) | Hypervisors, VM escape, containers, sandboxes, orchestration. Two-track format (offensive + defensive) across 5 subcategories (25 files). |
 | [Information Security Management Reference](./INFORMATION-SECURITY/) | Governance and frameworks, risk management, compliance, policies, awareness, incident response and business continuity. Process-based format across 6 subcategories (30 files). |
+| [OSINT](./OSINT/) | OSINT methodology, people search, infrastructure OSINT, social media, corporate OSINT (22 files). Two-track format. |
 | [METHODOLOGY.md](./METHODOLOGY.md) | Engagement phases, intensity profiles, checklists. |
 | [CHEATSHEET.md](./CHEATSHEET.md) | Quick command reference for common tools and techniques. |
 | [methodology/OSCP-Reporting.md](./methodology/OSCP-Reporting.md) | OSCP exam reporting rules (evidence, screenshots, structure). |
@@ -195,7 +198,7 @@ The masking pipeline (`mask.ps1` + a local-only `masking-dict.ps1` with known se
 
 This repository uses a **dual-license model**:
 
-- **Documentation** (walkthroughs, `APPLICATIONS/`, `INFRASTRUCTURE/`, `AI/`, `ANONYMITY-PRIVACY-OPSEC/`, `NETWORKS/`, `CLOUD/`, `VIRTUALIZATION/`, `INFORMATION-SECURITY/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
+- **Documentation** (walkthroughs, `APPLICATIONS/`, `INFRASTRUCTURE/`, `AI/`, `ANONYMITY-PRIVACY-OPSEC/`, `NETWORKS/`, `CLOUD/`, `VIRTUALIZATION/`, `INFORMATION-SECURITY/`, `OSINT/`, `METHODOLOGY.md`, `CHEATSHEET.md`, `README.md`, `SECURITY.md`, and other prose/Markdown content) - [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](./LICENSE).
 - **Source code** (`.py`, `.go`, `.sh`, `.ps1`, `.yml`) - MIT License, applies to `tools/` and to the root scripts (`check.ps1`, `mask.ps1`, `audit.ps1`, `tests/run-tests.ps1`). Full text: [tools/LICENSE](./tools/LICENSE).
 
 See [LICENSE](./LICENSE) for the full text and the file-type rules.
