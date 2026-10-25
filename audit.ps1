@@ -27,7 +27,9 @@ $stubMarkers = @(
     'Status: **Completed**',  # En (bold)
     'Status: Пройдено',        # Ru (English prefix)
     'Статус: Пройдено',        # Ru (native prefix)
-    'Status: Tamamlandı'      # Az
+    'Статус: **Завершено**',      # Ru (bold)
+    'Status: Tamamlandı',      # Az
+    'Status: **Tamamlandı**'        # Az (bold)
 )
 
 function Test-StubFile([string]$filePath) {
