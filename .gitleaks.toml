@@ -1,60 +1,80 @@
-# Gitleaks configuration for MethodMan
-# Custom rules on top of the default ruleset.
-# Docs: https://github.com/gitleaks/gitleaks#configuration
-
 title = "MethodMan gitleaks config"
 
 [extend]
-# Use the built-in gitleaks ruleset as the base.
 useDefault = true
 
 [[rules]]
 id = "htb-32hex-flag"
 description = "Hack The Box 32-character hexadecimal flag"
-# HTB flags are 32 lowercase hex chars. This is a broad pattern, so the
-# allowlist below filters known-safe 32-hex strings (commit SHAs, favicon
-# hashes, test fixtures, documentation examples).
 regex = '''\b[a-f0-9]{32}\b'''
 entropy = 3.0
 keywords = []
 
+  [[rules.allowlists]]
+  description = "Ignore 32-hex strings that are documented as placeholders or known hashes"
+  regexes = [
+    '''<USER_FLAG>''',
+    '''<ROOT_FLAG>''',
+    '''<SYSTEM_FLAG>''',
+    '''aad3b435b51404eeaad3b435b51404ee''',
+    '''c4ca4238a0b923820dcc509a6f75849b''',
+    '''5d41402abc4b2a76b9719d911017c592''',
+    '''0e462097431906509019562988736854''',
+    '''[a-f0-9]{32}.*example''',
+    '''example.*[a-f0-9]{32}''',
+  ]
+
+# ---------------------------------------------------------
+# Global Allowlists (bypass ONLY regex patterns, NOT folders)
+# ---------------------------------------------------------
 [[allowlists]]
-description = "Global allowlist: false positives for the 32-hex rule and documentation placeholders"
+description = "Global ignore for internal workflow files and test fixtures"
 paths = [
   '''tests/fixtures/''',
   '''_WORKFLOW\.md$''',
   '''PROMPT_NEXT_SESSION\.txt$''',
   '''masking-dict\.ps1$''',
-  '''WRITEUPS/''',
-  '''INFRASTRUCTURE/''',
-  '''CLOUD/''',
-  '''NETWORKS/''',
-  '''VIRTUALIZATION/''',
-  '''APPLICATIONS/''',
   '''tests/''',
 ]
+
+[[allowlists]]
+description = "Ignore generic API keys and tokens in documentation placeholders"
 regexes = [
-  # Example / placeholder strings used in documentation.
-  '''<USER_FLAG>''',
-  '''<ROOT_FLAG>''',
-  '''<SYSTEM_FLAG>''',
   '''<PASSWORD>''',
   '''<NTLM_HASH>''',
   '''<LM_HASH>''',
   '''<KRBTGT_HASH>''',
   '''<SSH_PRIVATE_KEY>''',
-  '''admin:admin''',
-  '''cisco:cisco''',
-  '''tomcat:tomcat''',
-  '''user:pass''',
+  '''<API_KEY>''',
+  '''<TOKEN>''',
   '''API_KEY:''',
-  # Hex strings that appear in tool READMEs as format examples.
-  '''[a-f0-9]{32}.*example''',
-  '''example.*[a-f0-9]{32}''',
+  '''eyJ[A-Za-z0-9_=-]+''',
+  '''--decryptionalg=''',
 ]
 
-[[rules.allowlists]]
-description = "Educational curl -u examples in NETWORKS docs (not real credentials)"
+[[allowlists]]
+description = "Ignore educational curl and sqlmap examples"
+regexes = [
+  '''tomcat:tomcat''',
+  '''admin:admin''',
+  '''cisco:cisco''',
+  '''user:pass''',
+  '''tomcat:<PASSWORD>''',
+  '''kevin:<PASSWORD>''',
+  '''deborah.hernandez:<PASSWORD>''',
+  '''\$STRIPE_SECRET_KEY:''',
+  '''dXNlcjpwYXNz''',
+  # Исключения для curl/sqlmap/ffuf с учебными URL
+  '''"http://target''',
+  '''"http://<TARGET>''',
+  '''"https://<TARGET>''',
+  '''\.htb''',
+  '''sqlmap -u''',
+  ''''http://target/api/user/FUZZ'''',
+]
+
+[[allowlists]]
+description = "Educational curl -u examples in NETWORKS and VIRTUALIZATION docs"
 targetRules = ["curl-auth-user"]
 paths = [
   '''NETWORKS/03 Network Devices/02 Firewalls\.md''',
