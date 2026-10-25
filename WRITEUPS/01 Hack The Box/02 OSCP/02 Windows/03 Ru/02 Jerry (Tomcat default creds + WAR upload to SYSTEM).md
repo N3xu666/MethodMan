@@ -83,7 +83,7 @@ WWW-Authenticate: Basic realm="Tomcat Manager Application"
 
 ## Первичный Доступ
 
-No CVE (custom vulnerability) - the Apache Tomcat Manager is configured with default credentials `tomcat:<PASSWORD>`.
+No CVE (custom vulnerability) - Apache Tomcat Manager настроен с учётными данными по умолчанию `tomcat:<PASSWORD>`.
 
 ### Дефолтные Креды
 
