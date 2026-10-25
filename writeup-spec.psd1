@@ -1,0 +1,130 @@
+﻿@{
+    # =========================================================================
+    # writeup-spec.psd1
+    # Single source of truth for HTB walkthrough structure and localization.
+    # Consumed by check.ps1. NOT consumed by mask.ps1 (masking is value-based).
+    # Internal file: _WORKFLOW.md 6.5 / 6.8 are generated FROM this spec.
+    # =========================================================================
+
+    SchemaVersion = '1.0.0'
+    SpecDate      = '2026-10-25'
+
+    # -------------------------------------------------------------------------
+    # BASE: applied to every walkthrough, in every language.
+    # Overlays below extend or override per machine type.
+    # -------------------------------------------------------------------------
+    Base = @{
+        # Sections that MUST appear (in this order) in every full walkthrough.
+        # Order is enforced by check.ps1. Stub files (SeasonStub overlay) relax this.
+        RequiredH2 = @(
+            'Attack Chain',
+            'Machine Briefing',
+            'Reconnaissance',
+            'Foothold',
+            'Exploitation',
+            'Privilege Escalation',
+            'Flags',
+            'Key Takeaways'
+        )
+
+        # Optional H2 sections: allowed, not required.
+        OptionalH2 = @(
+            'Lateral Movement',
+            'Authenticated Enumeration',
+            'Enumeration',
+            'Credential Leak',
+            'SSH Access',
+            'KeePass Memory Dump',
+            'Root'
+        )
+
+        # Meta block: exactly these labels, in this order, in the `>` header.
+        # Each label maps to its localized form in each language.
+        MetaLabels = @{
+            En = @('Platform', 'OS', 'Difficulty', 'Result')
+            Ru = @('Платформа', 'ОС', 'Сложность', 'Результат')
+            Az = @('Platforma', 'ƏS', 'Çətinlik', 'Nəticə')
+        }
+
+        # Platform value: never localized.
+        PlatformValue = 'Hack The Box'
+
+        # OS values: never localized.
+        OSValues = @('Linux', 'Windows', 'FreeBSD', 'Solaris')
+
+        # Difficulty values: LOCALIZED (the value itself is translated).
+        DifficultyValues = @{
+            En = @('Easy', 'Medium', 'Hard', 'Insane')
+            Ru = @('Легко', 'Средне', 'Сложно', 'Безумно')
+            Az = @('Asan', 'Orta', 'Çətin', 'Dəli')
+        }
+
+        # Result values: never localized.
+        ResultValues = @('user', 'root', 'SYSTEM', 'Administrator')
+
+        # Ethical note text (right after Attack Chain, before the closing `---`).
+        EthicalNote = @{
+            En = 'All flags, passwords, hashes, and session tokens have been masked for ethical reasons.'
+            Ru = 'Все флаги, пароли, хэши и сессионные токены были замаскированы по этическим соображениям.'
+            Az = 'Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.'
+        }
+
+        # OSCP marker: ALWAYS English, in all three languages (fixed string).
+        OscpMarker = 'OSCP report: take a screenshot of this step (command + output + timestamp).'
+
+        # Placeholders that must never leak a real value.
+        Placeholders = @(
+            '<USER_FLAG>', '<ROOT_FLAG>', '<SYSTEM_FLAG>',
+            '<PASSWORD>', '<BCRYPT_HASH>', '<SHA256_HASH>', '<MYSQL_HASH>',
+            '<SECURITY_KEY>', '<TOKEN>', '<SERIAL>', '<BOOKING_REF>',
+            '<GPP_CPASSWORD>', '<KRB5TGS_HASH>', '<SESSION_ID>'
+        )
+
+        # CVE reference formats accepted inside Exploitation/Foothold.
+        CvePattern    = 'CVE-\d{4}-\d{4,}'
+        CveNoCveText  = 'No CVE (custom vulnerability)'
+        CveLinkHosts  = @('nvd.nist.gov', 'cve.mitre.org')
+
+        # OSCP screenshot notes are optional for retired HTB Season machines.
+        OscpMarkerRequired = $true
+    }
+
+    # -------------------------------------------------------------------------
+    # OVERLAYS: per machine type. Merged on top of Base.
+    # Only fields that DIFFER from Base need to be listed.
+    # -------------------------------------------------------------------------
+    Overlays = @{
+
+        # OSCP Linux machines: no extra required section beyond Base.
+        Linux = @{
+            ExtraRequiredH2 = @()
+            Note = 'OSCP Linux: standard Base applies.'
+        }
+
+        # OSCP Windows machines: same as Linux (Base covers it).
+        Windows = @{
+            ExtraRequiredH2 = @()
+            Note = 'OSCP Windows: standard Base applies. OSCP markers on foothold/privesc commands.'
+        }
+
+        # AD machines: `Authenticated Enumeration` is REQUIRED between Foothold and Exploitation.
+        AD = @{
+            ExtraRequiredH2 = @('Authenticated Enumeration')
+            InsertAfter     = @{ 'Authenticated Enumeration' = 'Foothold' }
+            Note = 'Active Directory: Authenticated Enumeration is mandatory between Foothold and Exploitation.'
+        }
+
+        # Season stubs for ACTIVE machines: only Attack Chain + Note + meta + status marker.
+        SeasonStub = @{
+            RequiredH2      = @()   # no full sections required
+            ExtraRequiredH2 = @()
+            OscpMarkerRequired = $false
+            StubMarker     = @{
+                En = 'Status: **Completed**'
+                Ru = 'Статус: **Завершено**'
+                Az = 'Status: **Tamamlandı**'
+            }
+            Note = 'Active HTB machine: publish neutral stub (NN MachineName.md), keep full writeup in txt/active-drafts/.'
+        }
+    }
+}
