@@ -120,6 +120,23 @@
         # README counter pattern: reads 'Currently: **N published ... + M active stubs** = K completed'.
         # Groups: 1=published, 2=stubs, 3=total.
         ReadmeCounterPattern = 'Currently:\s+\*\*(\d+)\s+published.*?\+\s+(\d+)\s+active stubs\*\*\s+=\s+\*\*(\d+)\s+completed'
+        # Long dashes: en dash, em dash, minus sign. check.ps1 [4/23] fails on any.
+        LongDashesPattern = '[\u2013\u2014\u2212]'
+
+        # Unreplaced placeholders (%%XX%%) in docs. check.ps1 [9/23] fails.
+        UnreplacedPlaceholderPattern = '%%[A-Z0-9]+%%'
+        DocRootFiles = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'SECURITY.md')
+
+        # Backslash-escaped markdown (from chat/notepad paste). check.ps1 [13/23] fails.
+        BackslashEscapePattern = '^\\[#\[\]_()]'
+        DocsRoots = @('APPLICATIONS', 'INFRASTRUCTURE', 'ANONYMITY-PRIVACY-OPSEC', 'AI', 'NETWORKS', 'tools')
+
+        # Chat citation markers. check.ps1 [16/23] fails, [23/23] WARNs.
+        CitationPattern = 'citation:\d+'
+
+        # Draft-mode scan for active-machine writeups (gitignored txt/).
+        DraftPath          = 'txt/active-drafts'
+        DraftCitationPattern = '\[citation:\d+\]'
 
         # CVE reference formats accepted inside Exploitation/Foothold.
         CvePattern    = 'CVE-\d{4}-\d{4,}'

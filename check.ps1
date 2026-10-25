@@ -89,6 +89,14 @@ $specFlagsRegex       = if ($spec) { $spec.Base.FlagsRegex }       else { '\b[a-
 $specBrokenCharsPat   = if ($spec) { $spec.Base.BrokenCharsPattern } else { '[\uFFFD]' }
 $specMaskingArtifacts = if ($spec) { $spec.Base.MaskingArtifacts } else { @('<PASSWORD>blog','<PASSWORD>.htb','<USER_FLAG>FLAG','<ROOT_FLAG>FLAG') }
 $specReadmeCounterPat = if ($spec) { $spec.Base.ReadmeCounterPattern } else { 'Currently:\s+\*\*(\d+)\s+published.*?\+\s+(\d+)\s+active stubs\*\*\s+=\s+\*\*(\d+)\s+completed' }
+$specLongDashesPat    = if ($spec) { $spec.Base.LongDashesPattern }    else { '[\u2013\u2014\u2212]' }
+$specUnreplacedPat    = if ($spec) { $spec.Base.UnreplacedPlaceholderPattern } else { '%%[A-Z0-9]+%%' }
+$specDocRootFiles     = if ($spec) { $spec.Base.DocRootFiles }         else { @('README.md','CHEATSHEET.md','METHODOLOGY.md','SECURITY.md') }
+$specBackslashPat     = if ($spec) { $spec.Base.BackslashEscapePattern } else { '^\\[#\[\]_()]' }
+$specDocsRoots        = if ($spec) { $spec.Base.DocsRoots }             else { @('APPLICATIONS','INFRASTRUCTURE','ANONYMITY-PRIVACY-OPSEC','AI','NETWORKS','tools') }
+$specCitationPat      = if ($spec) { $spec.Base.CitationPattern }       else { 'citation:\d+' }
+$specDraftPath        = if ($spec) { $spec.Base.DraftPath }             else { 'txt/active-drafts' }
+$specDraftCitationPat = if ($spec) { $spec.Base.DraftCitationPattern }  else { '\[citation:\d+\]' }
 Write-Host "`n=== [1/23] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -162,7 +170,7 @@ foreach ($ext in @("*.md")) {
       Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-        $d += [regex]::Matches($c, "[\u2013\u2014\u2212]").Count
+        $d += [regex]::Matches($c, $specLongDashesPat).Count
       }
 }
 if ($d -eq 0) { Write-Host "OK: 0 dashes" -ForegroundColor Green }
@@ -297,7 +305,7 @@ if ($missingCve.Count -eq 0) {
 # METHODOLOGY, SECURITY). Looks for %%XX%% style markers.
 # ============================================================
 Write-Host "`n=== [9/23] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
-$docRootFiles = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'SECURITY.md')
+$docRootFiles = $specDocRootFiles
 $placeholderCount = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object {
@@ -309,7 +317,7 @@ Get-ChildItem -Recurse -Filter *.md |
   } |
   ForEach-Object {
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-    $matches = [regex]::Matches($ct, '%%[A-Z0-9]+%%')
+    $matches = [regex]::Matches($ct, $specUnreplacedPat)
     if ($matches.Count -gt 0) {
       $rel = if ($_.FullName.StartsWith($repo)) { $_.FullName.Substring($repo.Length).TrimStart('\') } else { $_.FullName }
       $unique = ($matches | ForEach-Object { $_.Value } | Sort-Object -Unique) -join ', '
@@ -463,7 +471,7 @@ if ($bareCve.Count -eq 0) {
 # ============================================================
 Write-Host "`n=== [13/23] Backslash escapes in docs ===" -ForegroundColor Cyan
 $bsEscapes = @()
-$docsRoots = @('APPLICATIONS', 'INFRASTRUCTURE', 'ANONYMITY-PRIVACY-OPSEC', 'AI', 'NETWORKS', 'tools')
+$docsRoots = $specDocsRoots
 $docsFiles = @()
 foreach ($root in $docsRoots) {
     $p = Join-Path $repo $root
@@ -472,7 +480,7 @@ foreach ($root in $docsRoots) {
     }
 }
 $docsFiles += Get-ChildItem -Path $repo -File -Filter '*.md' -ErrorAction SilentlyContinue
-$bsPattern = '^\\[#\[\]_()]'
+$bsPattern = $specBackslashPat
 foreach ($f in $docsFiles) {
     if ($f.FullName -match '\\\.git\\' -or $f.FullName -match '\\txt\\' -or $f.FullName -match '\\tests\\') { continue }
     $lines = [System.IO.File]::ReadAllLines($f.FullName, $utf8)
@@ -573,7 +581,7 @@ $citationFiles = Get-ChildItem -Path $repo -Recurse -Filter "*.md" -File -ErrorA
 $citationHits = @()
 foreach ($f in $citationFiles) {
     $ct = [System.IO.File]::ReadAllText($f.FullName, $utf8)
-    $m = [regex]::Matches($ct, 'citation:\d+')
+    $m = [regex]::Matches($ct, $specCitationPat)
     if ($m.Count -gt 0) {
         $rel = $f.FullName.Replace($repo + '\', '')
         $citationHits += "$rel ($($m.Count))"
@@ -825,14 +833,14 @@ if ($engIssues.Count -eq 0) {
 
 # --- [23/23] Draft-mode scan for txt/active-drafts (WARN only) ---
 Write-Host "`n=== [23/23] Draft-mode scan for txt/active-drafts (WARN only) ===" -ForegroundColor Cyan
-$draftRoot = Join-Path $repo "txt\active-drafts"
+$draftRoot = Join-Path $repo $specDraftPath
 $draftIssues = @()
 if (Test-Path $draftRoot) {
     $drafts = Get-ChildItem -Path $draftRoot -Filter "*.md" -Recurse -File
     foreach ($d in $drafts) {
         $ct = [System.IO.File]::ReadAllText($d.FullName, $utf8)
         $rel = $d.FullName.Substring($repo.Length).TrimStart("\")
-        if ($ct -match "\[citation:\d+\]") { $draftIssues += "$rel (citation marker)" }
+        if ($ct -match $specDraftCitationPat) { $draftIssues += "$rel (citation marker)" }
         if ($ct.IndexOf($crChar) -ge 0) { $draftIssues += "$rel (CRLF in draft)" }
     }
 }
