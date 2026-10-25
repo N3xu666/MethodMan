@@ -85,13 +85,17 @@ $specEngWhitelist = if ($spec) { $spec.Base.EngWhitelist } else { @() }
 $specEthicalNote      = if ($spec) { $spec.Base.EthicalNote }      else { $null }
 $specEthicalNoteShort = if ($spec) { $spec.Base.EthicalNoteShort } else { $null }
 $specRefEtalon        = if ($spec) { $spec.Base.ReferencesEtalon } else { $null }
+$specFlagsRegex       = if ($spec) { $spec.Base.FlagsRegex }       else { '\b[a-fA-F0-9]{32}\b' }
+$specBrokenCharsPat   = if ($spec) { $spec.Base.BrokenCharsPattern } else { '[\uFFFD]' }
+$specMaskingArtifacts = if ($spec) { $spec.Base.MaskingArtifacts } else { @('<PASSWORD>blog','<PASSWORD>.htb','<USER_FLAG>FLAG','<ROOT_FLAG>FLAG') }
+$specReadmeCounterPat = if ($spec) { $spec.Base.ReadmeCounterPattern } else { 'Currently:\s+\*\*(\d+)\s+published.*?\+\s+(\d+)\s+active stubs\*\*\s+=\s+\*\*(\d+)\s+completed' }
 Write-Host "`n=== [1/23] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-    $flags += [regex]::Matches($c, "\b[a-fA-F0-9]{32}\b").Count
+    $flags += [regex]::Matches($c, $specFlagsRegex).Count
   }
 if ($flags -eq 0) { Write-Host "OK: 0 flags" -ForegroundColor Green }
 else { Write-Host "FAIL: $flags flags left" -ForegroundColor Red; $totalIssues += $flags }
@@ -174,7 +178,7 @@ foreach ($ext in @("*.md")) {
       Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-        $b += [regex]::Matches($c, "[\uFFFD]").Count
+        $b += [regex]::Matches($c, $specBrokenCharsPat).Count
       }
 }
 if ($b -eq 0) { Write-Host "OK: 0 broken chars" -ForegroundColor Green }
@@ -184,7 +188,7 @@ else { Write-Host "FAIL: $b broken chars" -ForegroundColor Red; $totalIssues += 
 # 6. Masking artifacts
 # ============================================================
 Write-Host "`n=== [6/23] Masking artifacts ===" -ForegroundColor Cyan
-$artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLAG>FLAG')
+$artifacts = $specMaskingArtifacts
 $a = 0
 foreach ($art in $artifacts) {
     $count = 0
@@ -386,7 +390,7 @@ foreach ($cat in $categories) {
 $readmePath = Join-Path $repo "README.md"
 if (Test-Path $readmePath) {
     $readmeContent = [System.IO.File]::ReadAllText($readmePath, $utf8)
-    $counterMatch = [regex]::Match($readmeContent, 'Currently:\s+\*\*(\d+)\s+published.*?\+\s+(\d+)\s+active stubs\*\*\s+=\s+\*\*(\d+)\s+completed')
+    $counterMatch = [regex]::Match($readmeContent, $specReadmeCounterPat)
     if ($counterMatch.Success) {
         $readmePub = [int]$counterMatch.Groups[1].Value
         $readmeStub = [int]$counterMatch.Groups[2].Value

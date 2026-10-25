@@ -100,6 +100,27 @@
             '<GPP_CPASSWORD>', '<KRB5TGS_HASH>', '<SESSION_ID>'
         )
 
+        # Flags detection: real HTB flags are 32 lowercase/uppercase hex chars.
+        # Matched per-file, outside code blocks (mask.ps1 replaces them, so check
+        # should see 0 unless a new one slipped through).
+        FlagsRegex = '\b[a-fA-F0-9]{32}\b'
+
+        # Broken characters: U+FFFD replacement character (encoding damage).
+        BrokenCharsPattern = '[\uFFFD]'
+
+        # Masking artifacts: placeholder immediately followed by a real suffix
+        # (e.g. '<PASSWORD>blog'). Indicates the mask was applied mid-token.
+        MaskingArtifacts = @(
+            '<PASSWORD>blog',
+            '<PASSWORD>.htb',
+            '<USER_FLAG>FLAG',
+            '<ROOT_FLAG>FLAG'
+        )
+
+        # README counter pattern: reads 'Currently: **N published ... + M active stubs** = K completed'.
+        # Groups: 1=published, 2=stubs, 3=total.
+        ReadmeCounterPattern = 'Currently:\s+\*\*(\d+)\s+published.*?\+\s+(\d+)\s+active stubs\*\*\s+=\s+\*\*(\d+)\s+completed'
+
         # CVE reference formats accepted inside Exploitation/Foothold.
         CvePattern    = 'CVE-\d{4}-\d{4,}'
         CveNoCveText  = 'No CVE (custom vulnerability)'
