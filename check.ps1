@@ -100,6 +100,7 @@ $specDraftCitationPat = if ($spec) { $spec.Base.DraftCitationPattern }  else { '
 $specStaleRefs        = if ($spec) { $spec.Base.StaleRefs }        else { @('02 Web','01 HTB','OSCP-grade') }
 $specDocExcludeNames  = if ($spec) { $spec.Base.DocExcludeNames }  else { @('_WORKFLOW.md','_SITE_PLAN.md','PROMPT_NEXT_SESSION.txt') }
 $specTimesSign        = if ($spec) { $spec.Base.TimesSign }        else { [string][char]0x00D7 }
+$specWrongDifficultyRu    = if ($spec) { $spec.Base.WrongDifficultyRu }     else { @() }
 Write-Host "`n=== [1/23] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -862,6 +863,24 @@ if ($draftIssues.Count -eq 0) {
 }
 
 
+# ============================================================
+# [24/24] Meta difficulty values (FAIL)
+# ============================================================
+Write-Host "`n=== [24/24] Meta difficulty values (FAIL) ===" -ForegroundColor Cyan
+$diffIssues = @()
+$diffFiles = Get-ChildItem -Path $repo -Recurse -Filter *.md |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -match '\\03 Ru\\' }
+foreach ($f in $diffFiles) {
+    $ct = [System.IO.File]::ReadAllText($f.FullName, $utf8)
+    foreach ($bad in $specWrongDifficultyRu) {
+        if ($ct.Contains($bad)) {
+            $rel = if ($f.FullName.StartsWith($repo)) { $f.FullName.Substring($repo.Length).TrimStart('\') } else { $f.FullName }
+            $diffIssues += "$rel (wrong difficulty word)"
+        }
+    }
+}
+if ($diffIssues.Count -eq 0) { Write-Host "OK: meta difficulty values correct" -ForegroundColor Green }
+else { Write-Host "FAIL: $($diffIssues.Count) file(s) with wrong difficulty value:" -ForegroundColor Red; $diffIssues | ForEach-Object { Write-Host "  $_" -ForegroundColor Red }; $totalIssues += $diffIssues.Count }
 if ($totalIssues -eq 0) {
     Write-Host "ALL CHECKS PASSED - ready to commit + push" -ForegroundColor Green
     Write-Host ""

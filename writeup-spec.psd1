@@ -200,6 +200,9 @@
             'Mimikatz','Nibbleblog','My Image','arbitrary file upload','MIME validation',
             'DS-Replication','1131f6aa','1131f6ad','89e95b76'
         )
+        
+        WrongDifficultyRu = @('Средний', 'Легкий', 'Сложный', 'Безумный')
+
         OscpMarkerRequired = $true
     }
 
