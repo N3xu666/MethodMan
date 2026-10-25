@@ -87,7 +87,7 @@ MethodMan/
 |   +-- 04 Sandboxes/
 |   +-- 05 Orchestration/
 |
-+-- INFORMATION-SECURITY/                       # information security management reference
++-- INFORMATION-SECURITY/ # information security management reference
 |   +-- 01 Governance and Frameworks/
 |   +-- 02 Risk Management/
 |   +-- 03 Compliance and Regulation/
@@ -95,16 +95,16 @@ MethodMan/
 |   +-- 05 Security Awareness and Training/
 |   +-- 06 Incident Response and Business Continuity/
 |
-+-- OSINT/                                       # open-source intelligence reference
++-- OSINT/                # open-source intelligence reference
 |   +-- 01 OSINT Methodology/
 |   +-- 02 People Search/
 |   +-- 03 Infrastructure OSINT/
 |   +-- 04 Social Media and Content/
 |   +-- 05 Corporate and Business OSINT/
 |
-+-- methodology/                                 # OSCP reporting rules and notes
-+-- tools/                                       # custom pentest tools (Python, Go, Bash)
-+-- tests/                                       # test runner + fixtures for mask.ps1 / check.ps1
++-- methodology/          # OSCP reporting rules and notes
++-- tools/                # custom pentest tools (Python, Go, Bash)
++-- tests/                # test runner + fixtures for mask.ps1 / check.ps1
 ```
 
 ---
