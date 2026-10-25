@@ -83,7 +83,7 @@ nc 10.129.1.53 4555
 
 **CVE-2015-7611** (NVD: https://nvd.nist.gov/vuln/detail/CVE-2015-7611)
 
-Apache James 2.3.2 - unauthenticated password reset via the admin interface on port 4555 (default `root:root`).
+Apache James 2.3.2 - 4555 portundakı admin interfeysi vasitəsilə autentifikasiyasız şifrə sıfırlama (standart `root:root`).
 
 Giriş `root:root`. Sonra:
 

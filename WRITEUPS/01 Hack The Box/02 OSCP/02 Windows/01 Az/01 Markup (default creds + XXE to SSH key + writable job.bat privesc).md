@@ -211,7 +211,7 @@ Notice: Trying to get property 'quantity' of non-object
 
 Bu təsdiqləyir ki, `process.php` XML-i birbaşa `DOMDocument::loadXML()` ilə parse edir, sonra SimpleXML vasitəsilə `->quantity`, `->item`, `->address` oxuyur. Xarici entity-lərin həlli aktiv saxlanılıb.
 
-Proof of concept - `C:\windows\win.ini` oxumaq:
+Konsept sübutu - `C:\windows\win.ini` oxumaq:
 
 ```bash
 cat > /tmp/xxe-test.xml <<'EOF'

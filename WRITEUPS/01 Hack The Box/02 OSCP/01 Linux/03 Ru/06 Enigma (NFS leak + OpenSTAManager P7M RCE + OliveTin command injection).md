@@ -129,7 +129,7 @@ http://support_001.enigma.htb/info.php → Version: 2.9.8
 
 **CVE-2025-69212** (NVD: https://nvd.nist.gov/vuln/detail/CVE-2025-69212)
 
-OpenSTAManager 2.9.8 - OS Command Injection via P7M files (decodeP7M -> exec without escaping).
+OpenSTAManager 2.9.8 - инъекция ОС-команд через P7M-файлы (decodeP7M -> выполнение без экранирования).
 
 Собираем ZIP с вредоносным именем файла, загружаем через Sales → Sales Invoices → Importazione FE.
 

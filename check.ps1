@@ -807,8 +807,8 @@ if ($oscpIssues.Count -eq 0) {
     $totalIssues += $oscpIssues.Count
 }
 
-# --- [22/27] English fragment scan in Az/Ru (WARN only) ---
-Write-Host "`n=== [22/27] English fragment scan in Az/Ru (WARN only) ===" -ForegroundColor Cyan
+# --- [22/27] English fragment scan in Az/Ru (FAIL) ---
+Write-Host "`n=== [22/27] English fragment scan in Az/Ru (FAIL) ===" -ForegroundColor Cyan
 $engIssues = @()
 $engWhitelist = $specEngWhitelist
 foreach ($f in $flagFiles) {
@@ -852,12 +852,13 @@ foreach ($f in $flagFiles) {
 if ($engIssues.Count -eq 0) {
     Write-Host "OK: no English fragments in Az/Ru prose" -ForegroundColor Green
 } elseif ($engIssues.Count -le 20) {
-    Write-Host "WARN: $($engIssues.Count) possible untranslated line(s):" -ForegroundColor Yellow
+    Write-Host "FAIL: $($engIssues.Count) possible untranslated line(s):" -ForegroundColor Red
     $engIssues | ForEach-Object { Write-Host "  $_" -ForegroundColor Yellow }
 } else {
-    Write-Host "WARN: $($engIssues.Count) possible untranslated line(s) (showing first 20):" -ForegroundColor Yellow
+    Write-Host "FAIL: $($engIssues.Count) possible untranslated line(s) (showing first 20):" -ForegroundColor Red
     $engIssues | Select-Object -First 20 | ForEach-Object { Write-Host "  $_" -ForegroundColor Yellow }
 }
+if ($engIssues.Count -gt 0) { $totalIssues += $engIssues.Count }
 
 # --- [23/27] Draft-mode scan for txt/active-drafts (WARN only) ---
 Write-Host "`n=== [23/27] Draft-mode scan for txt/active-drafts (WARN only) ===" -ForegroundColor Cyan
@@ -899,9 +900,9 @@ foreach ($f in $diffFiles) {
 if ($diffIssues.Count -eq 0) { Write-Host "OK: meta difficulty values correct" -ForegroundColor Green }
 else { Write-Host "FAIL: $($diffIssues.Count) file(s) with wrong difficulty value:" -ForegroundColor Red; $diffIssues | ForEach-Object { Write-Host "  $_" -ForegroundColor Red }; $totalIssues += $diffIssues.Count }
 # ============================================================
-# [25/27] Stub marker per PSD1 (WARN in commit 1, FAIL in commit 3)
+# [25/27] Stub marker per PSD1 (FAIL)
 # ============================================================
-Write-Host ('`n=== [25/27] Stub marker per PSD1 (WARN) ===') -ForegroundColor Cyan
+Write-Host ('`n=== [25/27] Stub marker per PSD1 (FAIL) ===') -ForegroundColor Cyan
 $stubIssueList = @()
 if ($spec -and $spec.Overlays -and $spec.Overlays.SeasonStub -and $spec.Overlays.SeasonStub.StubMarker) {
     $sm2 = $spec.Overlays.SeasonStub.StubMarker
@@ -920,12 +921,12 @@ if ($spec -and $spec.Overlays -and $spec.Overlays.SeasonStub -and $spec.Overlays
     }
 }
 if ($stubIssueList.Count -eq 0) { Write-Host 'OK: stub markers match PSD1' -ForegroundColor Green }
-else { Write-Host ('WARN: ' + $stubIssueList.Count + ' stub(s) with old marker:') -ForegroundColor Yellow; $stubIssueList | ForEach-Object { Write-Host ('  ' + $_) -ForegroundColor Yellow } }
+else { Write-Host ('FAIL: ' + $stubIssueList.Count + ' stub(s) with old marker:') -ForegroundColor Red; $stubIssueList | ForEach-Object { Write-Host ('  ' + $_) -ForegroundColor Red }; $totalIssues += $stubIssueList.Count }
 
 # ============================================================
-# [26/27] RequiredH2 presence with localized names (WARN)
+# [26/27] RequiredH2 presence with localized names (FAIL)
 # ============================================================
-Write-Host ('`n=== [26/27] RequiredH2 presence with localized names (WARN) ===') -ForegroundColor Cyan
+Write-Host ('`n=== [26/27] RequiredH2 presence with localized names (FAIL) ===') -ForegroundColor Cyan
 $h2IssueList = @()
 $fence26 = [string][char]96 * 3
 $h2Map = @{
@@ -969,12 +970,12 @@ if ($spec -and $spec.Base -and $spec.Base.RequiredH2) {
     }
 }
 if ($h2IssueList.Count -eq 0) { Write-Host 'OK: RequiredH2 present (localized)' -ForegroundColor Green }
-else { Write-Host ('WARN: ' + $h2IssueList.Count + ' H2 issue(s):') -ForegroundColor Yellow; $h2IssueList | ForEach-Object { Write-Host ('  ' + $_) -ForegroundColor Yellow } }
+else { Write-Host ('FAIL: ' + $h2IssueList.Count + ' H2 issue(s):') -ForegroundColor Red; $h2IssueList | ForEach-Object { Write-Host ('  ' + $_) -ForegroundColor Red }; $totalIssues += $h2IssueList.Count }
 
 # ============================================================
-# [27/27] Meta labels per PSD1 (WARN in commit 1, FAIL in commit 3)
+# [27/27] Meta labels per PSD1 (FAIL)
 # ============================================================
-Write-Host ('`n=== [27/27] Meta labels per PSD1 (WARN) ===') -ForegroundColor Cyan
+Write-Host ('`n=== [27/27] Meta labels per PSD1 (FAIL) ===') -ForegroundColor Cyan
 $metaIssueList = @()
 if ($spec -and $spec.Base -and $spec.Base.MetaLabels) {
     foreach ($mf in $flagFiles) {
@@ -1004,7 +1005,7 @@ if ($spec -and $spec.Base -and $spec.Base.MetaLabels) {
     }
 }
 if ($metaIssueList.Count -eq 0) { Write-Host 'OK: meta labels present' -ForegroundColor Green }
-else { Write-Host ('WARN: ' + $metaIssueList.Count + ' meta label issue(s):') -ForegroundColor Yellow; $metaIssueList | ForEach-Object { Write-Host ('  ' + $_) -ForegroundColor Yellow } }
+else { Write-Host ('FAIL: ' + $metaIssueList.Count + ' meta label issue(s):') -ForegroundColor Red; $metaIssueList | ForEach-Object { Write-Host ('  ' + $_) -ForegroundColor Red }; $totalIssues += $metaIssueList.Count }
 
 
 if ($totalIssues -eq 0) {
