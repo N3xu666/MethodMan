@@ -138,6 +138,8 @@ try {
     Copy-Item (Join-Path $repo "check.ps1") (Join-Path $tmpLeak "check.ps1") -Force
     Copy-Item (Join-Path $fixtures "masking-dict.test.ps1") (Join-Path $tmpLeak "masking-dict.test.ps1") -Force
     Copy-Item ((Join-Path (Join-Path (Join-Path $fixtures "check-input") "leak") "01 Az")) (Join-Path $tmpLeak "01 Az") -Recurse -Force
+    Copy-Item (Join-Path $repo 'writeup-spec.psd1') (Join-Path $tmpLeak 'writeup-spec.psd1') -Force
+    Copy-Item (Join-Path $repo 'writeup-spec.psd1') (Join-Path $tmpLeak 'writeup-spec.psd1') -Force
 
     Push-Location $tmpLeak
     try {
@@ -164,6 +166,8 @@ try {
     Copy-Item (Join-Path $repo "check.ps1") (Join-Path $tmpClean "check.ps1") -Force
     Copy-Item (Join-Path $fixtures "masking-dict.test.ps1") (Join-Path $tmpClean "masking-dict.test.ps1") -Force
     Copy-Item ((Join-Path (Join-Path (Join-Path $fixtures "check-input") "clean") "01 Az")) (Join-Path $tmpClean "01 Az") -Recurse -Force
+    Copy-Item (Join-Path $repo 'writeup-spec.psd1') (Join-Path $tmpClean 'writeup-spec.psd1') -Force
+    Copy-Item (Join-Path $repo 'writeup-spec.psd1') (Join-Path $tmpClean 'writeup-spec.psd1') -Force
 
     Push-Location $tmpClean
     try {

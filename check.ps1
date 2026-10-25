@@ -152,6 +152,13 @@ Get-ChildItem -Recurse -Filter *.md |
         $noteTexts = @()
         if ($null -ne $specEthicalNote)     { $noteTexts += $specEthicalNote.Values }
         if ($null -ne $specEthicalNoteShort) { $noteTexts += $specEthicalNoteShort.Values }
+        if ($noteTexts.Count -eq 0) {
+            $noteTexts = @(
+                'All flags, passwords, hashes, and session tokens have been masked for ethical reasons',
+                'Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям',
+                'Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir'
+            )
+        }
         $hasNote = $false
         foreach ($nt in $noteTexts) { if ($c.Contains($nt)) { $hasNote = $true; break } }
         if ($hasNote) { $withNote++ }
