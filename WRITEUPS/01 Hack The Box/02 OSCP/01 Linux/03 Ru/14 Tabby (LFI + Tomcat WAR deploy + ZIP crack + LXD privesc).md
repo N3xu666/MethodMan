@@ -118,7 +118,7 @@ curl -s "http://megahosting.htb/news.php?file=../../../../usr/share/tomcat9/etc/
 
 ## Эксплуатация (WAR deploy)
 
-No CVE (custom vulnerability) - local file inclusion in the custom `news.php` endpoint exposes the Tomcat `manager-script` credentials from `tomcat-users.xml`; deploying a WAR file gives RCE as the `tomcat` user.
+No CVE (custom vulnerability) - локальное включение файлов в кастомном эндпоинте `news.php` раскрывает учётные данные Tomcat `manager-script` из `tomcat-users.xml`; развёртывание WAR-файла даёт RCE от имени пользователя `tomcat`.
 
 ### Проверка доступа
 
