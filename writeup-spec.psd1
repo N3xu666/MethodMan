@@ -35,7 +35,8 @@
             'Credential Leak',
             'SSH Access',
             'KeePass Memory Dump',
-            'Root'
+            'Root',
+            'Exploitation'
         )
 
         # Meta block: exactly these labels, in this order, in the `>` header.
@@ -43,7 +44,7 @@
         MetaLabels = @{
             En = @('Platform', 'OS', 'Difficulty', 'Result')
             Ru = @('Платформа', 'ОС', 'Сложность', 'Результат')
-            Az = @('Platforma', 'ƏS', 'Çətinlik', 'Nəticə')
+            Az = @('Platforma', 'OS', 'Çətinlik', 'Nəticə')
         }
 
         # Platform value: never localized.

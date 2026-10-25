@@ -31,13 +31,22 @@ $utf8 = [System.Text.Encoding]::UTF8
 $totalIssues = 0
 
 # Stub markers (active machines - placeholder files)
-$stubMarkers = @(
-    'Status: Completed',      # En
-    'Status: **Completed**',  # En (bold)
-    'Status: Пройдено',        # Ru (English prefix)
-    'Статус: Пройдено',        # Ru (native prefix)
-    'Status: Tamamlandı'      # Az
+# Read from writeup-spec.psd1 (SeasonStub.StubMarker) with inline fallback.
+$stubMarkers = @()
+if ($spec -and $spec.Overlays -and $spec.Overlays.SeasonStub -and $spec.Overlays.SeasonStub.StubMarker) {
+    $sm = $spec.Overlays.SeasonStub.StubMarker
+    if ($sm.En) { $stubMarkers += $sm.En }
+    if ($sm.Ru) { $stubMarkers += $sm.Ru }
+    if ($sm.Az) { $stubMarkers += $sm.Az }
+}
+$stubMarkersFallback = @(
+    'Status: Completed',
+    'Status: **Completed**',
+    'Пройдено',
+    'Статус: Пройдено',
+    'Status: Tamamlandı'
 )
+foreach ($m in $stubMarkersFallback) { if ($stubMarkers -notcontains $m) { $stubMarkers += $m } }
 
 function Test-StubFile([string]$filePath) {
     try {
@@ -76,7 +85,7 @@ $specNoCveText    = if ($spec) { $spec.Base.CveNoCveText } else { 'No CVE (custo
 $specOscpMarker   = if ($spec) { $spec.Base.OscpMarker }   else { 'OSCP report: take a screenshot' }
 $specUserFlag     = '<USER_FLAG>'
 $specRootFlag     = '<ROOT_FLAG>'
-# A2a: resolved spec values for [12/23], [19/23], [22/23]
+# A2a: resolved spec values for [12/27], [19/27], [22/27]
 $specCveLinkHosts = if ($spec) { $spec.Base.CveLinkHosts } else { @('nvd.nist.gov', 'cve.mitre.org') }
 $specTermOldAz    = if ($spec) { $spec.Base.Terminology.Az.Old } else { 'Defolt Kredensiallar' }
 $specCyrClass     = if ($spec) { $spec.Base.CharClasses.Cyr } else { $null }
@@ -101,7 +110,7 @@ $specStaleRefs        = if ($spec) { $spec.Base.StaleRefs }        else { @('02 
 $specDocExcludeNames  = if ($spec) { $spec.Base.DocExcludeNames }  else { @('_WORKFLOW.md','_SITE_PLAN.md','PROMPT_NEXT_SESSION.txt') }
 $specTimesSign        = if ($spec) { $spec.Base.TimesSign }        else { [string][char]0x00D7 }
 $specWrongDifficultyRu    = if ($spec) { $spec.Base.WrongDifficultyRu }     else { @() }
-Write-Host "`n=== [1/23] Real 32-hex flags ===" -ForegroundColor Cyan
+Write-Host "`n=== [1/27] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
@@ -115,7 +124,7 @@ else { Write-Host "FAIL: $flags flags left" -ForegroundColor Red; $totalIssues +
 # ============================================================
 # 2. Real passwords/hashes/keys from dictionary
 # ============================================================
-Write-Host "`n=== [2/23] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
+Write-Host "`n=== [2/27] Real passwords/hashes/keys from dict ===" -ForegroundColor Cyan
 $leaks = 0
 foreach ($key in $replacements.Keys) {
     if ($key -match '^<.*>$') { continue }
@@ -138,7 +147,7 @@ else { Write-Host "FAIL: $leaks leaks" -ForegroundColor Red; $totalIssues += $le
 # ============================================================
 # 3. Note after Attack Chain (walkthroughs only, skip stubs)
 # ============================================================
-Write-Host "`n=== [3/23] Ethical note in walkthroughs ===" -ForegroundColor Cyan
+Write-Host "`n=== [3/27] Ethical note in walkthroughs ===" -ForegroundColor Cyan
 $withNote = 0
 $withoutNote = 0
 $stubCount = 0
@@ -174,7 +183,7 @@ if ($withoutNote -gt 0) { $totalIssues += $withoutNote }
 # ============================================================
 # 4. Long dashes
 # ============================================================
-Write-Host "`n=== [4/23] Long dashes ===" -ForegroundColor Cyan
+Write-Host "`n=== [4/27] Long dashes ===" -ForegroundColor Cyan
 $d = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -190,7 +199,7 @@ else { Write-Host "FAIL: $d long dashes" -ForegroundColor Red; $totalIssues += $
 # ============================================================
 # 5. Broken chars
 # ============================================================
-Write-Host "`n=== [5/23] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
+Write-Host "`n=== [5/27] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
@@ -206,7 +215,7 @@ else { Write-Host "FAIL: $b broken chars" -ForegroundColor Red; $totalIssues += 
 # ============================================================
 # 6. Masking artifacts
 # ============================================================
-Write-Host "`n=== [6/23] Masking artifacts ===" -ForegroundColor Cyan
+Write-Host "`n=== [6/27] Masking artifacts ===" -ForegroundColor Cyan
 $artifacts = $specMaskingArtifacts
 $a = 0
 foreach ($art in $artifacts) {
@@ -228,7 +237,7 @@ else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a 
 # ============================================================
 # 7. Heuristic: possibly unmasked secrets (WARN only, does not block)
 # ============================================================
-Write-Host "`n=== [7/23] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [7/27] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
 $suspicious = @()
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
@@ -262,7 +271,7 @@ if ($suspicious.Count -eq 0) {
 # ============================================================
 # 8. CVE reference in Exploitation/Foothold (FAIL if section missing or no CVE)
 # ============================================================
-Write-Host "`n=== [8/23] Exploitation/Foothold CVE reference (FAIL) ===" -ForegroundColor Cyan
+Write-Host "`n=== [8/27] Exploitation/Foothold CVE reference (FAIL) ===" -ForegroundColor Cyan
 $missingCve = @()
 $sectionPattern = '^## (Exploitation|Foothold|Эксплуатация|Первичный Доступ|İstismar|İlkin Giriş)'
 $checkedExpl = 0
@@ -315,7 +324,7 @@ if ($missingCve.Count -eq 0) {
 # Scans: APPLICATIONS/01 Web/**, methodology/**, root *.md (README, CHEATSHEET,
 # METHODOLOGY, SECURITY). Looks for %%XX%% style markers.
 # ============================================================
-Write-Host "`n=== [9/23] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
+Write-Host "`n=== [9/27] Unreplaced placeholders in docs ===" -ForegroundColor Cyan
 $docRootFiles = $specDocRootFiles
 $placeholderCount = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -343,7 +352,7 @@ else { Write-Host "FAIL: $placeholderCount unreplaced placeholders" -ForegroundC
 # 10. Broken relative links in docs (WARN only, does not block)
 # Scans: APPLICATIONS/01 Web/**/*.md, methodology/**/*.md, root *.md. Skips code blocks, anchors, http(s)/mailto.
 # ============================================================
-Write-Host "`n=== [10/23] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [10/27] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
 $brokenLinks = @()
 $linkExcludeNames = $specDocExcludeNames
 $linkFiles = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyContinue |
@@ -390,7 +399,7 @@ else {
 # 11. Counter consistency in root README (WARN only, does not block)
 # Compares root README counter with actual file counts.
 # ============================================================
-Write-Host "`n=== [11/23] Counter consistency in root README (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [11/27] Counter consistency in root README (WARN only) ===" -ForegroundColor Cyan
 $counterWarn = 0
 
 # Count published (non-stub) and stubs in all 01 Az/ folders
@@ -442,7 +451,7 @@ if (Test-Path $readmePath) {
 # link but contain no version range (no digit outside the CVE ID).
 # References lists (`- CVE-...: url`) are skipped on purpose.
 # ============================================================
-Write-Host "`n=== [12/23] CVE version ranges in docs tables (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [12/27] CVE version ranges in docs tables (WARN only) ===" -ForegroundColor Cyan
 $bareCve = @()
 Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -match '\\APPLICATIONS\\' -or $_.FullName -match '\\INFRASTRUCTURE\\' -or $_.FullName -match '\\ANONYMITY-PRIVACY-OPSEC\\' -or $_.FullName -match '\\AI\\' -or $_.FullName -match '\\NETWORKS\\' } |
@@ -478,9 +487,9 @@ if ($bareCve.Count -eq 0) {
 
 # ============================================================
 # ============================================================
-# [13/23] Backslash escapes in docs (FAIL)
+# [13/27] Backslash escapes in docs (FAIL)
 # ============================================================
-Write-Host "`n=== [13/23] Backslash escapes in docs ===" -ForegroundColor Cyan
+Write-Host "`n=== [13/27] Backslash escapes in docs ===" -ForegroundColor Cyan
 $bsEscapes = @()
 $docsRoots = $specDocsRoots
 $docsFiles = @()
@@ -512,11 +521,11 @@ if ($bsEscapes.Count -eq 0) {
     $totalIssues += $bsEscapes.Count
 }
 # ============================================================
-# [14/23] Stale references in tracked .md (WARN only)
+# [14/27] Stale references in tracked .md (WARN only)
 # Detects old folder names / marketing phrases left after
 # restructures. Any occurrence is a signal to update the file.
 # ============================================================
-Write-Host "`n=== [14/23] Stale references (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [14/27] Stale references (WARN only) ===" -ForegroundColor Cyan
 $stalePhrases = $specStaleRefs
 $staleHits = @()
 $staleFiles = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyContinue |
@@ -548,13 +557,13 @@ if ($staleHits.Count -eq 0) {
 }
 
 # ============================================================
-# [15/23] Language counter marker consistency (WARN only)
+# [15/27] Language counter marker consistency (WARN only)
 # Every "(N <marker> 3 languages)" line in WRITEUPS/**/README.md
 # must use the multiplication sign U+00D7 between the number and
 # "3 languages". Latin "x", "X", "*", "-", or mojibake "G-" are
 # cosmetic drift (pass 71) and must be fixed.
 # ============================================================
-Write-Host "`n=== [15/23] Language counter marker (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [15/27] Language counter marker (WARN only) ===" -ForegroundColor Cyan
 $timesSign = [string]$specTimesSign
 $counterWarns = @()
 $counterFiles = Get-ChildItem -Path (Join-Path $repo "WRITEUPS") -Recurse -Filter "README.md" -ErrorAction SilentlyContinue
@@ -581,7 +590,7 @@ if ($counterWarns.Count -eq 0) {
     if ($counterWarns.Count -gt 10) { Write-Host "  ... and $($counterWarns.Count - 10) more" -ForegroundColor Gray }
 }
 # ============================================================
-Write-Host "`n=== [16/23] Chat citation markers (FAIL) ===" -ForegroundColor Cyan
+Write-Host "`n=== [16/27] Chat citation markers (FAIL) ===" -ForegroundColor Cyan
 $citationFiles = Get-ChildItem -Path $repo -Recurse -Filter "*.md" -File -ErrorAction SilentlyContinue |
     Where-Object {
         $_.FullName -notmatch '\\txt\\' -and
@@ -606,7 +615,7 @@ if ($citationHits.Count -eq 0) {
     $totalIssues++
 }
 # ============================================================
-Write-Host "`n=== [17/23] References format (WARN only) ===" -ForegroundColor Cyan
+Write-Host "`n=== [17/27] References format (WARN only) ===" -ForegroundColor Cyan
 $refFiles = Get-ChildItem -Path $repo -Recurse -Filter "*.md" -File -ErrorAction SilentlyContinue |
     Where-Object {
         $_.FullName -notmatch '\\txt\\' -and
@@ -656,8 +665,8 @@ if ($refWarns.Count -eq 0) {
 # ============================================================
 Write-Host "`n============================================" -ForegroundColor Cyan
 
-# --- [18/23] Flags table placeholders ---
-Write-Host "`n=== [18/23] Flags table placeholders (FAIL) ===" -ForegroundColor Cyan
+# --- [18/27] Flags table placeholders ---
+Write-Host "`n=== [18/27] Flags table placeholders (FAIL) ===" -ForegroundColor Cyan
 $flagsIssues = @()
 $flagFiles = Get-ChildItem -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $notWalkthrough }
@@ -692,8 +701,8 @@ if ($flagsIssues.Count -eq 0) {
     $totalIssues += $flagsIssues.Count
 }
 
-# --- [19/23] Language terminology ---
-Write-Host "`n=== [19/23] Language terminology (WARN) ===" -ForegroundColor Cyan
+# --- [19/27] Language terminology ---
+Write-Host "`n=== [19/27] Language terminology (WARN) ===" -ForegroundColor Cyan
 $termIssues = @()
 foreach ($f in $flagFiles) {
     if (Test-StubFile $f.FullName) { continue }
@@ -711,13 +720,13 @@ if ($termIssues.Count -eq 0) {
     $termIssues | ForEach-Object { Write-Host "  $_" -ForegroundColor Yellow }
 }
 
-# --- Shared helpers for [20/23]..[23/23] ---
+# --- Shared helpers for [20/27]..[23/27] ---
 $cyrClass = $specCyrClass
 $azeClass = $specAzeClass
 $fence = [string][char]96 * 3
 $crChar = [char]13
-# --- [20/23] H3 parity across Az/En/Ru (FAIL) ---
-Write-Host "`n=== [20/23] H3 parity across Az/En/Ru (FAIL) ===" -ForegroundColor Cyan
+# --- [20/27] H3 parity across Az/En/Ru (FAIL) ---
+Write-Host "`n=== [20/27] H3 parity across Az/En/Ru (FAIL) ===" -ForegroundColor Cyan
 $h3Issues = @()
 $h3Groups = @{}
 foreach ($f in $flagFiles) {
@@ -759,8 +768,8 @@ if ($h3Issues.Count -eq 0) {
     $totalIssues += $h3Issues.Count
 }
 
-# --- [21/23] OSCP marker parity (FAIL) ---
-Write-Host "`n=== [21/23] OSCP marker parity (FAIL) ===" -ForegroundColor Cyan
+# --- [21/27] OSCP marker parity (FAIL) ---
+Write-Host "`n=== [21/27] OSCP marker parity (FAIL) ===" -ForegroundColor Cyan
 $oscpIssues = @()
 $oscpGroups = @{}
 $oscpMarker = $specOscpMarker
@@ -796,8 +805,8 @@ if ($oscpIssues.Count -eq 0) {
     $totalIssues += $oscpIssues.Count
 }
 
-# --- [22/23] English fragment scan in Az/Ru (WARN only) ---
-Write-Host "`n=== [22/23] English fragment scan in Az/Ru (WARN only) ===" -ForegroundColor Cyan
+# --- [22/27] English fragment scan in Az/Ru (WARN only) ---
+Write-Host "`n=== [22/27] English fragment scan in Az/Ru (WARN only) ===" -ForegroundColor Cyan
 $engIssues = @()
 $engWhitelist = $specEngWhitelist
 foreach ($f in $flagFiles) {
@@ -819,12 +828,18 @@ foreach ($f in $flagFiles) {
         if ($ln -match "^\s*>") { continue }
         if ($ln -match "^\s*-\s+\x60") { continue }
         if ($ln.Length -lt 40) { continue }
+        if ($ln -match 'CVE-\d{4}-\d{4,}') { continue }
+        if ($ln -match 'nvd\.nist\.gov|cve\.mitre\.org') { continue }
+        if ($ln -match '\b[a-fA-F0-9]{16,}\b') { continue }
+        if ($ln -match '<\?php|\$_GET|\$_POST|system\(') { continue }
+        if ($ln -match 'hashcat mode|SHA-256 crypt|\$[0-9][a-z]?\$') { continue }
+        if ($ln -match '^\s*(Komponent|Component|Компонент):') { continue }
         $hasCyr = $ln -match $cyrClass
         $hasAze = $ln -match $azeClass
         if ($hasCyr -or $hasAze) { continue }
-        $wl = $false
-        foreach ($w in $engWhitelist) { if ($ln -match ("\b" + [regex]::Escape($w) + "\b")) { $wl = $true; break } }
-        if ($wl) { continue }
+        $lnCheck = $ln
+        foreach ($w in $engWhitelist) { $lnCheck = $lnCheck -replace ("\b" + [regex]::Escape($w) + "\b"), '' }
+        if ($lnCheck.Trim().Length -lt 20) { continue }
         $azWords = @("sinxron","makros","bloku","fayl","icra","olunan","kimi","ucun","haqqinda","melumat","giris","cixis","daxil","istifade","netice","hucum","zencir","komanda","fayli","faylin","yoxlamaq","tesdiq","meselen","olan","hem","cox","yox","var","ile","bu","bir","ve","az")
         $azHits = 0
         foreach ($aw in $azWords) { if ($ln -match ("\b" + [regex]::Escape($aw) + "\b")) { $azHits++ } }
@@ -842,8 +857,8 @@ if ($engIssues.Count -eq 0) {
     $engIssues | Select-Object -First 20 | ForEach-Object { Write-Host "  $_" -ForegroundColor Yellow }
 }
 
-# --- [23/23] Draft-mode scan for txt/active-drafts (WARN only) ---
-Write-Host "`n=== [23/23] Draft-mode scan for txt/active-drafts (WARN only) ===" -ForegroundColor Cyan
+# --- [23/27] Draft-mode scan for txt/active-drafts (WARN only) ---
+Write-Host "`n=== [23/27] Draft-mode scan for txt/active-drafts (WARN only) ===" -ForegroundColor Cyan
 $draftRoot = Join-Path $repo $specDraftPath
 $draftIssues = @()
 if (Test-Path $draftRoot) {
@@ -864,9 +879,9 @@ if ($draftIssues.Count -eq 0) {
 
 
 # ============================================================
-# [24/24] Meta difficulty values (FAIL)
+# [24/27] Meta difficulty values (FAIL)
 # ============================================================
-Write-Host "`n=== [24/24] Meta difficulty values (FAIL) ===" -ForegroundColor Cyan
+Write-Host "`n=== [24/27] Meta difficulty values (FAIL) ===" -ForegroundColor Cyan
 $diffIssues = @()
 $diffFiles = Get-ChildItem -Path $repo -Recurse -Filter *.md |
   Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -match '\\03 Ru\\' }
@@ -881,6 +896,115 @@ foreach ($f in $diffFiles) {
 }
 if ($diffIssues.Count -eq 0) { Write-Host "OK: meta difficulty values correct" -ForegroundColor Green }
 else { Write-Host "FAIL: $($diffIssues.Count) file(s) with wrong difficulty value:" -ForegroundColor Red; $diffIssues | ForEach-Object { Write-Host "  $_" -ForegroundColor Red }; $totalIssues += $diffIssues.Count }
+# ============================================================
+# [25/27] Stub marker per PSD1 (WARN in commit 1, FAIL in commit 3)
+# ============================================================
+Write-Host ('`n=== [25/27] Stub marker per PSD1 (WARN) ===') -ForegroundColor Cyan
+$stubIssueList = @()
+if ($spec -and $spec.Overlays -and $spec.Overlays.SeasonStub -and $spec.Overlays.SeasonStub.StubMarker) {
+    $sm2 = $spec.Overlays.SeasonStub.StubMarker
+    foreach ($sf in $flagFiles) {
+        if (-not (Test-StubFile $sf.FullName)) { continue }
+        $relS = if ($sf.FullName.StartsWith($repo)) { $sf.FullName.Substring($repo.Length).TrimStart('\') } else { $sf.FullName }
+        $langS = if ($sf.FullName -match '\\01 Az\\') { 'Az' } elseif ($sf.FullName -match '\\02 En\\') { 'En' } elseif ($sf.FullName -match '\\03 Ru\\') { 'Ru' } else { $null }
+        if (-not $langS) { continue }
+        $expected = $sm2[$langS]
+        if (-not $expected) { continue }
+        $headS = [System.IO.File]::ReadAllText($sf.FullName, $utf8)
+        $linesS = $headS -split "`n" | Select-Object -First 15
+        $found = $false
+        foreach ($lnS in $linesS) { if ($lnS.Contains($expected)) { $found = $true; break } }
+        if (-not $found) { $stubIssueList += ($relS + ' (missing marker: ' + $expected + ')') }
+    }
+}
+if ($stubIssueList.Count -eq 0) { Write-Host 'OK: stub markers match PSD1' -ForegroundColor Green }
+else { Write-Host ('WARN: ' + $stubIssueList.Count + ' stub(s) with old marker:') -ForegroundColor Yellow; $stubIssueList | ForEach-Object { Write-Host ('  ' + $_) -ForegroundColor Yellow } }
+
+# ============================================================
+# [26/27] RequiredH2 presence with localized names (WARN)
+# ============================================================
+Write-Host ('`n=== [26/27] RequiredH2 presence with localized names (WARN) ===') -ForegroundColor Cyan
+$h2IssueList = @()
+$fence26 = [string][char]96 * 3
+$h2Map = @{
+    En = @{ 'Attack Chain'='Attack Chain'; 'Machine Briefing'='Machine Briefing'; 'Reconnaissance'='Reconnaissance'; 'Foothold'='Foothold'; 'Privilege Escalation'='Privilege Escalation'; 'Flags'='Flags'; 'Key Takeaways'='Key Takeaways' }
+    Az = @{ 'Attack Chain'='Hücum Zənciri'; 'Machine Briefing'='Maşın Brifinqi'; 'Reconnaissance'='Kəşfiyyat'; 'Foothold'='İlkin Giriş'; 'Privilege Escalation'='Səlahiyyətlərin Artırılması'; 'Flags'='Bayraqlar'; 'Key Takeaways'='Əsas Nəticələr' }
+    Ru = @{ 'Attack Chain'='Цепочка Атаки'; 'Machine Briefing'='Брифинг Машины'; 'Reconnaissance'='Разведка'; 'Foothold'='Первичный Доступ'; 'Privilege Escalation'='Повышение Привилегий'; 'Flags'='Флаги'; 'Key Takeaways'='Ключевые Выводы' }
+}
+$requiredBase = @('Attack Chain', 'Machine Briefing', 'Reconnaissance', 'Foothold', 'Privilege Escalation', 'Flags', 'Key Takeaways')
+if ($spec -and $spec.Base -and $spec.Base.RequiredH2) {
+    foreach ($hf in $flagFiles) {
+        if (Test-StubFile $hf.FullName) { continue }
+        $relH = if ($hf.FullName.StartsWith($repo)) { $hf.FullName.Substring($repo.Length).TrimStart('\') } else { $hf.FullName }
+        if ($relH -notmatch '\\0[123] (Az|En|Ru)\\') { continue }
+        $langH = if ($relH -match '\\01 Az\\') { 'Az' } elseif ($relH -match '\\02 En\\') { 'En' } else { 'Ru' }
+        $map = $h2Map[$langH]
+        if (-not $map) { continue }
+        $txtH = [System.IO.File]::ReadAllText($hf.FullName, $utf8)
+        $lnsH = $txtH -split "`n"
+        $inF = $false
+        $h2Actual = @()
+        foreach ($lH in $lnsH) {
+            $tH = $lH.TrimStart()
+            if ($tH.StartsWith($fence26)) { $inF = -not $inF; continue }
+            if ($inF) { continue }
+            if ($lH -match '^## ') { $h2Actual += ($lH -replace '^## ','').Trim() }
+        }
+        foreach ($r in $requiredBase) {
+            if ($r -eq 'Privilege Escalation') { continue }
+            $localized = $map[$r]
+            $foundR = $false
+            foreach ($a in $h2Actual) { if ($a -eq $localized -or $a.StartsWith($localized + ' (')) { $foundR = $true; break } }
+            if (-not $foundR) { $h2IssueList += ($relH + ' (missing H2: ' + $localized + ')') }
+        }
+        $mtype = if ($relH -match '\\01 Linux\\') { 'Linux' } elseif ($relH -match '\\02 Windows\\') { 'Windows' } elseif ($relH -match '03 Active Directory') { 'AD' } else { $null }
+        if ($mtype -eq 'AD') {
+            $locAE = if ($langH -eq 'Az') { 'Autentifikasiyalı Sadalanma' } elseif ($langH -eq 'Ru') { 'Аутентифицированное Перечисление' } else { 'Authenticated Enumeration' }
+            $foundAE = $false
+            foreach ($a in $h2Actual) { if ($a -eq $locAE) { $foundAE = $true; break } }
+            if (-not $foundAE) { $h2IssueList += ($relH + ' (missing H2: ' + $locAE + ')') }
+        }
+    }
+}
+if ($h2IssueList.Count -eq 0) { Write-Host 'OK: RequiredH2 present (localized)' -ForegroundColor Green }
+else { Write-Host ('WARN: ' + $h2IssueList.Count + ' H2 issue(s):') -ForegroundColor Yellow; $h2IssueList | ForEach-Object { Write-Host ('  ' + $_) -ForegroundColor Yellow } }
+
+# ============================================================
+# [27/27] Meta labels per PSD1 (WARN in commit 1, FAIL in commit 3)
+# ============================================================
+Write-Host ('`n=== [27/27] Meta labels per PSD1 (WARN) ===') -ForegroundColor Cyan
+$metaIssueList = @()
+if ($spec -and $spec.Base -and $spec.Base.MetaLabels) {
+    foreach ($mf in $flagFiles) {
+        $relM = if ($mf.FullName.StartsWith($repo)) { $mf.FullName.Substring($repo.Length).TrimStart('\') } else { $mf.FullName }
+        if ($relM -notmatch '\\0[123] (Az|En|Ru)\\') { continue }
+        $langM = if ($mf.FullName -match '\\01 Az\\') { 'Az' } elseif ($mf.FullName -match '\\02 En\\') { 'En' } else { 'Ru' }
+        $labels = $spec.Base.MetaLabels[$langM]
+        if (-not $labels) { continue }
+        $txtM = [System.IO.File]::ReadAllText($mf.FullName, $utf8)
+        $lnsM = $txtM -split "`n"
+        $metaBlock = @()
+        $started = $false
+        foreach ($lM in $lnsM) {
+            if ($lM -match '^# ') { continue }
+            if ($lM -match '^> ') { $metaBlock += $lM; $started = $true; continue }
+            if ($started -and $lM -eq '') { break }
+        }
+        $pos = 0
+        foreach ($lab in $labels) {
+            $foundLab = $false
+            for ($k = $pos; $k -lt $metaBlock.Count; $k++) {
+                $pattern = '^> ' + [regex]::Escape($lab) + ':'
+                if ($metaBlock[$k] -match $pattern) { $foundLab = $true; $pos = $k + 1; break }
+            }
+            if (-not $foundLab) { $metaIssueList += ($relM + ' (missing meta label: ' + $lab + ')') }
+        }
+    }
+}
+if ($metaIssueList.Count -eq 0) { Write-Host 'OK: meta labels present' -ForegroundColor Green }
+else { Write-Host ('WARN: ' + $metaIssueList.Count + ' meta label issue(s):') -ForegroundColor Yellow; $metaIssueList | ForEach-Object { Write-Host ('  ' + $_) -ForegroundColor Yellow } }
+
+
 if ($totalIssues -eq 0) {
     Write-Host "ALL CHECKS PASSED - ready to commit + push" -ForegroundColor Green
     Write-Host ""
