@@ -192,6 +192,13 @@ OS Version:                6.3.9600 N/A Build 9600
 
 ## Флаги
 
+| Флаг | Значение       |
+|------|----------------|
+| User | `<USER_FLAG>`  |
+| Root | `<ROOT_FLAG>`  |
+
+### Файл Флагов
+
 Оба флага находятся в `C:\Users\Administrator\Desktop\flags\`:
 
 ```cmd
@@ -208,15 +215,6 @@ root.txt
 
 > [!IMPORTANT]
 > OSCP report: take a screenshot of this step (command + output + timestamp).
-
----
-
-## Флаги
-
-| Флаг | Значение       |
-|------|----------------|
-| User | `<USER_FLAG>`  |
-| Root | `<ROOT_FLAG>`  |
 
 ---
 
