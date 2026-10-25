@@ -86,6 +86,37 @@
         CveLinkHosts  = @('nvd.nist.gov', 'cve.mitre.org')
 
         # OSCP screenshot notes are optional for retired HTB Season machines.
+        # Terminology: fixed localized term pairs. Old = deprecated form (defect),
+        # New = correct form. Only Az has a deprecated/current pair today.
+        # Built from [char] codes so this file stays ASCII-safe on save.
+        Terminology = @{
+            Az = @{
+                Old = 'Defolt Kredensiallar'
+                New = 'Standart Giriş Məlumatları'
+            }
+        }
+
+        # Character classes used by the English-fragment scan in Az/Ru prose.
+        # Cyr: all Cyrillic; Aze: Azerbaijani-only diacritics (no ASCII I, see lesson 155).
+        CharClasses = @{
+            Cyr = '[А-яЁё]'
+            Aze = '[əğıöşüçƏĞÖŞÜÇ]'
+        }
+
+        # Whitelist of English technical terms that legitimately stay English in Az/Ru files.
+        # The scan skips a line if ANY whitelisted term appears with word boundaries.
+        EngWhitelist = @(
+            'CVE-','NVD','MITRE','OSCP','Kerberos','LDAP','SMB','RPC','WMI','HTB','Hack The Box',
+            'Linux','Windows','FreeBSD','Solaris','Administrator','SYSTEM','root','user',
+            'curl','nmap','smbclient','wmiexec','netcat','sudo','powershell','cmd.exe',
+            'HTTP','HTTPS','URL','API','JSON','XML','FTP','SSH','DNS','DHCP','TLS','SSL',
+            'RSA','AES','SHA','MD5','NTLM','DCSync','Kerberoast','AS-REP','SPN','GPP','cpassword',
+            'PRTG','NSClient','Tomcat','WAR','Nadine','IP','TCP','UDP','VM','ISO','OS','CPU','RAM',
+            'SQL','XSS','RCE','LFI','RFI','SSRF','IDOR','CSRF','XXE','SSTI','JWT','OAuth','SAML',
+            'PKI','X11','IMAP','POP3','SMTP','VPN','ACL','AD','DC','GPO','OU','CN','DN','SAM','LSASS',
+            'Mimikatz','Nibbleblog','My Image','arbitrary file upload','MIME validation',
+            'DS-Replication','1131f6aa','1131f6ad','89e95b76'
+        )
         OscpMarkerRequired = $true
     }
 
