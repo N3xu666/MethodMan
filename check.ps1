@@ -76,6 +76,12 @@ $specNoCveText    = if ($spec) { $spec.Base.CveNoCveText } else { 'No CVE (custo
 $specOscpMarker   = if ($spec) { $spec.Base.OscpMarker }   else { 'OSCP report: take a screenshot' }
 $specUserFlag     = '<USER_FLAG>'
 $specRootFlag     = '<ROOT_FLAG>'
+# A2a: resolved spec values for [12/23], [19/23], [22/23]
+$specCveLinkHosts = if ($spec) { $spec.Base.CveLinkHosts } else { @('nvd.nist.gov', 'cve.mitre.org') }
+$specTermOldAz    = if ($spec) { $spec.Base.Terminology.Az.Old } else { 'Defolt Kredensiallar' }
+$specCyrClass     = if ($spec) { $spec.Base.CharClasses.Cyr } else { $null }
+$specAzeClass     = if ($spec) { $spec.Base.CharClasses.Aze } else { $null }
+$specEngWhitelist = if ($spec) { $spec.Base.EngWhitelist } else { @() }
 Write-Host "`n=== [1/23] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -420,14 +426,14 @@ Get-ChildItem -Recurse -Filter *.md |
     for ($i = 0; $i -lt $lines3.Count; $i++) {
       $ln = $lines3[$i]
       if ($ln -notmatch '^\|\s*CVE-\d{4}-\d{4,}') { continue }
-      if ($ln -notmatch 'nvd\.nist\.gov|cve\.mitre\.org') { continue }
+      if ($ln -notmatch (($specCveLinkHosts | ForEach-Object { [regex]::Escape($_) }) -join '|')) { continue }
       $cells = $ln.Split('|') | ForEach-Object { $_.Trim() }
       $hasVersion = $false
       foreach ($c in $cells) {
         if ($c -eq '') { continue }
         if ($c -match 'CVE-\d{4}') { continue }
-        if ($c -match 'nvd\.nist\.gov') { continue }
-        if ($c -match 'cve\.mitre\.org') { continue }
+        if ($c -match [regex]::Escape($specCveLinkHosts[0])) { continue }
+        if ($c -match [regex]::Escape($specCveLinkHosts[1])) { continue }
         if ($c -match '^https?://') { continue }
         if ($c -match '\d') { $hasVersion = $true; break }
       }
@@ -666,7 +672,7 @@ foreach ($f in $flagFiles) {
     if (Test-StubFile $f.FullName) { continue }
     if ($f.FullName -notmatch '\\01 Az\\') { continue }
     $ct = [System.IO.File]::ReadAllText($f.FullName, $utf8)
-    if ($ct -match 'Defolt Kredensiallar') {
+    if ($ct -match [regex]::Escape($specTermOldAz)) {
         $rel = if ($f.FullName.StartsWith($repo)) { $f.FullName.Substring($repo.Length).TrimStart('\') } else { $f.FullName }
         $termIssues += "$rel (uses 'Defolt Kredensiallar' instead of 'Standart GiriЕџ MЙ™lumatlarД±')"
     }
@@ -679,8 +685,8 @@ if ($termIssues.Count -eq 0) {
 }
 
 # --- Shared helpers for [20/23]..[23/23] ---
-$cyrClass = '[А-яЁё]'
-$azeClass = '[əğıöşüçƏĞÖŞÜÇ]'
+$cyrClass = $specCyrClass
+$azeClass = $specAzeClass
 $fence = [string][char]96 * 3
 $crChar = [char]13
 # --- [20/23] H3 parity across Az/En/Ru (FAIL) ---
@@ -766,7 +772,7 @@ if ($oscpIssues.Count -eq 0) {
 # --- [22/23] English fragment scan in Az/Ru (WARN only) ---
 Write-Host "`n=== [22/23] English fragment scan in Az/Ru (WARN only) ===" -ForegroundColor Cyan
 $engIssues = @()
-$engWhitelist = @("CVE-","NVD","MITRE","OSCP","Kerberos","LDAP","SMB","RPC","WMI","HTB","Hack The Box","Linux","Windows","FreeBSD","Solaris","Administrator","SYSTEM","root","user","curl","nmap","smbclient","wmiexec","netcat","sudo","powershell","cmd.exe","HTTP","HTTPS","URL","API","JSON","XML","FTP","SSH","DNS","DHCP","TLS","SSL","RSA","AES","SHA","MD5","NTLM","DCSync","Kerberoast","AS-REP","SPN","GPP","cpassword","PRTG","NSClient","Tomcat","WAR","Nadine","IP","TCP","UDP","VM","ISO","OS","CPU","RAM","SQL","XSS","RCE","LFI","RFI","SSRF","IDOR","CSRF","XXE","SSTI","JWT","OAuth","SAML","PKI","X11","IMAP","POP3","SMTP","VPN","ACL","AD","DC","GPO","OU","CN","DN","SAM","LSASS","Mimikatz","Nibbleblog","My Image","arbitrary file upload","MIME validation","DS-Replication","1131f6aa","1131f6ad","89e95b76")
+$engWhitelist = $specEngWhitelist
 foreach ($f in $flagFiles) {
     if (Test-StubFile $f.FullName) { continue }
     $rel = if ($f.FullName.StartsWith($repo)) { $f.FullName.Substring($repo.Length).TrimStart("\") } else { $f.FullName }
