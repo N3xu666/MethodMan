@@ -232,7 +232,7 @@ cat /home/ash/user.txt
 
 ## Səlahiyyətlərin Artırılması (LXD)
 
-### Enumeration
+### Sadalanma
 
 ```bash
 id
@@ -275,7 +275,7 @@ lxc start privesc
 
 **Vacib nüans:** snap-versiyası LXD `/tmp`-i görmür - ona görə obrazı `/home/ash/`-ə köçürmək lazımdır. Həmçinin LXD `storage pool` olmadan `lxc init` xəta verir - `lxc storage create default dir` və profilin düzəldilməsi tələb olunur.
 
-### Root flag
+### Root Bayrağı
 
 ```bash
 lxc exec privesc /bin/sh
