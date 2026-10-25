@@ -61,7 +61,7 @@ OSINT, so the exam-notes section is replaced by legal notes.
 - [APPLICATIONS](../APPLICATIONS/) - web application security and API testing.
 - [INFRASTRUCTURE](../INFRASTRUCTURE/) - infrastructure attack and defense.
 - [CLOUD](../CLOUD/) - cloud security and asset discovery.
-- [INFORMATION-SECURITY](../INFORMATION-SECURITY/) - governance, risk, compliance.
+- [INFORMATION_SECURITY](../INFORMATION_SECURITY/) - governance, risk, compliance.
 - CTI (planned) - threat intelligence that consumes OSINT sources.
 
 ## Authorized Use Only

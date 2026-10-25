@@ -425,4 +425,4 @@ retaliation. The policy should state:
 - NIST SP 800-12 Rev. 1 - An Introduction to Information Security - https://csrc.nist.gov/pubs/sp/800/12/r1/final
 - NIST SP 800-100 - Information Security Handbook: A Guide for Managers - https://csrc.nist.gov/pubs/sp/800/100/final
 - ISACA - COBIT 2019 Framework - https://www.isaca.org/resources/cobit
-- SANS Institute - Information Security Policy Templates - https://www.sans.org/information-security-policy/
+- SANS Institute - Information Security Policy Templates - https://www.sans.org/INFORMATION_SECURITY-policy/

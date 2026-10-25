@@ -371,4 +371,4 @@ standard. A guideline may stand alone.
 - NIST SP 800-100 - Information Security Handbook: A Guide for Managers - https://csrc.nist.gov/pubs/sp/800/100/final
 - NIST Cybersecurity Framework 2.0 - https://www.nist.gov/cyberframework
 - ISACA - COBIT 2019 Framework - https://www.isaca.org/resources/cobit
-- SANS Institute - Information Security Policy Templates - https://www.sans.org/information-security-policy/
+- SANS Institute - Information Security Policy Templates - https://www.sans.org/INFORMATION_SECURITY-policy/
