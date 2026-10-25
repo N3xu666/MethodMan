@@ -1,6 +1,7 @@
 ﻿# Layover (HTB)
 
 > Platforma: Hack The Box  
+> Mövsüm: 12  
 > OS: Linux  
 > Çətinlik: Orta  
 > Status: Tamamlandı  

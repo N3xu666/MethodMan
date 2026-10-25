@@ -1,6 +1,7 @@
 ﻿# Layover (HTB)
 
 > Platform: Hack The Box  
+> Season: 12  
 > OS: Linux  
 > Difficulty: Medium  
 > Status: Completed  

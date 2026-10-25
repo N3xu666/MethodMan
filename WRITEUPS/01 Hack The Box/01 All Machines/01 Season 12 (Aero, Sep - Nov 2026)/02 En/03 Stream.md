@@ -4,7 +4,7 @@
 > Season: 12  
 > OS: Linux  
 > Difficulty: Medium  
-> Status: **Completed**  
+> Status: Completed  
 > Result: root
 
 ---

@@ -1,10 +1,10 @@
 ﻿# DutyBound (HTB)
 
-> Platform: Hack The Box
-> Season: 12
-> OS: Linux
-> Difficulty: Medium
-> Status: **Completed**
+> Platform: Hack The Box  
+> Season: 12  
+> OS: Linux  
+> Difficulty: Medium  
+> Status: Completed  
 > Result: root
 
 ---
