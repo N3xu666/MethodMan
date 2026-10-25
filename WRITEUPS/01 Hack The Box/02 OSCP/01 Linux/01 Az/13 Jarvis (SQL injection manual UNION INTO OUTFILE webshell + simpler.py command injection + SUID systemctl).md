@@ -183,7 +183,7 @@ curl -s -G "http://jarvis.htb/room.php" \
 
 ## İstismar (INTO OUTFILE vasitəsilə RCE)
 
-No CVE (custom vulnerability) - SQL injection in the custom `room.php` endpoint (HTB-specific Stark Hotel app, no public CVE), chained with `INTO OUTFILE` to drop a PHP webshell into the web root.
+No CVE (custom vulnerability) - xüsusi `room.php` endpoint-ində SQL inyeksiyası (HTB-yə xas Stark Hotel tətbiqi, publik CVE yoxdur), `INTO OUTFILE` ilə birlikdə web kökünə PHP webshell yazılır.
 
 ### Web kökünün müəyyən edilməsi
 
