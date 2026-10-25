@@ -96,7 +96,7 @@ root@10.129.77.192: root     Super-User     pts/3     <Apr 24 10:37>     <PASSWO
 
 ## Первичный Доступ
 
-No CVE (custom vulnerability) - the Finger service on port 79 leaks a password hint in the Office Location field; combined with SSH on a non-standard port this grants initial access.
+No CVE (custom vulnerability) - служба Finger на порту 79 раскрывает подсказку к паролю в поле Office Location; в сочетании с SSH на нестандартном порту это даёт первоначальный доступ.
 
 ```bash
 ssh -p 22022 sunny@sunday.htb
