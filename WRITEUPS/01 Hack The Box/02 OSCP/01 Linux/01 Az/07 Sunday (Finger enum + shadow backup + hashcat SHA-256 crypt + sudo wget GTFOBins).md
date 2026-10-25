@@ -96,7 +96,7 @@ Office Location sahəsi `<PASSWORD>` ehtiva edir - administratorun ipucusu.
 
 ## İlkin Giriş
 
-No CVE (custom vulnerability) - the Finger service on port 79 leaks a password hint in the Office Location field; combined with SSH on a non-standard port this grants initial access.
+No CVE (custom vulnerability) - 79 portunda Finger xidməti Office Location sahəsində parol işarəsini sızdırır; qeyri-standart portda SSH ilə birlikdə bu, ilkin girişə imkan verir.
 
 ```bash
 ssh -p 22022 sunny@sunday.htb
