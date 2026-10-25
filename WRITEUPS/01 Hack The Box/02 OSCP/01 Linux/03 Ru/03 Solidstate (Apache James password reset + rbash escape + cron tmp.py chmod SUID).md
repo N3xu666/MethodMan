@@ -49,7 +49,7 @@ Debian 9 (stretch), Apache James 2.3.2 (SMTP/POP3/NNTP). Пароль root в а
 
 ## Разведка
 
-### Port Scan
+### Сканирование Портов
 
 ```bash
 sudo nmap -sC -sV -A -T5 -Pn 10.129.1.53

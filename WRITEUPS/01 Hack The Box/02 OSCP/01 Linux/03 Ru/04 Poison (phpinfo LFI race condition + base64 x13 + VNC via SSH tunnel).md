@@ -53,7 +53,7 @@ FreeBSD с Apache 2.4.29 + PHP 5.6.32. На главной странице - с
 
 ## Разведка
 
-### Port Scan
+### Сканирование Портов
 
 ```bash
 sudo nmap -sC -sV -A -T4 -Pn 10.129.1.254
@@ -123,7 +123,7 @@ python3 phpinfolfi_modifyed.py 10.129.1.254 80 100
 
 Shell от `www`.
 
-### Post-exploitation enumeration
+### Перечисление после эксплуатации
 
 ```bash
 hostname
@@ -142,7 +142,7 @@ ps -aux
 
 **Ответ на задание "What is the full path to the Apache access logs?"** - `/var/log/httpd-access.log`.
 
-### Credentials
+### Учётные Данные
 
 ```bash
 cd /usr/local/www/apache24/data
@@ -208,7 +208,7 @@ socks5  127.0.0.1 1080
 ssh -D 1080 -L6801:127.0.0.1:5801 -L6901:127.0.0.1:5901 charix@10.129.1.254
 ```
 
-### VNC connect
+### VNC Подключение
 
 ```bash
 vncviewer -passwd secret 127.0.0.1::6901

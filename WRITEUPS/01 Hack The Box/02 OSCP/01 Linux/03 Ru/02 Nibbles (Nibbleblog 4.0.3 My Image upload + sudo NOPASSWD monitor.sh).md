@@ -55,7 +55,7 @@ Ubuntu 16.04 с Apache 2.4.18. На веб-сервере - Nibbleblog 4.0.3 "Co
 
 ## Разведка
 
-### Port Scan
+### Сканирование Портов
 
 ```bash
 sudo nmap -sC -sV -A -T5 -Pn 10.129.96.84

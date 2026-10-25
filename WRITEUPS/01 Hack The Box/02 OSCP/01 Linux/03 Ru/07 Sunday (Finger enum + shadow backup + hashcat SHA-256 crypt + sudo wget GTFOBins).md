@@ -56,7 +56,7 @@ Solaris с Finger-сервисом на порту 79 и SSH на нестанд
 
 ## Разведка
 
-### Port Scan
+### Сканирование Портов
 
 ```bash
 sudo nmap -sC -sV -p- sunday.htb
@@ -163,7 +163,7 @@ sudo -l
 #     (root) NOPASSWD: /usr/bin/wget
 ```
 
-### Exfil root.txt
+### Эксфильтрация root.txt
 
 ```bash
 nc -lvnp 8000

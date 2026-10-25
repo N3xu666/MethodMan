@@ -63,7 +63,7 @@
 
 ## Разведка
 
-### Port Scan
+### Сканирование Портов
 
 ```bash
 nmap -sC -sV -p- -oN nmap_full.txt enigma.htb
