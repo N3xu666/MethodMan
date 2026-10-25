@@ -192,6 +192,13 @@ OS Version:                6.3.9600 N/A Build 9600
 
 ## Bayraqlar
 
+| Bayraq | Dəyər          |
+|--------|----------------|
+| User   | `<USER_FLAG>`  |
+| Root   | `<ROOT_FLAG>`  |
+
+### Bayraq Faylı
+
 Hər iki bayraq `C:\Users\Administrator\Desktop\flags\` qovluğundadır:
 
 ```cmd
@@ -208,15 +215,6 @@ root.txt
 
 > [!IMPORTANT]
 > OSCP report: take a screenshot of this step (command + output + timestamp).
-
----
-
-## Bayraqlar
-
-| Bayraq | Dəyər          |
-|--------|----------------|
-| User   | `<USER_FLAG>`  |
-| Root   | `<ROOT_FLAG>`  |
 
 ---
 
