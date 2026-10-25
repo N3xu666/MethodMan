@@ -137,6 +137,31 @@
         # Draft-mode scan for active-machine writeups (gitignored txt/).
         DraftPath          = 'txt/active-drafts'
         DraftCitationPattern = '\[citation:\d+\]'
+        # Heuristic: suspicious passwords (WARN only).
+        # Main regex captures key=value or key: value with value >= 5 chars.
+        # Skip patterns discard sudo directives, paths, Hydra placeholders, ALL_CAPS.
+        HeuristicRegex = '(?i)(password|passwd|pwd|secret|token|api[_-]?key|apikey)\s*[:=]\s*([^\s<>]{5,})'
+        HeuristicSkipPatterns = @(
+            '^<.*>$',              # masked placeholder
+            '^\[aby]\$',         # bcrypt hash
+            '^\*?[A-F0-9]{32,}$',  # long hex hash
+            '^[/\\]',              # sudo path / Unix path
+            '^\.',                 # relative path
+            '\^',                  # Hydra placeholder
+            '^[A-Z_]{3,5}$'        # ALL_CAPS identifier
+        )
+        HeuristicBenignValues = @('password','null','none','undefined','example','test','changeme','N/A')
+
+        # Stale references: old folder names / phrases left after restructure.
+        # Any occurrence is a WARN signal. check.ps1 [14/23].
+        StaleRefs = @('02 Web', '01 HTB', 'OSCP-grade')
+
+        # Doc-level exclude names (link check [10/23], stale check [14/23]).
+        DocExcludeNames = @('_WORKFLOW.md', '_SITE_PLAN.md', 'PROMPT_NEXT_SESSION.txt')
+
+        # Language counter marker: U+00D7 MULTIPLICATION SIGN.
+        # Written as an escape so this PSD1 stays ASCII-safe (lesson 164).
+        TimesSign = [char]0x00D7
 
         # CVE reference formats accepted inside Exploitation/Foothold.
         CvePattern    = 'CVE-\d{4}-\d{4,}'

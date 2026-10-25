@@ -97,6 +97,9 @@ $specDocsRoots        = if ($spec) { $spec.Base.DocsRoots }             else { @
 $specCitationPat      = if ($spec) { $spec.Base.CitationPattern }       else { 'citation:\d+' }
 $specDraftPath        = if ($spec) { $spec.Base.DraftPath }             else { 'txt/active-drafts' }
 $specDraftCitationPat = if ($spec) { $spec.Base.DraftCitationPattern }  else { '\[citation:\d+\]' }
+$specStaleRefs        = if ($spec) { $spec.Base.StaleRefs }        else { @('02 Web','01 HTB','OSCP-grade') }
+$specDocExcludeNames  = if ($spec) { $spec.Base.DocExcludeNames }  else { @('_WORKFLOW.md','_SITE_PLAN.md','PROMPT_NEXT_SESSION.txt') }
+$specTimesSign        = if ($spec) { $spec.Base.TimesSign }        else { [string][char]0x00D7 }
 Write-Host "`n=== [1/23] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -334,7 +337,7 @@ else { Write-Host "FAIL: $placeholderCount unreplaced placeholders" -ForegroundC
 # ============================================================
 Write-Host "`n=== [10/23] Broken relative links in docs (WARN only) ===" -ForegroundColor Cyan
 $brokenLinks = @()
-$linkExcludeNames = @('_WORKFLOW.md', '_SITE_PLAN.md', 'PROMPT_NEXT_SESSION.txt')
+$linkExcludeNames = $specDocExcludeNames
 $linkFiles = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyContinue |
   Where-Object {
     $_.FullName -notmatch '\\\\\.git\\\\' -and
@@ -506,14 +509,14 @@ if ($bsEscapes.Count -eq 0) {
 # restructures. Any occurrence is a signal to update the file.
 # ============================================================
 Write-Host "`n=== [14/23] Stale references (WARN only) ===" -ForegroundColor Cyan
-$stalePhrases = @('02 Web', '01 HTB', 'OSCP-grade')
+$stalePhrases = $specStaleRefs
 $staleHits = @()
 $staleFiles = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyContinue |
   Where-Object {
     $_.FullName -notmatch '\\\\\.git\\\\' -and
     $_.FullName -notmatch '\\\\txt\\\\' -and
     $_.FullName -notmatch '\\\\tests\\\\' -and
-    $_.Name -notin @('_WORKFLOW.md', '_SITE_PLAN.md', 'PROMPT_NEXT_SESSION.txt')
+    $_.Name -notin $specDocExcludeNames
   }
 foreach ($f in $staleFiles) {
   $ct = [System.IO.File]::ReadAllText($f.FullName, $utf8)
@@ -544,7 +547,7 @@ if ($staleHits.Count -eq 0) {
 # cosmetic drift (pass 71) and must be fixed.
 # ============================================================
 Write-Host "`n=== [15/23] Language counter marker (WARN only) ===" -ForegroundColor Cyan
-$timesSign = [string][char]0x00D7
+$timesSign = [string]$specTimesSign
 $counterWarns = @()
 $counterFiles = Get-ChildItem -Path (Join-Path $repo "WRITEUPS") -Recurse -Filter "README.md" -ErrorAction SilentlyContinue
 foreach ($f in $counterFiles) {
