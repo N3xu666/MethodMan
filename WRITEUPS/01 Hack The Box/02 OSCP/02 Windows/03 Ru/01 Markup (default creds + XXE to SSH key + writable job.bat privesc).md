@@ -112,7 +112,7 @@ Title[MegaShopping], X-Powered-By[PHP/7.2.28]
 
 ### Учётные Данные По Умолчанию
 
-No CVE (custom vulnerability) - the login form accepts the default credential pair `admin:password`.
+No CVE (custom vulnerability) - форма входа принимает пару учётных данных по умолчанию `admin:password`.
 
 ```bash
 for cred in "admin:admin" "administrator:administrator" "admin:administrator" \
@@ -192,7 +192,7 @@ function getXml() {
 
 ### Обнаружение XXE
 
-No CVE (custom vulnerability) - XML External Entity (CWE-611) via `DOMDocument::loadXML()` without `libxml_disable_entity_loader(true)`; allows reading arbitrary files.
+No CVE (custom vulnerability) - XML External Entity (CWE-611) через `DOMDocument::loadXML()` без `libxml_disable_entity_loader(true)`; позволяет читать произвольные файлы.
 
 POST на `process.php` без тела возвращает PHP-предупреждения, раскрывающие используемый парсер:
 
@@ -327,7 +327,7 @@ type C:\Users\daniel\Desktop\user.txt
 
 ## Повышение Привилегий
 
-No CVE (custom vulnerability) - incorrect permission assignment (CWE-732): `BUILTIN\Users` has Full Control over `job.bat`, which is executed by an Administrator scheduled task; overwriting the script yields an Administrator shell.
+No CVE (custom vulnerability) - некорректное назначение прав (CWE-732): `BUILTIN\Users` имеет полный контроль над `job.bat`, который выполняется запланированной задачей Администратора; перезапись скрипта даёт шелл Администратора.
 
 ### Локальное Перечисление
 
