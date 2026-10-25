@@ -85,7 +85,7 @@ http://10.129.1.254/
 | listfiles.php | список файлов → pwdbackup.txt, browse.php              |
 | phpinfo.php   | phpinfo, `file_uploads = On`                           |
 
-No CVE (custom vulnerability) - phpinfo() is exposed, leaking the temporary upload path; combined with an LFI in browse.php this enables a race-condition RCE (phpinfolfi technique).
+No CVE (custom vulnerability) - phpinfo() раскрыт, утекает путь временной загрузки; в сочетании с LFI в browse.php это позволяет RCE через состояние гонки (техника phpinfolfi).
 
 ### LFI Race Condition (phpinfo)
 
