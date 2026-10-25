@@ -112,7 +112,7 @@ Sayt "MegaShopping" brendi altında kiçik e-ticarət tətbiqidir. Açılış s�
 
 ### Standart Giriş Məlumatları
 
-No CVE (custom vulnerability) - the login form accepts the default credential pair `admin:password`.
+No CVE (custom vulnerability) - giriş forması standart giriş məlumatları cütünü `admin:password` qəbul edir.
 
 ```bash
 for cred in "admin:admin" "administrator:administrator" "admin:administrator" \
@@ -192,7 +192,7 @@ Yaradılan XML aşağıdakı struktura malikdir:
 
 ### XXE-nin Aşkarlanması
 
-No CVE (custom vulnerability) - XML External Entity (CWE-611) via `DOMDocument::loadXML()` without `libxml_disable_entity_loader(true)`; allows reading arbitrary files.
+No CVE (custom vulnerability) - XML External Entity (CWE-611) `DOMDocument::loadXML()` vasitəsilə `libxml_disable_entity_loader(true)` olmadan; ixtiyari faylları oxumağa imkan verir.
 
 `process.php`-ə gövdəsiz POST istifadə olunan parser-i açıqlayan PHP xəbərdarlıqları qaytarır:
 
@@ -327,7 +327,7 @@ type C:\Users\daniel\Desktop\user.txt
 
 ## Səlahiyyətlərin Artırılması
 
-No CVE (custom vulnerability) - incorrect permission assignment (CWE-732): `BUILTIN\Users` has Full Control over `job.bat`, which is executed by an Administrator scheduled task; overwriting the script yields an Administrator shell.
+No CVE (custom vulnerability) - səhv icazə təyinatı (CWE-732): `BUILTIN\Users` `job.bat` üzərində tam nəzarətə malikdir, hansı ki Administratorun planlı tapşırığı tərəfindən icra olunur; skriptin üzərinə yazmaq Administrator shell-i verir.
 
 ### Yerli Sadalanma
 
