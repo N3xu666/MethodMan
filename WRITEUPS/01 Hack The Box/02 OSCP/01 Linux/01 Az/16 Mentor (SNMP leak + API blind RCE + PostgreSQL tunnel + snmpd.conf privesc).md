@@ -84,7 +84,7 @@ Nəticə: `api` (Status: 404, Size: 22).
 
 ## İlkin Giriş (SNMP + API)
 
-No CVE (custom vulnerability) - the SNMP community string leaks API credentials, and the API accepts unsanitized input that reaches a shell (blind RCE).
+No CVE (custom vulnerability) - SNMP community string API giriş məlumatlarını sızdırır və API shell-ə çatan sanitariya olunmamış girişi qəbul edir (kor RCE).
 
 ### SNMP Sadalanması
 
