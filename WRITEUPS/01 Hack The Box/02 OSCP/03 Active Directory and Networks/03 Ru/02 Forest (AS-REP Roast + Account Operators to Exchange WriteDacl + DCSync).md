@@ -51,7 +51,7 @@ Windows Server 2016 Standard (14393) Domain Controller (`FOREST`) для дом�
 
 ## Разведка
 
-### Port Scan
+### Сканирование Портов
 
 ```bash
 mkdir -p ~/Desktop/forest/scans; cd ~/Desktop/forest/scans
