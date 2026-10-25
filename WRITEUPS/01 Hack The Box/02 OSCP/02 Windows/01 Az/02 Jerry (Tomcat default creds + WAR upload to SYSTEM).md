@@ -83,7 +83,7 @@ Bu, Tomcat Manager-in mövcud olduğunu və Basic autentifikasiya ilə qorunduğ
 
 ## İlkin Giriş
 
-No CVE (custom vulnerability) - the Apache Tomcat Manager is configured with default credentials `tomcat:<PASSWORD>`.
+No CVE (custom vulnerability) - Apache Tomcat Manager standart giriş məlumatları ilə `tomcat:<PASSWORD>` konfiqurasiya edilib.
 
 ### Standart Giriş Məlumatları
 
