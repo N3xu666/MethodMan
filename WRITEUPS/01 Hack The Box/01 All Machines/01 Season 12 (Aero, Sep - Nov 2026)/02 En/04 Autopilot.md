@@ -4,7 +4,7 @@
 > Season: 12  
 > OS: Windows  
 > Difficulty: Insane  
-> Status: Completed  
+> Status: **Completed**  
 > Result: Administrator
 
 ---

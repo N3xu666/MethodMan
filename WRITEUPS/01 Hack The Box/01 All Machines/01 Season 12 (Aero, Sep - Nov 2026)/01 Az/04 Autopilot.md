@@ -4,7 +4,7 @@
 > Mövsüm: 12  
 > OS: Windows  
 > Çətinlik: Dəli  
-> Status: Tamamlandı  
+> Status: **Tamamlandı**  
 > Nəticə: Administrator
 
 ---

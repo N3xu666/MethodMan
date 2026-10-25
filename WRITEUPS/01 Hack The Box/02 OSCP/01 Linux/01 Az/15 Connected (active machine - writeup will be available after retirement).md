@@ -3,7 +3,7 @@
 > Platforma: Hack The Box  
 > OS: Linux  
 > Çətinlik: Asan  
-> Status: Tamamlandı  
+> Status: **Tamamlandı**  
 > Nəticə: root
 
 ---

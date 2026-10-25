@@ -4,7 +4,7 @@
 > Mövsüm: 12  
 > OS: Linux  
 > Çətinlik: Orta  
-> Status: Tamamlandı  
+> Status: **Tamamlandı**  
 > Nəticə: root
 
 ---

@@ -3,7 +3,7 @@
 > Platform: Hack The Box  
 > OS: Linux  
 > Difficulty: Easy  
-> Status: Completed  
+> Status: **Completed**  
 > Result: root
 
 ---

@@ -44,7 +44,9 @@ $stubMarkersFallback = @(
     'Status: **Completed**',
     'Пройдено',
     'Статус: Пройдено',
-    'Status: Tamamlandı'
+    'Статус: **Завершено**',
+    'Status: Tamamlandı',
+    'Status: **Tamamlandı**'
 )
 foreach ($m in $stubMarkersFallback) { if ($stubMarkers -notcontains $m) { $stubMarkers += $m } }
 
