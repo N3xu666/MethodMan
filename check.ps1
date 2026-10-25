@@ -61,6 +61,21 @@ $notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Report
 # ============================================================
 # 1. Real 32-hex flags
 # ============================================================
+
+# --- Load writeup-spec.psd1 (single source of truth; fallback to literals) ---
+$specPath = Join-Path $PSScriptRoot 'writeup-spec.psd1'
+$spec = $null
+if (Test-Path $specPath) {
+    try { $spec = Import-PowerShellDataFile -Path $specPath } catch { $spec = $null }
+}
+if (-not $spec) { Write-Host 'WARN: writeup-spec.psd1 not loaded, using inline literals' -ForegroundColor Yellow }
+
+# Resolved spec values (with fallback to literals if spec missing)
+$specCvePattern   = if ($spec) { $spec.Base.CvePattern }   else { 'CVE-\d{4}-\d{4,}' }
+$specNoCveText    = if ($spec) { $spec.Base.CveNoCveText } else { 'No CVE (custom vulnerability)' }
+$specOscpMarker   = if ($spec) { $spec.Base.OscpMarker }   else { 'OSCP report: take a screenshot' }
+$specUserFlag     = '<USER_FLAG>'
+$specRootFlag     = '<ROOT_FLAG>'
 Write-Host "`n=== [1/23] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -247,8 +262,8 @@ Get-ChildItem -Recurse -Filter *.md |
         $rel = if ($_.FullName.StartsWith($repo)) { $_.FullName.Substring($repo.Length).TrimStart('\') } else { $_.FullName }
         $script:missingCve += "$rel (no Exploitation/Foothold section)"
     } else {
-        $hasCve = ($explText -match 'CVE-\d{4}-\d{4,}')
-        $hasNoCve = ($explText -match 'No CVE \(custom vulnerability\)')
+        $hasCve = ($explText -match $specCvePattern)
+        $hasNoCve = ($explText -match ([regex]::Escape($specNoCveText)))
         if (-not $hasCve -and -not $hasNoCve) {
             $rel = if ($_.FullName.StartsWith($repo)) { $_.FullName.Substring($repo.Length).TrimStart('\') } else { $_.FullName }
             $script:missingCve += "$rel (no CVE/No CVE in Exploitation/Foothold)"
@@ -626,7 +641,7 @@ foreach ($f in $flagFiles) {
         if ($inFlags) { $flagsText += $ln + "`n" }
     }
     if ($flagsText -ne "") {
-        if (-not ($flagsText -match '<USER_FLAG>') -or -not ($flagsText -match '<ROOT_FLAG>')) {
+        if (-not ($flagsText -match ([regex]::Escape($specUserFlag))) -or -not ($flagsText -match ([regex]::Escape($specRootFlag)))) {
             $rel = if ($f.FullName.StartsWith($repo)) { $f.FullName.Substring($repo.Length).TrimStart('\') } else { $f.FullName }
             $flagsIssues += "$rel (missing placeholder)"
         }
@@ -715,7 +730,7 @@ if ($h3Issues.Count -eq 0) {
 Write-Host "`n=== [21/23] OSCP marker parity (FAIL) ===" -ForegroundColor Cyan
 $oscpIssues = @()
 $oscpGroups = @{}
-$oscpMarker = "OSCP report: take a screenshot"
+$oscpMarker = $specOscpMarker
 foreach ($f in $flagFiles) {
     if (Test-StubFile $f.FullName) { continue }
     $rel = if ($f.FullName.StartsWith($repo)) { $f.FullName.Substring($repo.Length).TrimStart("\") } else { $f.FullName }
