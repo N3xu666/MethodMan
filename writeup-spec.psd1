@@ -69,6 +69,26 @@
             Az = 'Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.'
         }
 
+        # Short-form EthicalNote variants: accepted by check.ps1 [3/23].
+        # Exact in-file variants accepted by check.ps1 [3/23].
+        # These MUST match the literal text in walkthrough files.
+        EthicalNoteShort = @{
+            En = 'All flags, passwords, hashes, and session tokens have been masked for ethical reasons.'
+            Ru = 'Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям.'
+            Az = 'Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir.'
+        }
+
+        # References etalon rules (WARN only, non-blocking).
+        # A-format (allowed): description - https://url
+        # B-format (WARN):   [text](https://url)
+        # C-format (WARN):   description: https://url
+        # Skipped (allowed): [text](./relative) and description without URL.
+        ReferencesEtalon = @{
+            RelativePrefix = '^\[[^\]]+\]\(\.\.?/'
+            BPattern       = '^\[[^\]]+\]\(https?://'
+            CPattern       = ':\s+https?://'
+        }
+
         # OSCP marker: ALWAYS English, in all three languages (fixed string).
         OscpMarker = 'OSCP report: take a screenshot of this step (command + output + timestamp).'
 

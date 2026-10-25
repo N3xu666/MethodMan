@@ -82,6 +82,9 @@ $specTermOldAz    = if ($spec) { $spec.Base.Terminology.Az.Old } else { 'Defolt 
 $specCyrClass     = if ($spec) { $spec.Base.CharClasses.Cyr } else { $null }
 $specAzeClass     = if ($spec) { $spec.Base.CharClasses.Aze } else { $null }
 $specEngWhitelist = if ($spec) { $spec.Base.EngWhitelist } else { @() }
+$specEthicalNote      = if ($spec) { $spec.Base.EthicalNote }      else { $null }
+$specEthicalNoteShort = if ($spec) { $spec.Base.EthicalNoteShort } else { $null }
+$specRefEtalon        = if ($spec) { $spec.Base.ReferencesEtalon } else { $null }
 Write-Host "`n=== [1/23] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
@@ -130,11 +133,10 @@ Get-ChildItem -Recurse -Filter *.md |
         $stubCount++
     } else {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
-        $noteTexts = @(
-            'All flags, passwords, hashes, and session tokens have been masked for ethical reasons',
-            'Все флаги, пароли, хеши и токены сессий были замаскированы по этическим соображениям',
-            'Bütün bayraqlar, şifrələr, heşlər və sessiya tokenləri etik səbəblərə görə gizlədilmişdir'
-        )
+        # Note texts come from writeup-spec.psd1 (EthicalNote + EthicalNoteShort).
+        $noteTexts = @()
+        if ($null -ne $specEthicalNote)     { $noteTexts += $specEthicalNote.Values }
+        if ($null -ne $specEthicalNoteShort) { $noteTexts += $specEthicalNoteShort.Values }
         $hasNote = $false
         foreach ($nt in $noteTexts) { if ($c.Contains($nt)) { $hasNote = $true; break } }
         if ($hasNote) { $withNote++ }
@@ -607,11 +609,13 @@ foreach ($f in $refFiles) {
         if ($line -eq '' -or $line -notmatch '^[-*]\s+') { continue }
         $item = $line -replace '^[-*]\s+', ''
         if ($item -match '^\[[^\]]+\]\(\.\.?/') { continue }
-        if ($item -match '^\[[^\]]+\]\(https?://') {
+        $bPat = if ($null -ne $specRefEtalon) { $specRefEtalon.BPattern } else { '^\[[^\]]+\]\(https?://' }
+        if ($item -match $bPat) {
             $refWarns += "$rel : B-format markdown link: $item"
             continue
         }
-        if ($item -match ':\s+https?://') {
+        $cPat = if ($null -ne $specRefEtalon) { $specRefEtalon.CPattern } else { ':\s+https?://' }
+        if ($item -match $cPat) {
             $refWarns += "$rel : C-format colon URL: $item"
             continue
         }
