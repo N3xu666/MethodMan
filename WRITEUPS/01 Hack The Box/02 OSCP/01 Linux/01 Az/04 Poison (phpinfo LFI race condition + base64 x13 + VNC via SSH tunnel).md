@@ -85,7 +85,7 @@ Başlıq: "Temporary website to test local .php scripts."
 | listfiles.php | faylların siyahısı → pwdbackup.txt, browse.php         |
 | phpinfo.php   | phpinfo, `file_uploads = On`                           |
 
-No CVE (custom vulnerability) - phpinfo() açıqdır, müvəqqəti yükləmə yolunu sızdırır; browse.php-də LFI ilə birlikdə bu, yarış vəziyəti RCE-yə imkan verir (phpinfolfi texnikası).
+No CVE (custom vulnerability) - phpinfo() açıqdır, müvəqqəti yükləmə yolunu sızdırır; browse.php-də LFI ilə birlikdə bu, yarış vəziyyəti RCE-yə imkan verir (phpinfolfi texnikası).
 
 ### LFI Race Condition (phpinfo)
 

