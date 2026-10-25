@@ -192,6 +192,13 @@ OS Version:                6.3.9600 N/A Build 9600
 
 ## Flags
 
+| Flag | Value          |
+|------|----------------|
+| User | `<USER_FLAG>`  |
+| Root | `<ROOT_FLAG>`  |
+
+### Flag File
+
 Both flags are located in `C:\Users\Administrator\Desktop\flags\`:
 
 ```cmd
@@ -208,15 +215,6 @@ root.txt
 
 > [!IMPORTANT]
 > OSCP report: take a screenshot of this step (command + output + timestamp).
-
----
-
-## Flags
-
-| Flag | Value          |
-|------|----------------|
-| User | `<USER_FLAG>`  |
-| Root | `<ROOT_FLAG>`  |
 
 ---
 
