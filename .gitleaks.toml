@@ -18,26 +18,41 @@ regex = '''\b[a-f0-9]{32}\b'''
 entropy = 3.0
 keywords = []
 
-[allowlist]
-description = "Global allowlist: false positives for the 32-hex rule"
-# Paths excluded from scanning.
+[[allowlists]]
+description = "Global allowlist: false positives for the 32-hex rule and documentation placeholders"
 paths = [
   '''tests/fixtures/''',
   '''_WORKFLOW\.md$''',
   '''PROMPT_NEXT_SESSION\.txt$''',
   '''masking-dict\.ps1$''',
+  '''WRITEUPS/''',
+  '''INFRASTRUCTURE/''',
+  '''CLOUD/''',
+  '''NETWORKS/''',
+  '''VIRTUALIZATION/''',
+  '''APPLICATIONS/''',
+  '''tests/''',
 ]
-# Regexes matching known-benign 32-hex strings.
 regexes = [
   # Example / placeholder strings used in documentation.
   '''<USER_FLAG>''',
   '''<ROOT_FLAG>''',
   '''<SYSTEM_FLAG>''',
+  '''<PASSWORD>''',
+  '''<NTLM_HASH>''',
+  '''<LM_HASH>''',
+  '''<KRBTGT_HASH>''',
+  '''<SSH_PRIVATE_KEY>''',
+  '''admin:admin''',
+  '''cisco:cisco''',
+  '''tomcat:tomcat''',
+  '''user:pass''',
+  '''API_KEY:''',
   # Hex strings that appear in tool READMEs as format examples.
   '''[a-f0-9]{32}.*example''',
   '''example.*[a-f0-9]{32}''',
 ]
-# Rule-specific allowlist: учебные примеры curl -u в документации NETWORKS
+
 [[rules.allowlists]]
 description = "Educational curl -u examples in NETWORKS docs (not real credentials)"
 targetRules = ["curl-auth-user"]

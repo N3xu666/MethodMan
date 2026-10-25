@@ -157,7 +157,7 @@ Reference material and tooling, independent of any single HTB machine:
 
 Validation is split across three independent layers:
 
-- **Pre-commit hook (`check.ps1`)** - LOCAL only, opt-in. Lives in `.git/hooks/pre-commit`, which is not tracked by git (git does not clone hooks). To install, add a one-line invocation of `check.ps1` to `.git/hooks/pre-commit` and make it executable. Fast (17 checks, ~2 seconds).
+- **Pre-commit hook (`check.ps1`)** - LOCAL only, opt-in. Lives in `.git/hooks/pre-commit`, which is not tracked by git (git does not clone hooks). To install, add a one-line invocation of `check.ps1` to `.git/hooks/pre-commit` and make it executable. Fast (19 checks, ~2 seconds).
 
   **Blocking errors (commit is refused):**
   - real 32-hex flags,

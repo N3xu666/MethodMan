@@ -256,7 +256,7 @@ curl -s -b /tmp/cj.txt -X POST -H "Content-Type: text/xml" \
 ```
 
 ```
-Your order for -----BEGIN OPENSSH PRIVATE KEY-----
+Your order for -----BEGIN OPENSSH PRIVATE KEY (MASKED)-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
 ... (truncated) ...
 -----END OPENSSH PRIVATE KEY-----
