@@ -74,7 +74,7 @@ echo "10.129.229.88    cozyhosting.htb" | sudo tee -a /etc/hosts
 
 ## Первичный Доступ
 
-No CVE (custom vulnerability) - Spring Boot Actuator `/actuator/sessions` returns session IDs without authentication; the leaked admin session grants access to the panel, where the hostname field is vulnerable to OS command injection.
+No CVE (custom vulnerability) - Spring Boot Actuator `/actuator/sessions` возвращает идентификаторы сессий без аутентификации; утёкшая административная сессия даёт доступ к панели, где поле hostname уязвимо к инъекции команд ОС.
 
 ```bash
 gobuster dir -u http://cozyhosting.htb -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt
