@@ -10,7 +10,7 @@ Writeups available in three languages: `01 Az`, `02 En`, `03 Ru`.
 |---|---------|-------------|----------|
 | 1 | [All Machines](./01%20All%20Machines/) | All HTB machines by season | 0 published + 5 pending (× 3 languages) |
 | 2 | [OSCP](./02%20OSCP/) | Machines for OSCP preparation | 22 published + 1 active stub (× 3 languages) |
-| 3 | [Pro Labs](./03%20Pro%20Labs/) | Advanced multi-target labs (capability showcases only; full writeups withheld per HTB ToS) | 1 completed (En) |
+| 3 | [Pro Labs](./03%20Pro%20Labs/) | Showcases only; full writeups withheld per HTB ToS | 1 completed (En) |
 
 ## OSCP Categories
 

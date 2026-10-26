@@ -11,7 +11,7 @@
 
 The successful completion of this lab is verified by the official Hack The Box certificate:
 
-**[Download Certificate (PDF)](./Certificate.pdf)**
+**[Open Certificate (PDF)](./Certificate.pdf)**
 
 ---
 
