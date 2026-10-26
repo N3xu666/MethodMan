@@ -11,6 +11,7 @@ available in three languages: `01 Az`, `02 En`, `03 Ru`.
 | 02 | Jerry | [Az](./01%20Az/02%20Jerry%20%28Tomcat%20default%20creds%20%2B%20WAR%20upload%20to%20SYSTEM%29.md) | [En](./02%20En/02%20Jerry%20%28Tomcat%20default%20creds%20%2B%20WAR%20upload%20to%20SYSTEM%29.md) | [Ru](./03%20Ru/02%20Jerry%20%28Tomcat%20default%20creds%20%2B%20WAR%20upload%20to%20SYSTEM%29.md) |
 | 03 | Netmon | [Az](./01%20Az/03%20Netmon%20%28anonymous%20FTP%20%2B%20PRTG%20CVE-2018-9276%20notification%20RCE%29.md) | [En](./02%20En/03%20Netmon%20%28anonymous%20FTP%20%2B%20PRTG%20CVE-2018-9276%20notification%20RCE%29.md) | [Ru](./03%20Ru/03%20Netmon%20%28anonymous%20FTP%20%2B%20PRTG%20CVE-2018-9276%20notification%20RCE%29.md) |
 | 04 | ServMon | [Az](./01%20Az/04%20ServMon%20%28NVMS-1000%20path%20traversal%20CVE-2019-20085%20%2B%20NSClient%2B%2B%20CVE-2025-34078%20privesc%29.md) | [En](./02%20En/04%20ServMon%20%28NVMS-1000%20path%20traversal%20CVE-2019-20085%20%2B%20NSClient%2B%2B%20CVE-2025-34078%20privesc%29.md) | [Ru](./03%20Ru/04%20ServMon%20%28NVMS-1000%20path%20traversal%20CVE-2019-20085%20%2B%20NSClient%2B%2B%20CVE-2025-34078%20privesc%29.md) |
+| 05 | Chatterbox | [Az](./01%20Az/05%20Chatterbox%20%28AChat%20SEH%20BOF%20%2B%20AutoLogon%20registry%20password%29.md) | [En](./02%20En/05%20Chatterbox%20%28AChat%20SEH%20BOF%20%2B%20AutoLogon%20registry%20password%29.md) | [Ru](./03%20Ru/05%20Chatterbox%20%28AChat%20SEH%20BOF%20%2B%20AutoLogon%20registry%20password%29.md) |
 
 ## Completed (Writeups Pending)
 
