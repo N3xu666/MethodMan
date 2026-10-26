@@ -10,11 +10,6 @@ Writeups available in three languages: `01 Az`, `02 En`, `03 Ru`.
 
 | # | Machine | Az | En | Ru |
 |---|---------|-----|-----|-----|
-| 01 | Layover | - | - | [Ru](./03%20Ru/01%20Layover.md) |
-| 02 | Touch | - | - | [Ru](./03%20Ru/02%20Touch.md) |
-| 03 | Stream | - | - | [Ru](./03%20Ru/03%20Stream.md) |
-| 04 | Autopilot | - | - | [Ru](./03%20Ru/04%20Autopilot.md) |
-| 05 | DutyBound | - | - | [Ru](./03%20Ru/05%20DutyBound.md) |
 
 ## Completed (Writeups Pending)
 
