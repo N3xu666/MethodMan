@@ -1,4 +1,4 @@
-# Mythical (HTB Pro Lab)
+﻿# Mythical (HTB Pro Lab)
 
 > Platform: Hack The Box Pro Lab  
 > OS: Windows  
