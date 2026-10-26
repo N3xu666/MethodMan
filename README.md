@@ -27,13 +27,8 @@ MethodMan/
 +-- WRITEUPS/                                   # HTB walkthroughs, trilingual (Az, En, Ru)
 |   +-- 01 Hack The Box/
 |       +-- 01 All Machines/
-|       |   +-- 01 Season 12 (Aero, Sep - Nov 2026)/
 |       +-- 02 OSCP/
-|           +-- 01 Linux/
-|           +-- 02 Windows/
-|           +-- 03 Active Directory and Networks/
 |       +-- 03 Pro Labs/ (Showcases only; full writeups withheld per HTB ToS)
-|           +-- 01 Mythical/ (Capability Showcase + Certificate)
 |
 +-- APPLICATIONS/                               # application security reference
 |   +-- 01 Web/
