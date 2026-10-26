@@ -115,7 +115,7 @@ $specWrongDifficultyRu    = if ($spec) { $spec.Base.WrongDifficultyRu }     else
 Write-Host "`n=== [1/27] Real 32-hex flags ===" -ForegroundColor Cyan
 $flags = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\03 Pro Labs\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $flags += [regex]::Matches($c, $specFlagsRegex).Count
@@ -133,7 +133,7 @@ foreach ($key in $replacements.Keys) {
     if ($key -match '^[a-fA-F0-9]{32}$') { continue }
     $count = 0
     Get-ChildItem -Recurse -Filter *.md |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\03 Pro Labs\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($key))).Count
@@ -154,7 +154,7 @@ $withNote = 0
 $withoutNote = 0
 $stubCount = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $notWalkthrough } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\03 Pro Labs\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $notWalkthrough } |
   ForEach-Object {
     if (Test-StubFile $_.FullName) {
         $stubCount++
@@ -189,7 +189,7 @@ Write-Host "`n=== [4/27] Long dashes ===" -ForegroundColor Cyan
 $d = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\03 Pro Labs\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $d += [regex]::Matches($c, $specLongDashesPat).Count
@@ -205,7 +205,7 @@ Write-Host "`n=== [5/27] Broken chars (U+FFFD) ===" -ForegroundColor Cyan
 $b = 0
 foreach ($ext in @("*.md")) {
     Get-ChildItem -Recurse -Filter $ext |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\03 Pro Labs\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $b += [regex]::Matches($c, $specBrokenCharsPat).Count
@@ -223,7 +223,7 @@ $a = 0
 foreach ($art in $artifacts) {
     $count = 0
     Get-ChildItem -Recurse -Filter *.md |
-      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
+      Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\03 Pro Labs\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
       ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($art))).Count
@@ -242,7 +242,7 @@ else { Write-Host "FAIL: $a artifacts" -ForegroundColor Red; $totalIssues += $a 
 Write-Host "`n=== [7/27] Heuristic: suspicious passwords (WARN only) ===" -ForegroundColor Cyan
 $suspicious = @()
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\03 Pro Labs\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $excluded } |
   ForEach-Object {
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $mm = [regex]::Matches($ct, '(?i)(password|passwd|pwd|secret|token|api[_-]?key|apikey)\s*[:=]\s*([^\s`<>]{5,})')
@@ -278,7 +278,7 @@ $missingCve = @()
 $sectionPattern = '^## (Exploitation|Foothold|Эксплуатация|Первичный Доступ|İstismar|İlkin Giriş)'
 $checkedExpl = 0
 Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $notWalkthrough } |
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\03 Pro Labs\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $notWalkthrough } |
   ForEach-Object {
     if (Test-StubFile $_.FullName) { return }
     $ct = [System.IO.File]::ReadAllText($_.FullName, $utf8)
@@ -671,7 +671,7 @@ Write-Host "`n============================================" -ForegroundColor Cya
 Write-Host "`n=== [18/27] Flags table placeholders (FAIL) ===" -ForegroundColor Cyan
 $flagsIssues = @()
 $flagFiles = Get-ChildItem -Recurse -Filter *.md |
-  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $notWalkthrough }
+  Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\03 Pro Labs\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.FullName -notmatch '\\AI\\' -and $_.FullName -notmatch '\\NETWORKS\\' -and $_.FullName -notmatch '\\CLOUD\\' -and $_.FullName -notmatch '\\VIRTUALIZATION\\' -and $_.FullName -notmatch '\\INFORMATION_SECURITY\\' -and $_.FullName -notmatch '\\OSINT\\' -and $_.Name -notin $notWalkthrough }
 
 foreach ($f in $flagFiles) {
     if (Test-StubFile $f.FullName) { continue }
