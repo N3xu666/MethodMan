@@ -15,7 +15,7 @@ The successful completion of this lab is verified by the official Hack The Box c
 
 ---
 
-> [!WARNING]
+> [!NOTE]
 > **HTB ToS Compliance:** This is a capability showcase, NOT a walkthrough. To respect HTB Terms of Service for active Pro Labs, specific commands, exploit payloads, and flag values are intentionally omitted. 
 
 ---
