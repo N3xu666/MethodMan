@@ -1,4 +1,4 @@
-# check-anchors.ps1 - Validate markdown anchor links in tracked .md files.
+﻿# check-anchors.ps1 - Validate markdown anchor links in tracked .md files.
 # GitHub-style anchor generation: lowercase, spaces -> hyphens, strip punctuation, keep letters/digits/cyrillic/hyphens.
 # WARN-only by default. Exit code 1 if broken anchors found (for CI).
 #
@@ -24,7 +24,7 @@ $files = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyCo
     Where-Object {
         $_.FullName -notmatch "\\\.git\\" -and
         $_.FullName -notmatch "\\txt\\" -and
-        $_.FullName -notmatch "\\tests\\" -and
+        $_.FullName -notmatch "\\tests\\" -and $_.FullName -notmatch "\\site\\" -and
         $_.Name -notin $excludeNames
     }
 

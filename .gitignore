@@ -49,3 +49,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 patch-*.ps1
+site/node_modules/
+site/dist/
+site/.docusaurus/
+site-poc/

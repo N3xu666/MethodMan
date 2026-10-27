@@ -1,4 +1,4 @@
-# check-tables.ps1 - Validate markdown tables for inconsistent link usage.
+﻿# check-tables.ps1 - Validate markdown tables for inconsistent link usage.
 # Finds tables where SOME rows have markdown links and OTHERS do not.
 # This catches the "added a subcategory but forgot the link" class of bugs.
 #
@@ -25,7 +25,7 @@ $files = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyCo
     Where-Object {
         $_.FullName -notmatch "\\\.git\\" -and
         $_.FullName -notmatch "\\txt\\" -and
-        $_.FullName -notmatch "\\tests\\" -and
+        $_.FullName -notmatch "\\tests\\" -and $_.FullName -notmatch "\\site\\" -and
         $_.Name -notin $excludeNames
     }
 
