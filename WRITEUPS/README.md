@@ -42,7 +42,7 @@ Language subfolders inside each category: `01 Az`, `02 En`, `03 Ru`.
 
 ## Standards
 
-- Full writeup format: see `_WORKFLOW.md` section 3.2.
+- Full writeup format: Attack Chain, Machine Briefing, Reconnaissance, Foothold, Exploitation (or Authenticated Enumeration for AD), Privilege Escalation, Flags, Key Takeaways.
 - CVE reference required in every Exploitation section (NVD/MITRE link).
 - OSCP reporting notes (`> [!IMPORTANT]`) on foothold, user flag, root flag.
 - No real secrets - placeholders only.

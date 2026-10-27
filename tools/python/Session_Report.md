@@ -246,7 +246,7 @@ See `../../SECURITY.md` for the project-wide policy on authorized use.
   transcript will be readable but may contain extra blank lines or repeated
   prompt fragments.
 - **No masking.** Real secrets (flags, passwords, hashes) are captured as-is.
-  Mask them manually before publishing, per section 3 of `_WORKFLOW.md`.
+  Mask them manually before publishing, per the canonical walkthrough standard.
 
 ---
 
@@ -400,7 +400,7 @@ Documentation elsewhere in the repository is licensed under CC BY-NC 4.0 - see [
 
 ## See also
 
-- `_WORKFLOW.md` section 3.2 - walkthrough standard the draft follows.
-- `_WORKFLOW.md` section 6.2 - placeholder scheme for masking.
+- the canonical walkthrough standard - walkthrough standard the draft follows.
+- the placeholder scheme section of the walkthrough standard - placeholder scheme for masking.
 - `../../SECURITY.md` - authorized use policy.
 - `../../methodology/OSCP-Reporting.md` - OSCP report evidence rules.

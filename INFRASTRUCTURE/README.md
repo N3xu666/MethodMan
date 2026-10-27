@@ -44,7 +44,7 @@ Every file follows the two-track skeleton:
     ## 12. Production Notes
     ## 13. References
 
-See the repository `_WORKFLOW.md` (internal) for the authoritative format
+See the canonical walkthrough standard for the authoritative format
 specification.
 
 ## Related Resources

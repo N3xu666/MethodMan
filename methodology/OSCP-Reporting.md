@@ -100,7 +100,7 @@ Walkthroughs in `WRITEUPS/01 Hack The Box/02 OSCP/` carry an OSCP reporting note
     > OSCP report: take a screenshot of this step (command + output + timestamp).
 
 These notes are REMINDERS, not requirements. They mark the steps that
-typically need a screenshot in the exam report. See §3.2.3 of `_WORKFLOW.md`
+typically need a screenshot in the exam report. See the OSCP reporting notes section in the canonical walkthrough standard.
 for the exact rule.
 
 The walkthroughs are NOT exam reports. They are study material. The exam report
