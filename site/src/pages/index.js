@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from '@docusaurus/Head';
-import NeuralGraph from '@site/src/components/NeuralGraph';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export default function Home() {
   return (
@@ -9,7 +9,12 @@ export default function Home() {
         <title>MethodMan / Graph</title>
         <meta name="description" content="Neural graph of MethodMan pentest walkthroughs" />
       </Head>
-      <NeuralGraph />
+      <BrowserOnly fallback={<div style={{background:'#000',height:'100vh'}} />}>
+        {() => {
+          const NeuralGraph = require('@site/src/components/NeuralGraph').default;
+          return <NeuralGraph />;
+        }}
+      </BrowserOnly>
     </>
   );
 }
