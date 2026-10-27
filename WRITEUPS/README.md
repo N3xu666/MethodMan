@@ -30,6 +30,7 @@ WRITEUPS/
         +-- 01 Linux/
         +-- 02 Windows/
         +-- 03 Active Directory and Networks/
+    +-- 03 Pro Labs (Showcases only; full writeups withheld per HTB ToS)/
 ```
 
 Language subfolders inside each category: `01 Az`, `02 En`, `03 Ru`.
