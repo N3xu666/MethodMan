@@ -11,7 +11,9 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "prestart": "python scripts/build-docs.py",
+    "prebuild": "python scripts/build-docs.py"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
@@ -23,6 +25,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-force-graph-3d": "^1.29.2",
+    "remark-github-blockquote-alert": "^2.1.0",
     "three": "0.182.0"
   },
   "devDependencies": {

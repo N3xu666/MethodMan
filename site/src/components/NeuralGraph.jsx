@@ -1,8 +1,8 @@
-import '../css/neural-graph.css';
 import { useEffect, useRef, useState } from 'react';
 import ForceGraph3D from 'react-force-graph-3d';
 import * as THREE from 'three';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import '../css/neural-graph.css';
 
 const getNodeObject = (node) => {
   const group = new THREE.Group();
@@ -16,7 +16,7 @@ const getNodeObject = (node) => {
   return group;
 };
 
-export default function App() {
+export default function NeuralGraph() {
   const [data, setData] = useState({ nodes: [], links: [] });
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [error, setError] = useState(null);
@@ -54,12 +54,7 @@ export default function App() {
       const el = containerRef.current;
       const w = el ? el.clientWidth : 800;
       const h = el ? el.clientHeight : 600;
-      const bloomPass = new UnrealBloomPass(
-        new THREE.Vector2(w, h),
-        1.5,
-        0.4,
-        0.1
-      );
+      const bloomPass = new UnrealBloomPass(new THREE.Vector2(w, h), 1.5, 0.4, 0.1);
       fg.postProcessingComposer().addPass(bloomPass);
       bloomAddedRef.current = true;
     }
@@ -69,6 +64,21 @@ export default function App() {
     }, 1000);
     return () => clearTimeout(t);
   }, [data]);
+
+  const handleNodeClick = (node) => {
+    if (node.group === 'category' || node.group === 'cve') return;
+    if (!node.slug || !node.category_slug) return;
+    window.location.href = `/writeups/${node.category_slug}/${node.slug}`;
+  };
+
+  const getNodeLabel = (node) => {
+    if (node.group === 'cve') return node.label;
+    if (node.group === 'category') return node.label;
+    const parts = [node.label];
+    if (node.os) parts.push(node.os);
+    if (node.difficulty) parts.push(node.difficulty);
+    return parts.join(' | ');
+  };
 
   return (
     <div className="app">
@@ -89,6 +99,11 @@ export default function App() {
             height={size.height}
             backgroundColor="#000000"
             nodeThreeObject={getNodeObject}
+            nodeLabel={getNodeLabel}
+            onNodeClick={handleNodeClick}
+            onNodeHover={(node) => {
+              document.body.style.cursor = node && (node.group === 'machine' || node.slug) ? 'pointer' : 'default';
+            }}
             linkColor={() => '#aaaaaa'}
             linkOpacity={0.6}
             linkWidth={0.5}
@@ -103,7 +118,7 @@ export default function App() {
       </main>
       <footer className="hud foot">
         <span>24 published + 6 stubs</span>
-        <span>3D force-graph - Phase 1</span>
+        <span>3D force-graph - Phase 2</span>
       </footer>
     </div>
   );

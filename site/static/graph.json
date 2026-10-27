@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "id": "cat_Linux",
+      "id": "cat_linux",
       "label": "Linux",
       "group": "category",
       "val": 20
@@ -10,7 +10,12 @@
       "id": "Solidstate",
       "label": "Solidstate",
       "group": "Linux",
-      "val": 10
+      "val": 10,
+      "os": "Linux",
+      "difficulty": "Medium",
+      "result": "root",
+      "slug": "solidstate",
+      "category_slug": "linux"
     },
     {
       "id": "CVE-2015-7611",
@@ -19,7 +24,7 @@
       "val": 5
     },
     {
-      "id": "cat_Windows",
+      "id": "cat_windows",
       "label": "Windows",
       "group": "category",
       "val": 20
@@ -28,19 +33,29 @@
       "id": "Markup",
       "label": "Markup",
       "group": "Windows",
-      "val": 10
+      "val": 10,
+      "os": "Windows",
+      "difficulty": "Easy",
+      "result": "Administrator",
+      "slug": "markup",
+      "category_slug": "windows"
     },
     {
-      "id": "cat_AD",
-      "label": "AD",
+      "id": "cat_active-directory",
+      "label": "Active Directory",
       "group": "category",
       "val": 20
     },
     {
       "id": "Active",
       "label": "Active",
-      "group": "AD",
-      "val": 10
+      "group": "Active Directory",
+      "val": 10,
+      "os": "Windows",
+      "difficulty": "Easy",
+      "result": "root",
+      "slug": "active",
+      "category_slug": "active-directory"
     },
     {
       "id": "CVE-2026-20833",
@@ -49,7 +64,7 @@
       "val": 5
     },
     {
-      "id": "cat_ProLabs",
+      "id": "cat_prolabs",
       "label": "ProLabs",
       "group": "category",
       "val": 20
@@ -58,7 +73,12 @@
       "id": "Puppet",
       "label": "Puppet",
       "group": "ProLabs",
-      "val": 10
+      "val": 10,
+      "os": "Windows / Linux",
+      "difficulty": "Intermediate",
+      "result": "",
+      "slug": "puppet",
+      "category_slug": "prolabs"
     },
     {
       "id": "CVE-2021-34527",
@@ -67,7 +87,7 @@
       "val": 5
     },
     {
-      "id": "cat_Season 12",
+      "id": "cat_season-12",
       "label": "Season 12",
       "group": "category",
       "val": 20
@@ -76,10 +96,15 @@
       "id": "Layover",
       "label": "Layover",
       "group": "Season 12",
-      "val": 10
+      "val": 10,
+      "os": "Linux",
+      "difficulty": "Medium",
+      "result": "root",
+      "slug": "layover",
+      "category_slug": "season-12"
     },
     {
-      "id": "cat_Anonymity",
+      "id": "cat_anonymity",
       "label": "Anonymity",
       "group": "category",
       "val": 20
@@ -88,13 +113,18 @@
       "id": "Tor",
       "label": "Tor",
       "group": "Anonymity",
-      "val": 10
+      "val": 10,
+      "os": "",
+      "difficulty": "",
+      "result": "",
+      "slug": "tor",
+      "category_slug": "anonymity"
     }
   ],
   "links": [
     {
       "source": "Solidstate",
-      "target": "cat_Linux"
+      "target": "cat_linux"
     },
     {
       "source": "Solidstate",
@@ -102,11 +132,11 @@
     },
     {
       "source": "Markup",
-      "target": "cat_Windows"
+      "target": "cat_windows"
     },
     {
       "source": "Active",
-      "target": "cat_AD"
+      "target": "cat_active-directory"
     },
     {
       "source": "Active",
@@ -114,7 +144,7 @@
     },
     {
       "source": "Puppet",
-      "target": "cat_ProLabs"
+      "target": "cat_prolabs"
     },
     {
       "source": "Puppet",
@@ -122,11 +152,11 @@
     },
     {
       "source": "Layover",
-      "target": "cat_Season 12"
+      "target": "cat_season-12"
     },
     {
       "source": "Tor",
-      "target": "cat_Anonymity"
+      "target": "cat_anonymity"
     }
   ]
 }

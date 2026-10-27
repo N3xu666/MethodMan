@@ -18,3 +18,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Generated walkthrough docs
+
+
+
+docs/index.md
+
+docs/linux/
+docs/windows/
+docs/active-directory/
+docs/index.md

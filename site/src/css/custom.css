@@ -1,30 +1,229 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Красная палитра (акценты, ссылки, активные элементы) */
+  --ifm-color-primary: #ff003c;
+  --ifm-color-primary-dark: #e60036;
+  --ifm-color-primary-darker: #d90033;
+  --ifm-color-primary-darkest: #b3002a;
+  --ifm-color-primary-light: #ff1a50;
+  --ifm-color-primary-lighter: #ff2659;
+  --ifm-color-primary-lightest: #ff4d77;
+
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #000000;
+  --ifm-font-color-base: #888888;
+  --ifm-heading-color: #ffffff;
+  --ifm-font-family-base: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --ifm-border-radius: 0;
+  --ifm-global-radius: 0;
+  --ifm-navbar-background-color: #000000;
+  --ifm-footer-background-color: #000000;
+  --ifm-toc-border-color: #1a1a1a;
+  --ifm-color-emphasis-300: #1a1a1a;
+  --ifm-card-background-color: #0a0a0a;
+  --ifm-pre-background: #0a0a0a;
+  --docusaurus-highlighted-code-line-bg: #1a1a1a;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+html, body { background: #000 !important; }
+
+body {
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+*, *::before, *::after { border-radius: 0 !important; }
+
+/* Navbar */
+.navbar {
+  background: #000 !important;
+  border-bottom: 1px solid #1a1a1a;
+  box-shadow: none !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  padding: 0 16px;
+  height: 48px;
+}
+.navbar__logo { display: none !important; }
+.navbar__title { font-weight: 600; color: #d7d7d7; }
+.navbar__link { color: #6a6a6a; font-weight: 400; }
+.navbar__link:hover, .navbar__link--active { color: #ff003c; }
+.navbar__brand:hover .navbar__title { color: #ff003c; }
+
+/* Footer */
+.footer {
+  background: #000 !important;
+  border-top: 1px solid #1a1a1a;
+  padding: 16px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.footer__copyright { color: #6a6a6a; font-size: 11px; }
+
+/* Sidebar */
+.menu {
+  background: #000;
+  border-right: 1px solid #1a1a1a;
+  padding: 8px !important;
+  font-size: 12px;
+}
+.menu__link {
+  color: #d7d7d7;
+  padding: 6px 12px;
+}
+.menu__link:hover { background: #0a0a0a; color: #ff003c; }
+.menu__link--active { background: #0a0a0a; color: #ff003c; font-weight: 600; }
+.menu__list-item-collapsible:hover { background: #0a0a0a; }
+.menu__caret::before { background-color: #6a6a6a; }
+
+/* Headings (оставляем белыми для структуры) */
+.markdown { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: #ffffff !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.markdown h2 { border-bottom: 1px solid #1a1a1a; padding-bottom: 8px; margin-top: 48px; }
+
+/* Content Text (HUD style: приглушенный серый, широкий spacing) */
+.markdown p, .markdown li, .markdown td, .markdown th, .markdown blockquote p {
+  color: #888888;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+}
+
+/* Code: Inline */
+code {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  padding: 2px 6px;
+  /* Убрали color, чтобы Prism-тема (Dracula) задавала цвета */
+}
+
+/* Code: Blocks */
+pre {
+  background: #0a0a0a !important;
+  border: 1px solid #1a1a1a;
+}
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  /* Prism-тема (Dracula) управляет цветами токенов */
+}
+
+/* Meta block (blockquote) */
+.markdown blockquote {
+  border-left: 2px solid #ff003c;
+  background: #0a0a0a;
+  margin: 16px 0;
+  padding: 12px 16px;
+}
+.markdown blockquote p { margin: 0; color: #888888; }
+
+/* TOC (right) */
+.table-of-contents { font-size: 11px; border-left: 1px solid #1a1a1a; padding-left: 12px; }
+.table-of-contents__link { color: #6a6a6a; letter-spacing: 0.05em; }
+.table-of-contents__link:hover, .table-of-contents__link--active { color: #ff003c; }
+
+/* Links */
+a { color: #ff003c; }
+a:hover { color: #ff4d77; }
+
+/* Tables */
+table { border-collapse: collapse; }
+table th, table td { border: 1px solid #1a1a1a; padding: 6px 12px; }
+table thead { background: #0a0a0a; }
+table thead th { color: #ffffff !important; }
+
+/* Breadcrumbs */
+.breadcrumbs__link { color: #6a6a6a; font-size: 11px; }
+.breadcrumbs__item--active .breadcrumbs__link { background: #0a0a0a; color: #ff003c; }
+
+/* Pagination */
+.pagination-nav__link { border: 1px solid #1a1a1a; background: #0a0a0a; }
+.pagination-nav__link:hover { border-color: #ff003c; }
+.pagination-nav__label { color: #ff003c; }
+
+/* Hide edit / last updated */
+.theme-doc-footer-edit-meta-row,
+.theme-last-updated { display: none !important; }
+
+/* FIX: TOC scroll bug */
+.theme-doc-markdown {
+  padding-bottom: 50vh;
+}
+
+/* Force plain-text code blocks to HUD style (override Prism inline styles) */
+pre.language-text,
+pre.language-text code,
+pre.language-text .token-line,
+pre.language-text span {
+  color: #888888 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Admonitions / Alerts */
+.alert,
+.markdown-alert {
+  border: 1px solid #1a1a1a !important;
+  border-left-width: 2px !important;
+  background: #000000 !important;
+  margin: 16px 0;
+  padding: 12px 16px;
+}
+
+/* [!NOTE] - Blue */
+.markdown-alert-note,
+.alert--info,
+.alert--secondary {
+  border-left-color: #00bfff !important;
+  background: #050a14 !important;
+}
+.markdown-alert-note .markdown-alert-title,
+.alert--info .admonitionHeading_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module {
+  color: #00bfff !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+}
+
+/* Text inside alerts */
+.markdown-alert p,
+.alert p {
+  color: #888888 !important;
+  margin-bottom: 0;
+}
+.markdown-alert a,
+.alert a {
+  color: #00bfff !important;
+}
+
+/* [!IMPORTANT] - Yellow (warning style) */
+.markdown-alert-important,
+.markdown-alert-warning,
+.alert--warning {
+  border-left-color: #ffd700 !important;
+  background: #0f0d00 !important;
+}
+.markdown-alert-important .markdown-alert-title,
+.markdown-alert-warning .markdown-alert-title,
+.alert--warning .admonitionHeading_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module {
+  color: #ffd700 !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+}
+.markdown-alert-important a,
+.markdown-alert-warning a,
+.alert--warning a {
+  color: #ffd700 !important;
 }
