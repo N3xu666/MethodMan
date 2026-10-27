@@ -1,0 +1,132 @@
+{
+  "nodes": [
+    {
+      "id": "cat_Linux",
+      "label": "Linux",
+      "group": "category",
+      "val": 20
+    },
+    {
+      "id": "Solidstate",
+      "label": "Solidstate",
+      "group": "Linux",
+      "val": 10
+    },
+    {
+      "id": "CVE-2015-7611",
+      "label": "CVE-2015-7611",
+      "group": "cve",
+      "val": 5
+    },
+    {
+      "id": "cat_Windows",
+      "label": "Windows",
+      "group": "category",
+      "val": 20
+    },
+    {
+      "id": "Markup",
+      "label": "Markup",
+      "group": "Windows",
+      "val": 10
+    },
+    {
+      "id": "cat_AD",
+      "label": "AD",
+      "group": "category",
+      "val": 20
+    },
+    {
+      "id": "Active",
+      "label": "Active",
+      "group": "AD",
+      "val": 10
+    },
+    {
+      "id": "CVE-2026-20833",
+      "label": "CVE-2026-20833",
+      "group": "cve",
+      "val": 5
+    },
+    {
+      "id": "cat_ProLabs",
+      "label": "ProLabs",
+      "group": "category",
+      "val": 20
+    },
+    {
+      "id": "Puppet",
+      "label": "Puppet",
+      "group": "ProLabs",
+      "val": 10
+    },
+    {
+      "id": "CVE-2021-34527",
+      "label": "CVE-2021-34527",
+      "group": "cve",
+      "val": 5
+    },
+    {
+      "id": "cat_Season 12",
+      "label": "Season 12",
+      "group": "category",
+      "val": 20
+    },
+    {
+      "id": "Layover",
+      "label": "Layover",
+      "group": "Season 12",
+      "val": 10
+    },
+    {
+      "id": "cat_Anonymity",
+      "label": "Anonymity",
+      "group": "category",
+      "val": 20
+    },
+    {
+      "id": "Tor",
+      "label": "Tor",
+      "group": "Anonymity",
+      "val": 10
+    }
+  ],
+  "links": [
+    {
+      "source": "Solidstate",
+      "target": "cat_Linux"
+    },
+    {
+      "source": "Solidstate",
+      "target": "CVE-2015-7611"
+    },
+    {
+      "source": "Markup",
+      "target": "cat_Windows"
+    },
+    {
+      "source": "Active",
+      "target": "cat_AD"
+    },
+    {
+      "source": "Active",
+      "target": "CVE-2026-20833"
+    },
+    {
+      "source": "Puppet",
+      "target": "cat_ProLabs"
+    },
+    {
+      "source": "Puppet",
+      "target": "CVE-2021-34527"
+    },
+    {
+      "source": "Layover",
+      "target": "cat_Season 12"
+    },
+    {
+      "source": "Tor",
+      "target": "cat_Anonymity"
+    }
+  ]
+}

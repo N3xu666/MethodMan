@@ -1,3 +1,4 @@
+import '../css/neural-graph.css';
 import { useEffect, useRef, useState } from 'react';
 import ForceGraph3D from 'react-force-graph-3d';
 import * as THREE from 'three';
