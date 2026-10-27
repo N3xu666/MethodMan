@@ -9,3 +9,4 @@ To comply with HTB Terms of Service for active Pro Labs, full walkthroughs (comm
 | # | Lab Name | Difficulty | Status | Showcase |
 |---|----------|------------|--------|----------|
 | 1 | [Mythical](./01%20Mythical/) | Advanced | Completed | [View Showcase](./01%20Mythical/README.md) |
+| 2 | [Puppet](./02%20Puppet/) | Intermediate | Completed | [View Showcase](./02%20Puppet/README.md) |
