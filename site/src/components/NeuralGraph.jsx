@@ -329,10 +329,7 @@ export default function NeuralGraph() {
       fg.postProcessingComposer().addPass(bloomPass);
       bloomAddedRef.current = true;
     }
-    const t = setTimeout(() => {
-      if (graphRef.current) graphRef.current.zoomToFit(800, 80);
-    }, 400);
-    return () => clearTimeout(t);
+    // Zoom handled by onEngineStop
   }, [visible]);
 
   const goTo = useCallback((nextFocus) => {
@@ -440,6 +437,9 @@ export default function NeuralGraph() {
             cooldownTicks={150}
             d3AlphaDecay={0.02}
             d3VelocityDecay={0.3}
+            onEngineStop={() => {
+              if (graphRef.current) graphRef.current.zoomToFit(1000, 80);
+            }}
           />
         )}
         {!error && (!graph || visible.nodes.length === 0) && (
