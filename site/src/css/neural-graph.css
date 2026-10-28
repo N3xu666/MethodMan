@@ -103,3 +103,35 @@
   color: var(--line);
   padding: 0 2px;
 }
+
+.mode-toggle {
+  display: flex;
+  gap: 4px;
+  margin: 0 12px;
+}
+
+.mode-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--dim);
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 10px;
+  transition: all 0.15s ease;
+}
+
+.mode-btn:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+.mode-btn.active {
+  color: #000;
+  background: var(--fg);
+  border-color: var(--fg);
+  cursor: default;
+  pointer-events: none;
+}
