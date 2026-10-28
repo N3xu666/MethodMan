@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
+﻿import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import ForceGraph3D from 'react-force-graph-3d';
 import * as THREE from 'three';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
@@ -9,9 +9,9 @@ const HOME = '_home';
 const GEO = new THREE.SphereGeometry(1, 16, 16);
 const MAT = {
   home: new THREE.MeshBasicMaterial({ color: 0xffffff }),
-  index: new THREE.MeshBasicMaterial({ color: 0xaaaaaa }),
-  file: new THREE.MeshBasicMaterial({ color: 0x666666 }),
-  tool: new THREE.MeshBasicMaterial({ color: 0xff003c }),
+  index: new THREE.MeshBasicMaterial({ color: 0xffffff }),
+  file: new THREE.MeshBasicMaterial({ color: new THREE.Color(0xa855f7).multiplyScalar(1.4) }),
+  tool: new THREE.MeshBasicMaterial({ color: new THREE.Color(0xff0000).multiplyScalar(1.4) }),
   cve: new THREE.MeshBasicMaterial({ color: 0xffaa00 }),
 };
 
@@ -22,26 +22,127 @@ for (let i = 0; i <= 10; i++) {
   const radius = 0.3 - Math.sin(t * Math.PI) * 0.25;
   linkPoints.push(new THREE.Vector2(radius, t - 0.5));
 }
-const LINK_GEO = new THREE.LatheGeometry(linkPoints, 6);
-const LINK_MAT = {
-  hierarchy: new THREE.MeshBasicMaterial({ color: 0xaaaaaa, opacity: 0.6, transparent: true, side: THREE.DoubleSide }),
-  tool: new THREE.MeshBasicMaterial({ color: 0xff003c, opacity: 0.8, transparent: true, side: THREE.DoubleSide }),
-  cve: new THREE.MeshBasicMaterial({ color: 0xffaa00, opacity: 0.8, transparent: true, side: THREE.DoubleSide }),
+const LINK_GEO = new THREE.LatheGeometry(linkPoints, 16);
+const LINK_SHADER_VERT = `
+  uniform float uThicknessZoneA;
+  uniform float uThicknessZoneB;
+  uniform float uSphereRadiusA;
+  uniform float uSphereRadiusB;
+  uniform float uThicknessBoostA;
+  uniform float uThicknessBoostB;
+  varying float vT;
+  varying float vDistFromA;
+  varying float vDistFromB;
+  void main() {
+    vT = position.y + 0.5;
+    float linkLength = length(modelMatrix[1].xyz);
+    vDistFromA = vT * linkLength;
+    vDistFromB = (1.0 - vT) * linkLength;
+    float dEffA = max(0.0, vDistFromA - uSphereRadiusA);
+    float dEffB = max(0.0, vDistFromB - uSphereRadiusB);
+    float normA = clamp(dEffA / uThicknessZoneA, 0.0, 1.0);
+    float normB = clamp(dEffB / uThicknessZoneB, 0.0, 1.0);
+    float thickA = 1.0 + (uThicknessBoostA - 1.0) * pow(1.0 - normA, 2.0);
+    float thickB = 1.0 + (uThicknessBoostB - 1.0) * pow(1.0 - normB, 2.0);
+    float thick = max(thickA, thickB);
+    vec3 pos = vec3(position.x * thick, position.y, position.z * thick);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+  }
+`;
+const LINK_SHADER_FRAG = `
+  uniform vec3 uColorA;
+  uniform vec3 uColorB;
+  uniform float uOpacity;
+  uniform float uColorZoneA;
+  uniform float uColorZoneB;
+  uniform float uTransitionZone;
+  varying float vT;
+  varying float vDistFromA;
+  varying float vDistFromB;
+  void main() {
+    vec3 base = mix(uColorA, uColorB, vT);
+    float tA = smoothstep(uColorZoneA, uColorZoneA + uTransitionZone, vDistFromA);
+    float tB = smoothstep(uColorZoneB, uColorZoneB + uTransitionZone, vDistFromB);
+    float peak = min(tA, tB);
+    vec3 col = mix(base, vec3(1.0), peak);
+    gl_FragColor = vec4(col, uOpacity);
+  }
+`;
+const getNodeColorHex = (node) => {
+  if (!node) return 0xa855f7;
+  if (node.id === HOME) return 0xffffff;
+  if (node.group === 'tool') return 0xff0000;
+  if (node.group === 'cve') return 0xffaa00;
+  if (node.is_index) return 0xffffff;
+  return 0xa855f7;
+};
+const sphereRadiusFor = (hex) => {
+  if (hex === 0xff0000) return 3.0;
+  if (hex === 0xffaa00) return 2.0;
+  if (hex === 0xa855f7) return 1.4;
+  if (hex === 0xffffff) return 2.2;
+  return 1.4;
+};
+const thicknessBoostFor = (hex) => {
+  if (hex === 0xff0000) return 3.0;
+  if (hex === 0xffaa00) return 5.7;
+  if (hex === 0xa855f7) return 2.5;
+  if (hex === 0xffffff) return 2.0;
+  return 4.0;
+};
+const thicknessZoneFor = (hex) => {
+  return 1.5 + (thicknessBoostFor(hex) - 4.0) * 0.3;
+};
+const LINK_MAT_CACHE = new Map();
+const getLinkMaterial = (srcHex, tgtHex) => {
+  const key = srcHex.toString(16).padStart(6, '0') + '_' + tgtHex.toString(16).padStart(6, '0');
+  let mat = LINK_MAT_CACHE.get(key);
+  if (mat) return mat;
+  const bright = (srcHex === 0xff0000 || tgtHex === 0xff0000 || srcHex === 0xffaa00 || tgtHex === 0xffaa00);
+  mat = new THREE.ShaderMaterial({
+    uniforms: {
+      uColorA: { value: new THREE.Color(srcHex) },
+      uColorB: { value: new THREE.Color(tgtHex) },
+      uOpacity: { value: bright ? 0.85 : 0.35 },
+      uColorZoneA: { value: sphereRadiusFor(srcHex) + 3.0 },
+      uColorZoneB: { value: sphereRadiusFor(tgtHex) + 3.0 },
+      uTransitionZone: { value: 8.0 },
+      uThicknessZoneA: { value: thicknessZoneFor(srcHex) },
+      uThicknessZoneB: { value: thicknessZoneFor(tgtHex) },
+      uSphereRadiusA: { value: sphereRadiusFor(srcHex) },
+      uSphereRadiusB: { value: sphereRadiusFor(tgtHex) },
+      uThicknessBoostA: { value: thicknessBoostFor(srcHex) },
+      uThicknessBoostB: { value: thicknessBoostFor(tgtHex) },
+    },
+    vertexShader: LINK_SHADER_VERT,
+    fragmentShader: LINK_SHADER_FRAG,
+    transparent: true,
+    side: THREE.DoubleSide,
+  });
+  LINK_MAT_CACHE.set(key, mat);
+  return mat;
 };
 
-const getLinkObject = (link) => {
-  const tgt = typeof link.target === 'object' ? link.target : { id: link.target };
-  const src = typeof link.source === 'object' ? link.source : { id: link.source };
-  let mat = LINK_MAT.hierarchy;
-  if (tgt.group === 'tool' || src.group === 'tool') mat = LINK_MAT.tool;
-  else if (tgt.group === 'cve' || src.group === 'cve') mat = LINK_MAT.cve;
-  const mesh = new THREE.Mesh(LINK_GEO, mat);
+const PLACEHOLDER_MAT = new THREE.MeshBasicMaterial({ color: 0x888888, opacity: 0.3, transparent: true, side: THREE.DoubleSide });
+const getLinkObject = () => {
+  const mesh = new THREE.Mesh(LINK_GEO, PLACEHOLDER_MAT);
   mesh.frustumCulled = false;
-  return mesh; // Возвращаем именно Mesh, без Group
+  mesh.userData.matKey = null;
+  return mesh;
 };
 
-const updateLinkPosition = (obj, { start, end }, link) => {
+const updateLinkPosition = (obj, { start, end }, link, nodeMap) => {
   if (!obj) return false;
+  const srcNode = typeof link.source === 'object' ? link.source : (nodeMap ? nodeMap.get(link.source) : null);
+  const tgtNode = typeof link.target === 'object' ? link.target : (nodeMap ? nodeMap.get(link.target) : null);
+  const curSrcHex = getNodeColorHex(srcNode);
+  const curTgtHex = getNodeColorHex(tgtNode);
+  const curKey = curSrcHex.toString(16).padStart(6, '0') + '_' + curTgtHex.toString(16).padStart(6, '0');
+  if (obj.userData.matKey !== curKey) {
+    obj.material = getLinkMaterial(curSrcHex, curTgtHex);
+    obj.userData.matKey = curKey;
+  }
+
   let s = start;
   let e = end;
   if (!s || typeof s.x !== 'number') s = link.source;
@@ -168,6 +269,19 @@ export default function NeuralGraph() {
   const containerRef = useRef(null);
   const graphRef = useRef(null);
   const bloomAddedRef = useRef(false);
+  const nodeMapRef = useRef(new Map());
+
+  useEffect(() => {
+    if (graph && graph.brain) {
+      const m = new Map();
+      graph.brain.nodes.forEach((n) => m.set(n.id, n));
+      nodeMapRef.current = m;
+    }
+  }, [graph]);
+
+  const updateLinkPositionCb = useCallback((obj, params, link) => {
+    return updateLinkPosition(obj, params, link, nodeMapRef.current);
+  }, []);
 
   useEffect(() => {
     setFocus(readFocusFromUrl());
@@ -211,7 +325,7 @@ export default function NeuralGraph() {
       const el = containerRef.current;
       const w = el ? el.clientWidth : 800;
       const h = el ? el.clientHeight : 600;
-      const bloomPass = new UnrealBloomPass(new THREE.Vector2(w, h), 0.6, 0.5, 0.2);
+      const bloomPass = new UnrealBloomPass(new THREE.Vector2(w, h), 0.35, 0.5, 0.3);
       fg.postProcessingComposer().addPass(bloomPass);
       bloomAddedRef.current = true;
     }
@@ -320,7 +434,7 @@ export default function NeuralGraph() {
               return '#aaaaaa';
             }}
             linkThreeObject={getLinkObject}
-            linkPositionUpdate={updateLinkPosition}
+            linkPositionUpdate={updateLinkPositionCb}
             rendererConfig={{ antialias: true, alpha: false }}
             warmupTicks={100}
             cooldownTicks={150}
