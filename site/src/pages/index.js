@@ -1,6 +1,8 @@
 import React from 'react';
 import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import Link from '@docusaurus/Link';
+import styles from './index.module.css';
 
 export default function Home() {
   return (
@@ -15,6 +17,16 @@ export default function Home() {
           return <NeuralGraph />;
         }}
       </BrowserOnly>
+      <div className={styles.navCards}>
+        <Link to="/writeups" className={styles.card}>
+          <div className={styles.cardLabel}>WRITEUPS</div>
+          <div className={styles.cardDesc}>HTB walkthroughs - Linux / Windows / AD</div>
+        </Link>
+        <Link to="/reference" className={styles.card}>
+          <div className={styles.cardLabel}>REFERENCE</div>
+          <div className={styles.cardDesc}>Applications / AI / Cloud / Networks / OSINT</div>
+        </Link>
+      </div>
     </>
   );
 }

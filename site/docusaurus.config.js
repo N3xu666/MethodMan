@@ -28,11 +28,25 @@ const config = {
     format: 'detect',
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'reference',
+        path: 'docs/reference',
+        routeBasePath: 'reference',
+        sidebarPath: './sidebarsReference.js',
+        remarkPlugins: [remarkAlert],
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
       ({
         docs: {
+          path: 'docs/writeups',
           sidebarPath: './sidebars.js',
           remarkPlugins: [remarkAlert],
           routeBasePath: 'writeups',
@@ -59,8 +73,9 @@ const config = {
         src: 'img/logo.svg',
       },
       items: [
-        { to: '/', label: 'Graph', position: 'left' },
-        { to: '/writeups', label: 'Writeups', position: 'left' },
+        { to: '/', label: 'Graph', position: 'left', exact: true },
+        { to: '/writeups', label: 'Writeups', position: 'left', exact: false },
+        { to: '/reference', label: 'Reference', position: 'left', exact: false },
         { href: 'https://github.com/N3xu666/MethodMan', label: 'GitHub', position: 'right' },
       ],
     },

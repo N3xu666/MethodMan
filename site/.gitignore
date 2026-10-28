@@ -23,9 +23,10 @@ yarn-error.log*
 
 
 
-docs/index.md
+docs/
 
 docs/linux/
 docs/windows/
 docs/active-directory/
-docs/index.md
+docs/
+build.log

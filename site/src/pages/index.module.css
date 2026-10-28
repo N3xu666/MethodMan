@@ -1,23 +1,38 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
+.navCards {
+  position: fixed;
+  bottom: 8vh;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 2px;
+  z-index: 100;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 32px;
+  border: 1px solid #1a1a1a;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  text-decoration: none;
+  transition: all 0.2s;
+  min-width: 240px;
+}
+.card:hover {
+  border-color: #ff003c;
+  background: rgba(10,0,0,0.95);
+}
+.cardLabel {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: #ff003c;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.cardDesc {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: #6a6a6a;
+  font-size: 11px;
+  letter-spacing: 0.05em;
 }
