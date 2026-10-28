@@ -6,7 +6,7 @@ import { remarkAlert } from 'remark-github-blockquote-alert';
 const config = {
   title: 'MethodMan',
   tagline: 'Trilingual HTB/OSCP walkthroughs, web security reference and pentest tooling',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   future: { v4: true },
 
