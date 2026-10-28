@@ -16,8 +16,8 @@ const MAT = {
 };
 
 const linkPoints = [];
-for (let i = 0; i <= 10; i++) {
-  const t = i / 10;
+for (let i = 0; i <= 30; i++) {
+  const t = i / 30;
   // Толщина: 0.3 у основания, 0.05 в середине
   const radius = 0.3 - Math.sin(t * Math.PI) * 0.25;
   linkPoints.push(new THREE.Vector2(radius, t - 0.5));
