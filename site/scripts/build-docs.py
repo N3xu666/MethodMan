@@ -102,6 +102,7 @@ def fm(sl, ti, de, po, ht):
 def pf(md, dd, pos=None):
     raw = md.read_text(encoding="utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
     if md.name.lower() == "readme.md":
+        raw = _fix_folder_refs(raw)
         t = h1(raw) or "Overview"
         (dd / "index.md").write_text(fm(None, t, "", 0, False) + raw, encoding="utf-8")
         return
@@ -158,43 +159,96 @@ TOP_PUBLIC = {"SECURITY.md", "LICENSE", "CHEATSHEET.md", "METHODOLOGY.md", "CERT
 TOP_MD_RE = re.compile(r"\[([^\]]*?)\]\((?:\.{1,2}/)*(?:SECURITY|CERTIFICATIONS|LICENSE|CHEATSHEET|METHODOLOGY)\.md\)")
 
 
+def _fix_folder_refs(text):
+    import urllib.parse as _u
+    def repl(m):
+        raw = _u.unquote(m.group(1))
+        m2 = re.match(r"^(\d+)\s+(.+?)(?:\s*\(.*?\))?$", raw)
+        if m2:
+            return f"./{slug(m2.group(2))}/"
+        return m.group(0)
+    return re.sub(r"\./((?:\d+)(?:%20|\s)+[^/)\s]+)/", repl, text)
+
+
+def _match_name(p, siblings):
+    if p in siblings:
+        return p
+    stripped = re.sub(r"^\d+[\s%20]+", "", p)
+    if p.endswith(".md"):
+        cand = slug(stripped[:-3]) + ".md"
+        if cand in siblings:
+            return cand
+    cand = slug(stripped)
+    if cand in siblings:
+        return cand
+    if p.endswith(".md"):
+        cand = slug(p[:-3]) + ".md"
+        if cand in siblings:
+            return cand
+    cand = slug(p)
+    if cand in siblings:
+        return cand
+    return None
+
+
 def fix_links(root):
+    import urllib.parse as _u
     for md in root.rglob("*.md"):
         content = md.read_text(encoding="utf-8")
+        original = content
         content = TOP_MD_RE.sub(r"\1", content)
         def repl(m):
             text = m.group(1)
             target = m.group(2)
             if target.startswith(("http", "#", "mailto:", "/")):
                 return m.group(0)
-            path_only = target.split("#")[0].rstrip("/")
-            if not path_only:
+            path_part = target.split("#")[0]
+            anchor = target[len(path_part):]
+            try:
+                path_part = _u.unquote(path_part)
+            except Exception:
+                pass
+            path_part = path_part.rstrip("/")
+            if not path_part:
                 return m.group(0)
-            parts = path_only.split("/")
-            if parts and parts[-1] in TOP_PUBLIC:
+            parts = path_part.split("/")
+            if any(x in TOP_PUBLIC for x in parts):
                 return text
             current = md.parent
             ok = True
+            new_parts = []
             for p in parts:
                 if p in ("", "."):
                     continue
                 if p == "..":
                     current = current.parent
+                    new_parts.append("..")
                     continue
                 try:
                     siblings = [f.name for f in current.iterdir()]
                 except OSError:
                     ok = False
                     break
-                if p not in siblings:
+                matched = _match_name(p, siblings)
+                if matched is None:
                     ok = False
                     break
-                current = current / p
-            if ok and current.exists():
-                return m.group(0)
+                current = current / matched
+                new_parts.append(matched)
+            if ok:
+                orig = [p for p in parts if p not in ("", ".")]
+                changed = new_parts != orig
+                if current.is_dir() and (current / "index.md").exists():
+                    if changed:
+                        return f"[{text}]({'/'.join(new_parts)}/{anchor})"
+                    return m.group(0)
+                if current.is_file():
+                    if changed:
+                        return f"[{text}]({'/'.join(new_parts)}{anchor})"
+                    return m.group(0)
             return text
         new = re.sub(r"(?<!!)\[([^\]]+)\]\(([^)]+)\)", repl, content)
-        if new != content:
+        if new != original:
             md.write_text(new, encoding="utf-8")
 
 def main():
