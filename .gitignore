@@ -1,4 +1,4 @@
-# Masking dictionary (contains real secrets)
+﻿# Masking dictionary (contains real secrets)
 masking-dict.ps1
 masking-check.ps1
 
@@ -56,3 +56,9 @@ site-poc/
 
 # Wrangler local cache
 .wrangler/
+
+# Terraform
+terraform/.terraform/
+terraform/terraform.tfstate*
+terraform/*.tfplan
+terraform/crash.log
