@@ -94,3 +94,11 @@ No bug bounty is offered. Credit will be given in the advisory if desired.
 - Hack The Box platform itself (report to HTB support)
 - Third-party tools mentioned in walkthroughs (report to their maintainers)
 - The author's personal machine or local environment
+
+## Build-time Dependencies and False Positives
+
+The `site/` package uses modern build tooling (Docusaurus, Webpack, Vite). Some transitive dependencies (`serialize-javascript`, `tinypool`, `uuid`) are flagged by Dependabot for CVEs that only manifest in runtime scenarios not applicable to static site generation.
+
+To maintain a clean `npm audit`, `overrides` in `site/package.json` force patched versions. If an override breaks the build, it is documented here as a tolerable risk rather than silently ignored.
+
+`deepmerge` is patched via `patch-package` to fix a prototype pollution vector.
