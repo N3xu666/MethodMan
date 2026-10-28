@@ -10,8 +10,8 @@ const GEO = new THREE.SphereGeometry(1, 16, 16);
 const MAT = {
   home: new THREE.MeshBasicMaterial({ color: 0xffffff }),
   index: new THREE.MeshBasicMaterial({ color: 0xffffff }),
-  file: new THREE.MeshBasicMaterial({ color: new THREE.Color(0xa855f7).multiplyScalar(1.4) }),
-  tool: new THREE.MeshBasicMaterial({ color: new THREE.Color(0xff0000).multiplyScalar(1.4) }),
+  file: new THREE.MeshBasicMaterial({ color: new THREE.Color(0xa855f7).multiplyScalar(2.5) }),
+  tool: new THREE.MeshBasicMaterial({ color: new THREE.Color(0xff0000).multiplyScalar(2.5) }),
   cve: new THREE.MeshBasicMaterial({ color: 0xffaa00 }),
 };
 
@@ -77,7 +77,7 @@ const getNodeColorHex = (node) => {
   return 0xa855f7;
 };
 const sphereRadiusFor = (hex) => {
-  if (hex === 0xff0000) return 3.0;
+  if (hex === 0xff0000) return 2.5;
   if (hex === 0xffaa00) return 2.0;
   if (hex === 0xa855f7) return 1.4;
   if (hex === 0xffffff) return 2.2;
@@ -170,7 +170,7 @@ const getNodeObject = (node) => {
   let mat = MAT.file;
   let scale = 1.4;
   if (node.id === HOME) { mat = MAT.home; scale = 3.5; }
-  else if (node.group === 'tool') { mat = MAT.tool; scale = 3.0; }
+  else if (node.group === 'tool') { mat = MAT.tool; scale = 2.5; }
   else if (node.group === 'cve') { mat = MAT.cve; scale = 2.0; }
   else if (node.is_index) { mat = MAT.index; scale = 2.2; }
 
