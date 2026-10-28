@@ -39,6 +39,9 @@ jobs:
       - name: Security Audit (DevSecOps Gate)
         run: npm audit --omit=dev --audit-level=high
 
+      - name: Install Python PDF dependencies
+        run: pip install pymupdf
+
       - name: Build Docusaurus
         run: npm run build
 

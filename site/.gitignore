@@ -30,4 +30,4 @@ docs/windows/
 docs/active-directory/
 docs/
 build.log
-static/pdf/
+static/pdf/**/*.pdf
