@@ -103,6 +103,12 @@ def pf(md, dd, pos=None):
     raw = md.read_text(encoding="utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
     if md.name.lower() == "readme.md":
         raw = raw.replace("](./Certificate.pdf)", f"](/pdf/{dd.name}/Certificate.pdf)")
+        _pdf_url = f"/pdf/{dd.name}/Certificate.pdf"
+        _pdf_png = f"/pdf/{dd.name}/Certificate.png"
+        _pdf_link = f"**[Open Certificate (PDF)]({_pdf_url})**"
+        if _pdf_link in raw:
+            _thumb = f'<a href="{_pdf_url}" target="_blank"><img src="{_pdf_png}" width="200" alt="Certificate" style="display:inline-block;border:1px solid #1a1a1a;vertical-align:top"></a>'
+            raw = raw.replace(_pdf_link, _thumb)
         raw = _fix_folder_refs(raw)
         t = h1(raw) or "Overview"
         (dd / "index.md").write_text(fm(None, t, "", 0, False) + raw, encoding="utf-8")
@@ -129,6 +135,14 @@ def walk(src, dst, inst, root):
         _pdf_dst = SITE / "static" / "pdf" / dst.name
         _pdf_dst.mkdir(parents=True, exist_ok=True)
         shutil.copy2(pdf, _pdf_dst / pdf.name)
+        try:
+            import pymupdf
+            _doc = pymupdf.open(str(_pdf_dst / pdf.name))
+            _pix = _doc[0].get_pixmap(dpi=150)
+            _pix.save(str(_pdf_dst / (pdf.stem + ".png")))
+            _doc.close()
+        except Exception as _e:
+            print(f"PDF->PNG failed: {pdf.name}: {_e}")
     files = sorted(src.glob("*.md"))
     readmes = [f for f in files if f.name.lower() == "readme.md"]
     others = [f for f in files if f.name.lower() != "readme.md"]
