@@ -46,7 +46,7 @@ const buildVisible = (graph, focus) => {
   const parent = tree[focus];
   if (!parent) return { nodes: [], links: [] };
   const children = (parent.children || []).map((id) => graph.nodes.find((n) => n.id === id)).filter(Boolean);
-  const nodes = [{ id: parent.id, label: parent.label, depth: parent.depth, parent: parent.parent, ancestors: [], url: parent.url, is_index: true }].concat(children);
+  const nodes = [{ id: parent.id, label: parent.label, depth: parent.depth, parent: parent.parent, top: parent.top, url: parent.url, is_index: true }].concat(children);
   const links = children.map((c) => ({ source: c.id, target: parent.id }));
   return { nodes, links };
 };
@@ -144,10 +144,15 @@ export default function NeuralGraph() {
     if (!focus) return list;
     const entry = graph.tree[focus];
     if (!entry) return list;
-    const ids = (entry.ancestors || []).concat([entry.id]);
+    const ids = [];
+    let cur = focus;
+    while (cur && graph.tree[cur]) {
+      ids.unshift(cur);
+      cur = graph.tree[cur].parent;
+    }
     for (const id of ids) {
-      const n = graph.nodes.find((x) => x.id === id);
-      list.push({ id, label: n ? n.label : id });
+      const n = graph.tree[id];
+      list.push({ id, label: (n && n.label) || id });
     }
     return list;
   }, [graph, focus]);
