@@ -61,3 +61,45 @@
   font-size: 11px;
   color: var(--dim);
 }
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.crumb-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.crumb {
+  background: transparent;
+  border: 0;
+  color: var(--dim);
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0 6px;
+}
+
+.crumb:hover { color: var(--fg); }
+
+.crumb.active {
+  color: var(--fg);
+  cursor: default;
+  pointer-events: none;
+}
+
+.sep {
+  color: var(--line);
+  padding: 0 2px;
+}

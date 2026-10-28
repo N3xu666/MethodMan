@@ -1,115 +1,103 @@
 import json
 import re
 from pathlib import Path
+from collections import Counter
 
-ROOT = Path(__file__).resolve().parents[2]
-SITE = ROOT / "site"
+SITE = Path(__file__).resolve().parents[1]
+DOCS = SITE / "docs"
+OUT = SITE / "static" / "graph.json"
+BASES = {"reference": "/reference", "writeups": "/writeups"}
 
-TARGETS = [
-    {
-        "path": ROOT / "WRITEUPS/01 Hack The Box/02 OSCP/01 Linux/02 En/03 Solidstate (Apache James password reset + rbash escape + cron tmp.py chmod SUID).md",
-        "group": "Linux",
-        "id": "Solidstate",
-    },
-    {
-        "path": ROOT / "WRITEUPS/01 Hack The Box/02 OSCP/02 Windows/02 En/01 Markup (default creds + XXE to SSH key + writable job.bat privesc).md",
-        "group": "Windows",
-        "id": "Markup",
-    },
-    {
-        "path": ROOT / "WRITEUPS/01 Hack The Box/02 OSCP/03 Active Directory and Networks/02 En/01 Active (GPP cpassword + Kerberoasting SPN + wmiexec as Administrator).md",
-        "group": "Active Directory",
-        "id": "Active",
-    },
-    {
-        "path": ROOT / "WRITEUPS/01 Hack The Box/03 Pro Labs (Showcases only; full writeups withheld per HTB ToS)/02 Puppet/README.md",
-        "group": "ProLabs",
-        "id": "Puppet",
-        "category_slug": "prolabs",
-    },
-    {
-        "path": ROOT / "WRITEUPS/01 Hack The Box/01 All Machines/01 Season 12 (Aero, Sep - Nov 2026)/02 En/01 Layover.md",
-        "group": "Season 12",
-        "id": "Layover",
-        "category_slug": "season-12",
-    },
-    {
-        "path": ROOT / "ANONYMITY-PRIVACY-OPSEC/01 Anonymous Networks/01 Tor.md",
-        "group": "Anonymity",
-        "id": "Tor",
-        "category_slug": "anonymity",
-    },
-]
+def fm(path):
+    try:
+        t = path.read_text(encoding="utf-8")
+    except Exception:
+        return {}
+    if not t.startswith("---"):
+        return {}
+    e = t.find("\n---", 3)
+    if e == -1:
+        return {}
+    d = {}
+    for ln in t[3:e].split("\n"):
+        s = ln.strip()
+        if not s or s.startswith("#") or ":" not in s:
+            continue
+        k, v = s.split(":", 1)
+        v = v.strip()
+        if len(v) >= 2 and v[0] == v[-1] and v[0] in "'\"":
+            v = v[1:-1]
+        d[k.strip()] = v
+    return d
 
-CATEGORY_SLUGS = {
-    "Linux": "linux",
-    "Windows": "windows",
-    "Active Directory": "active-directory",
-    "ProLabs": "prolabs",
-    "Season 12": "season-12",
-    "Anonymity": "anonymity",
-}
-
-
-def extract_meta(content: str) -> dict:
-    meta = {}
-    for line in content.split("\n")[:20]:
-        m = re.match(r"^>\s*([^:]+):\s*(.+?)\s*$", line)
-        if m:
-            meta[m.group(1).strip()] = m.group(2).strip()
-    return meta
-
-
-def make_slug(name: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-
-
-nodes = []
-links = []
-categories_seen = set()
-cves_seen = set()
-
-for t in TARGETS:
-    if not t["path"].exists():
-        print(f"MISSING: {t['path']}")
-        continue
-
-    content = t["path"].read_text(encoding="utf-8")
-    meta = extract_meta(content)
-    cat_slug = t.get("category_slug") or CATEGORY_SLUGS.get(t["group"], make_slug(t["group"]))
-    machine_slug = make_slug(t["id"])
-
-    cat_id = f"cat_{cat_slug}"
-    if cat_id not in categories_seen:
+def walk():
+    if not DOCS.exists():
+        print("ERROR: docs/ missing. Run build-docs.py first.")
+        return
+    files = sorted(DOCS.rglob("*.md"))
+    print("Scanning", len(files), "files")
+    nodes = []
+    for p in files:
+        parts = p.relative_to(DOCS).parts
+        if len(parts) < 2 or parts[0] not in BASES:
+            continue
+        top = parts[0]
+        inner = list(parts[1:])
+        is_index = inner[-1] == "index.md"
+        dirs = inner[:-1]
+        name = "index" if is_index else inner[-1][:-3]
+        ips = [top] + dirs + ([] if is_index else [name])
+        nid = "/".join(ips)
+        depth = len(ips) - 1
+        parent = "/".join(ips[:-1]) if len(ips) > 1 else None
+        ancestors = ["/".join(ips[:i]) for i in range(1, len(ips))]
+        m = fm(p)
+        label = m.get("sidebar_label") or m.get("title") or (dirs[-1] if is_index and dirs else name)
+        slug = m.get("slug") or name
+        dpath = "/".join(dirs)
+        if is_index:
+            url = (BASES[top] + "/" + dpath + "/") if dpath else (BASES[top] + "/")
+        else:
+            url = (BASES[top] + "/" + dpath + "/" + slug) if dpath else (BASES[top] + "/" + slug)
         nodes.append({
-            "id": cat_id,
-            "label": t["group"],
-            "group": "category",
-            "val": 20,
+            "id": nid, "label": label, "depth": depth,
+            "parent": parent, "ancestors": ancestors,
+            "url": url, "file": str(p.relative_to(SITE)).replace("\\", "/"),
+            "top": top, "is_index": is_index, "slug": slug,
         })
-        categories_seen.add(cat_id)
+    tree = {}
+    for n in nodes:
+        tree[n["id"]] = {
+            "id": n["id"], "label": n["label"], "depth": n["depth"],
+            "parent": n["parent"], "top": n["top"], "url": n["url"],
+            "is_index": n["is_index"], "children": [],
+        }
+    links = []
+    for n in nodes:
+        if n["parent"] and n["parent"] in tree:
+            tree[n["parent"]]["children"].append(n["id"])
+            links.append({"source": n["id"], "target": n["parent"]})
+        elif n["parent"] is None:
+            links.append({"source": n["id"], "target": "_home"})
+    roots = [t for t in ("writeups", "reference") if t in tree]
+    home = {"id": "_home", "label": "MethodMan", "depth": -1,
+            "parent": None, "top": None, "url": "/", "is_index": True,
+            "children": list(roots)}
+    nodes.append({"id": "_home", "label": "MethodMan", "depth": -1,
+                  "parent": None, "ancestors": [], "url": "/",
+                  "file": "", "top": None, "is_index": True, "slug": "home"})
+    tree["_home"] = home
+    depth_counts = Counter(n["depth"] for n in nodes)
+    print("Nodes:", len(nodes), "Links:", len(links))
+    print("Depth counts:", dict(sorted(depth_counts.items())))
+    print("Roots:", roots)
+    for r in roots:
+        print("  ", r, "children:", len(tree[r]["children"]))
+    payload = {"nodes": nodes, "links": links,
+               "tree": tree, "roots": roots, "home": "_home",
+               "meta": {"total": len(nodes), "depth_counts": dict(depth_counts)}}
+    OUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    print("Wrote", OUT, "size:", OUT.stat().st_size, "bytes")
 
-    nodes.append({
-        "id": t["id"],
-        "label": t["id"],
-        "group": t["group"],
-        "val": 10,
-        "os": meta.get("OS", ""),
-        "difficulty": meta.get("Difficulty", ""),
-        "result": meta.get("Result", ""),
-        "slug": machine_slug,
-        "category_slug": cat_slug,
-    })
-    links.append({"source": t["id"], "target": cat_id})
-
-    for cve in set(re.findall(r"CVE-\d{4}-\d{4,}", content)):
-        if cve not in cves_seen:
-            nodes.append({"id": cve, "label": cve, "group": "cve", "val": 5})
-            cves_seen.add(cve)
-        links.append({"source": t["id"], "target": cve})
-
-print(f"Nodes: {len(nodes)}, Links: {len(links)}")
-
-out = SITE / "static" / "graph.json"
-out.write_text(json.dumps({"nodes": nodes, "links": links}, indent=2), encoding="utf-8")
-print(f"Wrote {out}")
+if __name__ == "__main__":
+    walk()
