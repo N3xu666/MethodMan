@@ -102,6 +102,7 @@ def fm(sl, ti, de, po, ht):
 def pf(md, dd, pos=None):
     raw = md.read_text(encoding="utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
     if md.name.lower() == "readme.md":
+        raw = raw.replace("](./Certificate.pdf)", f"](/pdf/{dd.name}/Certificate.pdf)")
         raw = _fix_folder_refs(raw)
         t = h1(raw) or "Overview"
         (dd / "index.md").write_text(fm(None, t, "", 0, False) + raw, encoding="utf-8")
@@ -124,6 +125,10 @@ def pf(md, dd, pos=None):
 
 def walk(src, dst, inst, root):
     dst.mkdir(parents=True, exist_ok=True)
+    for pdf in src.glob("*.pdf"):
+        _pdf_dst = SITE / "static" / "pdf" / dst.name
+        _pdf_dst.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(pdf, _pdf_dst / pdf.name)
     files = sorted(src.glob("*.md"))
     readmes = [f for f in files if f.name.lower() == "readme.md"]
     others = [f for f in files if f.name.lower() != "readme.md"]
