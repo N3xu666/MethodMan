@@ -392,18 +392,22 @@ export default function NeuralGraph() {
       <header className="hud">
         <span className="brand">METHODMAN / GRAPH</span>
         <nav className="crumbs">
-          {crumbs.map((c, i) => (
-            <span key={c.id} className="crumb-item">
-              {i > 0 && <span className="sep">/</span>}
-              <button
-                type="button"
-                className={'crumb' + (i === crumbs.length - 1 ? ' active' : '')}
-                onClick={() => goTo(c.id === HOME ? null : c.id)}
-              >
-                {c.label}
-              </button>
-            </span>
-          ))}
+          {crumbs.map((c, i) => {
+            const isRoot = c.id === HOME;
+            const label = isRoot ? 'ROOT' : c.label;
+            return (
+              <span key={c.id} className="crumb-item">
+                {i > 0 && <span className="sep">/</span>}
+                <button
+                  type="button"
+                  className={'crumb' + (i === crumbs.length - 1 ? ' active' : '')}
+                  onClick={() => goTo(isRoot ? null : c.id)}
+                >
+                  {label}
+                </button>
+              </span>
+            );
+          })}
         </nav>
         <span className="status">{status}</span>
       </header>
@@ -447,7 +451,7 @@ export default function NeuralGraph() {
         )}
       </main>
       <footer className="hud foot">
-        <span>{graph && graph.meta ? graph.meta.brain_total + ' nodes indexed' : '...'}</span>
+        <span>SYSTEM READY</span>
         <span>Press Esc to go up · click to drill in or visit</span>
       </footer>
     </div>

@@ -1,0 +1,36 @@
+﻿name: Update Live Threats
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630c5842c14a6f502146a6cdb # v4.2.2
+      
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0
+        with:
+          python-version: '3.11'
+
+      - name: Fetch CVEs (NVD + KEV + EPSS)
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: python site/scripts/fetch-cves.py
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add site/static/cve-feed.json
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(site): auto-update live threats feed"
+            git push origin HEAD:main
+          fi

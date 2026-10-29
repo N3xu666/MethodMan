@@ -1,19 +1,18 @@
-﻿import React from 'react';
-import Head from '@docusaurus/Head';
+﻿import React, { useState } from 'react';
+import Layout from '@theme/Layout';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import Link from '@docusaurus/Link';
+import LiveThreats from '@site/src/components/LiveThreats';
 import styles from './index.module.css';
 
 export default function Home() {
+  const [lastSync, setLastSync] = useState('...');
+
   return (
-    <>
-      <Head>
-        <title>MethodMan / Graph</title>
-        <meta name="description" content="Neural graph of MethodMan pentest walkthroughs" />
-      </Head>
-      
+    <Layout title="MethodMan / Graph" description="Neural graph of MethodMan pentest walkthroughs" noFooter={true}>
       <div className={styles.layout}>
-        {/* ЛЕВАЯ КОЛОНКА */}
+        
+        {/* ВЕРХНЯЯ СТРОКА (Контент) */}
         <div className={styles.leftCol}>
           <Link to="/reference" className={styles.card}>
             <div className={styles.cardLabel}>REFERENCE</div>
@@ -25,7 +24,6 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* ЦЕНТРАЛЬНАЯ КОЛОНКА (ГРАФ) */}
         <div className={styles.centerCol}>
           <BrowserOnly fallback={<div style={{background:'#000',height:'100%'}} />}>
             {() => {
@@ -35,14 +33,17 @@ export default function Home() {
           </BrowserOnly>
         </div>
 
-        {/* ПРАВАЯ КОЛОНКА (УГРОЗЫ) */}
         <div className={styles.rightCol}>
           <div className={styles.threatsHeader}>LIVE THREATS</div>
-          <div className={styles.threatsPlaceholder}>
-            Waiting for CVE feed...
-          </div>
+          <LiveThreats onSync={setLastSync} />
         </div>
+
+        {/* НИЖНЯЯ СТРОКА (Статус-бар) */}
+        <div className={styles.leftFooter}>SYSTEM READY</div>
+        <div className={styles.centerFooter}>PRESS ESC TO GO UP · CLICK TO DRILL IN OR VISIT</div>
+        <div className={styles.rightFooter}>Last sync: {lastSync}</div>
+
       </div>
-    </>
+    </Layout>
   );
 }

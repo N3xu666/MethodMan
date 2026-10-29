@@ -1,46 +1,161 @@
-﻿.layout {
+﻿/* 1. Растягиваем корень Docusaurus на 100% экрана */
+:global(#__docusaurus) {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. Убираем отступы и растягиваем обертки контента */
+:global(.main-wrapper) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+:global(main) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 3. Прячем футер Docusaurus */
+:global(.footer) {
+  display: none !important;
+}
+
+/* 4. Наша сетка 3х2 */
+.layout {
+  flex: 1;
   display: grid;
   grid-template-columns: 320px 1fr 320px;
-  height: 100vh;
-  width: 100vw;
+  grid-template-rows: 1fr 40px;
+  min-height: 0;
+  width: 100%;
   background: #000;
   overflow: hidden;
 }
 
+/* --- ВЕРХНЯЯ СТРОКА --- */
 .leftCol {
+  grid-column: 1;
+  grid-row: 1;
   border-right: 1px solid #1a1a1a;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   gap: 20px;
   padding: 20px;
+  overflow-y: auto;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .centerCol {
+  grid-column: 2;
+  grid-row: 1;
   position: relative;
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
-/* Переопределяем фиксированное позиционирование графа, если оно есть */
-.centerCol :global(.stage) {
-  position: relative !important;
+.centerCol :global(.app) {
+  position: absolute !important;
+  inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.centerCol :global(.hud.foot) {
+  display: none !important;
+}
+
+.centerCol :global(.hud) {
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.centerCol :global(.stage) {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  position: relative !important;
+  width: 100% !important;
   top: 0 !important;
   left: 0 !important;
 }
 
 .rightCol {
+  grid-column: 3;
+  grid-row: 1;
   border-left: 1px solid #1a1a1a;
-  padding: 20px;
-  z-index: 10;
+  padding: 20px 20px 0 20px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+  box-sizing: border-box;
 }
 
+/* --- НИЖНЯЯ СТРОКА (ФУТЕРЫ) --- */
+.leftFooter {
+  grid-column: 1;
+  grid-row: 2;
+  border-right: 1px solid #1a1a1a;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: #666;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.centerFooter {
+  grid-column: 2;
+  grid-row: 2;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: #666;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.rightFooter {
+  grid-column: 3;
+  grid-row: 2;
+  border-left: 1px solid #1a1a1a;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: #666;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* --- ОСТАЛЬНЫЕ СТИЛИ --- */
 .card {
   display: flex;
   flex-direction: column;
@@ -50,6 +165,7 @@
   text-decoration: none;
   transition: all 0.2s;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .card:hover {
@@ -60,7 +176,7 @@
 .cardLabel {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   color: #ff003c;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.2em;
   font-weight: 600;
   margin-bottom: 6px;
@@ -69,29 +185,124 @@
 .cardDesc {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   color: #6a6a6a;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.05em;
+  line-height: 1.4;
 }
 
 .threatsHeader {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   color: #ff003c;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.2em;
   font-weight: 600;
   margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid #1a1a1a;
+  flex-shrink: 0;
 }
 
 .threatsPlaceholder {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   color: #6a6a6a;
-  font-size: 12px;
+  font-size: 14px;
 }
-.centerCol :global(.app) {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+
+.threatList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  padding-right: 4px;
+  padding-bottom: 0;
 }
+
+.threatList::-webkit-scrollbar { width: 4px; }
+.threatList::-webkit-scrollbar-thumb { background: #1a1a1a; }
+
+.threatCard {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #1a1a1a;
+  background: rgba(0,0,0,0.4);
+  text-decoration: none;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.threatCard:hover {
+  border-color: #ff003c;
+  background: rgba(10,0,0,0.6);
+}
+
+.threatHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.threatId {
+  color: #ff003c;
+  font-size: 15px;
+  max-width: 55%;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.threatRight {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.threatNvd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  font-size: 13px;
+}
+
+.nvdArrow {
+  color: #666;
+  transition: color 0.2s;
+}
+
+.threatCard:hover .nvdArrow {
+  color: #ff003c;
+}
+
+.threatCvss {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #ffaa00;
+  font-size: 14px;
+}
+
+.threatDesc {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: #a0a0a0;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.threatFooter {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: #666;
+}
+
+.threatEpss { color: #a855f7; }
