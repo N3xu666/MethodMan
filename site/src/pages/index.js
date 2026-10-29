@@ -41,7 +41,7 @@ export default function Home() {
         {/* НИЖНЯЯ СТРОКА (Статус-бар) */}
         <div className={styles.leftFooter}>SYSTEM READY</div>
         <div className={styles.centerFooter}>PRESS ESC TO GO UP · CLICK TO DRILL IN OR VISIT</div>
-        <div className={styles.rightFooter}>Last sync: {lastSync}</div>
+        <div className={styles.rightFooter} style={{ display: 'block', textAlign: 'center', width: '100%', padding: '10px 0' }}>Last sync: {lastSync}</div>
 
       </div>
     </Layout>

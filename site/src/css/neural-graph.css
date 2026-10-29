@@ -151,3 +151,53 @@
   font-weight: 400 !important;
   color: var(--dim) !important;
 }
+
+/* Legend Box */
+.legend-box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  color: #888888;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+}
+
+
+
+
+
+
+
+
+
+.dot-home { background-color: #ffffff; color: #ffffff; }
+.dot-file { background-color: #a855f7; color: #a855f7; }
+.dot-tool { background-color: #ff003c; color: #ff003c; }
+.dot-cve  { background-color: #ffaa00; color: #ffaa00; }
+
+.legend-items {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.legend-dot {
+  display: inline-block !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  margin-right: 6px;
+  flex-shrink: 0;
+}

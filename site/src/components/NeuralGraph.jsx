@@ -355,7 +355,11 @@ export default function NeuralGraph() {
   const handleNodeClick = useCallback((node) => {
     if (!node) return;
     if (node.id === HOME) { goTo(null); return; }
-    if (node.group === 'tool' || node.group === 'cve') { goTo(node.id); return; }
+    if (node.group === 'cve') {
+    if (node.url) window.location.href = node.url;
+    return;
+  }
+  if (node.group === 'tool') { goTo(node.id); return; }
     const entry = graph && graph.hierarchy ? graph.hierarchy.tree[node.id] : null;
     const hasChildren = entry && entry.children && entry.children.length > 0;
     if (hasChildren) { goTo(node.id); return; }
@@ -411,7 +415,16 @@ export default function NeuralGraph() {
         </nav>
         <span className="status">{status}</span>
       </header>
-      <main className="stage" ref={containerRef}>
+          <main className="stage" ref={containerRef}>
+      <div className="legend-box">
+        
+        <div className="legend-items">
+        <div className="legend-item"><span className="legend-dot dot-home"></span> Folder</div>
+        <div className="legend-item"><span className="legend-dot dot-file"></span> File</div>
+        <div className="legend-item"><span className="legend-dot dot-tool"></span> Tool</div>
+        <div className="legend-item"><span className="legend-dot dot-cve"></span> CVE</div>
+        </div>
+      </div>
         {size.width > 0 && visible.nodes.length > 0 && (
           <ForceGraph3D
             ref={graphRef}

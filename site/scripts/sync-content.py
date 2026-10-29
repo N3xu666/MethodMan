@@ -109,7 +109,7 @@ def walk():
             for cve in cves:
                 cid = "cve:" + cve
                 if cid not in neural_nodes:
-                    neural_nodes[cid] = {"id": cid, "label": cve, "group": "cve", "val": 1.5}
+                    neural_nodes[cid] = {"id": cid, "label": cve, "group": "cve", "val": 1.5, "url": f"https://nvd.nist.gov/vuln/detail/{cve}"}
                 neural_links.append({"source": nid, "target": cid})
     tree = {}
     for n in nodes:
