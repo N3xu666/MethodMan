@@ -31,3 +31,4 @@ docs/active-directory/
 docs/
 build.log
 static/pdf/**/*.pdf
+static/graph.json
