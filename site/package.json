@@ -12,7 +12,7 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "prestart": "python scripts/build-docs.py",
+    "prestart": "python scripts/build-docs.py && python scripts/sync-content.py",
     "prebuild": "python scripts/build-docs.py && python scripts/sync-content.py",
     "postinstall": "patch-package"
   },
