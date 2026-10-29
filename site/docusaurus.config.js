@@ -73,7 +73,6 @@ const config = {
         src: 'img/logo.svg',
       },
       items: [
-        { to: '/', label: 'Graph', position: 'left', exact: true },
         { to: '/writeups', label: 'Writeups', position: 'left', exact: false },
         { to: '/reference', label: 'Reference', position: 'left', exact: false },
         { href: 'https://github.com/N3xu666/MethodMan', label: 'GitHub', position: 'right' },

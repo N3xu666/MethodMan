@@ -34,10 +34,6 @@ export default function LiveThreats({ onSync }) {
           <div className={styles.threatHeader}>
             <span className={styles.threatId}>{cve.id}</span>
             <div className={styles.threatRight}>
-              <div className={styles.threatNvd}>
-                <span>NVD</span>
-                <span className={styles.nvdArrow}>↗</span>
-              </div>
               <div className={styles.threatCvss}>
                 <span>CVSS</span>
                 <span>{cve.cvss.toFixed(1)}</span>
@@ -47,6 +43,10 @@ export default function LiveThreats({ onSync }) {
           <div className={styles.threatDesc}>{cve.description}</div>
           <div className={styles.threatFooter}>
             <span className={styles.threatEpss}>EPSS {(cve.epss * 100).toFixed(1)}%</span>
+            <div className={styles.threatNvd}>
+              <span>NVD</span>
+              <span className={styles.nvdArrow}>↗</span>
+            </div>
           </div>
         </a>
       ))}

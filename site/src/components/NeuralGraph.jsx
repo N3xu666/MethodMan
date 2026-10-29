@@ -385,12 +385,12 @@ export default function NeuralGraph() {
   }, [graph, focus]);
   const status = error
     ? 'LOAD ERROR: ' + error
-    : visible.nodes.length + ' nodes / ' + visible.links.length + ' links' + (focus ? ' / focus=' + focus : '');
+    : visible.nodes.length + ' nodes / ' + visible.links.length + ' links' ;
 
   return (
     <div className="app">
       <header className="hud">
-        <span className="brand">METHODMAN / GRAPH</span>
+        <span className="brand"><span className="brand-prefix">METHODMAN</span><span className="sep">/</span> NEURAL PORT</span>
         <nav className="crumbs">
           {crumbs.map((c, i) => {
             const isRoot = c.id === HOME;

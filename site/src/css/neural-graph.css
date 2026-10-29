@@ -139,3 +139,15 @@
 .scene-nav-info {
   color: #ff003c !important;
 }
+
+/* Custom HUD fixes */
+.brand-prefix {
+  color: var(--dim) !important;
+}
+
+.crumbs .sep, .brand .sep {
+  font-size: inherit !important;
+  margin: 0 8px !important;
+  font-weight: 400 !important;
+  color: var(--dim) !important;
+}

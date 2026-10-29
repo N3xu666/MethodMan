@@ -9,7 +9,7 @@ export default function Home() {
   const [lastSync, setLastSync] = useState('...');
 
   return (
-    <Layout title="MethodMan / Graph" description="Neural graph of MethodMan pentest walkthroughs" noFooter={true}>
+    <Layout title="MethodMan / NEURAL PORT" description="Neural graph of MethodMan pentest walkthroughs" noFooter={true}>
       <div className={styles.layout}>
         
         {/* ВЕРХНЯЯ СТРОКА (Контент) */}
