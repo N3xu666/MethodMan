@@ -12,7 +12,7 @@ const MAT = {
   index: new THREE.MeshBasicMaterial({ color: 0xffffff }),
   file: new THREE.MeshBasicMaterial({ color: new THREE.Color(0xa855f7).multiplyScalar(2.5) }),
   tool: new THREE.MeshBasicMaterial({ color: new THREE.Color(0xff0000).multiplyScalar(2.5) }),
-  cve: new THREE.MeshBasicMaterial({ color: 0xffaa00 }),
+  cve: new THREE.MeshBasicMaterial({ color: 0xff8800 }),
 };
 
 const linkPoints = [];
@@ -72,20 +72,20 @@ const getNodeColorHex = (node) => {
   if (!node) return 0xa855f7;
   if (node.id === HOME) return 0xffffff;
   if (node.group === 'tool') return 0xff0000;
-  if (node.group === 'cve') return 0xffaa00;
+  if (node.group === 'cve') return 0xff8800;
   if (node.is_index) return 0xffffff;
   return 0xa855f7;
 };
 const sphereRadiusFor = (hex) => {
   if (hex === 0xff0000) return 2.5;
-  if (hex === 0xffaa00) return 2.0;
+  if (hex === 0xff8800) return 2.0;
   if (hex === 0xa855f7) return 1.4;
   if (hex === 0xffffff) return 2.2;
   return 1.4;
 };
 const thicknessBoostFor = (hex) => {
   if (hex === 0xff0000) return 3.0;
-  if (hex === 0xffaa00) return 5.7;
+  if (hex === 0xff8800) return 5.7;
   if (hex === 0xa855f7) return 2.5;
   if (hex === 0xffffff) return 2.0;
   return 4.0;
@@ -98,12 +98,13 @@ const getLinkMaterial = (srcHex, tgtHex) => {
   const key = srcHex.toString(16).padStart(6, '0') + '_' + tgtHex.toString(16).padStart(6, '0');
   let mat = LINK_MAT_CACHE.get(key);
   if (mat) return mat;
-  const bright = (srcHex === 0xff0000 || tgtHex === 0xff0000 || srcHex === 0xffaa00 || tgtHex === 0xffaa00);
+  const bright = (srcHex === 0xff0000 || tgtHex === 0xff0000 || srcHex === 0xff8800 || tgtHex === 0xff8800);
+  const isFullOpacity = (srcHex === 0xa855f7 && tgtHex === 0xff0000) || (srcHex === 0xff0000 && tgtHex === 0xa855f7) || srcHex === 0xff8800 || tgtHex === 0xff8800;
   mat = new THREE.ShaderMaterial({
     uniforms: {
       uColorA: { value: new THREE.Color(srcHex) },
       uColorB: { value: new THREE.Color(tgtHex) },
-      uOpacity: { value: bright ? 0.85 : 0.35 },
+      uOpacity: { value: isFullOpacity ? 1.0 : (bright ? 0.85 : 0.35) },
       uColorZoneA: { value: sphereRadiusFor(srcHex) + 3.0 },
       uColorZoneB: { value: sphereRadiusFor(tgtHex) + 3.0 },
       uTransitionZone: { value: 8.0 },
@@ -266,10 +267,14 @@ export default function NeuralGraph() {
   const [focus, setFocus] = useState(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [error, setError] = useState(null);
+  const [isReady, setIsReady] = useState(false);
+  const [alphaDecay, setAlphaDecay] = useState(0.003);
+  const [velocityDecay, setVelocityDecay] = useState(0.1);
   const containerRef = useRef(null);
   const graphRef = useRef(null);
   const bloomAddedRef = useRef(false);
   const nodeMapRef = useRef(new Map());
+  const tickCount = useRef(0);
 
   useEffect(() => {
     if (graph && graph.brain) {
@@ -320,6 +325,8 @@ export default function NeuralGraph() {
     // Физика: раздвигаем узлы
     if (fg.d3Force('charge')) fg.d3Force('charge').strength(-30);
     if (fg.d3Force('link')) fg.d3Force('link').distance(10);
+    tickCount.current = 0;
+    setAlphaDecay(0.003);
     fg.d3ReheatSimulation();
     if (!bloomAddedRef.current) {
       const el = containerRef.current;
@@ -415,7 +422,14 @@ export default function NeuralGraph() {
         </nav>
         <span className="status">{status}</span>
       </header>
-          <main className="stage" ref={containerRef}>
+                <main className="stage" ref={containerRef}>
+        {!isReady && (
+          <div className="loading-overlay">
+            <div className="loading-text">INITIALIZING NEURAL PORT...</div>
+            <div className="loading-bar"><div className="loading-bar-fill"></div></div>
+          </div>
+        )}
+
       <div className="legend-box">
         
         <div className="legend-items">
@@ -427,11 +441,13 @@ export default function NeuralGraph() {
       </div>
         {size.width > 0 && visible.nodes.length > 0 && (
           <ForceGraph3D
+            style={{ opacity: 1 }}
             ref={graphRef}
             graphData={visible}
             width={size.width}
             height={size.height}
             backgroundColor="#000000"
+            cameraPosition={{ x: 0, y: 0, z: 400 }}
             nodeThreeObject={getNodeObject}
             nodeLabel={getNodeLabel}
             onNodeClick={handleNodeClick}
@@ -444,18 +460,24 @@ export default function NeuralGraph() {
               const tgt = typeof l.target === 'object' ? l.target : { id: l.target };
               const src = typeof l.source === 'object' ? l.source : { id: l.source };
               if (tgt.group === 'tool' || src.group === 'tool') return '#ff003c';
-              if (tgt.group === 'cve' || src.group === 'cve') return '#ffaa00';
+              if (tgt.group === 'cve' || src.group === 'cve') return '#ff8800';
               return '#aaaaaa';
             }}
             linkThreeObject={getLinkObject}
             linkPositionUpdate={updateLinkPositionCb}
             rendererConfig={{ antialias: true, alpha: false }}
-            warmupTicks={100}
-            cooldownTicks={150}
-            d3AlphaDecay={0.02}
-            d3VelocityDecay={0.3}
+            warmupTicks={0}
+            cooldownTicks={200}
+            d3AlphaDecay={alphaDecay}
+            d3VelocityDecay={velocityDecay}
+            onEngineTick={() => {
+              tickCount.current++;
+              if (tickCount.current === 40) setAlphaDecay(0.015);
+              else if (tickCount.current === 80) setAlphaDecay(0.06);
+              else if (tickCount.current === 120) setAlphaDecay(0.15);
+            }}
             onEngineStop={() => {
-              if (graphRef.current) graphRef.current.zoomToFit(1000, 80);
+              setIsReady(true);
             }}
           />
         )}
