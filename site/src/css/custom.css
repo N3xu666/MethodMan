@@ -293,3 +293,42 @@ pre.language-text span {
 .markdown-alert-caution .markdown-alert-title,
 .markdown-alert-caution .markdown-alert-title svg { color: #ff003c !important; fill: #ff003c !important; }
 .markdown-alert-caution a { color: #ff003c !important; }
+
+
+/* ============================================================
+   Minimalistic Scrollbars (4px, no arrows, everywhere)
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff003c;
+}
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+[data-theme='light'] ::-webkit-scrollbar-thumb {
+  background: #d5d5d5;
+}
+[data-theme='light'] ::-webkit-scrollbar-thumb:hover {
+  background: #ff003c;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1a1a1a transparent;
+}
+[data-theme='light'] * {
+  scrollbar-color: #d5d5d5 transparent;
+}
