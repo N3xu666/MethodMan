@@ -67,6 +67,7 @@ const config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
+      hideOnScroll: false,
       title: 'MethodMan',
       logo: {
         alt: 'MethodMan',

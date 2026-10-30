@@ -841,3 +841,750 @@ button[class*='toggleButton'] svg {
 .menu__link--active {
   background: transparent !important;
 }
+
+/* ============================================================
+   LIGHT THEME: DOCUMENTATION PAGES (CORE FIX)
+   ============================================================ */
+
+/* 1. Sidebar (Left) */
+[data-theme='light'] .theme-doc-sidebar-container {
+  background-color: var(--mm-bg) !important;
+  border-right: 1px solid var(--mm-border) !important;
+}
+[data-theme='light'] .menu {
+  background: var(--mm-bg) !important;
+  border-right: none !important;
+}
+[data-theme='light'] .menu__link {
+  color: var(--mm-text) !important;
+}
+[data-theme='light'] .menu__link--active {
+  color: var(--mm-red) !important;
+  background: transparent !important;
+  font-weight: 600;
+}
+[data-theme='light'] .menu__link:hover {
+  color: var(--mm-red) !important;
+  background: transparent !important;
+}
+[data-theme='light'] .menu__caret::before,
+[data-theme='light'] .menu__link--sublist::after {
+  background: var(--mm-red) !important;
+}
+
+/* 2. Content Area */
+[data-theme='light'] .theme-doc-markdown {
+  background: var(--mm-bg) !important;
+}
+[data-theme='light'] .markdown h1, 
+[data-theme='light'] .markdown h2, 
+[data-theme='light'] .markdown h3, 
+[data-theme='light'] .markdown h4, 
+[data-theme='light'] .markdown h5, 
+[data-theme='light'] .markdown h6 {
+  color: var(--mm-text) !important;
+  border-bottom-color: var(--mm-border) !important;
+}
+[data-theme='light'] .markdown p, 
+[data-theme='light'] .markdown li, 
+[data-theme='light'] .markdown td, 
+[data-theme='light'] .markdown th, 
+[data-theme='light'] .markdown blockquote p {
+  color: var(--mm-text-dim) !important;
+}
+[data-theme='light'] .markdown a {
+  color: var(--mm-red) !important;
+  border-bottom: 1px solid rgba(192, 0, 48, 0.3) !important;
+}
+[data-theme='light'] .markdown a:hover {
+  border-bottom-color: var(--mm-red) !important;
+  background: rgba(192, 0, 48, 0.05) !important;
+}
+
+/* 3. Breadcrumbs */
+[data-theme='light'] .breadcrumbs__link {
+  color: var(--mm-text-dim) !important;
+  background: transparent !important;
+}
+[data-theme='light'] .breadcrumbs__link:hover {
+  color: var(--mm-red) !important;
+}
+[data-theme='light'] .breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--mm-text) !important;
+}
+[data-theme='light'] .breadcrumbs__item:not(:last-child)::after {
+  color: var(--mm-border) !important;
+}
+
+/* 4. Right TOC */
+[data-theme='light'] .table-of-contents {
+  border-left-color: var(--mm-border) !important;
+}
+[data-theme='light'] .table-of-contents__link {
+  color: var(--mm-text-dim) !important;
+}
+[data-theme='light'] .table-of-contents__link:hover,
+[data-theme='light'] .table-of-contents__link--active {
+  color: var(--mm-red) !important;
+}
+
+/* 5. Alerts (NOTE, IMPORTANT, CAUTION) */
+[data-theme='light'] .alert,
+[data-theme='light'] .markdown-alert {
+  background: var(--mm-bg-elev) !important;
+  border: 1px solid var(--mm-border) !important;
+  border-left-width: 2px !important;
+}
+[data-theme='light'] .markdown-alert-note,
+[data-theme='light'] .alert--info,
+[data-theme='light'] .alert--secondary {
+  border-left-color: #00bfff !important;
+}
+[data-theme='light'] .markdown-alert-note .markdown-alert-title,
+[data-theme='light'] .alert--info .admonitionHeading_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module {
+  color: #00bfff !important;
+}
+[data-theme='light'] .markdown-alert p,
+[data-theme='light'] .alert p {
+  color: var(--mm-text-dim) !important;
+}
+[data-theme='light'] .markdown-alert a,
+[data-theme='light'] .alert a {
+  color: #00bfff !important;
+}
+[data-theme='light'] .markdown-alert-important,
+[data-theme='light'] .markdown-alert-warning,
+[data-theme='light'] .alert--warning {
+  border-left-color: #ffd700 !important;
+}
+[data-theme='light'] .markdown-alert-important .markdown-alert-title,
+[data-theme='light'] .markdown-alert-warning .markdown-alert-title,
+[data-theme='light'] .alert--warning .admonitionHeading_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module {
+  color: #ffd700 !important;
+}
+[data-theme='light'] .markdown-alert-important a,
+[data-theme='light'] .markdown-alert-warning a,
+[data-theme='light'] .alert--warning a {
+  color: #ffd700 !important;
+}
+[data-theme='light'] .markdown-alert-caution {
+  border-left-color: var(--mm-red) !important;
+}
+[data-theme='light'] .markdown-alert-caution .markdown-alert-title,
+[data-theme='light'] .markdown-alert-caution .markdown-alert-title svg {
+  color: var(--mm-red) !important;
+  fill: var(--mm-red) !important;
+}
+[data-theme='light'] .markdown-alert-caution a {
+  color: var(--mm-red) !important;
+}
+
+/* 6. Tables */
+[data-theme='light'] table th, 
+[data-theme='light'] table td {
+  border-color: var(--mm-border) !important;
+}
+[data-theme='light'] table thead {
+  background: var(--mm-bg-elev) !important;
+}
+[data-theme='light'] table thead th {
+  color: var(--mm-text) !important;
+}
+
+/* 7. Inline Code */
+[data-theme='light'] code {
+  background: var(--mm-bg-elev) !important;
+  border: 1px solid var(--mm-border) !important;
+  color: var(--mm-red) !important;
+}
+
+/* 8. Pagination */
+[data-theme='light'] .pagination-nav__link {
+  border-color: var(--mm-border) !important;
+  background: var(--mm-bg-elev) !important;
+}
+[data-theme='light'] .pagination-nav__link:hover {
+  border-color: var(--mm-red) !important;
+}
+[data-theme='light'] .pagination-nav__label {
+  color: var(--mm-red) !important;
+}
+/* === FIX SIDEBAR ACTIVE/HOVER BACKGROUND === */
+[data-theme='light'] .menu__list-item-collapsible:hover,
+[data-theme='light'] .menu__list-item-collapsible--active,
+[data-theme='light'] .menu__link--active,
+[data-theme='light'] .menu__link:hover {
+  background-color: transparent !important;
+  color: var(--mm-red) !important;
+}
+/* === FIX BLACK BACKGROUND AROUND DOCS (TOC & MAIN) === */
+[data-theme='light'] #__docusaurus,
+[data-theme='light'] .main-wrapper,
+[data-theme='light'] .theme-doc-page,
+[data-theme='light'] .docPage_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-styles-module,
+[data-theme='light'] .theme-doc-toc-desktop,
+[data-theme='light'] .col--3,
+[data-theme='light'] aside {
+  background-color: var(--mm-bg) !important;
+  background: var(--mm-bg) !important;
+}
+
+/* Перекрашиваем заголовки TOC и текст в них */
+[data-theme='light'] .table-of-contents {
+  background: transparent !important;
+}
+[data-theme='light'] .table-of-contents__link {
+  color: var(--mm-text-dim) !important;
+}
+[data-theme='light'] .table-of-contents__link:hover,
+[data-theme='light'] .table-of-contents__link--active {
+  color: var(--mm-red) !important;
+}
+
+/* Убираем черные границы у TOC */
+[data-theme='light'] .theme-doc-toc-desktop {
+  border-left-color: var(--mm-border) !important;
+}
+
+/* Добиваем контейнеры, если остались */
+[data-theme='light'] main,
+[data-theme='light'] article {
+  background-color: var(--mm-bg) !important;
+}
+/* === FIX TABLE BORDERS (BOTH THEMES) === */
+/* Светлая тема: мягкие серые границы, чередование строк через var(--mm-bg-elev) */
+[data-theme='light'] table,
+[data-theme='light'] table tr,
+[data-theme='light'] table th,
+[data-theme='light'] table td {
+  border-color: var(--mm-border) !important;
+}
+
+[data-theme='light'] table tr {
+  background-color: var(--mm-bg) !important;
+}
+
+[data-theme='light'] table tr:nth-child(2n) {
+  background-color: var(--mm-bg-elev) !important;
+}
+
+[data-theme='light'] table thead tr {
+  background-color: var(--mm-bg-elev) !important;
+}
+
+/* Темная тема: возвращаем темно-серые границы, чтобы не было черных полос */
+[data-theme='dark'] table,
+[data-theme='dark'] table tr,
+[data-theme='dark'] table th,
+[data-theme='dark'] table td {
+  border-color: #1a1a1a !important;
+}
+
+[data-theme='dark'] table tr {
+  background-color: #000000 !important;
+}
+
+[data-theme='dark'] table tr:nth-child(2n) {
+  background-color: #0a0a0a !important;
+}
+
+[data-theme='dark'] table thead tr {
+  background-color: #0a0a0a !important;
+}
+/* === HIDE HEADING ANCHOR ICON (#) ON HOVER === */
+.hash-link {
+  display: none !important;
+}
+/* === CUSTOM TEXT SELECTION COLOR (WINE RED) === */
+::selection {
+  background-color: rgba(192, 0, 48, 0.3) !important; /* Наш винный #c00030 с прозрачностью 30% */
+  color: inherit !important;
+}
+
+::-moz-selection {
+  background-color: rgba(192, 0, 48, 0.3) !important; /* Для Firefox */
+  color: inherit !important;
+}
+/* === FIX INLINE CODE: RED TEXT, NO BORDER/BACKGROUND === */
+[data-theme='light'] code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: var(--mm-red) !important;
+}
+
+[data-theme='dark'] code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  /* В темной теме оставляем стандартный цвет или делаем белым/серым */
+  color: inherit !important;
+}
+
+/* Убедимся, что блоки кода (pre) не затронуты */
+[data-theme='light'] pre code,
+[data-theme='dark'] pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: inherit !important; /* Позволяем Prism задавать цвета токенов */
+}
+/* === FIX CODE BLOCKS FOR LIGHT THEME === */
+[data-theme='light'] pre {
+  background-color: var(--mm-bg-elev) !important;
+  border: 1px solid var(--mm-border) !important;
+  color: var(--mm-text) !important;
+}
+
+[data-theme='light'] pre code {
+  color: var(--mm-text) !important;
+}
+
+/* Переопределяем цвета токенов Prism для светлой темы, чтобы они не сливались */
+[data-theme='light'] .token.comment,
+[data-theme='light'] .token.prolog,
+[data-theme='light'] .token.doctype,
+[data-theme='light'] .token.cdata {
+  color: #888888 !important;
+}
+[data-theme='light'] .token.punctuation {
+  color: #1a1a1a !important;
+}
+[data-theme='light'] .token.property,
+[data-theme='light'] .token.tag,
+[data-theme='light'] .token.boolean,
+[data-theme='light'] .token.number,
+[data-theme='light'] .token.constant,
+[data-theme='light'] .token.symbol,
+[data-theme='light'] .token.deleted {
+  color: #c00030 !important; /* Винный для чисел/констант */
+}
+[data-theme='light'] .token.selector,
+[data-theme='light'] .token.attr-name,
+[data-theme='light'] .token.string,
+[data-theme='light'] .token.char,
+[data-theme='light'] .token.builtin,
+[data-theme='light'] .token.inserted {
+  color: #007700 !important; /* Темно-зеленый для строк */
+}
+[data-theme='light'] .token.operator,
+[data-theme='light'] .token.entity,
+[data-theme='light'] .token.url,
+[data-theme='light'] .language-css .token.string,
+[data-theme='light'] .style .token.string {
+  color: #1a1a1a !important;
+}
+[data-theme='light'] .token.atrule,
+[data-theme='light'] .token.attr-value,
+[data-theme='light'] .token.keyword {
+  color: #1a1a1a !important; /* Ключевые слова */
+}
+[data-theme='light'] .token.function,
+[data-theme='light'] .token.class-name {
+  color: #1a1a1a !important;
+}
+[data-theme='light'] .token.regex,
+[data-theme='light'] .token.important,
+[data-theme='light'] .token.variable {
+  color: #ff8800 !important; /* Оранжевый для переменных */
+}
+/* === ADD PADDING TO CODE BLOCKS === */
+pre {
+  padding: 16px !important;
+  border-radius: 0 !important;
+}
+
+/* === REMOVE COPY BUTTON BORDER (V2) === */
+.clean-btn,
+button[class*='copyButton'] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.clean-btn:hover,
+button[class*='copyButton']:hover {
+  background: rgba(128, 128, 128, 0.1) !important;
+  border: none !important;
+}
+/* === REMOVE COPY BUTTON HOVER BACKGROUND (V3) === */
+button[class*='copyButton']:hover,
+button[class*='copyButton']:focus,
+.clean-btn:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* === KALI STYLE: COLOR TOKENS ON LIGHT BG === */
+/* Весь обычный текст (plain) делаем винным */
+[data-theme='light'] .token.plain,
+[data-theme='light'] .token-line {
+  color: #c00030 !important;
+  font-weight: 500;
+}
+
+/* Комментарии (строки, начинающиеся с #) делаем зелеными */
+[data-theme='light'] .token.comment {
+  color: #007700 !important;
+  font-style: italic;
+}
+
+/* Строки и пути (в кавычках) делаем оранжевыми */
+[data-theme='light'] .token.string,
+[data-theme='light'] .token.attr-value {
+  color: #ff8800 !important;
+}
+
+/* Ключевые слова (sudo, if, then) — темный/черный для контраста */
+[data-theme='light'] .token.keyword,
+[data-theme='light'] .token.builtin {
+  color: #000000 !important;
+  font-weight: 600;
+}
+
+/* Операторы (&&, |) — темный */
+[data-theme='light'] .token.operator,
+[data-theme='light'] .token.punctuation {
+  color: #1a1a1a !important;
+}
+
+/* === FORCE PURPLE CODE TEXT IN BOTH THEMES (V2) === */
+/* Используем максимально широкий селектор, чтобы перебить Prism */
+pre,
+pre code,
+pre span,
+pre div,
+pre .token,
+pre .token-line,
+pre .token.plain,
+pre .token.comment,
+pre .token.keyword,
+pre .token.string,
+pre .token.function,
+pre .token.operator,
+pre .token.punctuation,
+[data-theme='light'] pre,
+[data-theme='light'] pre code,
+[data-theme='light'] pre span,
+[data-theme='light'] pre div,
+[data-theme='dark'] pre,
+[data-theme='dark'] pre code,
+[data-theme='dark'] pre span,
+[data-theme='dark'] pre div {
+  color: #a855f7 !important; /* Фиолетовый */
+}
+
+/* Перебиваем inline-стили (style="color: rgb(...)") */
+pre [style*="color"] {
+  color: #a855f7 !important;
+}
+
+/* Кнопка копирования тоже фиолетовая */
+button[class*='copyButton'] svg {
+  fill: #a855f7 !important;
+  color: #a855f7 !important;
+}
+/* === FORCE PURPLE CODE TEXT IN LIGHT THEME (FINAL OVERRIDE) === */
+[data-theme='light'] pre,
+[data-theme='light'] pre code,
+[data-theme='light'] pre span,
+[data-theme='light'] pre div,
+[data-theme='light'] pre .token,
+[data-theme='light'] pre .token-line,
+[data-theme='light'] pre .token.plain,
+[data-theme='light'] pre .token.comment,
+[data-theme='light'] pre .token.keyword,
+[data-theme='light'] pre .token.string,
+[data-theme='light'] pre .token.function,
+[data-theme='light'] pre .token.operator,
+[data-theme='light'] pre .token.punctuation,
+[data-theme='light'] div[class*='codeBlockLines'] .token-line {
+  color: #a855f7 !important;
+}
+
+/* Перебиваем inline-стили (style="color: rgb(...)") */
+[data-theme='light'] pre [style*="color"],
+[data-theme='light'] pre .token-line[style] {
+  color: #a855f7 !important;
+}
+/* === FORCE PURPLE: ALL PRISM TOKENS (LIGHT THEME) === */
+[data-theme='light'] pre .token.property,
+[data-theme='light'] pre .token.tag,
+[data-theme='light'] pre .token.boolean,
+[data-theme='light'] pre .token.number,
+[data-theme='light'] pre .token.constant,
+[data-theme='light'] pre .token.symbol,
+[data-theme='light'] pre .token.deleted,
+[data-theme='light'] pre .token.selector,
+[data-theme='light'] pre .token.attr-name,
+[data-theme='light'] pre .token.string,
+[data-theme='light'] pre .token.char,
+[data-theme='light'] pre .token.builtin,
+[data-theme='light'] pre .token.inserted,
+[data-theme='light'] pre .token.operator,
+[data-theme='light'] pre .token.entity,
+[data-theme='light'] pre .token.url,
+[data-theme='light'] pre .token.atrule,
+[data-theme='light'] pre .token.attr-value,
+[data-theme='light'] pre .token.keyword,
+[data-theme='light'] pre .token.function,
+[data-theme='light'] pre .token.class-name,
+[data-theme='light'] pre .token.regex,
+[data-theme='light'] pre .token.important,
+[data-theme='light'] pre .token.variable {
+  color: #a855f7 !important;
+}
+/* === DIMMED PURPLE OVERRIDE === */
+/* Приглушенный фиолетовый для светлой темы */
+[data-theme='light'] pre,
+[data-theme='light'] pre code,
+[data-theme='light'] pre span,
+[data-theme='light'] pre div,
+[data-theme='light'] pre .token,
+[data-theme='light'] pre .token-line,
+[data-theme='light'] pre .token.plain,
+[data-theme='light'] pre .token.comment,
+[data-theme='light'] pre .token.keyword,
+[data-theme='light'] pre .token.string,
+[data-theme='light'] pre .token.function,
+[data-theme='light'] pre .token.operator,
+[data-theme='light'] pre .token.punctuation,
+[data-theme='light'] pre .token.property,
+[data-theme='light'] pre .token.attr-name,
+[data-theme='light'] pre .token.number,
+[data-theme='light'] pre .token.boolean,
+[data-theme='light'] pre .token.builtin,
+[data-theme='light'] pre .token.variable,
+[data-theme='light'] pre .token.class-name,
+[data-theme='light'] pre .token.regex,
+[data-theme='light'] pre .token.important {
+  color: #8e44ad !important;
+}
+
+/* Приглушенный фиолетовый для темной темы */
+[data-theme='dark'] pre,
+[data-theme='dark'] pre code,
+[data-theme='dark'] pre span,
+[data-theme='dark'] pre div,
+[data-theme='dark'] pre .token,
+[data-theme='dark'] pre .token-line,
+[data-theme='dark'] pre .token.plain,
+[data-theme='dark'] pre .token.comment,
+[data-theme='dark'] pre .token.keyword,
+[data-theme='dark'] pre .token.string,
+[data-theme='dark'] pre .token.function,
+[data-theme='dark'] pre .token.operator,
+[data-theme='dark'] pre .token.punctuation,
+[data-theme='dark'] pre .token.property,
+[data-theme='dark'] pre .token.attr-name,
+[data-theme='dark'] pre .token.number,
+[data-theme='dark'] pre .token.boolean,
+[data-theme='dark'] pre .token.builtin,
+[data-theme='dark'] pre .token.variable,
+[data-theme='dark'] pre .token.class-name,
+[data-theme='dark'] pre .token.regex,
+[data-theme='dark'] pre .token.important {
+  color: #9b59b6 !important;
+}
+/* === DIMMED PURPLE OVERRIDE V2 === */
+/* Более глубокий фиолетовый для светлой темы */
+[data-theme='light'] pre,
+[data-theme='light'] pre code,
+[data-theme='light'] pre span,
+[data-theme='light'] pre div,
+[data-theme='light'] pre .token,
+[data-theme='light'] pre .token-line,
+[data-theme='light'] pre .token.plain,
+[data-theme='light'] pre .token.comment,
+[data-theme='light'] pre .token.keyword,
+[data-theme='light'] pre .token.string,
+[data-theme='light'] pre .token.function,
+[data-theme='light'] pre .token.operator,
+[data-theme='light'] pre .token.punctuation,
+[data-theme='light'] pre .token.property,
+[data-theme='light'] pre .token.attr-name,
+[data-theme='light'] pre .token.number,
+[data-theme='light'] pre .token.boolean,
+[data-theme='light'] pre .token.builtin,
+[data-theme='light'] pre .token.variable,
+[data-theme='light'] pre .token.class-name,
+[data-theme='light'] pre .token.regex,
+[data-theme='light'] pre .token.important {
+  color: #7d3c98 !important; /* Темный сливовый */
+}
+
+/* Более глубокий фиолетовый для темной темы */
+[data-theme='dark'] pre,
+[data-theme='dark'] pre code,
+[data-theme='dark'] pre span,
+[data-theme='dark'] pre div,
+[data-theme='dark'] pre .token,
+[data-theme='dark'] pre .token-line,
+[data-theme='dark'] pre .token.plain,
+[data-theme='dark'] pre .token.comment,
+[data-theme='dark'] pre .token.keyword,
+[data-theme='dark'] pre .token.string,
+[data-theme='dark'] pre .token.function,
+[data-theme='dark'] pre .token.operator,
+[data-theme='dark'] pre .token.punctuation,
+[data-theme='dark'] pre .token.property,
+[data-theme='dark'] pre .token.attr-name,
+[data-theme='dark'] pre .token.number,
+[data-theme='dark'] pre .token.boolean,
+[data-theme='dark'] pre .token.builtin,
+[data-theme='dark'] pre .token.variable,
+[data-theme='dark'] pre .token.class-name,
+[data-theme='dark'] pre .token.regex,
+[data-theme='dark'] pre .token.important {
+  color: #8e44ad !important; /* Средний сливовый */
+}
+/* === RESTORE WINE RED IN LIGHT THEME === */
+[data-theme='light'] pre,
+[data-theme='light'] pre code,
+[data-theme='light'] pre span,
+[data-theme='light'] pre div,
+[data-theme='light'] pre .token,
+[data-theme='light'] pre .token-line,
+[data-theme='light'] pre .token.plain,
+[data-theme='light'] pre .token.comment,
+[data-theme='light'] pre .token.keyword,
+[data-theme='light'] pre .token.string,
+[data-theme='light'] pre .token.function,
+[data-theme='light'] pre .token.operator,
+[data-theme='light'] pre .token.punctuation,
+[data-theme='light'] pre .token.property,
+[data-theme='light'] pre .token.attr-name,
+[data-theme='light'] pre .token.number,
+[data-theme='light'] pre .token.boolean,
+[data-theme='light'] pre .token.builtin,
+[data-theme='light'] pre .token.variable,
+[data-theme='light'] pre .token.class-name,
+[data-theme='light'] pre .token.regex,
+[data-theme='light'] pre .token.important {
+  color: #c00030 !important; /* Винный */
+}
+
+/* === RESTORE SIDEBAR BORDER IN LIGHT THEME (V2) === */
+[data-theme='light'] .menu,
+[data-theme='light'] .theme-doc-sidebar-container {
+  border-right: 1px solid var(--mm-border) !important;
+}
+
+/* === ALERT VARIANT 1: MODERN HUD === */
+.markdown-alert {
+  border: none !important;
+  border-left: 4px solid !important;
+  border-radius: 0 !important;
+  padding: 16px !important;
+}
+/* Light Theme */
+[data-theme='light'] .markdown-alert-note { background: rgba(0, 191, 255, 0.05) !important; border-left-color: #00bfff !important; }
+[data-theme='light'] .markdown-alert-important { background: rgba(255, 215, 0, 0.05) !important; border-left-color: #ffd700 !important; }
+[data-theme='light'] .markdown-alert-caution { background: rgba(192, 0, 48, 0.05) !important; border-left-color: #c00030 !important; }
+/* Dark Theme */
+[data-theme='dark'] .markdown-alert-note { background: rgba(0, 191, 255, 0.1) !important; border-left-color: #00bfff !important; }
+[data-theme='dark'] .markdown-alert-important { background: rgba(255, 215, 0, 0.1) !important; border-left-color: #ffd700 !important; }
+[data-theme='dark'] .markdown-alert-caution { background: rgba(192, 0, 48, 0.1) !important; border-left-color: #c00030 !important; }
+/* === MATCH ALERT ICONS TO HEADER COLORS === */
+/* NOTE (Синий) */
+.markdown-alert-note .markdown-alert-title svg,
+.markdown-alert-note .markdown-alert-title svg path {
+  fill: #00bfff !important;
+  color: #00bfff !important;
+}
+
+/* IMPORTANT (Желтый) */
+.markdown-alert-important .markdown-alert-title svg,
+.markdown-alert-important .markdown-alert-title svg path {
+  fill: #ffd700 !important;
+  color: #ffd700 !important;
+}
+
+/* CAUTION (Винный) */
+.markdown-alert-caution .markdown-alert-title svg,
+.markdown-alert-caution .markdown-alert-title svg path {
+  fill: #c00030 !important;
+  color: #c00030 !important;
+}
+
+/* === ALERT TITLE ALIGNMENT (FIXED) === */
+.markdown-alert-title {
+  display: flex !important;
+  align-items: center !important; /* Центрируем текст и иконку по вертикали */
+}
+
+.markdown-alert-title svg {
+  margin-right: 8px !important; /* Отступ между иконкой и текстом */
+  position: static !important;  /* Убираем любые сдвиги */
+  top: auto !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+/* На всякий случай выравниваем сам текст */
+.markdown-alert-title {
+  line-height: 1 !important;
+}
+/* === ALERT VERTICAL SPACING === */
+/* Поднимаем заголовок: уменьшаем верхний паддинг контейнера и делаем отступ снизу */
+.markdown-alert {
+  padding-top: 8px !important;
+}
+.markdown-alert-title {
+  margin-bottom: 12px !important;
+}
+
+/* Опускаем описание */
+.markdown-alert p {
+  margin-top: 4px !important;
+  margin-bottom: 0 !important;
+}
+
+/* === SHIFT ONLY ALERT DESCRIPTION DOWN === */
+.markdown-alert p:not(.markdown-alert-title) {
+  position: relative !important;
+  top: 8px !important; /* Сдвигаем вниз только текст описания */
+}
+
+/* === CENTER NOTE TITLE TEXT (MOVE TEXT ONLY) === */
+.markdown-alert-note .markdown-alert-title {
+  display: flex !important;
+  align-items: center !important;
+  padding-top: 2px !important; /* Сдвигаем текст вниз на 2px */
+}
+
+.markdown-alert-note .markdown-alert-title svg {
+  margin-top: -2px !important; /* Компенсируем сдвиг, возвращая иконку на место */
+  position: relative !important;
+}
+/* === NOTE: STANDARD BLUE OVERRIDE === */
+[data-theme='light'] .markdown-alert-note { 
+  background: rgba(0, 85, 255, 0.05) !important; 
+  border-left-color: #0055ff !important; 
+}
+[data-theme='dark'] .markdown-alert-note { 
+  background: rgba(0, 85, 255, 0.1) !important; 
+  border-left-color: #0055ff !important; 
+}
+
+.markdown-alert-note .markdown-alert-title { 
+  color: #0055ff !important; 
+}
+.markdown-alert-note .markdown-alert-title svg,
+.markdown-alert-note .markdown-alert-title svg path { 
+  fill: #0055ff !important; 
+  color: #0055ff !important; 
+}
+.markdown-alert-note a { 
+  color: #0055ff !important; 
+  border-bottom: 1px solid rgba(0, 85, 255, 0.3) !important;
+}
+/* === FORCE LIGHT THEME NOTE TEXT COLOR === */
+[data-theme='light'] .markdown-alert-note .markdown-alert-title {
+  color: #0055ff !important;
+}
+[data-theme='light'] .markdown-alert-note .markdown-alert-title svg,
+[data-theme='light'] .markdown-alert-note .markdown-alert-title svg path {
+  fill: #0055ff !important;
+  color: #0055ff !important;
+}
