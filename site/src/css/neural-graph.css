@@ -143,7 +143,7 @@
 }
 
 .scene-nav-info {
-  color: #ff003c !important;
+  color: #c00030 !important;
 }
 
 /* Custom HUD fixes */
@@ -185,7 +185,7 @@
 
 .dot-home { background-color: #ffffff; color: #ffffff; }
 .dot-file { background-color: #a855f7; color: #a855f7; }
-.dot-tool { background-color: #ff003c; color: #ff003c; }
+.dot-tool { background-color: #c00030; color: #c00030; }
 .dot-cve  { background-color: #ffaa00; color: #ffaa00; }
 
 .legend-items {
@@ -221,7 +221,7 @@
 }
 
 .loading-text {
-  color: #ff003c;
+  color: #c00030;
   font-size: 18px;
   letter-spacing: 2px;
   margin-bottom: 20px;
@@ -242,7 +242,7 @@
   left: 0;
   height: 100%;
   width: 40%;
-  background: #ff003c;
+  background: #c00030;
   animation: load 1.5s infinite ease-in-out;
 }
 
@@ -269,7 +269,7 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 10000;
-  color: #ff003c;
+  color: #c00030;
   font-family: 'JetBrains Mono', monospace;
   font-size: 9px;
   white-space: nowrap;
@@ -288,11 +288,11 @@
   background: transparent;
 }
 [data-theme='light'] .loading-text {
-  color: #ff003c;
+  color: #c00030;
 }
 [data-theme='light'] .loading-bar {
   background: #e0e0e0;
 }
 [data-theme='light'] .loading-bar-fill {
-  background: #ff003c;
+  background: #c00030;
 }

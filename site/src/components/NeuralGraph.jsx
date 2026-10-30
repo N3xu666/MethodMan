@@ -459,7 +459,7 @@ export default function NeuralGraph() {
             linkColor={(l) => {
               const tgt = typeof l.target === 'object' ? l.target : { id: l.target };
               const src = typeof l.source === 'object' ? l.source : { id: l.source };
-              if (tgt.group === 'tool' || src.group === 'tool') return '#ff003c';
+              if (tgt.group === 'tool' || src.group === 'tool') return '#c00030';
               if (tgt.group === 'cve' || src.group === 'cve') return '#ff8800';
               return '#aaaaaa';
             }}
@@ -485,7 +485,7 @@ export default function NeuralGraph() {
         {/* CUSTOM_NAV_TEXT */}
         <div className='custom-nav-info'>Left-click: rotate, Mouse-wheel/middle-click: zoom, Right-click: pan</div>
         {!error && (!graph || visible.nodes.length === 0) && (
-          <p className="hint">{graph ? 'empty focus' : 'loading graph.json...'}</p>
+          <p className="hint">{graph ? 'empty focus' : ''}</p>
         )}
       </main>
       <footer className="hud foot">

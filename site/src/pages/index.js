@@ -16,11 +16,11 @@ export default function Home() {
         <div className={styles.leftCol}>
           <Link to="/reference" className={styles.card}>
             <div className={styles.cardLabel}>REFERENCE</div>
-            <div className={styles.cardDesc}>Applications / AI / Cloud / Networks / OSINT</div>
+            <div className={styles.cardDesc}>Applications / AI / Cloud / Infrastructure / Networks / Virtualization / Information Security / OSINT / Anonymity & OpSec</div>
           </Link>
           <Link to="/writeups" className={styles.card}>
             <div className={styles.cardLabel}>WRITEUPS</div>
-            <div className={styles.cardDesc}>HTB walkthroughs - Linux / Windows / AD</div>
+            <div className={styles.cardDesc}>Hack The Box / All Machines / Season 12 / OSCP (Linux, Windows, Active Directory and Networks) / Pro Labs</div>
           </Link>
         </div>
 

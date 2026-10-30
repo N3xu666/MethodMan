@@ -169,13 +169,13 @@
 }
 
 .card:hover {
-  border-color: #ff003c;
+  border-color: #c00030;
   background: rgba(10,0,0,0.95);
 }
 
 .cardLabel {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
-  color: #ff003c;
+  color: #c00030;
   font-size: 16px;
   letter-spacing: 0.2em;
   font-weight: 600;
@@ -192,7 +192,7 @@
 
 .threatsHeader {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
-  color: #ff003c;
+  color: #c00030;
   font-size: 16px;
   letter-spacing: 0.2em;
   font-weight: 600;
@@ -234,7 +234,7 @@
 }
 
 .threatCard:hover {
-  border-color: #ff003c;
+  border-color: #c00030;
   background: rgba(10,0,0,0.6);
 }
 
@@ -248,7 +248,7 @@
 }
 
 .threatId {
-  color: #ff003c;
+  color: #c00030;
   font-size: 15px;
   line-height: 1.4;
   white-space: nowrap;
