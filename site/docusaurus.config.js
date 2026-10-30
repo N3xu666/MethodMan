@@ -1,4 +1,4 @@
-// @ts-check
+﻿// @ts-check
 import {themes as prismThemes} from 'prism-react-renderer';
 import { remarkAlert } from 'remark-github-blockquote-alert';
 
@@ -63,7 +63,7 @@ const config = {
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       defaultMode: 'dark',
-      disableSwitch: true,
+      disableSwitch: false,
       respectPrefersColorScheme: false,
     },
     navbar: {

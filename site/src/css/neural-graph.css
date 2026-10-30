@@ -26,6 +26,7 @@
 }
 
 .hud {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,15 +63,20 @@
   color: var(--dim);
 }
 
+/* FIX CRUMBS CENTER */
 .crumbs {
+  position: absolute;
+  left: 50%;
+  transform: translateX(calc(-50% + 1.5px));
   display: flex;
   align-items: center;
   gap: 0;
-  flex: 1;
-  justify-content: center;
-  min-width: 0;
+  width: max-content;
+  max-width: 40%;
   overflow: hidden;
   white-space: nowrap;
+  justify-content: center;
+  min-width: 0;
   text-overflow: ellipsis;
 }
 
@@ -248,4 +254,45 @@
 @keyframes load {
   0% { left: -40%; }
   100% { left: 100%; }
+}
+
+
+
+
+
+
+
+/* CUSTOM_NAV_CSS */
+.custom-nav-info {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  color: #ff003c;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+[data-theme='light'] .stage canvas {
+  filter: invert(1) grayscale(1);
+}
+[data-theme='light'] .stage {
+  background: #f5f5f5;
+}
+
+
+/* LIGHT_LOADING_FIX */
+[data-theme='light'] .loading-overlay {
+  background: transparent;
+}
+[data-theme='light'] .loading-text {
+  color: #ff003c;
+}
+[data-theme='light'] .loading-bar {
+  background: #e0e0e0;
+}
+[data-theme='light'] .loading-bar-fill {
+  background: #ff003c;
 }

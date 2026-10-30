@@ -466,6 +466,7 @@ export default function NeuralGraph() {
             linkThreeObject={getLinkObject}
             linkPositionUpdate={updateLinkPositionCb}
             rendererConfig={{ antialias: true, alpha: false }}
+            showNavInfo={false}
             warmupTicks={0}
             cooldownTicks={200}
             d3AlphaDecay={alphaDecay}
@@ -481,6 +482,8 @@ export default function NeuralGraph() {
             }}
           />
         )}
+        {/* CUSTOM_NAV_TEXT */}
+        <div className='custom-nav-info'>Left-click: rotate, Mouse-wheel/middle-click: zoom, Right-click: pan</div>
         {!error && (!graph || visible.nodes.length === 0) && (
           <p className="hint">{graph ? 'empty focus' : 'loading graph.json...'}</p>
         )}

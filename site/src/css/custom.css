@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root {
   /* Красная палитра (акценты, ссылки, активные элементы) */
@@ -331,4 +331,20 @@ pre.language-text span {
 }
 [data-theme='light'] * {
   scrollbar-color: #d5d5d5 transparent;
+}
+
+/* Center the day/night toggle */
+.navbar__inner {
+  position: relative !important;
+}
+button[class*='toggleButton'] {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: transparent !important;
+  border: none !important;
+  width: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
 }
