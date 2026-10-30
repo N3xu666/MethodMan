@@ -7,20 +7,39 @@ export default function LiveThreats({ onSync }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/cve-feed.json', { cache: 'no-store' })
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch');
-        return res.json();
-      })
-      .then((data) => {
-        setThreats(data.cves);
-        if (onSync) onSync(data.last_sync);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+    let isMounted = true;
+
+    const fetchData = () => {
+      fetch('/cve-feed.json', { cache: 'no-store' })
+        .then((res) => {
+          if (!res.ok) throw new Error('Failed to fetch');
+          return res.json();
+        })
+        .then((data) => {
+          if (isMounted) {
+            setThreats(data.cves);
+            if (onSync) onSync(data.last_sync);
+            setLoading(false);
+            setError(null);
+          }
+        })
+        .catch((err) => {
+          if (isMounted) {
+            setError(err.message);
+            setLoading(false);
+          }
+        });
+    };
+
+    fetchData(); // Первая загрузка при монтировании
+    
+    // Автообновление каждые 10 минут (600 000 мс)
+    const intervalId = setInterval(fetchData, 600000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(intervalId);
+    };
   }, [onSync]);
 
   if (loading) return <div className={styles.threatsPlaceholder}>Initializing feed...</div>;

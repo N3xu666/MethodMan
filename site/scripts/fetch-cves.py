@@ -90,7 +90,7 @@ def main():
     
     # СОХРАНЯЕМ В НОВОМ ФОРМАТЕ
     output_data = {
-        "last_sync": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "last_sync": datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=4))).strftime("%Y-%m-%d %H:%M GMT+4"),
         "cves": recent_cves
     }
     
