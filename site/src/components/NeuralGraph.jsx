@@ -22,7 +22,7 @@ for (let i = 0; i <= 30; i++) {
   const radius = 0.3 - Math.sin(t * Math.PI) * 0.25;
   linkPoints.push(new THREE.Vector2(radius, t - 0.5));
 }
-const LINK_GEO = new THREE.LatheGeometry(linkPoints, 16);
+const LINK_GEO = new THREE.LatheGeometry(linkPoints, 32);
 const LINK_SHADER_VERT = `
   uniform float uThicknessZoneA;
   uniform float uThicknessZoneB;
