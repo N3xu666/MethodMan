@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../pages/index.module.css';
 
 export default function LiveThreats({ onSync }) {
@@ -7,7 +7,7 @@ export default function LiveThreats({ onSync }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/cve-feed.json')
+    fetch('/cve-feed.json', { cache: 'no-store' })
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch');
         return res.json();
