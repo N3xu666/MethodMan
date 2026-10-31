@@ -18,7 +18,7 @@ $utf8 = New-Object System.Text.UTF8Encoding($false)
 $LF = [char]10
 
 # Files excluded (same as check-anchors.ps1)
-$excludeNames = @("_WORKFLOW.md", "_SITE_PLAN.md", "PROMPT_NEXT_SESSION.txt")
+$excludeNames = @("MASTER_WORKFLOW.md", "_SITE_PLAN.md", "PROMPT_NEXT_SESSION.txt")
 
 # Collect all .md files
 $files = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyContinue |

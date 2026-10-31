@@ -18,7 +18,7 @@ desktop.ini
 .DS_Store
 
 # Internal workflow (not for public)
-_WORKFLOW.md
+MASTER_WORKFLOW.md
 update-readmes.ps1
 _SITE_PLAN.md
 
@@ -33,7 +33,7 @@ check.ps1.bak
 
 
 # Backup files from workflow edits
-_WORKFLOW.md.*
+MASTER_WORKFLOW.md.*
 *.ps1.bak*
 *.ps1.tmp*
 # General backup files
@@ -67,3 +67,4 @@ audit-session.ps1
 
 # Closing Protocol
 SESSION_CLOSING_PROTOCOL.md
+_WORKFLOW.md*

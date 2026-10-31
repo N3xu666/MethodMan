@@ -65,9 +65,9 @@ function Test-StubFile([string]$filePath) {
 }
 
 # Not-published files (skip in all content checks)
-$excluded = @('_WORKFLOW.md', 'masking-dict.ps1', '_SITE_PLAN.md', 'SESSION_CLOSING_PROTOCOL.md')
+$excluded = @('MASTER_WORKFLOW.md', 'masking-dict.ps1', '_SITE_PLAN.md', 'SESSION_CLOSING_PROTOCOL.md')
 # Files that are not walkthroughs (no Note, no Attack Chain)
-$notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Reporting.md', '_WORKFLOW.md', 'masking-dict.ps1', 'SECURITY.md', '_SITE_PLAN.md', 'SESSION_CLOSING_PROTOCOL.md')
+$notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Reporting.md', 'MASTER_WORKFLOW.md', 'masking-dict.ps1', 'SECURITY.md', '_SITE_PLAN.md', 'SESSION_CLOSING_PROTOCOL.md')
 
 # ============================================================
 # 1. Real 32-hex flags
@@ -109,7 +109,7 @@ $specCitationPat      = if ($spec) { $spec.Base.CitationPattern }       else { '
 $specDraftPath        = if ($spec) { $spec.Base.DraftPath }             else { 'txt/active-drafts' }
 $specDraftCitationPat = if ($spec) { $spec.Base.DraftCitationPattern }  else { '\[citation:\d+\]' }
 $specStaleRefs        = if ($spec) { $spec.Base.StaleRefs }        else { @('02 Web','01 HTB','OSCP-grade') }
-$specDocExcludeNames  = if ($spec) { $spec.Base.DocExcludeNames }  else { @('_WORKFLOW.md','_SITE_PLAN.md','PROMPT_NEXT_SESSION.txt') }
+$specDocExcludeNames  = if ($spec) { $spec.Base.DocExcludeNames }  else { @('MASTER_WORKFLOW.md','_SITE_PLAN.md','PROMPT_NEXT_SESSION.txt') }
 $specTimesSign        = if ($spec) { $spec.Base.TimesSign }        else { [string][char]0x00D7 }
 $specWrongDifficultyRu    = if ($spec) { $spec.Base.WrongDifficultyRu }     else { @() }
 Write-Host "`n=== [1/27] Real 32-hex flags ===" -ForegroundColor Cyan

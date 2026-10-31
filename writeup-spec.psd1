@@ -3,7 +3,7 @@
     # writeup-spec.psd1
     # Single source of truth for HTB walkthrough structure and localization.
     # Consumed by check.ps1. NOT consumed by mask.ps1 (masking is value-based).
-    # Internal file: _WORKFLOW.md 6.5 / 6.8 are generated FROM this spec.
+    # Internal file: MASTER_WORKFLOW.md 6.5 / 6.8 are generated FROM this spec.
     # =========================================================================
 
     SchemaVersion = '1.0.0'
@@ -158,7 +158,7 @@
         StaleRefs = @('02 Web', '01 HTB', 'OSCP-grade')
 
         # Doc-level exclude names (link check [10/23], stale check [14/23]).
-        DocExcludeNames = @('_WORKFLOW.md', '_SITE_PLAN.md', 'PROMPT_NEXT_SESSION.txt', 'SESSION_CLOSING_PROTOCOL.md')
+        DocExcludeNames = @('MASTER_WORKFLOW.md', '_SITE_PLAN.md', 'PROMPT_NEXT_SESSION.txt', 'SESSION_CLOSING_PROTOCOL.md')
 
         # Language counter marker: U+00D7 MULTIPLICATION SIGN.
         # Written as an escape so this PSD1 stays ASCII-safe (lesson 164).

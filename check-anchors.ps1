@@ -17,7 +17,7 @@ $LF = [char]10
 $BT3 = [string][char]96 * 3
 
 # Files excluded from anchor check (same as check.ps1 [10/14])
-$excludeNames = @("_WORKFLOW.md", "_SITE_PLAN.md", "PROMPT_NEXT_SESSION.txt")
+$excludeNames = @("MASTER_WORKFLOW.md", "_SITE_PLAN.md", "PROMPT_NEXT_SESSION.txt")
 
 # Collect all .md files
 $files = Get-ChildItem -Path $repo -Recurse -Filter *.md -ErrorAction SilentlyContinue |

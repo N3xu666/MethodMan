@@ -103,7 +103,7 @@ Get-ChildItem -Force | Where-Object { $_.Name -ne '.git' } | Select-Object Name,
 Write-Host "[3] .gitignore" -ForegroundColor Yellow
 $gitignoreContent = Get-Content ".gitignore" -ErrorAction SilentlyContinue
 if ($gitignoreContent) { Write-Pass ".gitignore exists" } else { Write-Fail ".gitignore missing" }
-$mustIgnore = @('masking-dict.ps1', '_WORKFLOW.md', 'update-readmes.ps1', '_SITE_PLAN.md', 'txt/')
+$mustIgnore = @('masking-dict.ps1', 'MASTER_WORKFLOW.md', 'update-readmes.ps1', '_SITE_PLAN.md', 'txt/')
 foreach ($f in $mustIgnore) {
     $gitBefore3 = $script:gitErrors
     $checkPath = if ($f -eq 'txt/') { "WRITEUPS/01 Hack The Box/02 OSCP/01 Linux/txt/ru/01 Sea.txt" } else { $f }
@@ -184,7 +184,7 @@ if ($badNote.Count -eq 0) { Write-Pass "all walkthroughs: Note right after Attac
 # 10. REAL 32-HEX FLAGS
 Write-Host "`n[10] Real 32-hex flags (case-insensitive)" -ForegroundColor Yellow
 $flagCount = 0
-Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne '_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
+Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne 'MASTER_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $flagCount += [regex]::Matches($c, "\b[a-fA-F0-9]{32}\b").Count
 }
@@ -201,7 +201,7 @@ if (Test-Path "masking-dict.ps1") {
         if ($key -match '^<.*>$') { continue }
         if ($key -match '^[a-fA-F0-9]{32}$') { continue }
         $count = 0
-        Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne '_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
+        Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne 'MASTER_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
             $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
             $count += ([regex]::Matches($c, [regex]::Escape($key))).Count
         }
@@ -213,7 +213,7 @@ if (Test-Path "masking-dict.ps1") {
 # 12. LONG DASHES / BROKEN CHARS
 Write-Host "`n[12] Long dashes / broken chars" -ForegroundColor Yellow
 $d = 0; $b = 0
-Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne '_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
+Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne 'MASTER_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
     $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
     $d += [regex]::Matches($c, "[\u2013\u2014\u2212]").Count
     $b += [regex]::Matches($c, "[\uFFFD]").Count
@@ -227,7 +227,7 @@ $artifacts = @('<PASSWORD>blog', '<PASSWORD>.htb', '<USER_FLAG>FLAG', '<ROOT_FLA
 $a = 0
 foreach ($art in $artifacts) {
     $count = 0
-    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne '_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
+    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne 'MASTER_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($art))).Count
     }
@@ -240,7 +240,7 @@ Write-Host "`n[14] Placeholders usage" -ForegroundColor Yellow
 $placeholders = @('<USER_FLAG>', '<ROOT_FLAG>', '<PASSWORD>', '<BCRYPT_HASH>', '<MYSQL_HASH>', '<SHA256_HASH>', '<TOKEN>', '<SESSION_ID>')
 foreach ($ph in $placeholders) {
     $count = 0
-    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne '_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
+    Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne 'MASTER_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
         $c = [System.IO.File]::ReadAllText($_.FullName, $utf8)
         $count += ([regex]::Matches($c, [regex]::Escape($ph))).Count
     }
@@ -270,7 +270,7 @@ Write-Host "`n[16] Scripts" -ForegroundColor Yellow
 if (Test-Path "mask.ps1") { Write-Pass "mask.ps1 exists" } else { Write-Fail "mask.ps1 missing" }
 if (Test-Path "check.ps1") { Write-Pass "check.ps1 exists" } else { Write-Fail "check.ps1 missing" }
 if (Test-Path "masking-dict.ps1") { Write-Pass "masking-dict.ps1 exists" } else { Write-Fail "masking-dict.ps1 missing" }
-if (Test-Path "_WORKFLOW.md") { Write-Pass "_WORKFLOW.md exists" } else { Write-Warn "_WORKFLOW.md missing" }
+if (Test-Path "MASTER_WORKFLOW.md") { Write-Pass "MASTER_WORKFLOW.md exists" } else { Write-Warn "MASTER_WORKFLOW.md missing" }
 if (Test-Path "update-readmes.ps1") { Write-Pass "update-readmes.ps1 exists" } else { Write-Warn "update-readmes.ps1 missing" }
 if (Test-Path "mask.ps1") {
     $m = Get-Content "mask.ps1" -Raw
@@ -280,7 +280,7 @@ if (Test-Path "mask.ps1") {
 if (Test-Path "check.ps1") {
     $chk = Get-Content "check.ps1" -Raw
     if ($chk -match '\[a-fA-F0-9\]') { Write-Pass "check.ps1 uses [a-fA-F0-9]" } else { Write-Fail "check.ps1 does not use [a-fA-F0-9]" }
-    if ($chk -match '_WORKFLOW\.md') { Write-Pass "check.ps1 excludes _WORKFLOW.md" } else { Write-Warn "check.ps1 does not exclude _WORKFLOW.md" }
+    if ($chk -match '_WORKFLOW\.md') { Write-Pass "check.ps1 excludes MASTER_WORKFLOW.md" } else { Write-Warn "check.ps1 does not exclude MASTER_WORKFLOW.md" }
 }
 
 # 17. PRE-COMMIT HOOK
@@ -298,7 +298,7 @@ if ($SkipLocalChecks) {
 # 18. ENCODING (UTF-8 BOM)
 Write-Host "`n[18] Encoding (UTF-8 BOM)" -ForegroundColor Yellow
 $bomIssues = @()
-Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne '_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
+Get-ChildItem -Recurse -Filter *.md | Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.FullName -notmatch '\\txt\\' -and $_.FullName -notmatch '\\tests\\' -and $_.FullName -notmatch '\\terraform\\' -and $_.FullName -notmatch '\\site\\' -and $_.FullName -notmatch '\\methodology\\' -and $_.FullName -notmatch '\\tools\\' -and $_.FullName -notmatch '\\APPLICATIONS\\' -and $_.FullName -notmatch '\\INFRASTRUCTURE\\' -and $_.FullName -notmatch '\\ANONYMITY-PRIVACY-OPSEC\\' -and $_.Name -ne 'MASTER_WORKFLOW.md' -and $_.Name -ne '_SITE_PLAN.md' -and $_.Name -ne 'SESSION_CLOSING_PROTOCOL.md' } | ForEach-Object {
     $bytes = [System.IO.File]::ReadAllBytes($_.FullName)
     if ($bytes.Length -lt 3 -or $bytes[0] -ne 0xEF -or $bytes[1] -ne 0xBB -or $bytes[2] -ne 0xBF) { $bomIssues += $_.Name }
 }
