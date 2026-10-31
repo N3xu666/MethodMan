@@ -65,9 +65,9 @@ function Test-StubFile([string]$filePath) {
 }
 
 # Not-published files (skip in all content checks)
-$excluded = @('_WORKFLOW.md', 'masking-dict.ps1', '_SITE_PLAN.md')
+$excluded = @('_WORKFLOW.md', 'masking-dict.ps1', '_SITE_PLAN.md', 'SESSION_CLOSING_PROTOCOL.md')
 # Files that are not walkthroughs (no Note, no Attack Chain)
-$notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Reporting.md', '_WORKFLOW.md', 'masking-dict.ps1', 'SECURITY.md', '_SITE_PLAN.md')
+$notWalkthrough = @('README.md', 'CHEATSHEET.md', 'METHODOLOGY.md', 'OSCP-Reporting.md', '_WORKFLOW.md', 'masking-dict.ps1', 'SECURITY.md', '_SITE_PLAN.md', 'SESSION_CLOSING_PROTOCOL.md')
 
 # ============================================================
 # 1. Real 32-hex flags
