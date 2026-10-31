@@ -1,4 +1,4 @@
-﻿/* 1. Растягиваем корень Docusaurus на 100% экрана */
+/* 1. Растягиваем корень Docusaurus на 100% экрана */
 :global(#__docusaurus) {
   height: 100vh;
   display: flex;
@@ -314,4 +314,23 @@
 
 .threatCard:hover .threatNvd .nvdArrow {
   color: #ffffff;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+.blink {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.statusCircle {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  margin-right: 8px;
+  vertical-align: middle;
+  margin-top: -2px;
 }

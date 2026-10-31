@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
+import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import ForceGraph3D from 'react-force-graph-3d';
 import * as THREE from 'three';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
@@ -262,12 +262,16 @@ const buildVisible = (graph, focus) => {
   return { nodes, links: visibleLinks };
 };
 
-export default function NeuralGraph() {
+export default function NeuralGraph({ onReady }) {
   const [graph, setGraph] = useState(null);
   const [focus, setFocus] = useState(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [error, setError] = useState(null);
   const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (isReady && onReady) onReady();
+  }, [isReady, onReady]);
   const [alphaDecay, setAlphaDecay] = useState(0.003);
   const [velocityDecay, setVelocityDecay] = useState(0.1);
   const containerRef = useRef(null);
