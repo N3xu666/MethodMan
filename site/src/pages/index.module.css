@@ -1,4 +1,4 @@
-/* 1. Растягиваем корень Docusaurus на 100% экрана */
+﻿/* 1. Растягиваем корень Docusaurus на 100% экрана */
 :global(#__docusaurus) {
   height: 100vh;
   display: flex;
@@ -163,7 +163,7 @@
   border: 1px solid #1a1a1a;
   background: rgba(0,0,0,0.85);
   text-decoration: none;
-  transition: all 0.2s;
+  transition: none;
   width: 100%;
   box-sizing: border-box;
 }
@@ -229,7 +229,7 @@
   border: 1px solid #1a1a1a;
   background: rgba(0,0,0,0.4);
   text-decoration: none;
-  transition: all 0.2s;
+  transition: none;
   box-sizing: border-box;
 }
 
